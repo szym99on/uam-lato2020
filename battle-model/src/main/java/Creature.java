@@ -3,6 +3,6 @@ public class Creature {
     }
 
     public int getHp() {
-        return 0;
+        return 8;
     }
 }
