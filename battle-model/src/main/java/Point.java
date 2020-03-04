@@ -1,6 +1,6 @@
 import java.util.Objects;
 
-public class Point {
+public class Point implements Cloneable{
 
     private int x;
     private int y;
@@ -8,6 +8,11 @@ public class Point {
     public Point(int x, int y) {
         this.x = x;
         this.y = y;
+    }
+
+    public Point(Point startP) {
+        x = startP.x;
+        y = startP.y;
     }
 
     @Override
@@ -36,5 +41,9 @@ public class Point {
                 "x=" + x +
                 ", y=" + y +
                 '}';
+    }
+
+    public void setY(int i) {
+        y=i;
     }
 }
