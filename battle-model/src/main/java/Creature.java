@@ -10,6 +10,7 @@ public class Creature {
     private final int armor;
     private int currentHp;
     private boolean canCounterAttacked;
+    private Random random;
 
     @Builder
     public Creature(int aMaxHp, Range<Integer> aAttack, int aArmor) {
@@ -18,6 +19,16 @@ public class Creature {
         currentHp = maxHp;
         armor = aArmor;
         canCounterAttacked = true;
+        random = new Random();
+    }
+
+    public Creature(int aMaxHp, Range<Integer> aAttack, int aArmor, Random aRandom) {
+        maxHp = aMaxHp;
+        attack = aAttack;
+        currentHp = maxHp;
+        armor = aArmor;
+        canCounterAttacked = true;
+        random = aRandom;
     }
 
     public void attack(Creature aDefender) {
@@ -33,15 +44,17 @@ public class Creature {
     }
 
     void dealDamage(Creature aDefender) {
-        Random random = new Random();
         int rand = random.nextInt(attack.upperEndpoint());
+        int damageToDeal = attack.lowerEndpoint()+rand;
 
-        int damageToDeal = attack.upperEndpoint()+rand;
 
-        if (attack.lowerEndpoint() - aDefender.armor <= 0) {
+
+        if (damageToDeal - aDefender.armor <= 0) {
             damageToDeal = 1;
-        } else {
-            damageToDeal = attack.lowerEndpoint() - aDefender.armor;
+        }
+        else
+        {
+            damageToDeal = damageToDeal - aDefender.armor;
         }
         aDefender.currentHp = aDefender.currentHp - damageToDeal;
     }
