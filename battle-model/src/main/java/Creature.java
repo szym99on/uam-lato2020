@@ -16,14 +16,21 @@ public class Creature {
     }
 
     public void attack(Creature aDefender) {
+        dealDamage(aDefender);
+        aDefender.counterAttack(this);
+    }
+
+    private void counterAttack(Creature aDefender){
+        dealDamage(aDefender);
+    }
+
+    private void dealDamage(Creature aDefender) {
         int damageToDeal;
-        if (attack - aDefender.armor <= 0){
+        if (attack - aDefender.armor <= 0) {
             damageToDeal = 1;
-        }
-        else{
+        } else {
             damageToDeal = attack - aDefender.armor;
         }
-
         aDefender.currentHp = aDefender.currentHp - damageToDeal;
     }
 
