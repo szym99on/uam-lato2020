@@ -1,9 +1,10 @@
+import com.google.common.collect.Range;
 
 public class ShootingCreature extends Creature {
 
     private boolean shouldShoot = true;
 
-    public ShootingCreature(int aMaxHp, int aAttack, int aArmor) {
+    public ShootingCreature(int aMaxHp, Range<Integer> aAttack, int aArmor) {
         super(aMaxHp, aAttack, aArmor);
     }
 

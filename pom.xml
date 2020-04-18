@@ -42,6 +42,11 @@
                 <artifactId>lombok</artifactId>
                 <version>1.18.12</version>
             </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>29.0-jre</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 <!-- https://join.slack.com/t/uam-software-wizard/shared_invite/enQtOTc2NjE4MTcwMjcyLTY2Nzc2OWU2ODlhZTE0OWViNGUzNzBjYmNiNTM0NmNhMDdiZGU2ZTU1M2MyMjAwNTZhZjJlOWQ4Yjc3NTgzZDU -->

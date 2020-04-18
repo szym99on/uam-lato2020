@@ -1,3 +1,4 @@
+import com.google.common.collect.Range;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -9,12 +10,13 @@ import static org.junit.jupiter.api.Assertions.*;
 class CreatureTest {
 
     private final static int NOT_IMPORTANT_1 = 1;
+    private final static Range<Integer> NOT_IMPORTANT_RANGE = Range.closed(1,1);
     private final static int NOT_IMPORTANT_0 = 0;
 
     @Test
     void creatureOneShouldLostTwoHp(){
-        Creature c1 = new Creature(10, NOT_IMPORTANT_1, NOT_IMPORTANT_0);
-        Creature c2 = new Creature(NOT_IMPORTANT_0,2, NOT_IMPORTANT_0);
+        Creature c1 = new Creature(10, NOT_IMPORTANT_RANGE, NOT_IMPORTANT_0);
+        Creature c2 = new Creature(NOT_IMPORTANT_0,Range.closed(2,2), NOT_IMPORTANT_0);
 
         c2.attack(c1);
 
@@ -23,8 +25,8 @@ class CreatureTest {
 
     @Test
     void creatureShouldLostOneHpBecauseHasOneDefence(){
-        Creature defender = new Creature(10, NOT_IMPORTANT_1,1);
-        Creature attacker = new Creature(NOT_IMPORTANT_1,2, NOT_IMPORTANT_1);
+        Creature defender = new Creature(10, NOT_IMPORTANT_RANGE,1);
+        Creature attacker = new Creature(NOT_IMPORTANT_1,Range.closed(2,2), NOT_IMPORTANT_1);
 
         attacker.attack(defender);
 
@@ -33,8 +35,8 @@ class CreatureTest {
 
     @Test
     void creatureShouldNotHealAfterDefendWeakerCreature(){
-        Creature defender = Creature.builder().aMaxHp(10).aAttack(NOT_IMPORTANT_1).aArmor(100).build();
-        Creature attacker = new Creature(NOT_IMPORTANT_1,50, NOT_IMPORTANT_1);
+        Creature defender = Creature.builder().aMaxHp(10).aAttack(NOT_IMPORTANT_RANGE).aArmor(100).build();
+        Creature attacker = new Creature(NOT_IMPORTANT_1,Range.closed(50,50), NOT_IMPORTANT_1);
 
         attacker.attack(defender);
 
@@ -43,8 +45,8 @@ class CreatureTest {
 
     @Test
     void creatureShouldCounterAttack(){
-        Creature defender = Creature.builder().aMaxHp(10).aAttack(2).aArmor(1).build();
-        Creature attacker = Creature.builder().aMaxHp(10).aAttack(2).aArmor(1).build();
+        Creature defender = Creature.builder().aMaxHp(10).aAttack(Range.closed(2,2)).aArmor(1).build();
+        Creature attacker = Creature.builder().aMaxHp(10).aAttack(Range.closed(2,2)).aArmor(1).build();
 
         attacker.attack(defender);
 
@@ -53,8 +55,8 @@ class CreatureTest {
 
     @Test
     void defenderCreatureShouldCounterAttackOnlyOncePerTurn(){
-        Creature defender = Creature.builder().aMaxHp(10).aAttack(2).aArmor(1).build();
-        Creature attacker = Creature.builder().aMaxHp(10).aAttack(2).aArmor(1).build();
+        Creature defender = Creature.builder().aMaxHp(10).aAttack(Range.closed(2,2)).aArmor(1).build();
+        Creature attacker = Creature.builder().aMaxHp(10).aAttack(Range.closed(2,2)).aArmor(1).build();
 
         attacker.attack(defender);
         attacker.attack(defender);
@@ -64,9 +66,9 @@ class CreatureTest {
 
     @Test
     void polimorphismExample(){
-        Creature defender = Creature.builder().aMaxHp(10).aAttack(2).aArmor(1).build();
-        Creature attacker = Creature.builder().aMaxHp(10).aAttack(2).aArmor(1).build();
-        ShootingCreature attackerShooter = new ShootingCreature(10,2,1);
+        Creature defender = Creature.builder().aMaxHp(10).aAttack(Range.closed(2,2)).aArmor(1).build();
+        Creature attacker = Creature.builder().aMaxHp(10).aAttack(Range.closed(2,2)).aArmor(1).build();
+        ShootingCreature attackerShooter = new ShootingCreature(10,Range.closed(2,2),1);
 
         List<Creature> creatureList = new ArrayList<>();
         creatureList.add(attackerShooter);

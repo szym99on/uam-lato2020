@@ -1,15 +1,16 @@
+import com.google.common.collect.Range;
 import lombok.Builder;
 
 public class Creature {
 
     private final int maxHp;
-    private final int attack;
+    private final Range<Integer> attack;
     private final int armor;
     private int currentHp;
     private boolean canCounterAttacked;
 
     @Builder
-    public Creature(int aMaxHp, int aAttack, int aArmor) {
+    public Creature(int aMaxHp, Range<Integer> aAttack, int aArmor) {
         maxHp = aMaxHp;
         attack = aAttack;
         currentHp = maxHp;
@@ -31,10 +32,10 @@ public class Creature {
 
     void dealDamage(Creature aDefender) {
         int damageToDeal;
-        if (attack - aDefender.armor <= 0) {
+        if (attack.lowerEndpoint() - aDefender.armor <= 0) {
             damageToDeal = 1;
         } else {
-            damageToDeal = attack - aDefender.armor;
+            damageToDeal = attack.lowerEndpoint() - aDefender.armor;
         }
         aDefender.currentHp = aDefender.currentHp - damageToDeal;
     }
