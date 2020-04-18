@@ -46,4 +46,15 @@ class CreatureTest {
 
         assertEquals(9,attacker.getHp());
     }
+
+    @Test
+    void defenderCreatureShouldCounterAttackOnlyOncePerTurn(){
+        Creature defender = Creature.builder().aMaxHp(10).aAttack(2).aArmor(1).build();
+        Creature attacker = Creature.builder().aMaxHp(10).aAttack(2).aArmor(1).build();
+
+        attacker.attack(defender);
+        attacker.attack(defender);
+
+        assertEquals(9,attacker.getHp());
+    }
 }

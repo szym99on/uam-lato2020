@@ -6,6 +6,7 @@ public class Creature {
     private final int attack;
     private final int armor;
     private int currentHp;
+    private boolean canCounterAttacked;
 
     @Builder
     public Creature(int aMaxHp, int aAttack, int aArmor) {
@@ -13,15 +14,19 @@ public class Creature {
         attack = aAttack;
         currentHp = maxHp;
         armor = aArmor;
+        canCounterAttacked = true;
     }
 
     public void attack(Creature aDefender) {
         dealDamage(aDefender);
-        aDefender.counterAttack(this);
+        if(aDefender.canCounterAttacked){
+            aDefender.counterAttack(this);
+        }
     }
 
     private void counterAttack(Creature aDefender){
         dealDamage(aDefender);
+        canCounterAttacked = false;
     }
 
     private void dealDamage(Creature aDefender) {
