@@ -19,17 +19,17 @@ public class Creature {
 
     public void attack(Creature aDefender) {
         dealDamage(aDefender);
-        if(aDefender.canCounterAttacked){
+        if (aDefender.canCounterAttacked) {
             aDefender.counterAttack(this);
         }
     }
 
-    private void counterAttack(Creature aDefender){
+    private void counterAttack(Creature aDefender) {
         dealDamage(aDefender);
         canCounterAttacked = false;
     }
 
-    private void dealDamage(Creature aDefender) {
+    void dealDamage(Creature aDefender) {
         int damageToDeal;
         if (attack - aDefender.armor <= 0) {
             damageToDeal = 1;

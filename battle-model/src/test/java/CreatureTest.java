@@ -1,5 +1,9 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class CreatureTest {
@@ -55,6 +59,22 @@ class CreatureTest {
         attacker.attack(defender);
         attacker.attack(defender);
 
+        assertEquals(9,attacker.getHp());
+    }
+
+    @Test
+    void polimorphismExample(){
+        Creature defender = Creature.builder().aMaxHp(10).aAttack(2).aArmor(1).build();
+        Creature attacker = Creature.builder().aMaxHp(10).aAttack(2).aArmor(1).build();
+        ShootingCreature attackerShooter = new ShootingCreature(10,2,1);
+
+        List<Creature> creatureList = new ArrayList<>();
+        creatureList.add(attackerShooter);
+        creatureList.add(attacker);
+
+        creatureList.forEach(c -> c.attack(defender));
+        assertEquals(8,defender.getHp());
+        assertEquals(10,attackerShooter.getHp());
         assertEquals(9,attacker.getHp());
     }
 }
