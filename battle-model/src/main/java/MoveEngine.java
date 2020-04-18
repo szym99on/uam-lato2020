@@ -16,4 +16,7 @@ public class MoveEngine {
     public boolean isMovePossible(int x, int y) {
         return board.isTileEmpty(x,y) && new Point(x,y).distance(board.getCreatureLocation(activeCreature).get()) <= activeCreature.getMoveRange();
     }
+
+    public void move(int x, int y) {
+    }
 }
