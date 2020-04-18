@@ -69,7 +69,7 @@ class CreatureTest {
     void polimorphismExample() {
         Creature defender = Creature.builder().aMaxHp(10).aAttack(Range.closed(1, 1)).aArmor(1).build();
         Creature attacker = Creature.builder().aMaxHp(10).aAttack(Range.closed(1, 1)).aArmor(1).build();
-        ShootingCreature attackerShooter = new ShootingCreature(10, Range.closed(1, 1), 1,"");
+        ShootingCreature attackerShooter = new ShootingCreature(10, Range.closed(1, 1), 1,"", 0);
 
         List<Creature> creatureList = new ArrayList<>();
         creatureList.add(attackerShooter);

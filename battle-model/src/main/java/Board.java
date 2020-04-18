@@ -33,7 +33,4 @@ public class Board {
         return board.keySet().stream().filter( p -> board.get(p).equals(c1)).findAny();
     }
 
-    public boolean isMovePossible(int x, int y) {
-        return false;
-    }
 }
