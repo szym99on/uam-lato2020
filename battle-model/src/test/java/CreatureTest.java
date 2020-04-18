@@ -29,13 +29,12 @@ class CreatureTest {
 
     @Test
     void creatureShouldNotHealAfterDefendWeakerCreature(){
-        Creature defender = new Creature(10, NOT_IMPORTANT_1,100);
+        Creature defender2 = Creature.builder().aMaxHp(10).aAttack(NOT_IMPORTANT_1).aArmor(100).build();
+
         Creature attacker = new Creature(NOT_IMPORTANT_1,50, NOT_IMPORTANT_1);
 
-        attacker.attack(defender);
+        attacker.attack(defender2);
 
-        assertEquals(9,defender.getHp());
+        assertEquals(9,defender2.getHp());
     }
-
-
 }

@@ -1,3 +1,5 @@
+import lombok.Builder;
+
 public class Creature {
 
     private final int maxHp;
@@ -5,6 +7,7 @@ public class Creature {
     private final int armor;
     private int currentHp;
 
+    @Builder
     public Creature(int aMaxHp, int aAttack, int aArmor) {
         maxHp = aMaxHp;
         attack = aAttack;
