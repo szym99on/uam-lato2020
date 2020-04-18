@@ -35,7 +35,7 @@ class MoveEngineTest {
         moveEngine.move(1,2);
 
         assertEquals(c, board.getCreature(1,2));
-        assertEquals(Optional.empty(), board.getCreature(1,1));
+        assertNull(board.getCreature(1,1));
     }
 
 }

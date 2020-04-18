@@ -18,5 +18,6 @@ public class MoveEngine {
     }
 
     public void move(int x, int y) {
+        board.move(x,y,activeCreature);
     }
 }

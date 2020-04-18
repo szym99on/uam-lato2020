@@ -37,4 +37,14 @@ public class Board {
         return board.keySet().stream().filter( p -> board.get(p).equals(c1)).findAny();
     }
 
+    void move(int x, int y, Creature activeCreature) {
+        Point oldPosition = getCreatureLocation(activeCreature).get();
+        try {
+            board.remove(oldPosition);
+            putCreature(x,y,activeCreature);
+        }
+        catch (Exception e){
+            putCreature(oldPosition.x,oldPosition.y, activeCreature);
+        }
+    }
 }
