@@ -1,3 +1,5 @@
+package pl.psi.game;
+
 import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;

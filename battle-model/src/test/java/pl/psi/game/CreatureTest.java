@@ -1,10 +1,13 @@
+package pl.psi.game;
+
 import com.google.common.collect.Range;
 import org.junit.jupiter.api.Test;
+import pl.psi.game.Creature;
+import pl.psi.game.ShootingCreature;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 

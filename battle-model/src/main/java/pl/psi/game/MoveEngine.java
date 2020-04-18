@@ -1,3 +1,5 @@
+package pl.psi.game;
+
 import java.awt.*;
 
 public class MoveEngine {

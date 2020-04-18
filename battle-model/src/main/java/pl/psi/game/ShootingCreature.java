@@ -1,3 +1,5 @@
+package pl.psi.game;
+
 import com.google.common.collect.Range;
 
 public class ShootingCreature extends Creature {

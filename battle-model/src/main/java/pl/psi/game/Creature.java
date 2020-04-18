@@ -1,3 +1,5 @@
+package pl.psi.game;
+
 import com.google.common.collect.Range;
 import lombok.Builder;
 import lombok.Getter;

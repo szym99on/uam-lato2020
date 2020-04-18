@@ -1,13 +1,13 @@
-import org.junit.jupiter.api.Test;
+package pl.psi.game;
 
-import java.util.Optional;
+import org.junit.jupiter.api.Test;
+import pl.psi.game.Board;
+import pl.psi.game.Creature;
+import pl.psi.game.MoveEngine;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class MoveEngineTest {
-
-    // Creature moveCreature (newLocation)
-    // Boolean isMovePossible(Point)
 
     @Test
     void moveShouldBePossible(){
