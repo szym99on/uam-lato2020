@@ -1,6 +1,8 @@
 import com.google.common.collect.Range;
 import lombok.Builder;
 
+import java.util.Random;
+
 public class Creature {
 
     private final int maxHp;
@@ -31,7 +33,11 @@ public class Creature {
     }
 
     void dealDamage(Creature aDefender) {
-        int damageToDeal;
+        Random random = new Random();
+        int rand = random.nextInt(attack.upperEndpoint());
+
+        int damageToDeal = attack.upperEndpoint()+rand;
+
         if (attack.lowerEndpoint() - aDefender.armor <= 0) {
             damageToDeal = 1;
         } else {
