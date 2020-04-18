@@ -1,8 +1,12 @@
+package pl.psi.game;
+
 import com.google.common.collect.Range;
 import lombok.Builder;
+import lombok.Getter;
 
 import java.util.Random;
 
+@Getter
 public class Creature {
 
     private final int maxHp;
@@ -12,9 +16,10 @@ public class Creature {
     private int currentHp;
     private boolean canCounterAttacked;
     private Random random;
+    private final int moveRange;
 
     @Builder
-    public Creature(int aMaxHp, Range<Integer> aAttack, int aArmor, String aName) {
+    public Creature(int aMaxHp, Range<Integer> aAttack, int aArmor, String aName, int aMoveRange) {
         maxHp = aMaxHp;
         attack = aAttack;
         currentHp = maxHp;
@@ -22,6 +27,7 @@ public class Creature {
         canCounterAttacked = true;
         random = new Random();
         name = aName;
+        moveRange = aMoveRange;
     }
 
     public Creature(int aMaxHp, Range<Integer> aAttack, int aArmor, Random aRandom) {
@@ -32,6 +38,7 @@ public class Creature {
         canCounterAttacked = true;
         random = aRandom;
         name = "";
+        moveRange = 0;
     }
 
     public void attack(Creature aDefender) {
@@ -60,9 +67,5 @@ public class Creature {
             damageToDeal = damageToDeal - aDefender.armor;
         }
         aDefender.currentHp = aDefender.currentHp - damageToDeal;
-    }
-
-    public int getHp() {
-        return currentHp;
     }
 }

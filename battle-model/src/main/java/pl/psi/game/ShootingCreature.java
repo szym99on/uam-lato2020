@@ -1,11 +1,13 @@
+package pl.psi.game;
+
 import com.google.common.collect.Range;
 
 public class ShootingCreature extends Creature {
 
     private boolean shouldShoot = true;
 
-    public ShootingCreature(int aMaxHp, Range<Integer> aAttack, int aArmor, String aName) {
-        super(aMaxHp, aAttack, aArmor, aName);
+    public ShootingCreature(int aMaxHp, Range<Integer> aAttack, int aArmor, String aName, int aMoveRange) {
+        super(aMaxHp, aAttack, aArmor, aName, aMoveRange);
     }
 
     @Override

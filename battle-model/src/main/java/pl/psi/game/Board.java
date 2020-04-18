@@ -1,3 +1,5 @@
+package pl.psi.game;
+
 import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,11 +20,15 @@ public class Board {
             throw new IllegalArgumentException("You tried put creature outside the board");
         }
 
-        if (board.containsKey(new Point(x,y))){
+        if (!isTileEmpty(x,y)){
             throw new IllegalArgumentException("Field isn't empty");
         }
 
         board.put(new Point(x,y), aCreature);
+    }
+
+    boolean isTileEmpty(int x, int y){
+        return !board.containsKey(new Point(x,y));
     }
 
     public Creature getCreature(int x, int y) {
@@ -31,5 +37,16 @@ public class Board {
 
     public Optional<Point> getCreatureLocation(Creature c1) {
         return board.keySet().stream().filter( p -> board.get(p).equals(c1)).findAny();
+    }
+
+    void move(int x, int y, Creature activeCreature) {
+        Point oldPosition = getCreatureLocation(activeCreature).get();
+        try {
+            board.remove(oldPosition);
+            putCreature(x,y,activeCreature);
+        }
+        catch (Exception e){
+            putCreature(oldPosition.x,oldPosition.y, activeCreature);
+        }
     }
 }
