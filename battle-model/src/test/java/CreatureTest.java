@@ -27,5 +27,7 @@ class CreatureTest {
         assertEquals(9,defender.getHp());
     }
 
+    //next test - check armor and attack
+
 
 }
