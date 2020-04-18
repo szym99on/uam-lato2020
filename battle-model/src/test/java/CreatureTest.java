@@ -21,7 +21,7 @@ class CreatureTest {
 
         c2.attack(c1);
 
-        assertEquals(8, c1.getHp());
+        assertEquals(8, c1.getCurrentHp());
     }
 
     @Test
@@ -31,7 +31,7 @@ class CreatureTest {
 
         attacker.attack(defender);
 
-        assertEquals(9, defender.getHp());
+        assertEquals(9, defender.getCurrentHp());
     }
 
     @Test
@@ -41,7 +41,7 @@ class CreatureTest {
 
         attacker.attack(defender);
 
-        assertEquals(9, defender.getHp());
+        assertEquals(9, defender.getCurrentHp());
     }
 
     @Test
@@ -51,7 +51,7 @@ class CreatureTest {
 
         attacker.attack(defender);
 
-        assertEquals(9, attacker.getHp());
+        assertEquals(9, attacker.getCurrentHp());
     }
 
     @Test
@@ -62,7 +62,7 @@ class CreatureTest {
         attacker.attack(defender);
         attacker.attack(defender);
 
-        assertEquals(9, attacker.getHp());
+        assertEquals(9, attacker.getCurrentHp());
     }
 
     @Test
@@ -76,9 +76,9 @@ class CreatureTest {
         creatureList.add(attacker);
 
         creatureList.forEach(c -> c.attack(defender));
-        assertEquals(8, defender.getHp());
-        assertEquals(10, attackerShooter.getHp());
-        assertEquals(9, attacker.getHp());
+        assertEquals(8, defender.getCurrentHp());
+        assertEquals(10, attackerShooter.getCurrentHp());
+        assertEquals(9, attacker.getCurrentHp());
     }
 
     @Test
@@ -88,7 +88,7 @@ class CreatureTest {
 
         attacker.attack(defender);
 
-        assertEquals(89, defender.getHp());
+        assertEquals(89, defender.getCurrentHp());
     }
 
     private class OurRandom extends Random{

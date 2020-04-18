@@ -18,11 +18,15 @@ public class Board {
             throw new IllegalArgumentException("You tried put creature outside the board");
         }
 
-        if (board.containsKey(new Point(x,y))){
+        if (!isTileEmpty(x,y)){
             throw new IllegalArgumentException("Field isn't empty");
         }
 
         board.put(new Point(x,y), aCreature);
+    }
+
+    boolean isTileEmpty(int x, int y){
+        return !board.containsKey(new Point(x,y));
     }
 
     public Creature getCreature(int x, int y) {

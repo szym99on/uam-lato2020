@@ -14,6 +14,7 @@ class MoveEngineTest {
         board.putCreature(1,1, c);
 
         MoveEngine moveEngine = new MoveEngine(board);
+        moveEngine.setActiveCreature(c);
 
         assertTrue(moveEngine.isMovePossible(1,2));
         assertTrue(moveEngine.isMovePossible(2,1));

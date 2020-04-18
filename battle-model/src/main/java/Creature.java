@@ -1,8 +1,10 @@
 import com.google.common.collect.Range;
 import lombok.Builder;
+import lombok.Getter;
 
 import java.util.Random;
 
+@Getter
 public class Creature {
 
     private final int maxHp;
@@ -63,9 +65,5 @@ public class Creature {
             damageToDeal = damageToDeal - aDefender.armor;
         }
         aDefender.currentHp = aDefender.currentHp - damageToDeal;
-    }
-
-    public int getHp() {
-        return currentHp;
     }
 }
