@@ -8,8 +8,8 @@ import java.util.Optional;
 public class Board {
 
     private final Map<Point, Creature> board;
-    private final static int BOARD_WIDTH = 14;
-    private final static int BOARD_HIGH = 9;
+    public final static int BOARD_WIDTH = 14;
+    public final static int BOARD_HIGH = 9;
 
     public Board() {
         board = new HashMap<>();
