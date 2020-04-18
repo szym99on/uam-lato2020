@@ -13,7 +13,15 @@ public class Creature {
     }
 
     public void attack(Creature aDefender) {
-        aDefender.currentHp = aDefender.currentHp - (attack - aDefender.armor);
+        int damageToDeal;
+        if (attack - aDefender.armor <= 0){
+            damageToDeal = 1;
+        }
+        else{
+            damageToDeal = attack - aDefender.armor;
+        }
+
+        aDefender.currentHp = aDefender.currentHp - damageToDeal;
     }
 
     public int getHp() {
