@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.awt.*;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class BoardTest {
@@ -16,6 +18,16 @@ class BoardTest {
 
         assertEquals(c1,board.getCreature(1,1));
         assertEquals(c2,board.getCreature(2,2));
+    }
+
+    @Test
+    void shouldReturnCorrectCreatureLocation(){
+        Board board = new Board();
+        Creature c1 = Creature.builder().aName("C1").build();
+
+        board.putCreature(1,1, c1);
+
+        assertEquals(new Point(1,1),board.getCreatureLocation(c1).get());
     }
 
     @Test

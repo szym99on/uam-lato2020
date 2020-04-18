@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class Board {
 
@@ -17,10 +18,18 @@ public class Board {
             throw new IllegalArgumentException("You tried put creature outside the board");
         }
 
+        if (board.containsKey(new Point(x,y))){
+            throw new IllegalArgumentException("Field isn't empty");
+        }
+
         board.put(new Point(x,y), aCreature);
     }
 
     public Creature getCreature(int x, int y) {
         return board.get(new Point(x,y));
+    }
+
+    public Optional<Point> getCreatureLocation(Creature c1) {
+        return board.keySet().stream().filter( p -> board.get(p).equals(c1)).findAny();
     }
 }
