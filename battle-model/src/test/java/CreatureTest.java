@@ -16,8 +16,8 @@ class CreatureTest {
 
     @Test
     void creatureOneShouldLostTwoHp() {
-        Creature c1 = new Creature(10, NOT_IMPORTANT_RANGE, NOT_IMPORTANT_0,"");
-        Creature c2 = new Creature(NOT_IMPORTANT_0, Range.closed(2, 2), NOT_IMPORTANT_0,"");
+        Creature c1 = new Creature(10, NOT_IMPORTANT_RANGE, NOT_IMPORTANT_0,"",0);
+        Creature c2 = new Creature(NOT_IMPORTANT_0, Range.closed(2, 2), NOT_IMPORTANT_0,"",0);
 
         c2.attack(c1);
 
@@ -26,8 +26,8 @@ class CreatureTest {
 
     @Test
     void creatureShouldLostOneHpBecauseHasOneDefence() {
-        Creature defender = new Creature(10, NOT_IMPORTANT_RANGE, 1,"");
-        Creature attacker = new Creature(NOT_IMPORTANT_1, Range.closed(2, 2), NOT_IMPORTANT_1,"");
+        Creature defender = new Creature(10, NOT_IMPORTANT_RANGE, 1,"",0);
+        Creature attacker = new Creature(NOT_IMPORTANT_1, Range.closed(2, 2), NOT_IMPORTANT_1,"",0);
 
         attacker.attack(defender);
 
@@ -37,7 +37,7 @@ class CreatureTest {
     @Test
     void creatureShouldNotHealAfterDefendWeakerCreature() {
         Creature defender = Creature.builder().aMaxHp(10).aAttack(NOT_IMPORTANT_RANGE).aArmor(100).build();
-        Creature attacker = new Creature(NOT_IMPORTANT_1, Range.closed(50, 50), NOT_IMPORTANT_1,"");
+        Creature attacker = new Creature(NOT_IMPORTANT_1, Range.closed(50, 50), NOT_IMPORTANT_1,"",0);
 
         attacker.attack(defender);
 

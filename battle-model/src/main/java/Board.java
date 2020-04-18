@@ -32,4 +32,8 @@ public class Board {
     public Optional<Point> getCreatureLocation(Creature c1) {
         return board.keySet().stream().filter( p -> board.get(p).equals(c1)).findAny();
     }
+
+    public boolean isMovePossible(int x, int y) {
+        return false;
+    }
 }
