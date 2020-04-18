@@ -27,7 +27,15 @@ class CreatureTest {
         assertEquals(9,defender.getHp());
     }
 
-    //next test - check armor and attack
+    @Test
+    void creatureShouldNotHealAfterDefendWeakerCreature(){
+        Creature defender = new Creature(10, NOT_IMPORTANT_1,100);
+        Creature attacker = new Creature(NOT_IMPORTANT_1,50, NOT_IMPORTANT_1);
+
+        attacker.attack(defender);
+
+        assertEquals(9,defender.getHp());
+    }
 
 
 }
