@@ -82,19 +82,6 @@ class CreatureTest {
     }
 
     @Test
-    void checkRandom() {
-        Creature defender = Creature.builder().aMaxHp(100).aAttack(Range.closed(2, 2)).aArmor(0).build();
-        Creature attacker = Creature.builder().aMaxHp(10).aAttack(Range.closed(1, 100)).aArmor(0).build();
-
-        attacker.attack(defender);
-
-        //!!!DON'T DO THAT!!!
-        for (int i = 0; i < 1000000; i++) {
-            assertTrue(defender.getHp() > 0 && defender.getHp() < 100);
-        }
-    }
-
-    @Test
     void checkRandomWithMock() {
         Creature defender = Creature.builder().aMaxHp(100).aAttack(Range.closed(2, 2)).aArmor(0).build();
         Creature attacker = new Creature(10, Range.closed(1, 100), 0, new OurRandom());
