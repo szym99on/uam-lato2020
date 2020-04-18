@@ -8,18 +8,20 @@ public class Creature {
     private final int maxHp;
     private final Range<Integer> attack;
     private final int armor;
+    private final String name;
     private int currentHp;
     private boolean canCounterAttacked;
     private Random random;
 
     @Builder
-    public Creature(int aMaxHp, Range<Integer> aAttack, int aArmor) {
+    public Creature(int aMaxHp, Range<Integer> aAttack, int aArmor, String aName) {
         maxHp = aMaxHp;
         attack = aAttack;
         currentHp = maxHp;
         armor = aArmor;
         canCounterAttacked = true;
         random = new Random();
+        name = aName;
     }
 
     public Creature(int aMaxHp, Range<Integer> aAttack, int aArmor, Random aRandom) {
@@ -29,6 +31,7 @@ public class Creature {
         armor = aArmor;
         canCounterAttacked = true;
         random = aRandom;
+        name = "";
     }
 
     public void attack(Creature aDefender) {
