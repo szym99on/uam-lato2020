@@ -7,7 +7,7 @@ import lombok.Getter;
 import java.util.Random;
 
 @Getter
-public class Creature {
+public class Creature implements GuiTileIf{
 
     private final int maxHp;
     private final Range<Integer> attack;
@@ -71,5 +71,10 @@ public class Creature {
 
     public boolean canShoot(){
         return false;
+    }
+
+    @Override
+    public boolean isCreature() {
+        return true;
     }
 }

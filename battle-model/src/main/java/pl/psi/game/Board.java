@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public class Board {
 
-    private final Map<Point, Creature> board;
+    private final Map<Point, GuiTileIf> board;
     public final static int BOARD_WIDTH = 14;
     public final static int BOARD_HIGH = 9;
 
@@ -32,6 +32,15 @@ public class Board {
     }
 
     public Creature getCreature(int x, int y) {
+        if (board.get(new Point(x,y)).isCreature()){
+            return (Creature)board.get(new Point(x,y));
+        }
+        else{
+            return null;
+        }
+    }
+
+    public GuiTileIf getTile(int x, int y){
         return board.get(new Point(x,y));
     }
 

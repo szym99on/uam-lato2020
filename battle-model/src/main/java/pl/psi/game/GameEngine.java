@@ -40,7 +40,11 @@ public class GameEngine {
         moveEngine.move(x,y);
     }
 
-    public Creature getByPoint(int x,int y){
+    public GuiTileIf getByPoint(int x,int y){
+        return board.getTile(x,y);
+    }
+
+    public Creature getCreatureByPoint (int x, int y ){
         return board.getCreature(x,y);
     }
 
