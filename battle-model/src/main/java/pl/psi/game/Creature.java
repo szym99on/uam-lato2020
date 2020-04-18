@@ -68,4 +68,8 @@ public class Creature {
         }
         aDefender.currentHp = aDefender.currentHp - damageToDeal;
     }
+
+    public boolean canShoot(){
+        return false;
+    }
 }

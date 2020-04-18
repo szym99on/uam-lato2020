@@ -24,4 +24,9 @@ public class ShootingCreature extends Creature {
     private void shoot(Creature aDefender) {
         dealDamage(aDefender);
     }
+
+    @Override
+    public boolean canShoot() {
+        return true;
+    }
 }

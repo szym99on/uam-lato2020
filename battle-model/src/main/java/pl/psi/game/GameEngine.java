@@ -26,17 +26,39 @@ public class GameEngine {
     private void putCreaturesToQueue(Hero aHero1, Hero aHero2) {
         List<Creature> creatures = aHero1.getCreatures();
         creatures.addAll(aHero2.getCreatures());
-
         Collections.shuffle(creatures);
         creatures.sort(Comparator.comparingInt(Creature::getMoveRange).reversed());
-
         creaturesQueue.addAll(creatures);
-
         pass();
+    }
+
+    public boolean isMoveAllowed(int x, int y){
+        return moveEngine.isMovePossible(x,y);
+    }
+
+    public void move(int x, int y){
+        moveEngine.move(x,y);
+    }
+
+    public Creature getByPoint(int x,int y){
+        return board.getCreature(x,y);
+    }
+
+    public void attack(int x, int y){
+        activeCreature.getValue().attack(board.getCreature(x,y));
+    }
+
+    public boolean isAttackPossible(int x, int y){
+        Creature creature = activeCreature.getValue();
+        if(creature.canShoot()){
+            return true;
+        }
+        return activeCreature.getKey().distance(new Point(x,y)) == 1;
     }
 
     public void pass() {
         Creature creatureFromQueue = creaturesQueue.poll();
+        creaturesQueue.add(creatureFromQueue);
         activeCreature = new AbstractMap.SimpleEntry<>(board.getCreatureLocation(creatureFromQueue).get(), creatureFromQueue);
     }
 
