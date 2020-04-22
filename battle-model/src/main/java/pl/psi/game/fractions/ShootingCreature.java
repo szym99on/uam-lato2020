@@ -1,6 +1,7 @@
-package pl.psi.game;
+package pl.psi.game.fractions;
 
 import com.google.common.collect.Range;
+import pl.psi.game.fractions.Creature;
 
 public class ShootingCreature extends Creature {
 

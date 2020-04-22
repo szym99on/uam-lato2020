@@ -1,4 +1,6 @@
-package pl.psi.game;
+package pl.psi.game.hero;
+
+import pl.psi.game.fractions.Creature;
 
 import java.util.ArrayList;
 import java.util.List;

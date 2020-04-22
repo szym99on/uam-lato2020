@@ -2,8 +2,8 @@ package pl.psi.game;
 
 import org.junit.jupiter.api.Test;
 import pl.psi.game.Board;
-import pl.psi.game.Creature;
-import pl.psi.game.MoveEngine;
+import pl.psi.game.fractions.Creature;
+import pl.psi.game.move.MoveEngine;
 
 import static org.junit.jupiter.api.Assertions.*;
 

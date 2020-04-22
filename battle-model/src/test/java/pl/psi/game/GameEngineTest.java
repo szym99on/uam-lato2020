@@ -1,6 +1,8 @@
 package pl.psi.game;
 
 import org.junit.jupiter.api.Test;
+import pl.psi.game.fractions.Creature;
+import pl.psi.game.hero.Hero;
 
 import java.util.ArrayList;
 import java.util.List;

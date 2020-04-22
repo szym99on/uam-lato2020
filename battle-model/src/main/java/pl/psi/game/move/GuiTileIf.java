@@ -1,4 +1,4 @@
-package pl.psi.game;
+package pl.psi.game.move;
 
 public interface GuiTileIf {
 

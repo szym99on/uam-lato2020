@@ -1,5 +1,10 @@
 package pl.psi.game;
 
+import pl.psi.game.fractions.Creature;
+import pl.psi.game.hero.Hero;
+import pl.psi.game.move.GuiTileIf;
+import pl.psi.game.move.MoveEngine;
+
 import java.awt.*;
 import java.util.*;
 import java.util.List;
@@ -40,7 +45,7 @@ public class GameEngine {
         moveEngine.move(x,y);
     }
 
-    public GuiTileIf getByPoint(int x,int y){
+    public GuiTileIf getByPoint(int x, int y){
         return board.getTile(x,y);
     }
 
