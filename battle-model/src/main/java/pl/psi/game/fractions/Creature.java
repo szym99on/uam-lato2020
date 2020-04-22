@@ -1,13 +1,14 @@
-package pl.psi.game;
+package pl.psi.game.fractions;
 
 import com.google.common.collect.Range;
 import lombok.Builder;
 import lombok.Getter;
+import pl.psi.game.move.GuiTileIf;
 
 import java.util.Random;
 
 @Getter
-public class Creature {
+public class Creature implements GuiTileIf {
 
     private final int maxHp;
     private final Range<Integer> attack;
@@ -54,7 +55,7 @@ public class Creature {
     }
 
     void dealDamage(Creature aDefender) {
-        int rand = random.nextInt(attack.upperEndpoint());
+        int rand = random.nextInt(attack.upperEndpoint() - attack.lowerEndpoint() + 1);
         int damageToDeal = attack.lowerEndpoint()+rand;
 
 
@@ -67,5 +68,14 @@ public class Creature {
             damageToDeal = damageToDeal - aDefender.armor;
         }
         aDefender.currentHp = aDefender.currentHp - damageToDeal;
+    }
+
+    public boolean canShoot(){
+        return false;
+    }
+
+    @Override
+    public boolean isCreature() {
+        return true;
     }
 }

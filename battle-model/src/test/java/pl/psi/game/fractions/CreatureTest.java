@@ -1,9 +1,9 @@
-package pl.psi.game;
+package pl.psi.game.fractions;
 
 import com.google.common.collect.Range;
 import org.junit.jupiter.api.Test;
-import pl.psi.game.Creature;
-import pl.psi.game.ShootingCreature;
+import pl.psi.game.fractions.Creature;
+import pl.psi.game.fractions.ShootingCreature;
 
 import java.util.ArrayList;
 import java.util.List;

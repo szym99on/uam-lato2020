@@ -1,4 +1,7 @@
-package pl.psi.game;
+package pl.psi.game.move;
+
+import pl.psi.game.Board;
+import pl.psi.game.fractions.Creature;
 
 import java.awt.*;
 
