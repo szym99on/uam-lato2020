@@ -2,6 +2,7 @@ package pl.psi.game;
 
 import pl.psi.game.fractions.Creature;
 import pl.psi.game.move.GuiTileIf;
+import pl.psi.game.move.Obstacle;
 
 import java.awt.*;
 import java.util.HashMap;
@@ -16,6 +17,12 @@ public class Board {
 
     Board() {
         board = new HashMap<>();
+        board.put(new Point(7,2), new Obstacle());
+        board.put(new Point(7,3), new Obstacle());
+        board.put(new Point(7,4), new Obstacle());
+        board.put(new Point(7,5), new Obstacle());
+        board.put(new Point(7,6), new Obstacle());
+        board.put(new Point(7,7), new Obstacle());
     }
 
     public void putCreature(int x, int y, Creature aCreature) {
