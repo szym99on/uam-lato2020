@@ -1,5 +1,6 @@
 package pl.psi.game;
 
+import com.google.common.collect.Range;
 import org.junit.jupiter.api.Test;
 import pl.psi.game.fractions.Creature;
 import pl.psi.game.hero.converter.Hero;
@@ -65,5 +66,32 @@ class GameEngineTest {
 
         gameEngine.pass();
         assertEquals(c2_1, gameEngine.getActiveCreature().getValue());
+    }
+
+    @Test
+    void checkResetCounterAttack(){
+        List<Creature> creatures = new ArrayList<>();
+        Creature attacker1 = Creature.builder().aMoveRange(21).aMaxHp(10).aAttack(Range.closed(1,1)).build();
+        Creature attacker2 = Creature.builder().aMoveRange(20).aMaxHp(10).aAttack(Range.closed(1,1)).build();
+        creatures.add(attacker1);
+        creatures.add(attacker2);
+        List<Creature> creatures2 = new ArrayList<>();
+        Creature defender = Creature.builder().aMoveRange(0).aMaxHp(100).aAttack(Range.closed(1,1)).build();
+        creatures2.add(defender);
+        Hero hero1 = new Hero(creatures);
+        Hero hero2 = new Hero(creatures2);
+        GameEngine gameEngine = new GameEngine(hero1, hero2);
+
+        attacker1.attack(defender);
+        attacker2.attack(defender);
+        //new turn
+        gameEngine.pass();
+        gameEngine.pass();
+        gameEngine.pass();
+        attacker1.attack(defender);
+
+        assertEquals(97, defender.getCurrentHp());
+        assertEquals(10, attacker2.getCurrentHp());
+        assertEquals(8, attacker1.getCurrentHp());
     }
 }
