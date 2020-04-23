@@ -1,4 +1,4 @@
-package pl.psi.game.hero;
+package pl.psi.game.hero.converter;
 
 import pl.psi.game.fractions.Creature;
 

@@ -8,8 +8,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import pl.psi.game.GameEngine;
 import pl.psi.game.fractions.Creature;
-import pl.psi.game.hero.Hero;
+import pl.psi.game.hero.converter.Hero;
 import pl.psi.game.move.GuiTileIf;
+import pl.psi.gui.tiles.DefaultTileFactory;
 
 import java.awt.Point;
 import java.util.ArrayList;
@@ -63,11 +64,10 @@ public class MainBattleController {
     }
 
     private void createTile(int aX, int aY) {
-        DefaultTileFactory tileFactory = new DefaultTileFactory();
-        MapTile tile = tileFactory.generateTile();
-        GuiTileIf someToRender = gameEngine.getByPoint(aX, aY);
-        if ( someToRender != null ){
-            tile.setName(someToRender.getName());
+        MapTile tile = new MapTile("");
+        GuiTileIf somethingToRender = gameEngine.getByPoint(aX, aY);
+        if ( somethingToRender != null ){
+            tile.setName(somethingToRender.getName());
         }
         Point activePoint = gameEngine.getActiveCreature().getKey();
         if (new Point(aX,aY).equals(activePoint)){

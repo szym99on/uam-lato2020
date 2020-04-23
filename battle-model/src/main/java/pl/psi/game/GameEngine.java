@@ -1,7 +1,7 @@
 package pl.psi.game;
 
 import pl.psi.game.fractions.Creature;
-import pl.psi.game.hero.Hero;
+import pl.psi.game.hero.converter.Hero;
 import pl.psi.game.move.GuiTileIf;
 import pl.psi.game.move.MoveEngine;
 
