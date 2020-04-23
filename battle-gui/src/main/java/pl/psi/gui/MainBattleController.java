@@ -10,7 +10,6 @@ import pl.psi.game.GameEngine;
 import pl.psi.game.fractions.Creature;
 import pl.psi.game.hero.converter.Hero;
 import pl.psi.game.move.GuiTileIf;
-import pl.psi.gui.tiles.DefaultTileFactory;
 
 import java.awt.Point;
 import java.util.ArrayList;

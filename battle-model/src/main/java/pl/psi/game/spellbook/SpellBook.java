@@ -1,4 +1,4 @@
 package pl.psi.game.spellbook;
 
-public class SpellbookFacade {
+public class SpellBook {
 }

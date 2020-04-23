@@ -1,12 +1,14 @@
 package pl.psi.gui.tiles;
 
-public class DefaultTileFactory {
+public class DefaultTileFactory extends AbstractTileFactory{
 
-    public DefaultTileFactory() {
-
+    DefaultTileFactory() {
+        super(null);
     }
 
+    @Override
     public MapTile generateTile() {
+
         return new MapTile("");
     }
 
