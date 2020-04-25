@@ -72,6 +72,16 @@ public class MainBattleController {
         if (new Point(aX,aY).equals(activePoint)){
             tile.setBackground(Color.GREEN);
         }
+
+        if (gameEngine.isMoveAllowed(aX,aY)){
+            tile.setBackground(Color.GREY);
+            tile.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+                gameEngine.move(aX,aY);
+                refreshGui();
+            });
+        }
+
+
         gridMap.add(tile, aX, aY);
     }
 }
