@@ -78,4 +78,8 @@ public class Creature implements GuiTileIf {
     public boolean isCreature() {
         return true;
     }
+
+    public void resetCounterAttack() {
+        canCounterAttacked = true;
+    }
 }

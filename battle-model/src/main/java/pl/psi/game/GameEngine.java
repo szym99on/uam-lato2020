@@ -82,6 +82,9 @@ public class GameEngine {
     private void endOfTurn() {
         creaturesQueue.addAll(creatureMovedOnThisTurn);
         creatureMovedOnThisTurn.clear();
+
+        creaturesQueue.stream().forEach(c -> c.resetCounterAttack());
+
     }
 
     private void putHeroCreaturesIntoBoard(Hero aHero2, int boardWidth) {
