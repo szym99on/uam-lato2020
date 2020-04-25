@@ -93,8 +93,6 @@ public class GameEngine {
         creatureMovedOnThisTurn.clear();
 
         propertyChangeSupport.firePropertyChange(END_OF_TURN, null,null );
-
-        creaturesQueue.stream().forEach(c -> c.endOfTurn());
     }
 
     public void addObserver(String aPropertyType, PropertyChangeListener aObserver){
