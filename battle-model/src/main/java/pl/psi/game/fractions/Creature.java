@@ -5,10 +5,12 @@ import lombok.Builder;
 import lombok.Getter;
 import pl.psi.game.move.GuiTileIf;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.Random;
 
 @Getter
-public class Creature implements GuiTileIf {
+public class Creature implements GuiTileIf, PropertyChangeListener {
 
     private final int maxHp;
     private final Range<Integer> attack;
@@ -58,8 +60,6 @@ public class Creature implements GuiTileIf {
         int rand = random.nextInt(attack.upperEndpoint() - attack.lowerEndpoint() + 1);
         int damageToDeal = attack.lowerEndpoint()+rand;
 
-
-
         if (damageToDeal - aDefender.armor <= 0) {
             damageToDeal = 1;
         }
@@ -79,7 +79,8 @@ public class Creature implements GuiTileIf {
         return true;
     }
 
-    public void resetCounterAttack() {
+    @Override
+    public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
         canCounterAttacked = true;
     }
 }
