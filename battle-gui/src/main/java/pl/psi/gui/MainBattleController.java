@@ -71,12 +71,16 @@ public class MainBattleController {
             factory = new ObjectTileFactory(factory, somethingToRender);
         }
 
-        if (gameEngine.isMoveAllowed(aX, aY)) {
-            factory = new MovePossibleTileFactoryDecorator(factory, aX, aY, gameEngine);
+        if (gameEngine.getActiveCreature().getKey().equals(new Point(aX,aY))){
+            factory = new ActiveObjectTileFactoryDecorator(factory);
         }
 
         if (gameEngine.isAttackPossible(aX, aY)) {
             factory = new AttackPossibleTileFactoryDecorator(factory, aX, aY, gameEngine);
+        }
+
+        if (gameEngine.isMoveAllowed(aX, aY)) {
+            factory = new MovePossibleTileFactoryDecorator(factory, aX, aY, gameEngine);
         }
 
         gridMap.add(factory.generateTile(), aX, aY);
