@@ -11,9 +11,9 @@ public class AttackPossibleTileFactoryDecorator extends AbstractTileFactory {
     private Point location;
     private GameEngine engine;
 
-    public AttackPossibleTileFactoryDecorator(AbstractTileFactory aTileFactory, Point aLocation, GameEngine aEngine) {
+    public AttackPossibleTileFactoryDecorator(AbstractTileFactory aTileFactory, int aX, int aY, GameEngine aEngine) {
         super(aTileFactory);
-        location = aLocation;
+        location = new Point(aX,aY);
         engine = aEngine;
     }
 

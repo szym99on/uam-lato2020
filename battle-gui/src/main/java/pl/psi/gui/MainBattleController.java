@@ -10,6 +10,7 @@ import pl.psi.game.GameEngine;
 import pl.psi.game.fractions.Creature;
 import pl.psi.game.hero.converter.Hero;
 import pl.psi.game.move.GuiTileIf;
+import pl.psi.gui.tiles.*;
 
 import java.awt.Point;
 import java.util.ArrayList;
@@ -28,21 +29,21 @@ public class MainBattleController {
     public MainBattleController() {
         // should come form economy
         ArrayList<Creature> creatureList1 = new ArrayList<>();
-        creatureList1.add(Creature.builder().aName("C1").aAttack(Range.closed(1,10)).aMoveRange(1).aArmor(1).aMaxHp(10).build());
-        creatureList1.add(Creature.builder().aName("C2").aAttack(Range.closed(2,10)).aMoveRange(2).aArmor(2).aMaxHp(20).build());
-        creatureList1.add(Creature.builder().aName("C3").aAttack(Range.closed(3,10)).aMoveRange(3).aArmor(3).aMaxHp(30).build());
-        creatureList1.add(Creature.builder().aName("C4").aAttack(Range.closed(4,10)).aMoveRange(14).aArmor(4).aMaxHp(40).build());
+        creatureList1.add(Creature.builder().aName("C1").aAttack(Range.closed(1, 10)).aMoveRange(1).aArmor(1).aMaxHp(10).build());
+        creatureList1.add(Creature.builder().aName("C2").aAttack(Range.closed(2, 10)).aMoveRange(2).aArmor(2).aMaxHp(20).build());
+        creatureList1.add(Creature.builder().aName("C3").aAttack(Range.closed(3, 10)).aMoveRange(3).aArmor(3).aMaxHp(30).build());
+        creatureList1.add(Creature.builder().aName("C4").aAttack(Range.closed(4, 10)).aMoveRange(14).aArmor(4).aMaxHp(40).build());
         ArrayList<Creature> creatureList2 = new ArrayList<>();
-        creatureList2.add(Creature.builder().aName("C2_1").aAttack(Range.closed(1,10)).aMoveRange(1).aArmor(1).aMaxHp(10).build());
-        creatureList2.add(Creature.builder().aName("C2_2").aAttack(Range.closed(2,10)).aMoveRange(2).aArmor(2).aMaxHp(20).build());
-        creatureList2.add(Creature.builder().aName("C2_3").aAttack(Range.closed(3,10)).aMoveRange(3).aArmor(3).aMaxHp(30).build());
-        creatureList2.add(Creature.builder().aName("C2_4").aAttack(Range.closed(4,10)).aMoveRange(14).aArmor(4).aMaxHp(40).build());
+        creatureList2.add(Creature.builder().aName("C2_1").aAttack(Range.closed(1, 10)).aMoveRange(1).aArmor(1).aMaxHp(10).build());
+        creatureList2.add(Creature.builder().aName("C2_2").aAttack(Range.closed(2, 10)).aMoveRange(2).aArmor(2).aMaxHp(20).build());
+        creatureList2.add(Creature.builder().aName("C2_3").aAttack(Range.closed(3, 10)).aMoveRange(3).aArmor(3).aMaxHp(30).build());
+        creatureList2.add(Creature.builder().aName("C2_4").aAttack(Range.closed(4, 10)).aMoveRange(14).aArmor(4).aMaxHp(40).build());
 
         hero1 = new Hero(creatureList1);
         hero2 = new Hero(creatureList2);
         // should come form economy END
 
-        gameEngine = new GameEngine(hero1,hero2);
+        gameEngine = new GameEngine(hero1, hero2);
     }
 
     @FXML
@@ -63,25 +64,21 @@ public class MainBattleController {
     }
 
     private void createTile(int aX, int aY) {
-        MapTile tile = new MapTile("");
+        AbstractTileFactory factory = new DefaultTileFactory();
+
         GuiTileIf somethingToRender = gameEngine.getByPoint(aX, aY);
-        if ( somethingToRender != null ){
-            tile.setName(somethingToRender.getName());
-        }
-        Point activePoint = gameEngine.getActiveCreature().getKey();
-        if (new Point(aX,aY).equals(activePoint)){
-            tile.setBackground(Color.GREEN);
+        if (somethingToRender != null) {
+            factory = new ObjectTileFactory(factory, somethingToRender);
         }
 
-        if (gameEngine.isMoveAllowed(aX,aY)){
-            tile.setBackground(Color.GREY);
-            tile.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-                gameEngine.move(aX,aY);
-                refreshGui();
-            });
+        if (gameEngine.isMoveAllowed(aX, aY)) {
+            factory = new MovePossibleTileFactoryDecorator(factory, aX, aY, gameEngine);
         }
 
+        if (gameEngine.isAttackPossible(aX, aY)) {
+            factory = new AttackPossibleTileFactoryDecorator(factory, aX, aY, gameEngine);
+        }
 
-        gridMap.add(tile, aX, aY);
+        gridMap.add(factory.generateTile(), aX, aY);
     }
 }

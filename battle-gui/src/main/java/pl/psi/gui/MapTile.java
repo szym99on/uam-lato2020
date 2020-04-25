@@ -5,7 +5,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-class MapTile extends StackPane {
+public class MapTile extends StackPane {
 
     private final Rectangle rect;
     private final Label label;

@@ -11,9 +11,9 @@ public class MovePossibleTileFactoryDecorator extends AbstractTileFactory {
     private Point location;
     private GameEngine engine;
 
-    public MovePossibleTileFactoryDecorator(AbstractTileFactory aTileFactory, Point aLocation, GameEngine aEngine) {
+    public MovePossibleTileFactoryDecorator(AbstractTileFactory aTileFactory, int aX, int aY, GameEngine aEngine) {
         super(aTileFactory);
-        location = aLocation;
+        location = new Point(aX,aY);
         engine = aEngine;
     }
 

@@ -2,7 +2,7 @@ package pl.psi.gui.tiles;
 
 public class DefaultTileFactory extends AbstractTileFactory{
 
-    DefaultTileFactory() {
+    public DefaultTileFactory() {
         super(null);
     }
 
