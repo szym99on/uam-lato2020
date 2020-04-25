@@ -6,6 +6,8 @@ import pl.psi.game.move.GuiTileIf;
 import pl.psi.game.move.MoveEngine;
 
 import java.awt.*;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.*;
 import java.util.List;
 
@@ -13,14 +15,18 @@ import static pl.psi.game.Board.BOARD_WIDTH;
 
 public class GameEngine {
 
+    public static final String END_OF_TURN = "END_OF_TURN";
+
     private final MoveEngine moveEngine;
     private final Board board;
     private HashMap.Entry<Point, Creature> activeCreature;
     private final Queue<Creature> creaturesQueue;
     private List<Creature> creatureMovedOnThisTurn;
+    private PropertyChangeSupport propertyChangeSupport;
 
     public GameEngine(Hero aHero1, Hero aHero2) {
         this.board = new Board();
+        propertyChangeSupport = new PropertyChangeSupport(this);
         putHeroCreaturesIntoBoard(aHero1, 0);
         putHeroCreaturesIntoBoard(aHero2, BOARD_WIDTH);
         creaturesQueue = new LinkedList<>();
@@ -35,6 +41,9 @@ public class GameEngine {
         creatures.addAll(aHero2.getCreatures());
         Collections.shuffle(creatures);
         creatures.sort(Comparator.comparingInt(Creature::getMoveRange).reversed());
+
+        creatures.forEach(c-> addObserver(END_OF_TURN, c));
+
         creaturesQueue.addAll(creatures);
         Creature activeCreatureWithoutPoint = creaturesQueue.poll();
         activeCreature = new AbstractMap.SimpleEntry<>(board.getCreatureLocation(activeCreatureWithoutPoint).get(), activeCreatureWithoutPoint);
@@ -83,8 +92,17 @@ public class GameEngine {
         creaturesQueue.addAll(creatureMovedOnThisTurn);
         creatureMovedOnThisTurn.clear();
 
-        creaturesQueue.stream().forEach(c -> c.resetCounterAttack());
+        propertyChangeSupport.firePropertyChange(END_OF_TURN, null,null );
 
+        creaturesQueue.stream().forEach(c -> c.endOfTurn());
+    }
+
+    public void addObserver(String aPropertyType, PropertyChangeListener aObserver){
+        propertyChangeSupport.addPropertyChangeListener(aPropertyType, aObserver);
+    }
+
+    public void removeObserver(PropertyChangeListener aObserver){
+        propertyChangeSupport.removePropertyChangeListener(aObserver);
     }
 
     private void putHeroCreaturesIntoBoard(Hero aHero2, int boardWidth) {
