@@ -29,7 +29,7 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
         canCounterAttacked = true;
         name = aName;
         moveRange = aMoveRange;
-        dealDamageCounterStrategy = new DefaultDamageCounterStrategy(this);
+        dealDamageCounterStrategy = new DefaultDamageCounterStrategy();
     }
 
     public Creature(int aMaxHp, Range<Integer> aAttack, int aArmor) {
@@ -55,7 +55,7 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
     }
 
     void dealDamage(Creature aDefender) {
-        int damageToDeal = dealDamageCounterStrategy.countDamageToDeal(aDefender);
+        int damageToDeal = dealDamageCounterStrategy.countDamageToDeal(this, aDefender);
         aDefender.currentHp = aDefender.currentHp - damageToDeal;
     }
 
@@ -71,5 +71,9 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
     @Override
     public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
         canCounterAttacked = true;
+    }
+
+    public void setDealDamageCountStrategy(DealDamageCounterWithIgnoreArmorStrategy aDealDamageCounterWithIgnoreArmorStrategy) {
+        dealDamageCounterStrategy = aDealDamageCounterWithIgnoreArmorStrategy;
     }
 }

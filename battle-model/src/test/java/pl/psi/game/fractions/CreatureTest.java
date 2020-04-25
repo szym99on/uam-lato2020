@@ -96,4 +96,15 @@ class CreatureTest {
         assertEquals(89, defender.getCurrentHp());
     }
 
+    @Test
+    void creatureShouldIgnoreArmorWithCorrectStrategy(){
+        Creature defender = Creature.builder().aMaxHp(100).aAttack(Range.closed(2, 2)).aArmor(50).build();
+        Creature attacker = new Creature(10, Range.closed(100, 100), 0);
+        attacker.setDealDamageCountStrategy(new DealDamageCounterWithIgnoreArmorStrategy());
+
+        attacker.attack(defender);
+
+        assertEquals(0, defender.getCurrentHp());
+    }
+
 }
