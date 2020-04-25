@@ -7,7 +7,6 @@ import pl.psi.game.move.GuiTileIf;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.Random;
 
 @Getter
 public class Creature implements GuiTileIf, PropertyChangeListener {
@@ -18,8 +17,8 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
     private final String name;
     private int currentHp;
     private boolean canCounterAttacked;
-    private Random random;
     private final int moveRange;
+    private DealDamageCounterStrategyIf dealDamageCounterStrategy;
 
     @Builder
     public Creature(int aMaxHp, Range<Integer> aAttack, int aArmor, String aName, int aMoveRange) {
@@ -28,18 +27,17 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
         currentHp = maxHp;
         armor = aArmor;
         canCounterAttacked = true;
-        random = new Random();
         name = aName;
         moveRange = aMoveRange;
+        dealDamageCounterStrategy = new DefaultDamageCounterStrategy(this);
     }
 
-    public Creature(int aMaxHp, Range<Integer> aAttack, int aArmor, Random aRandom) {
+    public Creature(int aMaxHp, Range<Integer> aAttack, int aArmor) {
         maxHp = aMaxHp;
         attack = aAttack;
         currentHp = maxHp;
         armor = aArmor;
         canCounterAttacked = true;
-        random = aRandom;
         name = "";
         moveRange = 0;
     }
@@ -57,16 +55,7 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
     }
 
     void dealDamage(Creature aDefender) {
-        int rand = random.nextInt(attack.upperEndpoint() - attack.lowerEndpoint() + 1);
-        int damageToDeal = attack.lowerEndpoint()+rand;
-
-        if (damageToDeal - aDefender.armor <= 0) {
-            damageToDeal = 1;
-        }
-        else
-        {
-            damageToDeal = damageToDeal - aDefender.armor;
-        }
+        int damageToDeal = dealDamageCounterStrategy.countDamageToDeal(aDefender);
         aDefender.currentHp = aDefender.currentHp - damageToDeal;
     }
 
