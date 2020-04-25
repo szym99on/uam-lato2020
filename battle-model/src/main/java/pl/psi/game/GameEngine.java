@@ -27,13 +27,13 @@ public class GameEngine {
     public GameEngine(Hero aHero1, Hero aHero2) {
         this.board = new Board();
         propertyChangeSupport = new PropertyChangeSupport(this);
+        this.moveEngine = new MoveEngine(board);
         putHeroCreaturesIntoBoard(aHero1, 0);
         putHeroCreaturesIntoBoard(aHero2, BOARD_WIDTH);
         creaturesQueue = new LinkedList<>();
         creatureMovedOnThisTurn = new ArrayList<>();
         putCreaturesToQueue(aHero1,aHero2);
 
-        this.moveEngine = new MoveEngine(board);
     }
 
     private void putCreaturesToQueue(Hero aHero1, Hero aHero2) {
@@ -47,6 +47,7 @@ public class GameEngine {
         creaturesQueue.addAll(creatures);
         Creature activeCreatureWithoutPoint = creaturesQueue.poll();
         activeCreature = new AbstractMap.SimpleEntry<>(board.getCreatureLocation(activeCreatureWithoutPoint).get(), activeCreatureWithoutPoint);
+        moveEngine.setActiveCreature(activeCreature.getValue());
     }
 
     public boolean isMoveAllowed(int x, int y){
@@ -86,6 +87,8 @@ public class GameEngine {
 
         Creature creatureFromQueue = creaturesQueue.poll();
         activeCreature = new AbstractMap.SimpleEntry<>(board.getCreatureLocation(creatureFromQueue).get(), creatureFromQueue);
+
+        moveEngine.setActiveCreature(activeCreature.getValue());
     }
 
     private void endOfTurn() {
