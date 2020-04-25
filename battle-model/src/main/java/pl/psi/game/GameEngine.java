@@ -17,12 +17,14 @@ public class GameEngine {
     private final Board board;
     private HashMap.Entry<Point, Creature> activeCreature;
     private final Queue<Creature> creaturesQueue;
+    private List<Creature> creatureMovedOnThisTurn;
 
     public GameEngine(Hero aHero1, Hero aHero2) {
         this.board = new Board();
         putHeroCreaturesIntoBoard(aHero1, 0);
         putHeroCreaturesIntoBoard(aHero2, BOARD_WIDTH);
         creaturesQueue = new LinkedList<>();
+        creatureMovedOnThisTurn = new ArrayList<>();
         putCreaturesToQueue(aHero1,aHero2);
 
         this.moveEngine = new MoveEngine(board);
@@ -34,7 +36,8 @@ public class GameEngine {
         Collections.shuffle(creatures);
         creatures.sort(Comparator.comparingInt(Creature::getMoveRange).reversed());
         creaturesQueue.addAll(creatures);
-        pass();
+        Creature activeCreatureWithoutPoint = creaturesQueue.poll();
+        activeCreature = new AbstractMap.SimpleEntry<>(board.getCreatureLocation(activeCreatureWithoutPoint).get(), activeCreatureWithoutPoint);
     }
 
     public boolean isMoveAllowed(int x, int y){
@@ -66,9 +69,19 @@ public class GameEngine {
     }
 
     public void pass() {
+        creatureMovedOnThisTurn.add(activeCreature.getValue());
+
+        if (creaturesQueue.isEmpty()){
+            endOfTurn();
+        }
+
         Creature creatureFromQueue = creaturesQueue.poll();
-        creaturesQueue.add(creatureFromQueue);
         activeCreature = new AbstractMap.SimpleEntry<>(board.getCreatureLocation(creatureFromQueue).get(), creatureFromQueue);
+    }
+
+    private void endOfTurn() {
+        creaturesQueue.addAll(creatureMovedOnThisTurn);
+        creatureMovedOnThisTurn.clear();
     }
 
     private void putHeroCreaturesIntoBoard(Hero aHero2, int boardWidth) {
