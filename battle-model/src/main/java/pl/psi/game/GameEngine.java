@@ -6,6 +6,7 @@ import pl.psi.game.move.GuiTileIf;
 import pl.psi.game.move.MoveEngine;
 
 import java.awt.*;
+import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.*;
@@ -13,7 +14,7 @@ import java.util.List;
 
 import static pl.psi.game.Board.BOARD_WIDTH;
 
-public class GameEngine {
+public class GameEngine implements PropertyChangeListener {
 
     public static final String END_OF_TURN = "END_OF_TURN";
     public static final String CREATURE_MOVED = "CREATURE_MOVED";
@@ -31,6 +32,7 @@ public class GameEngine {
         this.board = new Board();
         propertyChangeSupport = new PropertyChangeSupport(this);
         this.moveEngine = new MoveEngine(board);
+        moveEngine.addObserver(CREATURE_MOVED, this);
         propertyChangeSupport.addPropertyChangeListener(ACTIVE_CREATURE_CHANGED, moveEngine);
         putHeroCreaturesIntoBoard(aHero1, 0);
         putHeroCreaturesIntoBoard(aHero2, BOARD_WIDTH);
@@ -59,9 +61,12 @@ public class GameEngine {
     }
 
     public void move(int x, int y){
-        Point oldPosition = activeCreature.getKey();
         moveEngine.move(x,y);
-        propertyChangeSupport.firePropertyChange(CREATURE_MOVED, oldPosition, new Point(x,y));
+    }
+    @Override
+    public void propertyChange(PropertyChangeEvent aPropertyChangeEvent) {
+        activeCreature = new AbstractMap.SimpleEntry<>( (Point)aPropertyChangeEvent.getNewValue(), activeCreature.getValue());
+        propertyChangeSupport.firePropertyChange(CREATURE_MOVED, aPropertyChangeEvent.getOldValue(), aPropertyChangeEvent.getNewValue());
     }
 
     public GuiTileIf getByPoint(int x, int y){
@@ -75,6 +80,7 @@ public class GameEngine {
     public void attack(int x, int y){
         activeCreature.getValue().attack(board.getCreature(x,y));
         propertyChangeSupport.firePropertyChange(CREATURE_ATTACKED,null,null);
+        pass();
     }
 
     public boolean isAttackPossible(int x, int y){
