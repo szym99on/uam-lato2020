@@ -49,6 +49,17 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
         }
     }
 
+    @Override
+    public String getDisplayName() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(name);
+        sb.append(System.lineSeparator());
+        sb.append(currentHp);
+        sb.append("/");
+        sb.append(maxHp);
+        return sb.toString();
+    }
+
     private void counterAttack(Creature aDefender) {
         dealDamage(aDefender);
         canCounterAttacked = false;

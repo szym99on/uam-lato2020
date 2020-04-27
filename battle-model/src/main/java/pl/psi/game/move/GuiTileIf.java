@@ -2,6 +2,6 @@ package pl.psi.game.move;
 
 public interface GuiTileIf {
 
-    String getName();
+    String getDisplayName();
     boolean isCreature();
 }

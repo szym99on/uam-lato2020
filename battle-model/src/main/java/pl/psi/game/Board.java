@@ -15,7 +15,7 @@ public class Board {
     public final static int BOARD_WIDTH = 14;
     public final static int BOARD_HIGH = 9;
 
-    Board() {
+    public Board() {
         board = new HashMap<>();
         board.put(new Point(7,2), new Obstacle());
         board.put(new Point(7,3), new Obstacle());

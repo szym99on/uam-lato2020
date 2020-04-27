@@ -3,7 +3,7 @@ package pl.psi.game.move;
 public class Obstacle implements GuiTileIf {
 
     @Override
-    public String getName() {
+    public String getDisplayName() {
         return "X";
     }
 

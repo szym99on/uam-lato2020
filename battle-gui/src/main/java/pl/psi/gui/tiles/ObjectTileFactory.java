@@ -15,7 +15,7 @@ public class ObjectTileFactory extends AbstractTileFactory {
     @Override
     public MapTile generateTile() {
         MapTile ret = getDecorated().generateTile();
-        ret.setName(somethingToRender.getName());
+        ret.setName(somethingToRender.getDisplayName());
         return ret;
     }
 }

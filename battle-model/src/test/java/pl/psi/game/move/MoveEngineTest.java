@@ -1,9 +1,11 @@
-package pl.psi.game;
+package pl.psi.game.move;
 
 import org.junit.jupiter.api.Test;
 import pl.psi.game.Board;
 import pl.psi.game.fractions.Creature;
 import pl.psi.game.move.MoveEngine;
+
+import java.awt.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,7 +18,7 @@ class MoveEngineTest {
         board.putCreature(1,1, c);
 
         MoveEngine moveEngine = new MoveEngine(board);
-        moveEngine.setActiveCreature(c);
+        moveEngine.setActiveCreature(new Point(1,1),c);
 
         assertTrue(moveEngine.isMovePossible(1,2));
         assertTrue(moveEngine.isMovePossible(2,1));
@@ -31,7 +33,7 @@ class MoveEngineTest {
         board.putCreature(1,1, c);
 
         MoveEngine moveEngine = new MoveEngine(board);
-        moveEngine.setActiveCreature(c);
+        moveEngine.setActiveCreature(new Point(1,1), c);
         moveEngine.move(1,2);
 
         assertEquals(c, board.getCreature(1,2));

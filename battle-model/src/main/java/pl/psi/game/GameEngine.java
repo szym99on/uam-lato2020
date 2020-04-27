@@ -16,6 +16,9 @@ import static pl.psi.game.Board.BOARD_WIDTH;
 public class GameEngine {
 
     public static final String END_OF_TURN = "END_OF_TURN";
+    public static final String CREATURE_MOVED = "CREATURE_MOVED";
+    public static final String CREATURE_ATTACKED = "CREATURE_ATTACKED";
+    public static final String ACTIVE_CREATURE_CHANGED = "ACTIVE_CREATURE_CHANGED";
 
     private final MoveEngine moveEngine;
     private final Board board;
@@ -28,6 +31,7 @@ public class GameEngine {
         this.board = new Board();
         propertyChangeSupport = new PropertyChangeSupport(this);
         this.moveEngine = new MoveEngine(board);
+        propertyChangeSupport.addPropertyChangeListener(ACTIVE_CREATURE_CHANGED, moveEngine);
         putHeroCreaturesIntoBoard(aHero1, 0);
         putHeroCreaturesIntoBoard(aHero2, BOARD_WIDTH);
         creaturesQueue = new LinkedList<>();
@@ -47,7 +51,7 @@ public class GameEngine {
         creaturesQueue.addAll(creatures);
         Creature activeCreatureWithoutPoint = creaturesQueue.poll();
         activeCreature = new AbstractMap.SimpleEntry<>(board.getCreatureLocation(activeCreatureWithoutPoint).get(), activeCreatureWithoutPoint);
-        moveEngine.setActiveCreature(activeCreature.getValue());
+        propertyChangeSupport.firePropertyChange(ACTIVE_CREATURE_CHANGED, null, activeCreature);
     }
 
     public boolean isMoveAllowed(int x, int y){
@@ -55,7 +59,9 @@ public class GameEngine {
     }
 
     public void move(int x, int y){
+        Point oldPosition = activeCreature.getKey();
         moveEngine.move(x,y);
+        propertyChangeSupport.firePropertyChange(CREATURE_MOVED, oldPosition, new Point(x,y));
     }
 
     public GuiTileIf getByPoint(int x, int y){
@@ -68,6 +74,7 @@ public class GameEngine {
 
     public void attack(int x, int y){
         activeCreature.getValue().attack(board.getCreature(x,y));
+        propertyChangeSupport.firePropertyChange(CREATURE_ATTACKED,null,null);
     }
 
     public boolean isAttackPossible(int x, int y){
@@ -87,8 +94,7 @@ public class GameEngine {
 
         Creature creatureFromQueue = creaturesQueue.poll();
         activeCreature = new AbstractMap.SimpleEntry<>(board.getCreatureLocation(creatureFromQueue).get(), creatureFromQueue);
-
-        moveEngine.setActiveCreature(activeCreature.getValue());
+        propertyChangeSupport.firePropertyChange(ACTIVE_CREATURE_CHANGED, null, activeCreature);
     }
 
     private void endOfTurn() {
@@ -100,6 +106,10 @@ public class GameEngine {
 
     public void addObserver(String aPropertyType, PropertyChangeListener aObserver){
         propertyChangeSupport.addPropertyChangeListener(aPropertyType, aObserver);
+    }
+
+    public void addObserver(PropertyChangeListener aObserver){
+        propertyChangeSupport.addPropertyChangeListener(aObserver);
     }
 
     public void removeObserver(PropertyChangeListener aObserver){

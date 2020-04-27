@@ -1,6 +1,7 @@
 package pl.psi.gui;
 
 import com.google.common.collect.Range;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
@@ -51,8 +52,9 @@ public class MainBattleController {
         refreshGui();
         passButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             gameEngine.pass();
-            refreshGui();
         });
+
+        gameEngine.addObserver((e) -> Platform.runLater(this::refreshGui));
     }
 
     private void refreshGui() {
@@ -71,7 +73,7 @@ public class MainBattleController {
             factory = new ObjectTileFactory(factory, somethingToRender);
         }
 
-        if (gameEngine.getActiveCreature().getKey().equals(new Point(aX,aY))){
+        if (gameEngine.getActiveCreature().getKey().equals(new Point(aX, aY))) {
             factory = new ActiveObjectTileFactoryDecorator(factory);
         }
 
