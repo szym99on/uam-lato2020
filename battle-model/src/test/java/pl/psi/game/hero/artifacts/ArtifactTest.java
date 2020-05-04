@@ -2,6 +2,7 @@ package pl.psi.game.hero.artifacts;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import pl.psi.game.fractions.Creature;
 import pl.psi.game.hero.converter.Hero;
 import pl.psi.game.spellbook.SpellBook;
 
@@ -29,5 +30,15 @@ public class ArtifactTest {
         artifact.buffSpell(spell);
 
         assertEquals(3, spell.getDuration());
+    }
+    @Test
+    @Disabled
+    void artifactShouldIncreaseCreatureMoveRangeBy2Points(){
+        Creature creature = Creature.builder.aMoveRange(5).build();
+        Artifact artifact = new Artifact(ArtifactsInfoFactory.getArtifact("Cape of Velocity"));
+
+        artifact.buffCreature(creature);
+
+        assertEquals(7, creature.getMoveRange());
     }
 }
