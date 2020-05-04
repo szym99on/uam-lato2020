@@ -51,8 +51,13 @@ public class ArtifactTest {
 
         Spell spell = new Spell(SpellBookInfoFactory.getSpell("Death ripple"));
         Creature creature = Creature.builder().aMaxHp(100).aAttack(Range.closed(2, 2)).aArmor(0).aMoveRange(5).build();
+        Artifact artifact = new Artifact(ArtifactsInfoFactory.getArtifact("Pendant of Life"));
+
+        artifact.buffCreature(creature);
         spell.cast(creature);
 
         assertEquals(100, creature.getMaxHp());
     }
+
+    
 }
