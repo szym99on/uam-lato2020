@@ -29,6 +29,23 @@ public class ArtifactTest {
 
     @Test
     @Disabled
+    void removedArtifactShouldDebuff(){
+
+        Hero hero = Hero.builder().aKnowledge(7).build();
+        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact("Skull helmet");
+        ArtifactsFactory factory = new ArtifactsFactory();
+        Artifact artifact = factory.getArtifact(artifactInfo);
+
+        artifact.buffSkill(hero);
+
+        //hero puts artifact off
+        artifact.debuffSkill(hero);
+
+        assertEquals(7, hero.getKnowledge());
+    }
+
+    @Test
+    @Disabled
     void artifactShouldIncreaseSpellDurationBy1Point() {
         Spell spell = Spell.builder().aDuration(2).build();
         Artifact artifact = new Artifact(ArtifactsInfoFactory.getArtifact("Collar of Conjurin"));
@@ -84,4 +101,5 @@ public class ArtifactTest {
 
         assertEquals(expected, hero.getSpells());
     }
+
 }
