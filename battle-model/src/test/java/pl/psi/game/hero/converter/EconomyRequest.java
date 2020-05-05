@@ -1,4 +1,4 @@
-package pl.psi.game;
+package pl.psi.game.hero.converter;
 
 import org.junit.Test;
 

@@ -53,7 +53,7 @@ public class ConverterTest {
         ////FractionsAbstractFactory fractionsAbstractFactory = new FractionsAbstractFactory();
         ////Creature creature = fractionsAbstractFactory.getByType(FractionInfo.Type.NECROPOLIS).createCreature(1);
         List<Creature> creatures = new ArrayList<Creature>();
-        ////creatures.add(creaturee);
+        ////creatures.add(creature);
 
         ////assertEquals(creatures,battleHero.getCreatures());
     }
