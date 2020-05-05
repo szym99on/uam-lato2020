@@ -71,7 +71,7 @@ public class ConverterTest {
 
         ArtifactsInfoFactory artifactsInfoFactory = new ArtifactsInfoFactory();
         ////ArtifactInfo artifact = artifactsInfoFactory.getByType(ArtifactInfo.Location.FINGERS).stream().findFirst();
-        ////economyHero.addArtefact(artifact);
+        ////economyHero.addArtifact(artifact);
 
         ////Hero battleHero = converter.convertEconomyHeroToBattleHero(economyHero);
 
