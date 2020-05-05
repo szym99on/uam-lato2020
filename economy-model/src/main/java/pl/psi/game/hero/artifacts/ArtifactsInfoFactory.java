@@ -14,7 +14,7 @@ public class ArtifactsInfoFactory {
         artifactList.add(ArtifactInfo.builder().aCost(1).aDescription("x").aName(QUIER_EYE_OF_THE_DRAGON).aLocation(ArtifactInfo.Location.FINGERS).build());
     }
 
-    public static ArtifactInfo getSpell(String aName){
+    public static ArtifactInfo getArtifact(String aName){
         return artifactList.stream().filter(s -> s.getName().endsWith(aName)).findAny().orElseThrow();
     }
 
