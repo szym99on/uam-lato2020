@@ -18,7 +18,7 @@ public class EconomyRequest {
     }*/
 
     /*@Test
-    void AddArtefactsToEconomyHero()
+    void AddArtifactsToEconomyHero()
     {
         EconomyFactory economyfactory = new EconomyFactory();
         economyHero = economyfactory.createHero();
@@ -26,7 +26,7 @@ public class EconomyRequest {
         ArtifactsInfoFactory artifactsInfoFactory = new ArtifactsInfoFactory();
         ////ArtifactInfo artifact = artifactsInfoFactory.getByType(ArtifactInfo.Location.FINGERS).stream().findFirst();
 
-        economyHero.addArtefact(artifact);
+        economyHero.addArtifact(artifact);
     }*/
 
 
