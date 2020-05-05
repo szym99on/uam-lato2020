@@ -60,7 +60,8 @@ public class HeroEcoBattleConverterTest {
         List<Creature> creatureList = hero.getCreatures();
         Creature creature = creatureList.get(0);
 
-        assertEquals(20, creature.getAttack());
+        assertEquals(20, creature.getAttack().upperEndpoint());
+        assertEquals(20, creature.getAttack().lowerEndpoint());
     }
 
     @Test
