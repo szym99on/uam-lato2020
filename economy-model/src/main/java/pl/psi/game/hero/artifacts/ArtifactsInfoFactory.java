@@ -97,11 +97,11 @@ public class ArtifactsInfoFactory {
     }
 
     public static List<ArtifactInfo> getByLocation(ArtifactInfo.Location aLocation){
-        return artifactList.stream().filter(s -> s.getLocation().endsWith(aLocation)).collect(Collectors.toList()).orElseThrow();
+        return artifactList.stream().filter(s -> s.getLocation() == aLocation).collect(Collectors.toList());
     }
 
     public static List<ArtifactInfo> getByCost(int aCost){
-        return artifactList.stream().filter(s -> s.getCost() == aCost).collect(Collectors.toList()).orElseThrow();
+        return artifactList.stream().filter(s -> s.getCost() == aCost).collect(Collectors.toList());
     }
 
 
