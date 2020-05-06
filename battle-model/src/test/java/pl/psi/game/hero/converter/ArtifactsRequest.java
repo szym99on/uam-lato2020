@@ -28,16 +28,34 @@
 //        Spell s1 = Spell.builder().aTier(1).build();
 //        Spell s2 = Spell.builder().aTier(2).build();
 //        List<Spell> spells = new ArrayList<>();
-//
-//        Hero hero = new Hero(spells);
 //        spells.add(s1);
 //        spells.add(s2);
+//
+//        Hero hero = new Hero(spells);
+//
 //
 //        List<Spell> expected = new ArrayList<>();
 //        expected.add(s1);
 //        expected.add(s2);
 //
 //        assertEquals(expected, hero.getSpells());
+//    }
+//
+//    @Test
+//    void shouldReturnHerosCreaturesList() {
+//        Creature c1 = Creature.builder().aName("Skeleton").build();
+//        Creature c2 = Creature.builder().aName("Zombie").build();
+//        List<Creature> creatures = new ArrayList<>();
+//        creatures.add(c1);
+//        creatures.add(c2);
+//
+//        Hero hero = new Hero(creatures);
+//
+//        List<Creature> expected = new ArrayList<>();
+//        expected.add(c1);
+//        expected.add(c2);
+//
+//        assertEquals(expected, hero.getCreatures());
 //    }
 //
 //
