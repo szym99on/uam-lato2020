@@ -87,9 +87,9 @@ public class ArtifactTest {
         //prevent == remove from opponent's spellbook?
         Artifact artifact = new Artifact(ArtifactsInfoFactory.getArtifact("Recanter's Cloak"));
 
-        Spell s1 = new Spell(SpellBookInfoFactory.getSpellsByTier(1));
-        Spell s2 = new Spell(SpellBookInfoFactory.getSpellsByTier(2));
-        Spell s3 = new Spell(SpellBookInfoFactory.getSpellsByTier(3));
+        Spell s1 = Spell.builder().aTier(1).build();
+        Spell s2 = Spell.builder().aTier(2).build();
+        Spell s3 = Spell.builder().aTier(3).build();
         List<Spell> spells = new ArrayList<>();
 
         Hero hero = new Hero(spells);

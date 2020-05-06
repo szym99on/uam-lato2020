@@ -22,5 +22,4 @@
 //        assertEquals(2, hero.getSpellPower());
 //        assertEquals(5, hero.getKnowledge());
 //    }
-//
 //}
