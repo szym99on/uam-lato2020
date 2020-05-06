@@ -51,9 +51,9 @@ public class ArtifactsInfoFactory {
     private final static List<ArtifactInfo> artifactList = new ArrayList<>();
     {
         artifactList.add(ArtifactInfo.builder().aCost(1000).aDescription("+1 knowledge").aName(HELM_OF_THE_ALABASTER_UNICORN).aLocation(ArtifactInfo.Location.HEAD).build());
-        artifactList.add(ArtifactInfo.builder().aCost(2000).aDescription("+2 knowledge").aName(SKULL_HELMET).aLocation(ArtifactInfo.Location.HEAD).build());
-        artifactList.add(ArtifactInfo.builder().aCost(3000).aDescription("+3 knowledge").aName(HELM_OF_CHAOS).aLocation(ArtifactInfo.Location.HEAD).build());
-        artifactList.add(ArtifactInfo.builder().aCost(4000).aDescription("+4 knowledge").aName(CROWN_OF_THE_SUPREME_MAGI).aLocation(ArtifactInfo.Location.HEAD).build());
+        artifactList.add(ArtifactInfo.builder().aCost(3000).aDescription("+2 knowledge").aName(SKULL_HELMET).aLocation(ArtifactInfo.Location.HEAD).build());
+        artifactList.add(ArtifactInfo.builder().aCost(4000).aDescription("+3 knowledge").aName(HELM_OF_CHAOS).aLocation(ArtifactInfo.Location.HEAD).build());
+        artifactList.add(ArtifactInfo.builder().aCost(5000).aDescription("+4 knowledge").aName(CROWN_OF_THE_SUPREME_MAGI).aLocation(ArtifactInfo.Location.HEAD).build());
         artifactList.add(ArtifactInfo.builder().aCost(6000).aDescription("+5 knowledge").aName(HELLSTORM_HELMET).aLocation(ArtifactInfo.Location.HEAD).build());
         artifactList.add(ArtifactInfo.builder().aCost(6000).aDescription("+3 spell power, +3 knowledge").aName(NECKLACE_OF_DRAGONTEETH).aLocation(ArtifactInfo.Location.NECK).build());
         artifactList.add(ArtifactInfo.builder().aCost(12000).aDescription("+3 to all 4 primary skills").aName(CELESTIAL_NECKLACE_OF_BLISS).aLocation(ArtifactInfo.Location.NECK).build());
