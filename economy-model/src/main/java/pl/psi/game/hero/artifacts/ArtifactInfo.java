@@ -25,4 +25,5 @@ public class ArtifactInfo extends AbstractItemInfo {
         super(aName, aDescription, aCost);
         location = aLocation;
     }
+
 }
