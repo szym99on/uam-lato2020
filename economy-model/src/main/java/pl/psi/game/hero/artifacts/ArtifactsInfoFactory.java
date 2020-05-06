@@ -20,10 +20,10 @@ public class ArtifactsInfoFactory {
     private final static String RIB_CAGE = "Rib Cage";
     private final static String DRAGON_SCALE_ARMOR = "Dragon Scale Armor";
     private final static String ARMOR_OF_WONDER = "Armor of Wonder";
-    private final static String TITANS_CURIAS = "Titan's Cuiras";
+    private final static String TITANS_CUIRAS = "Titan's Cuiras";
     private final static String CAPE_OF_CONJURING = "Cape of Conjuring";
     private final static String DRAGON_WING_TABARD = "Dragon Wing Tabard";
-    private final static String SURCOAT_OF_COUNTERPOISE = "Surcoat  of Counterpoise";
+    private final static String SURCOAT_OF_COUNTERPOISE = "Surcoat of Counterpoise";
     private final static String RECANTERS_CLOAK = "Recanter's Cloak";
     private final static String CAPE_OF_VELOCITY = "Cape of Velocity";
     private final static String CENTAURS_AX = "Centaur's Ax";
@@ -32,7 +32,7 @@ public class ArtifactsInfoFactory {
     private final static String OGRES_CLUB_OF_HAVOC = "Ogre's Club of Havoc";
     private final static String TITANS_GLADIUS = "Titan's Gladius";
     private final static String SHIELD_OF_THE_DWARVEN_LORDS = "Shield of the Dwarven Lords";
-    private final static String SHIELD_OF_THE_YQWNING_DEAD = "Shield of the Yawning Dead";
+    private final static String SHIELD_OF_THE_YAWNING_DEAD = "Shield of the Yawning Dead";
     private final static String BUCKLER_OF_THE_GNOLL_KING = "Buckler of the Gnoll King";
     private final static String TARG_OF_THE_RAMPAGING_OGRE = "Targ of the Rampaging Ogre";
     private final static String SENTINELS_SHIELD = "Sentinel's Shield";
@@ -64,7 +64,7 @@ public class ArtifactsInfoFactory {
         artifactList.add(ArtifactInfo.builder().aCost(3000).aDescription("+2 spell power").aName(RIB_CAGE).aLocation(ArtifactInfo.Location.TORSO).build());
         artifactList.add(ArtifactInfo.builder().aCost(8000).aDescription("+4 to attack, +4 defence ").aName(DRAGON_SCALE_ARMOR).aLocation(ArtifactInfo.Location.TORSO).build());
         artifactList.add(ArtifactInfo.builder().aCost(4000).aDescription("+1 to all 4 primary skills").aName(ARMOR_OF_WONDER).aLocation(ArtifactInfo.Location.TORSO).build());
-        artifactList.add(ArtifactInfo.builder().aCost(10000).aDescription("+10 spell power, -2 knowledge").aName(TITANS_CURIAS).aLocation(ArtifactInfo.Location.TORSO).build());
+        artifactList.add(ArtifactInfo.builder().aCost(10000).aDescription("+10 spell power, -2 knowledge").aName(TITANS_CUIRAS).aLocation(ArtifactInfo.Location.TORSO).build());
         artifactList.add(ArtifactInfo.builder().aCost(1500).aDescription("+3 spells duration").aName(CAPE_OF_CONJURING).aLocation(ArtifactInfo.Location.SHOULDERS).build());
         artifactList.add(ArtifactInfo.builder().aCost(4000).aDescription("+2 spell power, +2 knowledge ").aName(DRAGON_WING_TABARD).aLocation(ArtifactInfo.Location.SHOULDERS).build());
         artifactList.add(ArtifactInfo.builder().aCost(4000).aDescription("+10% to magic resistance").aName(SURCOAT_OF_COUNTERPOISE).aLocation(ArtifactInfo.Location.SHOULDERS).build());
@@ -76,7 +76,7 @@ public class ArtifactsInfoFactory {
         artifactList.add(ArtifactInfo.builder().aCost(5000).aDescription("+5 attack skill").aName(OGRES_CLUB_OF_HAVOC).aLocation(ArtifactInfo.Location.RIGHT_HAND).build());
         artifactList.add(ArtifactInfo.builder().aCost(10000).aDescription("+12 attack skill, -3 defence skill").aName(TITANS_GLADIUS).aLocation(ArtifactInfo.Location.RIGHT_HAND).build());
         artifactList.add(ArtifactInfo.builder().aCost(2000).aDescription("+2 defence skill").aName(SHIELD_OF_THE_DWARVEN_LORDS).aLocation(ArtifactInfo.Location.LEFT_HAND).build());
-        artifactList.add(ArtifactInfo.builder().aCost(3000).aDescription("+3 defence skill").aName(SHIELD_OF_THE_YQWNING_DEAD).aLocation(ArtifactInfo.Location.LEFT_HAND).build());
+        artifactList.add(ArtifactInfo.builder().aCost(3000).aDescription("+3 defence skill").aName(SHIELD_OF_THE_YAWNING_DEAD).aLocation(ArtifactInfo.Location.LEFT_HAND).build());
         artifactList.add(ArtifactInfo.builder().aCost(4000).aDescription("+4 defence skill").aName(BUCKLER_OF_THE_GNOLL_KING).aLocation(ArtifactInfo.Location.LEFT_HAND).build());
         artifactList.add(ArtifactInfo.builder().aCost(5000).aDescription("+5 defence skill").aName(TARG_OF_THE_RAMPAGING_OGRE).aLocation(ArtifactInfo.Location.LEFT_HAND).build());
         artifactList.add(ArtifactInfo.builder().aCost(10000).aDescription("+12 defence skill, -3 attack skill").aName(SENTINELS_SHIELD).aLocation(ArtifactInfo.Location.LEFT_HAND).build());
