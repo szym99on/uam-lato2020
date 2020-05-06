@@ -84,7 +84,7 @@ public class ArtifactTest {
     @Test
     @Disabled
     void artifactShouldPreventCastingSpellsOfLevel3() {
-        //prevent == remove from spellbook?
+        //prevent == remove from opponent's spellbook?
         Artifact artifact = new Artifact(ArtifactsInfoFactory.getArtifact("Recanter's Cloak"));
 
         Spell s1 = new Spell(SpellBookInfoFactory.getSpellsByTier(1));
@@ -93,7 +93,9 @@ public class ArtifactTest {
         List<Spell> spells = new ArrayList<>();
 
         Hero hero = new Hero(spells);
-        artifact.buffSkill(hero);
+
+        Hero heroWithArtifact = Hero.builder().build();
+        artifact.buffSkill(heroWithArtifact);
 
         List<Spell> expected = new ArrayList<>();
         expected.add(s1);
