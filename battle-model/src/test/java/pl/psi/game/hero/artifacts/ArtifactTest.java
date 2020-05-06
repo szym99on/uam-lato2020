@@ -91,6 +91,9 @@ public class ArtifactTest {
         Spell s2 = Spell.builder().aTier(2).build();
         Spell s3 = Spell.builder().aTier(3).build();
         List<Spell> spells = new ArrayList<>();
+        spells.add(s1);
+        spells.add(s2);
+        spells.add(s3);
 
         Hero hero = new Hero(spells);
 

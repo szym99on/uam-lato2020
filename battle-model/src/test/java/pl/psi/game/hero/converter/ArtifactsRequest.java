@@ -22,4 +22,23 @@
 //        assertEquals(2, hero.getSpellPower());
 //        assertEquals(5, hero.getKnowledge());
 //    }
+//
+//    @Test
+//    void shouldReturnHerosSpellsList() {
+//        Spell s1 = Spell.builder().aTier(1).build();
+//        Spell s2 = Spell.builder().aTier(2).build();
+//        List<Spell> spells = new ArrayList<>();
+//
+//        Hero hero = new Hero(spells);
+//        spells.add(s1);
+//        spells.add(s2);
+//
+//        List<Spell> expected = new ArrayList<>();
+//        expected.add(s1);
+//        expected.add(s2);
+//
+//        assertEquals(expected, hero.getSpells());
+//    }
+//
+//
 //}
