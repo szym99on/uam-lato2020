@@ -1,4 +1,4 @@
-package pl.psi.game.fractions;
-
-public class ArtifactsRequest {
-}
+//package pl.psi.game.fractions;
+//
+//public class ArtifactsRequest {
+//}
