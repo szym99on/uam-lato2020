@@ -91,6 +91,32 @@ public class ConverterTest {
 
         ////assertNotEquals(battleHero.getCreatures(),creatures);
     }
+
+    @Test
+    @Disabled
+    void economySpellsShoulBeEqualToBattleSpells()
+    {
+        //Economy spell list
+        ////EconomyFactory economyfactory = new EconomyFactory();
+        ////economyHero = economyfactory.createHero();
+        List<SpellInfo> spellsInfo = new ArrayList<SpellInfo>();
+        SpellBookInfoFactory spellBookInfoFactory = new SpellBookInfoFactory();
+        spellsInfo=spellBookInfoFactory.getSpellsByType(SpellInfo.Type.AIR);
+        ////economyHero.addSpellsInfo(spellsInfo);
+        HeroEcoBattleConverter converter = new HeroEcoBattleConverter();
+
+
+        ////Hero battleHero = converter.convertEconomyHeroToBattleHero(economyHero);
+
+        //Battle spell list
+        ////List<Spell> spells = new ArrayList<Spell>();
+        ////SpellBookFactory spellBookFactory = new SpellBookFactory();
+        ////spells=spellBookFactory.getSpellsByType(SpellInfo.Type.AIR);
+
+        ////assertEquals(battleHero.getSpells(),spells);
+    }
+
+
     @Test
     @Disabled
     void AppliedEconomyArtifactSpellNotEqualToBattleSpell()
@@ -118,6 +144,8 @@ public class ConverterTest {
 
         ////assertNotEquals(battleHero.getSpells(),spells);
     }
+
+
 
     @Test
     @Disabled
