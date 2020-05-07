@@ -1,15 +1,6 @@
-package pl.psi.game.hero.converter;
+package pl.psi.game;
 
-import org.junit.Test;
-import pl.psi.game.fractions.FractionsInfoAbstractFactory;
-import pl.psi.game.spellbook.SpellBookInfoFactory;
-import pl.psi.game.spellbook.SpellInfo;
-
-import java.util.ArrayList;
-import java.util.List;
-
-public class EconomyRequest {
-
+public class ConverterRequest {
     /*@Test
     void CreateEconomyFactory()
     {
@@ -61,7 +52,4 @@ public class EconomyRequest {
 
         economyHero.addSpellsInfo(spellsInfo);
     }*/
-
-
-
 }
