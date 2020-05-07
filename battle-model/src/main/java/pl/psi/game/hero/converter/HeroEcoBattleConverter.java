@@ -12,6 +12,7 @@ public class HeroEcoBattleConverter {
         List<Creature> creatures = new ArrayList<Creature>();
         Hero hero = Hero.builder().aCreatures(creatures).build();
         //aHero.getArtifacts().foreach(a -> hero.getCreatures().forEach(c -> c.applyEffectsOfArtifact(a)));
+        //aHero.getArtifacts().foreach(a -> hero.getSpells().forEach(s -> s.applyEffectsOfArtifact(a)));
         return hero;
     }
 }
