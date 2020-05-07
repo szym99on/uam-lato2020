@@ -8,19 +8,24 @@ import java.util.List;
 
 public class Hero {
 
-    private final List<Creature> creatures;
+    private List<Creature> creatures;
+    //private List<Spell> spells;
     private Integer manaPoints;
 
     @Builder
-    public Hero(List<Creature> aCreatures, Integer aManaPoints) {
+    public Hero(List<Creature> aCreatures,/*List<Spell> aSpells,*/ Integer aManaPoints) {
 
         creatures = aCreatures;
+        //spells = aSpells;
         manaPoints = aManaPoints;
     }
 
     public List<Creature> getCreatures() {
         return new ArrayList<>(creatures);
     }
+    /*public List<Spell> getSpells() {
+        return new ArrayList<>(spells);
+    }*/
 
     public Integer getManaPoints() {
         return manaPoints;

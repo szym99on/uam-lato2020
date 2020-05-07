@@ -13,9 +13,9 @@ public class SpellBookRequest {
     /*@Test
     void ApplyEffectsOfArtifactOnSpell()
     {
-        SpellBook spellBook = new SpellBook();
-        SpellBookInfoFactory spellBookInfoFactory = new SpellBookInfoFactory();
-        spellBook.addSpell(spellBookInfoFactory.getSpell(SpellInfo.Type.AIR.MAGIC_ARROW));
+        List<Spell> spells = new ArrayList<Spell>();
+        SpellBookFactory spellBookFactory = new SpellBookFactory();
+        spells=spellBookFactory.getSpellsByType(SpellInfo.Type.AIR);
 
         ArtifactsInfoFactory artifactsInfoFactory = new ArtifactsInfoFactory();
         ////ArtifactInfo artifact = artifactsInfoFactory.getByType(ArtifactInfo.Location.FINGERS).stream().findFirst();

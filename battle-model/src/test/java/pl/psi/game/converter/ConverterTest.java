@@ -11,6 +11,9 @@ import pl.psi.game.hero.artifacts.ArtifactInfo;
 import pl.psi.game.hero.artifacts.ArtifactsInfoFactory;
 import pl.psi.game.hero.converter.Hero;
 import pl.psi.game.hero.converter.HeroEcoBattleConverter;
+import pl.psi.game.spellbook.SpellBook;
+import pl.psi.game.spellbook.SpellBookInfoFactory;
+import pl.psi.game.spellbook.SpellInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,6 +70,7 @@ public class ConverterTest {
         ////economyHero = economyfactory.createHero();
         FractionsInfoAbstractFactory fractionsInfoAbstractFactory = new FractionsInfoAbstractFactory();
         ////CreatureInfo creatureInfo = fractionsInfoAbstractFactory.getByType(FractionsInfo.Type.NECROPOLIS).createCreature(1);
+        ////economyHero.addCreatureInfo(creatureInfo,1);
         HeroEcoBattleConverter converter = new HeroEcoBattleConverter();
 
         ArtifactsInfoFactory artifactsInfoFactory = new ArtifactsInfoFactory();
@@ -82,5 +86,33 @@ public class ConverterTest {
         ////creatures.add(creature);
 
         ////assertNotEquals(battleHero.getCreatures(),creatures);
+    }
+    @Test
+    @Disabled
+    void AppliedEconomyArtifactSpellNotEqualToBattleSpell()
+    {
+        //Economy spell list
+        ////EconomyFactory economyfactory = new EconomyFactory();
+        ////economyHero = economyfactory.createHero();
+        FractionsInfoAbstractFactory fractionsInfoAbstractFactory = new FractionsInfoAbstractFactory();
+        List<SpellInfo> spellsInfo = new ArrayList<SpellInfo>();
+        SpellBookInfoFactory spellBookInfoFactory = new SpellBookInfoFactory();
+        spellsInfo=spellBookInfoFactory.getSpellsByType(SpellInfo.Type.AIR);
+        ////economyHero.addSpellsInfo(spellsInfo);
+        HeroEcoBattleConverter converter = new HeroEcoBattleConverter();
+
+
+        ArtifactsInfoFactory artifactsInfoFactory = new ArtifactsInfoFactory();
+        ////ArtifactInfo artifact = artifactsInfoFactory.getByType(ArtifactInfo.Location.FINGERS).stream().findFirst();
+        ////economyHero.addArtifact(artifact);
+
+        ////Hero battleHero = converter.convertEconomyHeroToBattleHero(economyHero);
+
+        //Battle spell list
+        ////List<Spell> spells = new ArrayList<Spell>();
+        ////SpellBookFactory spellBookFactory = new SpellBookFactory();
+        ////spells=spellBookFactory.getSpellsByType(SpellInfo.Type.AIR);
+
+        ////assertNotEquals(battleHero.getSpells(),spells);
     }
 }
