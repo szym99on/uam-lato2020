@@ -21,8 +21,10 @@ public class SpellBookRequest {
         Spell spell = Spell.builder().build();
 
         Creature.addEffect(spell);
-
     }
+
+    Jest kilka czarów które działają na klikniętą jednostkę oraz na jednostki okoliczne
+    Nie mam obecnie pomysłu jak można by to rozwiązać ...
 */
 
 }

@@ -18,6 +18,14 @@ public class SpellBookRequest {
 
         creatures.forEach(a -> spell.cast(a));
 
+    @Test
+    void shouldDealDamageToAllEnemyTroops(){
+
+        Hero activeHero = ...;
+        List<Creature> creatures = activeHero.getCreatures();
+        Spell spell = Spell.builder().build();
+
+        creatures.forEach(a -> spell.cast(a));
 
     }*/
 }
