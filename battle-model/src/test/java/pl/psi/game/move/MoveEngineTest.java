@@ -122,6 +122,40 @@ class MoveEngineTest {
     }
 
 
+    @Test
+    @Disabled
+    void calculatedDistanceIsTrue(){
+        Creature c1 = Creature.builder().type(fly).aMoveRange(5).build();
+
+        Board board = new Board();
+        board.putCreature(1,1, c1);
+
+        MoveEngine moveEngine = new MoveEngine(board);
+        moveEngine.setActiveCreature(new Point(1,1),c1);
+        moveEngine.move(1,3);
+
+        assertTrue(moveEngine.howManyFieldsWalked() == 2);
+    }
+
+    @Test
+    @Disabled
+    void pointIsBackOfCreature(){
+        Creature c1 = Creature.builder().owner(Player1).aMoveRange(5).build();
+        Creature c2 = Creature.builder().owner(Player2).aMoveRange(5).build();
+
+
+        Board board = new Board();
+        board.putCreature(5,5, c1);
+        board.putCreature(6,5, c2);
+
+        MoveEngine moveEngine = new MoveEngine(board);
+        moveEngine.setActiveCreature(Point(5,5), c1);
+        assertTrue(moveEngine.isFieldOnCreatureBack(Point(4,5)) == true);
+
+        moveEngine.setActiveCreature(Point(6,5), c2);
+        assertTrue(moveEngine.isFieldOnCreatureBack(Point(7,5)) == true);
+
+    }
 
 
 }
