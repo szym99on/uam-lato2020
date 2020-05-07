@@ -20,7 +20,7 @@ public class BuffAndDebufTest {
 
         SpellInfo spellInfo = SpellBookInfoFactory.getSpell("Haste");
         SpellFactory factory = new SpellFactory();
-        Spell spell = factory.getSpell(spellInfo);
+        Spell spell = factory.createSpell(spellInfo);
 
         spell.cast(creature);
         assertEquals(6, creature.getMoveRange());
@@ -36,7 +36,7 @@ public class BuffAndDebufTest {
 
         SpellInfo spellInfo = SpellBookInfoFactory.getSpell("Air shield");
         SpellFactory factory = new SpellFactory();
-        Spell spell = factory.getSpell(spellInfo);
+        Spell spell = factory.createSpell(spellInfo);
 
         spell.cast(defender2);
 
@@ -57,7 +57,7 @@ public class BuffAndDebufTest {
 
         SpellInfo spellInfo = SpellBookInfoFactory.getSpell("Bloodlust");
         SpellFactory factory = new SpellFactory();
-        Spell spell = factory.getSpell(spellInfo);
+        Spell spell = factory.createSpell(spellInfo);
 
         spell.cast(attacker2);
 
@@ -76,7 +76,7 @@ public class BuffAndDebufTest {
 
         SpellInfo spellInfo = SpellBookInfoFactory.getSpell("Fire shield");
         SpellFactory factory = new SpellFactory();
-        Spell spell = factory.getSpell(spellInfo);
+        Spell spell = factory.createSpell(spellInfo);
 
         spell.cast(defender);
 
@@ -92,7 +92,7 @@ public class BuffAndDebufTest {
 
         SpellInfo spellInfo = SpellBookInfoFactory.getSpell("Slow");
         SpellFactory factory = new SpellFactory();
-        Spell spell = factory.getSpell(spellInfo);
+        Spell spell = factory.createSpell(spellInfo);
 
         spell.cast(c);
 
@@ -106,7 +106,7 @@ public class BuffAndDebufTest {
 
         SpellInfo spellInfo = SpellBookInfoFactory.getSpell("Stoneskin");
         SpellFactory factory = new SpellFactory();
-        Spell spell = factory.getSpell(spellInfo);
+        Spell spell = factory.createSpell(spellInfo);
 
         spell.cast(c);
 
@@ -123,7 +123,7 @@ public class BuffAndDebufTest {
 
         SpellInfo spellInfo = SpellBookInfoFactory.getSpell("Weakness");
         SpellFactory factory = new SpellFactory();
-        Spell spell = factory.getSpell(spellInfo);
+        Spell spell = factory.createSpell(spellInfo);
 
         attacker.attack(defender1);
         spell.cast(attacker);
@@ -140,7 +140,7 @@ public class BuffAndDebufTest {
 
         SpellInfo spellInfo = SpellBookInfoFactory.getSpell("Prayer");
         SpellFactory factory = new SpellFactory();
-        Spell spell = factory.getSpell(spellInfo);
+        Spell spell = factory.createSpell(spellInfo);
 
         spell.cast(creature);
 
