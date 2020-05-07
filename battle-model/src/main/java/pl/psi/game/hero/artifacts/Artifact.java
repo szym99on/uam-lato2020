@@ -7,7 +7,7 @@ public class Artifact {
     public Artifact() {};
     public Artifact(ArtifactInfo artifactInfo){};
     public void buffSkill(Hero hero) {};
-    public void buffSpell(Spell spell){};
+    //public void buffSpell(Spell spell){};
     public void buffCreature(Creature creature){};
 
     public void debuffSkill(Hero hero) {

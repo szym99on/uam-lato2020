@@ -24,8 +24,8 @@ class GameEngineTest {
         Creature c2_2 = Creature.builder().aMoveRange(7).build();
         creatures2.add(c2_1);
         creatures2.add(c2_2);
-        Hero hero1 = new Hero(creatures);
-        Hero hero2 = new Hero(creatures2);
+        Hero hero1 = Hero.builder().aCreatures(creatures).build();
+        Hero hero2 = Hero.builder().aCreatures(creatures2).build();
 
         GameEngine gameEngine = new GameEngine(hero1, hero2);
 
@@ -50,8 +50,8 @@ class GameEngineTest {
         Creature c2_2 = Creature.builder().aMoveRange(7).build();
         creatures2.add(c2_1);
         creatures2.add(c2_2);
-        Hero hero1 = new Hero(creatures);
-        Hero hero2 = new Hero(creatures2);
+        Hero hero1 = Hero.builder().aCreatures(creatures).build();
+        Hero hero2 = Hero.builder().aCreatures(creatures2).build();
 
         GameEngine gameEngine = new GameEngine(hero1, hero2);
 
@@ -78,8 +78,8 @@ class GameEngineTest {
         List<Creature> creatures2 = new ArrayList<>();
         Creature defender = Creature.builder().aMaxHp(100).aAttack(Range.closed(1,1)).build();
         creatures2.add(defender);
-        Hero hero1 = new Hero(creatures);
-        Hero hero2 = new Hero(creatures2);
+        Hero hero1 = Hero.builder().aCreatures(creatures).build();
+        Hero hero2 = Hero.builder().aCreatures(creatures2).build();
         GameEngine gameEngine = new GameEngine(hero1, hero2);
 
         attacker1.attack(defender);
