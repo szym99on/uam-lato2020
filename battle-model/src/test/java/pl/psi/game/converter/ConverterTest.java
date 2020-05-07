@@ -1,5 +1,6 @@
 package pl.psi.game.converter;
 
+import com.google.common.collect.Range;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pl.psi.game.fractions.Creature;
@@ -116,5 +117,55 @@ public class ConverterTest {
         ////spells=spellBookFactory.getSpellsByType(SpellInfo.Type.AIR);
 
         ////assertNotEquals(battleHero.getSpells(),spells);
+    }
+
+    @Test
+    @Disabled
+    void heroShouldHave10ManaPoints() {
+        //EconomyFactory economyfactory = new EconomyFactory();
+        //economyHero = economyfactory.createHero();
+        HeroEcoBattleConverter heroEcoBattleConverter = new HeroEcoBattleConverter();
+        //Hero hero = heroEcoBattleConverter.convertEconomyHeroToBattleHero(economyHero);
+
+        //assertEquals(10, hero.getManaPoints());
+    }
+
+    @Test
+    @Disabled
+    void heroShouldIncreaseCreatureMaxHpTo8() {
+        FractionsInfoAbstractFactory fractionsInfoAbstractFactory = new FractionsInfoAbstractFactory();
+        //CreatureInfo creatureInfo = fractionsInfoAbstractFactory.getByType(FractionsInfo.Type.NECROPOLIS).createCreature(1);
+        //List<CreatureInfo> ecoCreatureList = new ArrayList<>();
+        //ecoCreatureList.add(creatureInfo);
+        //EconomyFactory economyfactory = new EconomyFactory();
+        //economyHero = economyfactory.createHero();
+        Integer creatureCount = 1;
+        //economyHero.addCreatureInfo(creatureInfo,creatureCount);
+        HeroEcoBattleConverter heroEcoBattleConverter = new HeroEcoBattleConverter();
+        //Hero hero =  heroEcoBattleConverter.convertEconomyHeroToBattleHero(economyHero);
+        //List<Creature> creatureList = hero.getCreatures();
+        //Creature creature = creatureList.get(0);
+
+        //assertEquals(8, creature.getMaxHp());
+    }
+
+    @Test
+    @Disabled
+    void heroShouldIncreaseCreatureAttackTo35() {
+        FractionsInfoAbstractFactory fractionsInfoAbstractFactory = new FractionsInfoAbstractFactory();
+        //CreatureInfo creatureInfo = fractionsInfoAbstractFactory.getByType(FractionsInfo.Type.NECROPOLIS).createCreature(1);
+        //List<CreatureInfo> ecoCreatureList = new ArrayList<>();
+        //ecoCreatureList.add(creatureInfo);
+        //EconomyFactory economyfactory = new EconomyFactory();
+        //economyHero = economyfactory.createHero();
+        Integer creatureCount = 1;
+        //economyHero.addCreatureInfo(creatureInfo,creatureCount);
+        HeroEcoBattleConverter heroEcoBattleConverter = new HeroEcoBattleConverter();
+        //Hero hero =  heroEcoBattleConverter.convertEconomyHeroToBattleHero(economyHero);
+        //List<Creature> creatureList = hero.getCreatures();
+        //Creature creature = creatureList.get(0);
+
+        //assertEquals(5, creature.getAttack().upperEndpoint());
+        //assertEquals(3, creature.getAttack().lowerEndpoint());
     }
 }
