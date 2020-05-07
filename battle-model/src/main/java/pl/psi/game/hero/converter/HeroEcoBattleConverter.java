@@ -9,9 +9,9 @@ import java.util.List;
 public class HeroEcoBattleConverter {
 
     public Hero convertEconomyHeroToBattleHero(EconomyHero aHero) {
-        List<Creature> creatures= new ArrayList<Creature>();
-        Hero hero = new Hero(creatures);
-        //aHero.getArtifacts().foreach(a -> hero.getCreatures().forEach(c -> c.applyEffectsOfArtefact(a)));
+        List<Creature> creatures = new ArrayList<Creature>();
+        Hero hero = Hero.builder().aCreatures(creatures).build();
+        //aHero.getArtifacts().foreach(a -> hero.getCreatures().forEach(c -> c.applyEffectsOfArtifact(a)));
         return hero;
     }
 }

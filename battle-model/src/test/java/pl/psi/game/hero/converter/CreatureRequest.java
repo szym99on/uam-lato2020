@@ -33,7 +33,7 @@ public class CreatureRequest {
     /*@Test
     void ApplyEffectsOfArtifactOnCreature()
     {
-        Creature creature = Creature.builder().build();
+        Creature creature = fractionsAbstractFactory.getByType(FractionInfo.Type.NECROPOLIS).createCreature(1);
 
         ArtifactsInfoFactory artifactsInfoFactory = new ArtifactsInfoFactory();
         ////ArtifactInfo artifact = artifactsInfoFactory.getByType(ArtifactInfo.Location.FINGERS).stream().findFirst();
