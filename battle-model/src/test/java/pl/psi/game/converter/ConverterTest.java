@@ -48,6 +48,8 @@ public class ConverterTest {
         ////economyHero = economyfactory.createHero();
         FractionsInfoAbstractFactory fractionsInfoAbstractFactory = new FractionsInfoAbstractFactory();
         ////CreatureInfo creatureInfo = fractionsInfoAbstractFactory.getByType(FractionsInfo.Type.NECROPOLIS).createCreature(1);
+        Integer creatureCount = 1;
+        ////economyHero.addCreatureInfo(creatureInfo,creatureCount);
         HeroEcoBattleConverter converter = new HeroEcoBattleConverter();
 
         ////Hero battleHero = converter.convertEconomyHeroToBattleHero(economyHero);
