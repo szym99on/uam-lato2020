@@ -10,7 +10,7 @@ public class Spell {
     }
 
     //TODO: cast(Point) zaklęcia będą rzucane na pole.
-    void cast(Creature c){
-
+    void cast(Creature creature){
+        //creature.acceptSpell();
     }
 }
