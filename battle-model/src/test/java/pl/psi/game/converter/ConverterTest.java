@@ -70,7 +70,8 @@ public class ConverterTest {
         ////economyHero = economyfactory.createHero();
         FractionsInfoAbstractFactory fractionsInfoAbstractFactory = new FractionsInfoAbstractFactory();
         ////CreatureInfo creatureInfo = fractionsInfoAbstractFactory.getByType(FractionsInfo.Type.NECROPOLIS).createCreature(1);
-        ////economyHero.addCreatureInfo(creatureInfo,1);
+        Integer creatureCount = 1;
+        ////economyHero.addCreatureInfo(creatureInfo,creatureCount);
         HeroEcoBattleConverter converter = new HeroEcoBattleConverter();
 
         ArtifactsInfoFactory artifactsInfoFactory = new ArtifactsInfoFactory();
@@ -94,7 +95,6 @@ public class ConverterTest {
         //Economy spell list
         ////EconomyFactory economyfactory = new EconomyFactory();
         ////economyHero = economyfactory.createHero();
-        FractionsInfoAbstractFactory fractionsInfoAbstractFactory = new FractionsInfoAbstractFactory();
         List<SpellInfo> spellsInfo = new ArrayList<SpellInfo>();
         SpellBookInfoFactory spellBookInfoFactory = new SpellBookInfoFactory();
         spellsInfo=spellBookInfoFactory.getSpellsByType(SpellInfo.Type.AIR);
