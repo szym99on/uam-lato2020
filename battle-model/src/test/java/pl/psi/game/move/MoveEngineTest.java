@@ -40,4 +40,83 @@ class MoveEngineTest {
         assertNull(board.getCreature(1,1));
     }
 
+    @Test
+    void isAnythingOnWayWalk(){
+
+        Creature c1 = Creature.builder().type(walking).aMoveRange(5).build();
+        Creature c2 = Creature.build();
+
+        Board board = new Board();
+        board.putCreature(1,1, c1);
+        board.putCreature(1, 3, c2);
+        board.putSmth(3, 1);
+
+        MoveEngine moveEngine = new MoveEngine(board);
+        moveEngine.setActiveCreature(new Point(1,1), c1);
+
+        assertFalse(moveEngine.isMovePossible(1, 5));
+        assertFalse(moveEngine.isMovePossible(5,1));
+
+    }
+
+    @Test
+    void isAnythingOnWayFly(){
+
+        Creature c1 = Creature.builder().type(fly).aMoveRange(5).build();
+        Creature c2 = Creature.build();
+
+        Board board = new Board();
+        board.putCreature(1,1, c1);
+        board.putCreature(1, 3, c2);
+        board.putSmth(3, 1);
+
+        MoveEngine moveEngine = new MoveEngine(board);
+        moveEngine.setActiveCreature(new Point(1,1), c1);
+
+        assertTrue(moveEngine.isMovePossible(1, 5));
+        assertTrue(moveEngine.isMovePossible(5,1));
+
+    }
+
+    @Test
+    void hurtingFieldWalk(){
+
+        Creature c = Creature.builder().type(walking).aMoveRange(5).build();
+
+        Board board = new Board();
+        board.putCreature(1,1, c);
+        board.putLava(1, 2);
+
+        int hp = c.getCurrentHp();
+
+        MoveEngine moveEngine = new MoveEngine(board);
+        moveEngine.setActiveCreature(new Point(1,1), c);
+        moveEngine.move(1,3);
+
+        assertFalse(hp == c.getCurrentHp());
+
+    }
+
+    @Test
+    void hurtingFieldFly(){
+
+        Creature c = Creature.builder().type(fly).aMoveRange(5).build();
+
+        Board board = new Board();
+        board.putCreature(1,1, c);
+        board.putLava(1, 2);
+
+        int hp = c.getCurrentHp();
+
+        MoveEngine moveEngine = new MoveEngine(board);
+        moveEngine.setActiveCreature(new Point(1,1), c);
+        moveEngine.move(1,3);
+
+        assertTrue(hp == c.getCurrentHp());
+
+    }
+
+
+
+
 }
