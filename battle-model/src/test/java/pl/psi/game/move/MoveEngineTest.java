@@ -1,5 +1,6 @@
 package pl.psi.game.move;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pl.psi.game.Board;
 import pl.psi.game.fractions.Creature;
@@ -39,5 +40,122 @@ class MoveEngineTest {
         assertEquals(c, board.getCreature(1,2));
         assertNull(board.getCreature(1,1));
     }
+
+    @Test
+    @Disabled
+    void isAnythingOnWayWalk(){
+
+        Creature c1 = Creature.builder().type(walking).aMoveRange(5).build();
+        Creature c2 = Creature.build();
+
+        Board board = new Board();
+        board.putCreature(1,1, c1);
+        board.putCreature(1, 3, c2);
+        board.putSmth(3, 1);
+
+        MoveEngine moveEngine = new MoveEngine(board);
+        moveEngine.setActiveCreature(new Point(1,1), c1);
+
+        assertFalse(moveEngine.isMovePossible(1, 5));
+        assertFalse(moveEngine.isMovePossible(5,1));
+
+    }
+
+    @Test
+    @Disabled
+    void isAnythingOnWayFly(){
+
+        Creature c1 = Creature.builder().type(fly).aMoveRange(5).build();
+        Creature c2 = Creature.build();
+
+        Board board = new Board();
+        board.putCreature(1,1, c1);
+        board.putCreature(1, 3, c2);
+        board.putSmth(3, 1);
+
+        MoveEngine moveEngine = new MoveEngine(board);
+        moveEngine.setActiveCreature(new Point(1,1), c1);
+
+        assertTrue(moveEngine.isMovePossible(1, 5));
+        assertTrue(moveEngine.isMovePossible(5,1));
+
+    }
+
+    @Test
+    @Disabled
+    void hurtingFieldWalk(){
+
+        Creature c = Creature.builder().type(walking).aMoveRange(5).build();
+
+        Board board = new Board();
+        board.putCreature(1,1, c);
+        board.putLava(1, 2);
+
+        int hp = c.getCurrentHp();
+
+        MoveEngine moveEngine = new MoveEngine(board);
+        moveEngine.setActiveCreature(new Point(1,1), c);
+        moveEngine.move(1,3);
+
+        assertFalse(hp == c.getCurrentHp());
+
+    }
+
+    @Test
+    @Disabled
+    void hurtingFieldFly(){
+
+        Creature c = Creature.builder().type(fly).aMoveRange(5).build();
+
+        Board board = new Board();
+        board.putCreature(1,1, c);
+        board.putLava(1, 2);
+
+        int hp = c.getCurrentHp();
+
+        MoveEngine moveEngine = new MoveEngine(board);
+        moveEngine.setActiveCreature(new Point(1,1), c);
+        moveEngine.move(1,3);
+
+        assertTrue(hp == c.getCurrentHp());
+
+    }
+
+
+    @Test
+    @Disabled
+    void calculatedDistanceIsTrue(){
+        Creature c1 = Creature.builder().type(fly).aMoveRange(5).build();
+
+        Board board = new Board();
+        board.putCreature(1,1, c1);
+
+        MoveEngine moveEngine = new MoveEngine(board);
+        moveEngine.setActiveCreature(new Point(1,1),c1);
+        moveEngine.move(1,3);
+
+        assertTrue(moveEngine.howManyFieldsWalked() == 2);
+    }
+
+    @Test
+    @Disabled
+    void pointIsBackOfCreature(){
+        Creature c1 = Creature.builder().owner(Player1).aMoveRange(5).build();
+        Creature c2 = Creature.builder().owner(Player2).aMoveRange(5).build();
+
+
+        Board board = new Board();
+        board.putCreature(5,5, c1);
+        board.putCreature(6,5, c2);
+
+        MoveEngine moveEngine = new MoveEngine(board);
+        moveEngine.setActiveCreature(Point(5,5), c1);
+        assertTrue(moveEngine.isFieldOnCreatureBack(Point(4,5)) == true);
+
+        moveEngine.setActiveCreature(Point(6,5), c2);
+        assertTrue(moveEngine.isFieldOnCreatureBack(Point(7,5)) == true);
+
+    }
+
 
 }

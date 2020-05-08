@@ -33,6 +33,22 @@ public class MoveEngine implements PropertyChangeListener {
         propertyChangeSupport.firePropertyChange(GameEngine.CREATURE_MOVED, oldPosition, activeCreature.getKey());
     }
 
+/*    public void wait(){
+    // ta metoda będzie pomijała ruch danej kreatury, przenosząc ją na koniec kolejki.
+   // Każda kreatura może wykonać tę metodę raz na turę
+
+    }
+  */
+
+/*    public int howManyFieldsWalked(){
+    //Metoda zwróci odległość jaką przebyła kreatura. (Dla poprawnej implementacji ataku np. kawalerzysty)
+}
+ */
+
+    /* public boolean isFieldOnCreatureBack(){
+         //Metoda zwróci true jeśli pole jest za plecami kreatury. Będzie potrzebne dla obliczania bonusu ataku od tyłu
+     }
+ */
     @Override
     public void propertyChange(PropertyChangeEvent aPropertyChangeEvent) {
         activeCreature = (HashMap.Entry<Point, Creature>)aPropertyChangeEvent.getNewValue();
