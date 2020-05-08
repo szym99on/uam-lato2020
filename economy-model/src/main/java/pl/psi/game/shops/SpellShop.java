@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class SpellShop {
 
-//    List<SpellInfo> random( int aTier){
-//        return Arrays.asList(SpellInfo.SpellInfoEnum.values()).stream().filter(s -> s.getTier==aTier).collect(Collectors.toList());
-//    }
+    List<SpellInfo> random( int aTier){
+        return Arrays.asList(SpellInfo.SpellInfoEnum.values()).stream().filter(s -> s.getTier==aTier).collect(Collectors.toList());
+    }
 }
