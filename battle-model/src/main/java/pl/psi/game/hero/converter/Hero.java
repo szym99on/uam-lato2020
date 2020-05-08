@@ -10,14 +10,14 @@ public class Hero {
 
     private List<Creature> creatures;
     //private List<Spell> spells;
-    private Integer manaPoints;
+//    private Integer manaPoints;
 
     @Builder
-    public Hero(List<Creature> aCreatures,/*List<Spell> aSpells,*/ Integer aManaPoints) {
+    public Hero(List<Creature> aCreatures/* ,List<Spell> aSpells, Integer aManaPoints*/) {
 
         creatures = aCreatures;
         //spells = aSpells;
-        manaPoints = aManaPoints;
+//        manaPoints = aManaPoints;
     }
 
     public List<Creature> getCreatures() {
@@ -27,7 +27,7 @@ public class Hero {
         return new ArrayList<>(spells);
     }*/
 
-    public Integer getManaPoints() {
-        return manaPoints;
-    }
+//    public Integer getManaPoints() {
+//        return manaPoints;
+//    }
 }
