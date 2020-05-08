@@ -16,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ArtifactTest {
 //    @Test
 //    @Disabled
+    //TODO: ARTIFACTS artifact.buffSkill(hero); - name is buffSkill and argument hero? Looks very strange. My suggestion is hero.equip(artifact) and hero.unequip(artifact)
 //    void artifactShouldIncreaseKnowledgeBy2Points() {
 //        Hero hero = Hero.builder().aKnowledge(7).build();
 //        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact("Skull helmet");
@@ -29,6 +30,7 @@ public class ArtifactTest {
 //
 //    @Test
 //    @Disabled
+    //TODO: you should check artifact head location is empty after unequip helmet.
 //    void removedArtifactShouldDebuff(){
 //
 //        Hero hero = Hero.builder().aKnowledge(7).build();
@@ -46,6 +48,7 @@ public class ArtifactTest {
 //
 //    @Test
 //    @Disabled
+    // TODO: You should use some spell factory, not spell builder (builder should be encapsulated in spell package), you should make request for spellbook team about method: increase spell duration (and use it inside your artifact)
 //    void artifactShouldIncreaseSpellDurationBy1Point() {
 //        Spell spell = Spell.builder().aDuration(2).build();
 //        Artifact artifact = new Artifact(ArtifactsInfoFactory.getArtifact("Collar of Conjurin"));
@@ -57,6 +60,7 @@ public class ArtifactTest {
 //
 //    @Test
 //    @Disabled
+    //TODO: looks fine.
 //    void artifactShouldIncreaseCreatureMoveRangeBy2Points() {
 //        Creature creature = Creature.builder().aMaxHp(100).aAttack(Range.closed(2, 2)).aArmor(0).aMoveRange(5).build();
 //        Artifact artifact = new Artifact(ArtifactsInfoFactory.getArtifact("Cape of Velocity"));
@@ -68,6 +72,8 @@ public class ArtifactTest {
 //
 //    @Test
 //    @Disabled
+
+    //TODO: looks fine
 //    void artifactShouldIgnoreUsingSpell() {
 //        //Renders your units immune to the death ripple spell
 //
@@ -83,6 +89,7 @@ public class ArtifactTest {
 //
 //    @Test
 //    @Disabled
+    //TODO: hard to explain what is wrong :). In short too many things in application is not encapsulated, but it's not your mistake. prevent means that opponent cannot cast it, not remove from spellbook
 //    void artifactShouldPreventCastingSpellsOfLevel3() {
 //        //prevent == remove from opponent's spellbook?
 //        Artifact artifact = new Artifact(ArtifactsInfoFactory.getArtifact("Recanter's Cloak"));
