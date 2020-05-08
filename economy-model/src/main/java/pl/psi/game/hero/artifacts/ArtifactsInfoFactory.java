@@ -1,6 +1,7 @@
 package pl.psi.game.hero.artifacts;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -94,6 +95,10 @@ public class ArtifactsInfoFactory {
 
     public static ArtifactInfo getArtifact(String aName){
         return artifactList.stream().filter(s -> s.getName().endsWith(aName)).findAny().orElseThrow();
+    }
+
+    public static List<ArtifactInfo> getAll(){
+        return Collections.unmodifiableList(artifactList);
     }
 
     public static List<ArtifactInfo> getByLocation(ArtifactInfo.Location aLocation){
