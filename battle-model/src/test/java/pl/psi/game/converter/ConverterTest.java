@@ -25,6 +25,7 @@ public class ConverterTest {
 
     @Test
     @Disabled
+    //TODO: check assertThrow method.
     void ConvertEconomyHeroToBattleHero()
     {
         try{
@@ -42,6 +43,8 @@ public class ConverterTest {
 
     @Test
     @Disabled
+    //TODO: you can abstain from economyFactory. Just make constructor for EconomyHero.
+    //TODO: Looks fine, but you should check stacking creatures here too. creatureCount e.g. 10
     void ApplyEconomyCreaturesToBattleCreatures()
     {
         //Economy creatures list
@@ -66,6 +69,7 @@ public class ConverterTest {
 
     @Test
     @Disabled
+    //TODO: Completely not understand...
     void AppliedEconomyArtifactCreatureNotEqualToBattleCreature()
     {
         //Economy creatures list
@@ -149,6 +153,7 @@ public class ConverterTest {
 
     @Test
     @Disabled
+    //TODO: Why should have 10 mana? o.0
     void heroShouldHave10ManaPoints() {
         //EconomyFactory economyfactory = new EconomyFactory();
         //economyHero = economyfactory.createHero();
@@ -160,6 +165,7 @@ public class ConverterTest {
 
     @Test
     @Disabled
+    //TODO: Why should increase hp?
     void heroShouldIncreaseCreatureMaxHpTo8() {
         FractionsInfoAbstractFactory fractionsInfoAbstractFactory = new FractionsInfoAbstractFactory();
         //CreatureInfo creatureInfo = fractionsInfoAbstractFactory.getByType(FractionsInfo.Type.NECROPOLIS).createCreature(1);
@@ -179,6 +185,7 @@ public class ConverterTest {
 
     @Test
     @Disabled
+    //TODO: as above? why??
     void heroShouldIncreaseCreatureAttackTo35() {
         FractionsInfoAbstractFactory fractionsInfoAbstractFactory = new FractionsInfoAbstractFactory();
         //CreatureInfo creatureInfo = fractionsInfoAbstractFactory.getByType(FractionsInfo.Type.NECROPOLIS).createCreature(1);
