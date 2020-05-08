@@ -16,7 +16,7 @@ public class Hero {
     public Hero(List<Creature> aCreatures/* ,List<Spell> aSpells, Integer aManaPoints*/) {
 
         creatures = aCreatures;
-        //spells = aSpells;
+        //spells = aSpells;battle-model/src/test/java/pl/psi/game/hero/artifacts/ArtifactTest.java
 //        manaPoints = aManaPoints;
     }
 
