@@ -25,6 +25,7 @@ public class ConverterTest {
 
     @Test
     @Disabled
+            //fake
     //TODO: check assertThrow method.
     void ConvertEconomyHeroToBattleHero()
     {
