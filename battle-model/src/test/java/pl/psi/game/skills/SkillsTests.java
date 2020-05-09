@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class SkillsTests {
 
     @Test
+    //fake test for git
     //TODO looks fine, but better api will be skill.cast(Hero) and concrete instance of Skill will be get all creatures and apply something to creature only if necessary. The same with spells etc.
     @Disabled
     void offenceSkillShouldIncreaseDamage() {
