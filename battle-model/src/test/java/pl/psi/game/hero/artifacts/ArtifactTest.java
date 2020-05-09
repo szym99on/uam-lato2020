@@ -1,10 +1,13 @@
 package pl.psi.game.hero.artifacts;
 
+import com.google.common.base.Converter;
 import com.google.common.collect.Range;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pl.psi.game.fractions.Creature;
+import pl.psi.game.hero.EconomyHero;
 import pl.psi.game.hero.converter.Hero;
+import pl.psi.game.hero.converter.HeroEcoBattleConverter;
 import pl.psi.game.spellbook.SpellBook;
 import pl.psi.game.spellbook.SpellBookInfoFactory;
 
@@ -17,16 +20,16 @@ public class ArtifactTest {
 //    @Test
 //    @Disabled
     //TODO: ARTIFACTS artifact.buffSkill(hero); - name is buffSkill and argument hero? Looks very strange. My suggestion is hero.equip(artifact) and hero.unequip(artifact)
-//    void artifactShouldIncreaseKnowledgeBy2Points() {
-//        Hero hero = Hero.builder().aKnowledge(7).build();
+    void artifactShouldIncreaseKnowledgeBy2Points() {
+//        EconomyHero hero = EconomyHero.builder().aKnowledge(7).build();
 //        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact("Skull helmet");
-//        ArtifactsFactory factory = new ArtifactsFactory();
-//        Artifact artifact = factory.getArtifact(artifactInfo);
+//        hero.equip(artifactInfo);
 //
-//        artifact.buffSkill(hero);
+//        HeroEcoBattleConverter converter = new HeroEcoBattleConverter();
+//        Hero battleHero = converter.convertEconomyHeroToBattleHero(hero);
 //
-//        assertEquals(9, hero.getKnowledge());
-//    }
+//        assertEquals(90, battleHero.getMana());
+    }
 //
 //    @Test
 //    @Disabled
