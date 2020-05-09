@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class ArtifactsInfoFactory {
 
-    private final static String HELM_OF_THE_ALABASTER_UNICORN = "Helm of the Alabaster Unicorn";
+    public final static String HELM_OF_THE_ALABASTER_UNICORN = "Helm of the Alabaster Unicorn";
     private final static String SKULL_HELMET = "Skull Helmet";
     private final static String HELM_OF_CHAOS = "Helm of Chaos";
     private final static String CROWN_OF_THE_SUPREME_MAGI = "Crown of the Supreme Magi";

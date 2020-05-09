@@ -1,11 +1,13 @@
 package pl.psi.game.hero;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pl.psi.game.hero.artifacts.ArtifactInfo;
 import pl.psi.game.hero.artifacts.ArtifactsInfoFactory;
 import pl.psi.game.spellbook.SpellBookInfoFactory;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -88,18 +90,19 @@ class EconomyHeroTest {
 //
 //    }
 //
-//    @Test
-//    //TODO test is not too good... you check only that you have some artifact but nothing else. If you buy artifact you should check what if slot is already used etc.
-//    void successBuyArtifact(){
-//        List<Creature> creatures = new ArrayList<Creature>();
-//        Hero hero = EconomyHero.builder().creatures(creatures).build();
-//        List<Artifact> artifactsBefore = hero.getArtifacts();
+    @Test
+    //TODO test is not too good... you check only that you have some artifact but nothing else. If you buy artifact you should check what if slot is already used etc.
+    //TODO corrected by PW
+    @Disabled
+    void successBuyArtifact(){
+//        EconomyHero hero = EconomyHero.builder().build();
+//        List<ArtifactInfo> artifactsBefore = hero.getArtifacts();
 //        int moneyBefore = hero.getGold();
-//        Artifact artifact = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.HEAD);
+//        ArtifactInfo artifact = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.HELM_OF_THE_ALABASTER_UNICORN);
 //        hero.buyArtifact(artifact);
 //        assertEquals(hero.getGold(), moneyBefore - artifact.getCost());
 //        assertEquals(artifactsBefore.size()+1, hero.getArtifacts().size());
-//    }
+    }
 
     //metody, które jeszcze trzeba przetestować:
     //
