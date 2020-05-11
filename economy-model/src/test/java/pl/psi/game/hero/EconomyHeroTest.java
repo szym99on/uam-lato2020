@@ -43,7 +43,7 @@ class EconomyHeroTest {
 //    @Test
 //    void sellCreatureShouldReturn75PercentOfOriginalPrice() {
 //        List<Creature> creatures = new ArrayList<Creature>();
-//        Creature creature = CreatureInfoFactory.getCreature(CratureInfoFactory.SKELETON);
+//        Creature creature = CreatureInfoFactorgit y.getCreature(CratureInfoFactory.SKELETON);
 //        creatures.add(creature);
 //        Hero hero = EconomyHero.builder().creatures(creatures).build();
 //        int moneyBefore = hero.getGold();
