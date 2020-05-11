@@ -17,11 +17,12 @@ class EconomyHeroTest {
 //    @Test
 //    //TODO: you should has CreatureInfo not Creature and map, not list (CreatureInfo + amount) or some wrapper list (wrapper means another object with int amount and CreatureInfo creature)
 //    void buyCreature(){
-//        List<Creature> creatures = new ArrayList<Creature>();
-//        Hero hero = EconomyHero.builder().creatures(creatures).build();
-//        Creature creature = CreatureInfoFactory.getCreature(CreatureInfoFactory.CREATURE_NAME);
-//        int creatureCost = creature.getCost();
-//        int currentGold = hero.getGold();
+//        CreatureInfo creature = CreatureInfoFactory.getCreature(CreatureInfoFactory.CREATURE_NAME);
+//        Map<CreatureInfo, int> creatures = new Map<>();
+//        creatures.put(creature.getName(),50);
+//        Hero hero = EconomyHero.builder().creatures(creature).build();
+//        int creatureCost = creatures.getValue();
+//        int currentMoney = 1000;
 //        hero.buyCreature(creature);
 //        assertEquals(hero.getGold(), currentGold - creatureCost);
 //    }
