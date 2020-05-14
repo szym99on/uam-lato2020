@@ -76,15 +76,15 @@ class EconomyHeroTest {
 //    }
 //
 //    @Test
-//    //TODO spellInfo not spell
+//
 //    void successBuySpell() {
 //        List<SpellInfo> spells = new ArrayList<SpellInfo>();
 //        Hero hero = EconomyHero.builder().creatures().build();
-//        SpellInfo spell = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.SPELL_NAME);
+//        hero.setWallet(10);
+//        SpellInfo spell = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.MAGIC_ARROW);
 //        buySpell(hero, spell);
-//        //TODO as above
-//        assertEquals(hero.getGold()+spell.gesCost, );
-//        assertEquals(spells +1, 1);
+//        assertEquals(hero.getGold()-spell.getCost, 9);
+//        assertEquals(hero.spells.size() +1, 1);
 //
 //    }
 //
