@@ -3,6 +3,7 @@ package pl.psi.game.hero;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pl.psi.game.fractions.CreatureInfo;
+import pl.psi.game.fractions.NecropolisInfoFactory;
 import pl.psi.game.hero.artifacts.ArtifactInfo;
 import pl.psi.game.hero.artifacts.ArtifactsInfoFactory;
 import pl.psi.game.spellbook.SpellBookInfoFactory;
@@ -36,15 +37,14 @@ class EconomyHeroTest {
 //
 //    @Test
 //    void sellCreatureShouldReturn75PercentOfOriginalPrice() {
-//        List<Creature> creatures = new ArrayList<Creature>();
-//        Creature creature = CreatureInfoFactorgit y.getCreature(CratureInfoFactory.SKELETON);
+//        List<CreatureInfo> creatures = new ArrayList<CreatureInfo>();
+//        CreatureInfo creature = NecropolisInfoFactory.getCreature(NecropolisInfoFactory.SKELETON);
 //        creatures.add(creature);
-//        Hero hero = EconomyHero.builder().creatures(creatures).build();
-//        int moneyBefore = hero.getGold();
-//        int costOfCreature = creature.getCost();
+//        EconomyHero hero = EconomyHero.builder().gold(2000).creatures(creatures).build();
+//        //(cost of Skeleton is 60)
 //        hero.sellCreature(creature);
 //        //TODO as above use concrete values not calculating in assertions
-//        assertEquals(hero.getGold(), moneyBefore + (0.75 * costOfCreature));
+//        assertEquals(hero.getGold(), 2045);
 //
 //    }
 //
