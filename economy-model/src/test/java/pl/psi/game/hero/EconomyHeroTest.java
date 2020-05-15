@@ -2,10 +2,13 @@ package pl.psi.game.hero;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import pl.psi.game.fractions.CreatureInfo;
+import pl.psi.game.fractions.NecropolisInfoFactory;
 import pl.psi.game.hero.artifacts.ArtifactInfo;
 import pl.psi.game.hero.artifacts.ArtifactsInfoFactory;
 import pl.psi.game.spellbook.SpellBookInfoFactory;
 
+import java.util.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,21 +19,18 @@ import static org.junit.jupiter.api.Assertions.*;
 class EconomyHeroTest {
 
 
-//    @Test
-//    //TODO: you should has CreatureInfo not Creature and map, not list (CreatureInfo + amount) or some wrapper list (wrapper means another object with int amount and CreatureInfo creature)
-//    void buyCreature(){
-//        List<Creature> creatures = new ArrayList<Creature>();
-//        Hero hero = EconomyHero.builder().creatures(creatures).build();
-//        Creature creature = CreatureInfoFactory.getCreature(CreatureInfoFactory.CREATURE_NAME);
-//        int creatureCost = creature.getCost();
-//        int currentGold = hero.getGold();
-//        hero.buyCreature(creature);
-//        assertEquals(hero.getGold(), currentGold - creatureCost);
-//    }
-//
-//
-//
-//
+   //@Test
+   //TODO: you should has CreatureInfo not Creature and map, not list (CreatureInfo + amount) or some wrapper list (wrapper means another object with int amount and CreatureInfo creature)
+  // void buyCreatureShouldTakeMoney (){
+  //    CreatureInfo creature = CreatureInfoFactory.getCreature(CreatureInfoFactory.SKELETON);
+  //    Map<CreatureInfo, Integer> creatures = new TreeMap<>();
+  //    creatures.put(creature.getName(),creature.getCost());
+  //    EconomyHero hero = EconomyHero.builder().creatures(creature).build();
+  //    int creatureCost = creatures.getValue();
+  //    int currentMoney = 1000;
+  //    hero.buyCreature(creature);
+  //    assertEquals(hero.getGold(), 950);
+  // }
     @Test
     void addGoldShouldAddGold() {
         EconomyHero hero = EconomyHero.builder().gold(2000).build();
@@ -41,37 +41,36 @@ class EconomyHeroTest {
 //
 //    @Test
 //    void sellCreatureShouldReturn75PercentOfOriginalPrice() {
-//        List<Creature> creatures = new ArrayList<Creature>();
-//        Creature creature = CreatureInfoFactorgit y.getCreature(CratureInfoFactory.SKELETON);
+//        List<CreatureInfo> creatures = new ArrayList<CreatureInfo>();
+//        CreatureInfo creature = NecropolisInfoFactory.getCreature(NecropolisInfoFactory.SKELETON);
 //        creatures.add(creature);
-//        Hero hero = EconomyHero.builder().creatures(creatures).build();
-//        int moneyBefore = hero.getGold();
-//        int costOfCreature = creature.getCost();
+//        EconomyHero hero = EconomyHero.builder().gold(2000).creatures(creatures).build();
+//        //(cost of Skeleton is 60)
 //        hero.sellCreature(creature);
 //        //TODO as above use concrete values not calculating in assertions
-//        assertEquals(hero.getGold(), moneyBefore + (0.75 * costOfCreature));
+//        assertEquals(hero.getGold(), 2045);
 //
 //    }
 //
 //    @Test
 //    void sellArtifactShouldReturn75PercentOfOriginalPrice() {
 //        List<Creature> creatures = new ArrayList<Creature>();
-//        Hero hero = EconomyHero.builder().creatures(creatures).build();
+//        Hero hero = EconomyHero.builder().gold(3000).build();
 //        Artifact artifact = ArtifactsInfoFactoryFactory.getArtifact(ArtifactsInfoFactory.ARTIFACT_NAME);
-//        int moneyBefore = hero.getGold();
+//        int artifactCost = 200;
 //        hero.sellArtifact(artifact);
-//        assertEquals(hero.getGold(), moneyBefore + 0.75 * artifact.getCost());
+//        assertEquals(hero.getGold(), 3150);
 //
 //    }
 //
 //    @Test
 //    void sellSpellShouldReturn75PercentOfOriginalPrice() {
 //        List<Creature> creatures = new ArrayList<Creature>();
-//        Hero hero = EconomyHero.builder().creatures(creatures).build();
+//        Hero hero = EconomyHero.builder().gold(3000).build();
 //        Spell spell = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.SPELL_NAME);
-//        int moneyBefore = hero.getGold();
+//        int spellCost = 800;
 //        hero.sellSpell(spell);
-//        assertEquals(hero.getGold(), moneyBefore + 0.75 * spell.getCost());
+//        assertEquals(hero.getGold(), 3600);
 //    }
 //
 //    @Test
