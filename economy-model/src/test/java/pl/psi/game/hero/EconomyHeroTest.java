@@ -2,34 +2,30 @@ package pl.psi.game.hero;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import pl.psi.game.fractions.CreatureInfo;
 import pl.psi.game.hero.artifacts.ArtifactInfo;
 import pl.psi.game.hero.artifacts.ArtifactsInfoFactory;
 import pl.psi.game.spellbook.SpellBookInfoFactory;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class EconomyHeroTest {
 
 
-//    @Test
-//    //TODO: you should has CreatureInfo not Creature and map, not list (CreatureInfo + amount) or some wrapper list (wrapper means another object with int amount and CreatureInfo creature)
-//    void buyCreature(){
-//        CreatureInfo creature = CreatureInfoFactory.getCreature(CreatureInfoFactory.CREATURE_NAME);
-//        Map<CreatureInfo, int> creatures = new Map<>();
-//        creatures.put(creature.getName(),50);
-//        Hero hero = EconomyHero.builder().creatures(creature).build();
-//        int creatureCost = creatures.getValue();
-//        int currentMoney = 1000;
-//        hero.buyCreature(creature);
-//        assertEquals(hero.getGold(), currentGold - creatureCost);
-//    }
-//
-//
-//
-//
+   @Test
+   //TODO: you should has CreatureInfo not Creature and map, not list (CreatureInfo + amount) or some wrapper list (wrapper means another object with int amount and CreatureInfo creature)
+   void buyCreatureShouldTakeMoney (){
+       //CreatureInfo creature = CreatureInfoFactory.getCreature(CreatureInfoFactory.CREATURE_NAME);
+       // Map<CreatureInfo, Integer> creatures = new TreeMap<>();
+     // creatures.put(creature.getName(),50);
+     // EconomyHero hero = EconomyHero.builder().creatures(creature).build();
+     // int creatureCost = creatures.getValue();
+     // int currentMoney = 1000;
+     // hero.buyCreature(creature);
+     // assertEquals(hero.getGold(), 950);
+   }
     @Test
     void addGoldShouldAddGold() {
         EconomyHero hero = EconomyHero.builder().gold(2000).build();
