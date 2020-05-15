@@ -30,16 +30,13 @@ class EconomyHeroTest {
 //
 //
 //
-//    @Test
-//    void addGoldShouldAddGold() {
-//        List<Creature> creatures = new ArrayList<Creature>();
-//        Hero hero = EconomyHero.builder().creatures(creatures).build();
-//        int howMuch = 50;
-//        int moneyBefore = hero.getGold();
-//        hero.addGold(howMuch);
-//        //TODO 2050 will be better than moneyBefore + howMuch
-//        assertEquals(hero.getGold(), moneyBefore + howMuch);
-//    }
+    @Test
+    void addGoldShouldAddGold() {
+        EconomyHero hero = EconomyHero.builder().gold(2000).build();
+        int howMuch = 50;
+        hero.addGold(howMuch);
+        assertEquals(hero.getGold(), 2050);
+    }
 //
 //    @Test
 //    void sellCreatureShouldReturn75PercentOfOriginalPrice() {
@@ -77,17 +74,15 @@ class EconomyHeroTest {
 //    }
 //
 //    @Test
-//    //TODO spellInfo not spell
+//
 //    void successBuySpell() {
-//        List<Creature> creatures = new ArrayList<Creature>();
-//        Hero hero = EconomyHero.builder().creatures(creatures).build();
-//        Spell spell = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.SPELL_NAME);
-//        int moneyBefore = hero.getGold();
-//        hero.buySpell(spell);
-//        //TODO as above
-//        assertEquals(hero.getGold(), moneyBefore - spell.getCost());
-//        //TODO ?! why you test creature list after buy spell? o.0
-//        assertEquals(hero.getCreatures().size() + 1, hero.getCreatures().size());
+//        List<SpellInfo> spells = new ArrayList<SpellInfo>();
+//        Hero hero = EconomyHero.builder().creatures().build();
+//        hero.setWallet(10);
+//        SpellInfo spell = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.MAGIC_ARROW);
+//        buySpell(hero, spell);
+//        assertEquals(hero.getGold()-spell.getCost, 9);
+//        assertEquals(hero.spells.size() +1, 1);
 //
 //    }
 //
