@@ -51,22 +51,22 @@ class EconomyHeroTest {
 //    @Test
 //    void sellArtifactShouldReturn75PercentOfOriginalPrice() {
 //        List<Creature> creatures = new ArrayList<Creature>();
-//        Hero hero = EconomyHero.builder().creatures(creatures).build();
+//        Hero hero = EconomyHero.builder().gold(3000).build();
 //        Artifact artifact = ArtifactsInfoFactoryFactory.getArtifact(ArtifactsInfoFactory.ARTIFACT_NAME);
-//        int moneyBefore = hero.getGold();
+//        int artifactCost = 200;
 //        hero.sellArtifact(artifact);
-//        assertEquals(hero.getGold(), moneyBefore + 0.75 * artifact.getCost());
+//        assertEquals(hero.getGold(), 3150);
 //
 //    }
 //
 //    @Test
 //    void sellSpellShouldReturn75PercentOfOriginalPrice() {
 //        List<Creature> creatures = new ArrayList<Creature>();
-//        Hero hero = EconomyHero.builder().creatures(creatures).build();
+//        Hero hero = EconomyHero.builder().gold(3000).build();
 //        Spell spell = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.SPELL_NAME);
-//        int moneyBefore = hero.getGold();
+//        int spellCost = 800;
 //        hero.sellSpell(spell);
-//        assertEquals(hero.getGold(), moneyBefore + 0.75 * spell.getCost());
+//        assertEquals(hero.getGold(), 3600);
 //    }
 //
 //    @Test
