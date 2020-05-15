@@ -7,7 +7,9 @@ import pl.psi.game.hero.artifacts.ArtifactsInfoFactory;
 import pl.psi.game.spellbook.SpellBookInfoFactory;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -85,19 +87,55 @@ class EconomyHeroTest {
 //
 //    }
 //
-    @Test
-    //TODO test is not too good... you check only that you have some artifact but nothing else. If you buy artifact you should check what if slot is already used etc.
-    //TODO corrected by PW
-    @Disabled
-    void successBuyArtifact(){
-//        EconomyHero hero = EconomyHero.builder().build();
-//        List<ArtifactInfo> artifactsBefore = hero.getArtifacts();
-//        int moneyBefore = hero.getGold();
-//        ArtifactInfo artifact = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.HELM_OF_THE_ALABASTER_UNICORN);
-//        hero.buyArtifact(artifact);
-//        assertEquals(hero.getGold(), moneyBefore - artifact.getCost());
-//        assertEquals(artifactsBefore.size()+1, hero.getArtifacts().size());
+@Test
+    void buyArtifactShouldNotAddArtifactIfLocationNotEmpty(){
+
+        //DON'T KNOW HOW TO ADD SINGLE ARTIFACT IN BUILDER
+        // I just created a list of artifacts and then added it to builder
+        List<ArtifactInfo> artifacts = new ArrayList<ArtifactInfo>();
+        ArtifactInfo artifactHelmet = ArtifactsInfoFactory.getArtifact("Collar of Conjurin");
+        artifacts.add(artifactHelmet);
+        EconomyHero hero = EconomyHero.builder().artifacts(artifacts).build();
+
+        //hero state before adding artifact
+        List<ArtifactInfo> artifactsBefore = hero.getArtifacts();
+        int moneyBefore = hero.getGold();
+    //wait for artifacts group to give us getter of artifact location
+    //  List<ArtifactInfo.Location> artifactsLocationsBefore = hero.getArtifactsLocations();
+
+        //create artifact to add
+        ArtifactInfo artifactToAdd = ArtifactsInfoFactory.getArtifact("Collar of Conjurin");
+        hero.buyArtifact(artifactToAdd);
+
+        assertEquals(moneyBefore, hero.getGold() );
+        assertEquals(artifactsBefore.size(), hero.getArtifacts().size());
+        assertNotEquals(hero.getArtifact("Hellstorm Helmet"), artifactToAdd);
+}@Test
+
+    void  buyArtifactShouldAddArtifactIfLocationEmpty(){
+        //DON'T KNOW HOW TO ADD SINGLE ARTIFACT IN BUILDER
+        // I just created a list of artifacts and then added it to builder
+        List<ArtifactInfo> artifacts = new ArrayList<ArtifactInfo>();
+        ArtifactInfo artifactHelmet = ArtifactsInfoFactory.getArtifact("Collar of Conjurin");
+        artifacts.add(artifactHelmet);
+        EconomyHero hero = EconomyHero.builder().artifacts(artifacts).build();
+
+        //hero state before adding artifact
+        List<ArtifactInfo> artifactsBefore = hero.getArtifacts();
+        int moneyBefore = hero.getGold();
+        //wait for artifacts group to give us getter of artifact location
+        //  List<ArtifactInfo.Location> artifactsLocationsBefore = hero.getArtifactsLocations();
+
+        //create artifact to add
+        ArtifactInfo artifactToAdd = ArtifactsInfoFactory.getArtifact("Buckler of the Gnoll King");
+        hero.buyArtifact(artifactToAdd);
+
+        assertEquals(moneyBefore - artifactToAdd.getCost(),hero.getGold());
+        assertEquals(artifactsBefore.size()+1, hero.getArtifacts().size());
+        assertEquals(hero.getArtifact("Buckler of the Gnoll King"), artifactToAdd);
     }
+
+
 
     //metody, które jeszcze trzeba przetestować:
     //
