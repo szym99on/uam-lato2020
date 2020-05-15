@@ -1,4 +1,4 @@
-package pl.psi.game.hero.artifact;
+package pl.psi.game.hero;
 
 import org.junit.jupiter.api.Test;
 
