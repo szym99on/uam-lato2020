@@ -10,6 +10,7 @@ import pl.psi.game.spellbook.SpellInfo;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Builder
 public class EconomyHero  {
@@ -77,7 +78,7 @@ public class EconomyHero  {
     }
 
 //request to artifact group for getter to artifact location
-//    List<Location> getArtifactsLocations(){
-//        return this.artifacts.stream().map(artifact -> artifact.getLocation().collectors(Collect.toList()));
-//    }
+    List<ArtifactInfo.Location> getArtifactsLocations(){
+        return this.artifacts.stream().map(ArtifactInfo::getLocation).collect(Collectors.toList());
+    }
 }

@@ -87,44 +87,37 @@ class EconomyHeroTest {
 //@Test
 //    void buyArtifactShouldNotAddArtifactIfLocationNotEmpty(){
 //
-//        //DON'T KNOW HOW TO ADD SINGLE ARTIFACT IN BUILDER
-//        // I just created a list of artifacts and then added it to builder
-//        List<ArtifactInfo> artifacts = new ArrayList<ArtifactInfo>();
-//        ArtifactInfo artifactHelmet = ArtifactsInfoFactory.getArtifact("Collar of Conjurin");
-//        artifacts.add(artifactHelmet);
-//        EconomyHero hero = EconomyHero.builder().artifacts(artifacts).build();
+//        ArtifactInfo artifactHelmet = ArtifactsInfoFactory.getArtifact("Collar of Conjuring");
+//        EconomyHero hero = EconomyHero.builder().artifact(artifactHelmet).gold(2000).build();
 //
 //        //hero state before adding artifact
 //        List<ArtifactInfo> artifactsBefore = hero.getArtifacts();
 //        int moneyBefore = hero.getGold();
-//    //wait for artifacts group to give us getter of artifact location
-//    //  List<ArtifactInfo.Location> artifactsLocationsBefore = hero.getArtifactsLocations();
+//        List<ArtifactInfo.Location> artifactsLocationsBefore = hero.getArtifactsLocations();
 //
 //        //create artifact to add
-//        ArtifactInfo artifactToAdd = ArtifactsInfoFactory.getArtifact("Collar of Conjurin");
+//        ArtifactInfo artifactToAdd = ArtifactsInfoFactory.getArtifact("Collar of Conjuring");
 //        hero.buyArtifact(artifactToAdd);
+//
 //
 //        assertEquals(moneyBefore, hero.getGold() );
 //        assertEquals(artifactsBefore.size(), hero.getArtifacts().size());
-//        assertNotEquals(hero.getArtifact("Hellstorm Helmet"), artifactToAdd);
-//}@Test
-//
+//        assertEquals(hero.getArtifact("Collar of Conjuring"), artifactToAdd);
+//}
+//    @Test
 //    void  buyArtifactShouldAddArtifactIfLocationEmpty(){
-//        //DON'T KNOW HOW TO ADD SINGLE ARTIFACT IN BUILDER
-//        // I just created a list of artifacts and then added it to builder
-//        List<ArtifactInfo> artifacts = new ArrayList<ArtifactInfo>();
-//        ArtifactInfo artifactHelmet = ArtifactsInfoFactory.getArtifact("Collar of Conjurin");
-//        artifacts.add(artifactHelmet);
-//        EconomyHero hero = EconomyHero.builder().artifacts(artifacts).build();
+//        //if I don't instantiate factory cant access artifacts
+//        ArtifactsInfoFactory factory = new ArtifactsInfoFactory();
+//        ArtifactInfo artifactHelmet = factory.getArtifact("Collar of Conjuring");
+//        EconomyHero hero = EconomyHero.builder().artifact(artifactHelmet).gold(2000).build();
 //
 //        //hero state before adding artifact
 //        List<ArtifactInfo> artifactsBefore = hero.getArtifacts();
 //        int moneyBefore = hero.getGold();
-//        //wait for artifacts group to give us getter of artifact location
-//        //  List<ArtifactInfo.Location> artifactsLocationsBefore = hero.getArtifactsLocations();
+//        List<ArtifactInfo.Location> artifactsLocationsBefore = hero.getArtifactsLocations();
 //
 //        //create artifact to add
-//        ArtifactInfo artifactToAdd = ArtifactsInfoFactory.getArtifact("Buckler of the Gnoll King");
+//        ArtifactInfo artifactToAdd = factory.getArtifact("Buckler of the Gnoll King");
 //        hero.buyArtifact(artifactToAdd);
 //
 //        assertEquals(moneyBefore - artifactToAdd.getCost(),hero.getGold());
