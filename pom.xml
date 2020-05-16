@@ -19,6 +19,8 @@
         <module>battle-gui</module>
         <module>economy-model</module>
         <module>economy-gui</module>
+        <module>BattleMapEditor-model</module>
+        <module>BattleMapEditor-gui</module>
     </modules>
 
     <build>
