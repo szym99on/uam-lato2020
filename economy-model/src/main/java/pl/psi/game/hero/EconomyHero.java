@@ -1,27 +1,25 @@
 package pl.psi.game.hero;
 
 import lombok.Builder;
+import lombok.Getter;
+import lombok.Singular;
 import pl.psi.game.fractions.CreatureInfo;
 import pl.psi.game.hero.artifacts.ArtifactInfo;
+import pl.psi.game.spellbook.SpellInfo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+@Builder
 public class EconomyHero  {
 
-//    creatures and artifacts should be supplied by other groups
-    private List<CreatureInfo> creatures = new ArrayList<>();
-    private List<ArtifactInfo> artifacts = new ArrayList<>();
+    //    creatures and artifacts should be supplied by other groups
+    @Singular  private List<CreatureInfo> creatures = new ArrayList<>();
+    @Singular  private List<ArtifactInfo> artifacts = new ArrayList<>();
+    @Singular  private List<SpellInfo> spells = new ArrayList<>();
     private int gold = 2000;
 
-
-
-    @Builder
-    public EconomyHero(List<CreatureInfo> creatures, List<ArtifactInfo> artifacts, int gold){
-        this.creatures = creatures;
-        this.artifacts = artifacts;
-        this.gold = gold;
-    }
 
     int getGold() {
         return gold;
@@ -35,12 +33,12 @@ public class EconomyHero  {
     }
 
     //to implement
-    private void buyCreature(CreatureInfo creature){
+    void buyCreature(CreatureInfo creature){
     }
 
 
     //to implement
-    private void sellCreature(CreatureInfo creature){
+    void sellCreature(CreatureInfo creature){
     }
 
     void buyArtifact(ArtifactInfo artifact){
@@ -51,7 +49,7 @@ public class EconomyHero  {
     }
 
     //to implement
-    private void sellArtifact(ArtifactInfo artifact){
+    void sellArtifact(ArtifactInfo artifact){
     }
 
 
@@ -66,6 +64,16 @@ public class EconomyHero  {
 
     ArtifactInfo getArtifact(String name){
         return this.artifacts.stream().filter(artifact -> artifact.getName().equals(name)).findAny().orElse(null);
+    }
+
+    public void sellSpell(SpellInfo spell) {
+    }
+
+    public void buySpell(SpellInfo spell) {
+    }
+
+    List<SpellInfo> getSpells() {
+    return this.spells;
     }
 
 //request to artifact group for getter to artifact location
