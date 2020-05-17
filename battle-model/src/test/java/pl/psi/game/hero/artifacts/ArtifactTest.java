@@ -5,6 +5,7 @@ import com.google.common.collect.Range;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pl.psi.game.artifacts.Artifact;
+import pl.psi.game.artifacts.ArtifactFactory;
 import pl.psi.game.fractions.Creature;
 import pl.psi.game.hero.EconomyHero;
 import pl.psi.game.hero.converter.Hero;
@@ -21,13 +22,13 @@ public class ArtifactTest {
     @Test
     @Disabled
     void artifactShouldIncreaseKnowledgeBy2Points() {
-//        EconomyHero hero = EconomyHero.builder().aKnowledge(7).build();
-//        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact("Skull helmet");
-//        hero.equip(artifactInfo);
-//        HeroEcoBattleConverter converter = new HeroEcoBattleConverter();
-//        Hero battleHero = converter.convertEconomyHeroToBattleHero(hero);
+        EconomyHero hero = EconomyHero.builder().aKnowledge(7).build();
+        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact("Skull helmet");
+        hero.equip(artifactInfo);
+        HeroEcoBattleConverter converter = new HeroEcoBattleConverter();
+        Hero battleHero = converter.convertEconomyHeroToBattleHero(hero);
 
-//        assertEquals(90, battleHero.getMana());
+        assertEquals(90, battleHero.getMana());
     }
 //
 //    @Test
@@ -65,11 +66,18 @@ public class ArtifactTest {
     void artifactShouldIncreaseCreatureMoveRangeBy2Points() {
         EconomyHero hero = EconomyHero.builder().build();
         Creature creature = Creature.builder().aMaxHp(100).aAttack(Range.closed(2, 2)).aArmor(0).aMoveRange(5).build();
-        Artifact artifact = Artifact.builder().aLocation(Artifact.Location.HEAD)
+//        hero.addCreature(creature);
 
-        artifact.buffCreature(creature);
+        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact("Cape of Velocity");
+        ArtifactFactory factory = new ArtifactFactory();
+        Artifact artifact = factory.createArtifact(artifactInfo);
 
-        assertEquals(7, creature.getMoveRange());
+        artifact.apply(hero);
+
+        HeroEcoBattleConverter converter = new HeroEcoBattleConverter();
+        Hero battleHero = converter.convertEconomyHeroToBattleHero(hero);
+
+        assertEquals(7, battleHero.getCreatures().get(0).getMoveRange());
     }
 //
 //    @Test

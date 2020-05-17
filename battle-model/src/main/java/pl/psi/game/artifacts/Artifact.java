@@ -3,6 +3,7 @@ package pl.psi.game.artifacts;
 import com.google.common.collect.Range;
 import lombok.Builder;
 import lombok.Getter;
+import pl.psi.game.hero.EconomyHero;
 import pl.psi.game.hero.artifacts.ArtifactInfo;
 import pl.psi.game.move.GuiTileIf;
 
@@ -22,5 +23,6 @@ public class Artifact{
     }
 
 
-
+    public void apply(EconomyHero hero) {
+    }
 }
