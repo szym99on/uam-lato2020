@@ -4,6 +4,7 @@ import com.google.common.base.Converter;
 import com.google.common.collect.Range;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import pl.psi.game.artifacts.Artifact;
 import pl.psi.game.fractions.Creature;
 import pl.psi.game.hero.EconomyHero;
 import pl.psi.game.hero.converter.Hero;
@@ -17,17 +18,16 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ArtifactTest {
-//    @Test
-//    @Disabled
+    @Test
+    @Disabled
     //TODO: ARTIFACTS artifact.buffSkill(hero); - name is buffSkill and argument hero? Looks very strange. My suggestion is hero.equip(artifact) and hero.unequip(artifact)
     void artifactShouldIncreaseKnowledgeBy2Points() {
 //        EconomyHero hero = EconomyHero.builder().aKnowledge(7).build();
 //        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact("Skull helmet");
 //        hero.equip(artifactInfo);
-//
 //        HeroEcoBattleConverter converter = new HeroEcoBattleConverter();
 //        Hero battleHero = converter.convertEconomyHeroToBattleHero(hero);
-//
+
 //        assertEquals(90, battleHero.getMana());
     }
 //
