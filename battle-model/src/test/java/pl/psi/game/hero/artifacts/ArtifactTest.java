@@ -20,7 +20,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ArtifactTest {
     @Test
     @Disabled
-    //TODO: ARTIFACTS artifact.buffSkill(hero); - name is buffSkill and argument hero? Looks very strange. My suggestion is hero.equip(artifact) and hero.unequip(artifact)
     void artifactShouldIncreaseKnowledgeBy2Points() {
 //        EconomyHero hero = EconomyHero.builder().aKnowledge(7).build();
 //        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact("Skull helmet");
@@ -61,17 +60,17 @@ public class ArtifactTest {
 //        assertEquals(3, spell.getDuration());
 //    }
 //
-//    @Test
-//    @Disabled
-    //TODO: looks fine.
-//    void artifactShouldIncreaseCreatureMoveRangeBy2Points() {
-//        Creature creature = Creature.builder().aMaxHp(100).aAttack(Range.closed(2, 2)).aArmor(0).aMoveRange(5).build();
-//        Artifact artifact = new Artifact(ArtifactsInfoFactory.getArtifact("Cape of Velocity"));
-//
-//        artifact.buffCreature(creature);
-//
-//        assertEquals(7, creature.getMoveRange());
-//    }
+    @Test
+    @Disabled
+    void artifactShouldIncreaseCreatureMoveRangeBy2Points() {
+        EconomyHero hero = EconomyHero.builder().build();
+        Creature creature = Creature.builder().aMaxHp(100).aAttack(Range.closed(2, 2)).aArmor(0).aMoveRange(5).build();
+        Artifact artifact = Artifact.builder().aLocation(Artifact.Location.HEAD)
+
+        artifact.buffCreature(creature);
+
+        assertEquals(7, creature.getMoveRange());
+    }
 //
 //    @Test
 //    @Disabled

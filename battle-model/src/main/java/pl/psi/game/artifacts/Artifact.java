@@ -13,20 +13,10 @@ import java.beans.PropertyChangeListener;
 public class Artifact{
 
     private final String name;
-    private final Location location;
+    private final ArtifactInfo.Location location;
 
-    public enum Location{
-        HEAD,
-        NECK,
-        TORSO,
-        SHOULDERS,
-        RIGHT_HAND,
-        LEFT_HAND,
-        FINGERS,
-        FEET
-    }
     @Builder
-    public Artifact(String aName, Location aLocation) {
+    public Artifact(String aName, ArtifactInfo.Location aLocation) {
         name = aName;
         location = aLocation;
     }
