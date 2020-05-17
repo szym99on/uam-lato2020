@@ -51,12 +51,12 @@ public class ArtifactTest {
 //
 //    @Test
 //    @Disabled
-    // TODO: You should use some spell factory, not spell builder (builder should be encapsulated in spell package), you should make request for spellbook team about method: increase spell duration (and use it inside your artifact)
 //    void artifactShouldIncreaseSpellDurationBy1Point() {
-//        Spell spell = Spell.builder().aDuration(2).build();
-//        Artifact artifact = new Artifact(ArtifactsInfoFactory.getArtifact("Collar of Conjurin"));
+//        Spell spell = new Spell(SpellBookInfoFactory.getSpell("Fortune"));
+//        ArtifactForSpells artifact = new Artifact(ArtifactsInfoFactory.getArtifact("Collar of Conjurin"));
 //
-//        artifact.buffSpell(spell);
+//        we will make request for spellbook team about method: increase spell duration (and use it inside artifact)
+//        artifact.buff(spell);
 //
 //        assertEquals(3, spell.getDuration());
 //    }
