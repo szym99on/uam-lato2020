@@ -30,22 +30,32 @@ public class ArtifactsRequest {
 
     @Disabled
     @Test
-    void shouldIncreaseSpellPower(){
-//        Hero hero = hero.builder().aSpellPower(1).build();
+    void shouldIncreaseAttack(){
+//        Hero hero = hero.builder().aAttack(1).build();
 
-//        hero.increaseSpellPower(5);
+//        hero.increaseAttack(5);
 
-//        assertEquals(6, hero.getSpellPower());
+//        assertEquals(6, hero.getAttack());
     }
 
     @Disabled
     @Test
     void shouldIncreaseDefence(){
 //        Hero hero = hero.builder().aDefence(1).build();
-        
+
 //        hero.increaseDefence(5);
 
 //        assertEquals(6, hero.getDefence());
+    }
+
+    @Disabled
+    @Test
+    void shouldIncreaseSpellPower(){
+//        Hero hero = hero.builder().aSpellPower(1).build();
+
+//        hero.increaseSpellPower(5);
+
+//        assertEquals(6, hero.getSpellPower());
     }
 
     @Disabled
