@@ -13,6 +13,16 @@ public class ArtifactRequest {
 
     @Disabled
     @Test
+    void shouldReturnArtifactsByLocation(){
+        EconomyHero hero = EconomyHero.builder().build();
+        ArtifactInfo artifact = ArtifactsInfoFactory.getArtifact("Skull helmet");
+//        hero.equip(artifact);
+
+//        assertEquals(artifact,hero.getArtifactsByLocation(HEAD));
+    }
+
+    @Disabled
+    @Test
     void shouldEquipIfSlotAvailable(){
         EconomyHero hero = EconomyHero.builder().build();
         ArtifactInfo artifact1 = ArtifactsInfoFactory.getArtifact("Skull helmet");
@@ -25,15 +35,20 @@ public class ArtifactRequest {
 //        assertNotEquals(artifact2, hero.getArtifacts());
     }
 
+
+
     @Disabled
     @Test
-    void shouldReturnArtifactsByLocation(){
+    void shouldUnequipArtifact(){
         EconomyHero hero = EconomyHero.builder().build();
         ArtifactInfo artifact = ArtifactsInfoFactory.getArtifact("Skull helmet");
 //        hero.equip(artifact);
 
-//        assertEquals(artifact,hero.getArtifactsByLocation(HEAD));
+//        hero.unequip(HEAD);
+
+//        assertNotEquals(artifact,hero.getArtifactsByLocation(HEAD));
     }
+
 
 
 }
