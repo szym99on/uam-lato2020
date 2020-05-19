@@ -71,19 +71,26 @@ public class ArtifactsRequest {
     @Disabled
     @Test
     void shouldApplyArtifactsEffectsOnConversion(){
-//        EconomyHero EcoHero = EconomyHero.builder().aKnowledge(2).build();
-        ArtifactInfo artifact = ArtifactsInfoFactory.getArtifact("Skull helmet");
-        ArtifactInfo artifact2 = ArtifactsInfoFactory.getArtifact("Cape of Conjuring");
-        SpellInfo spell = SpellBookInfoFactory.getSpell("spell with 2 dur");
-//        EcoHero.equip(artifact);
-//        EcoHero.equip(artifact2);
-//        EcoHero.equipSpell(spell) [?] giving the spell to the hero
+        Creature creature = Creature.builder().aMaxHp(10).build();
+        List <Creature> creatures = new ArrayList<>();
+        creatures.add(creature);
+        Spell spell = Spell.builder().build();
+        List <Spell> spells = new ArrayList<>();
+        spells.add(spell);
+//        EconomyHero ecoHero = EconomyHero.builder().aKnowledge(2).aCreatures(creatures).aSpells(spell).build();
+        ArtifactInfo artifactAffectingStats = ArtifactsInfoFactory.getArtifact("Skull helmet");
+        ArtifactInfo artifactAffectingSpells = ArtifactsInfoFactory.getArtifact("Cape of Conjuring");
+        ArtifactInfo artifactAffectingCreatures = ArtifactsInfoFactory.getArtifact("Ring of Vitality");
+//        ecoHero.equip(artifactAffectingStats);
+//        ecoHero.equip(artifactAffectingSpells);
+//        ecoHero.equip(artifactAffectingCreatures);
 
         HeroEcoBattleConverter converter = new HeroEcoBattleConverter();
 //        Hero battleHero = converter.convertEconomyHeroToBattleHero(EcoHero);
 
 //        assertEquals(4,battleHero.getKnowledge());
 //        assertEquals(7,battleHero.getSpells().equals(spell).getDuration());
+//        assertEquals(11,battleHero.getCreatures().equals(creature).getMaxHP());
 
     }
 
