@@ -30,6 +30,16 @@ public class ArtifactsRequest {
 
     @Disabled
     @Test
+    void shouldIncreaseSpellPower(){
+//        Hero hero = hero.builder().aSpellPower(1).build();
+        
+//        hero.increaseSpellPower(5);
+
+//        assertEquals(6, hero.getSpellPower());
+    }
+
+    @Disabled
+    @Test
     void shouldIncreaseKnowledge(){
 //        Hero hero = Hero.builder().aKnowledge(1).build();
 
