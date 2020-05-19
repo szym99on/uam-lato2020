@@ -3,10 +3,12 @@ package pl.psi.game.hero.converter;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pl.psi.game.fractions.Creature;
+import pl.psi.game.hero.EconomyHero;
 import pl.psi.game.hero.artifacts.ArtifactInfo;
 import pl.psi.game.hero.artifacts.ArtifactsInfoFactory;
 import pl.psi.game.spellbook.Spell;
 import pl.psi.game.spellbook.SpellBookInfoFactory;
+import pl.psi.game.spellbook.SpellInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +16,17 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ArtifactsRequest {
+
+    @Disabled
+    @Test
+    void shouldReturnHerosPrimarySkills(){
+//        Hero hero = Hero.builder().aAttack(3).aDefence(4).aSpellPower(2).aKnowledge(5).build();
+
+//        assertEquals(3, hero.getAttack());
+//        assertEquals(4, hero.getDefence());
+//        assertEquals(2, hero.getSpellPower());
+//        assertEquals(5, hero.getKnowledge());
+    }
 
     @Disabled
     @Test
@@ -25,16 +38,23 @@ public class ArtifactsRequest {
 //        assertEquals(6, hero.getKnowledge());
     }
 
-
     @Disabled
     @Test
-    void shouldReturnHerosPrimarySkills(){
-//        Hero hero = Hero.builder().aAttack(3).aDefence(4).aSpellPower(2).aKnowledge(5).build();
+    void shouldApplyArtifactsEffectsOnConversion(){
+//        EconomyHero EcoHero = EconomyHero.builder().aKnowledge(2).build();
+        ArtifactInfo artifact = ArtifactsInfoFactory.getArtifact("Skull helmet");
+        ArtifactInfo artifact2 = ArtifactsInfoFactory.getArtifact("Cape of Conjuring");
+        SpellInfo spell = SpellBookInfoFactory.getSpell("spell with 2 dur");
+//        EcoHero.equip(artifact);
+//        EcoHero.equip(artifact2);
+//        EcoHero.equipSpell(spell) [?] giving the spell to the hero
 
-//        assertEquals(3, hero.getAttack());
-//        assertEquals(4, hero.getDefence());
-//        assertEquals(2, hero.getSpellPower());
-//        assertEquals(5, hero.getKnowledge());
+        HeroEcoBattleConverter converter = new HeroEcoBattleConverter();
+//        Hero battleHero = converter.convertEconomyHeroToBattleHero(EcoHero);
+
+//        assertEquals(4,battleHero.getKnowledge());
+//        assertEquals(7,battleHero.getSpells().equals(spell).getDuration());
+
     }
 
     @Disabled
