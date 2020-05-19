@@ -25,4 +25,15 @@ public class ArtifactRequest {
 //        assertNotEquals(artifact2, hero.getArtifacts());
     }
 
+    @Disabled
+    @Test
+    void shouldReturnArtifactsByLocation(){
+        EconomyHero hero = EconomyHero.builder().build();
+        ArtifactInfo artifact = ArtifactsInfoFactory.getArtifact("Skull helmet");
+//        hero.equip(artifact);
+
+//        assertEquals(artifact,hero.getArtifactsByLocation(HEAD));
+    }
+
+
 }
