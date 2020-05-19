@@ -14,4 +14,14 @@ public class ArtifactsRequest {
         assertEquals(1, spell.getDuration());
     }
 
+    @Disabled
+    @Test
+    void shouldIncreaseSpellDuration(){
+        SpellInfo spell = SpellBookInfoFactory.getSpell("AIR_SHIELD");
+
+        spell.increaseDuration(1);
+
+        assertEquals(2,spell.getDuration());
+    }
+
 }
