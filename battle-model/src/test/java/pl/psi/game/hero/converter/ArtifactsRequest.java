@@ -17,6 +17,17 @@ public class ArtifactsRequest {
 
     @Disabled
     @Test
+    void shouldIncreaseKnowledge(){
+//        Hero hero = Hero.builder().aKnowledge(1).build();
+
+//        hero.increaseKnowledge(5);
+
+//        assertEquals(6, hero.getKnowledge());
+    }
+
+
+    @Disabled
+    @Test
     void shouldReturnHerosPrimarySkills(){
 //        Hero hero = Hero.builder().aAttack(3).aDefence(4).aSpellPower(2).aKnowledge(5).build();
 
