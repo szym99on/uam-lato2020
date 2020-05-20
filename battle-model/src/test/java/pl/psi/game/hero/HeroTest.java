@@ -27,17 +27,17 @@ public class HeroTest {
     @Disabled
     void shouldDecreaseHeroStatsTo1() {
         /*
-        Hero hero = Hero.builder().aAttack(4).aDefense(4).aPower(4).aKnowledge(4);
+        Hero hero = Hero.builder().aAttack(3).aDefense(3).aPower(3).aKnowledge(3);
 
         hero.increaseAttack(-4);
         hero.increasePower(-4);
         hero.increaseDefense(-4);
         hero.increaseKnowledge(-4);
 
-        assertEquals(1, hero.getAttack());
-        assertEquals(1,hero.getDefense());
-        assertEquals(1,hero.getKnowledge());
-        assertEquals(1,hero.getPower());
+        assertEquals(0, hero.getAttack());
+        assertEquals(0,hero.getDefense());
+        assertEquals(0,hero.getKnowledge());
+        assertEquals(0,hero.getPower());
         */
     }
 
