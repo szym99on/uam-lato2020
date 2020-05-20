@@ -5,14 +5,17 @@ import pl.psi.game.AbstractItemInfo;
 
 public class SkillInfo extends AbstractItemInfo {
 
+    private final SkillType type;
+
     public enum SkillType {
-        OFFENCE,
-        INTELLIGENCE,
-        WISDOM,
-        ARMOUR
+        COMBAT_SKILL,
+        ADVENTURE_SKILL,
+        MAGIC_SKILL
+
     }
     @Builder
-    public SkillInfo(String aName, String aDescription, int aCost) {
+    public SkillInfo(String aName, String aDescription, int aCost, SkillType aType) {
         super(aName, aDescription, aCost);
+        type= aType;
     }
 }
