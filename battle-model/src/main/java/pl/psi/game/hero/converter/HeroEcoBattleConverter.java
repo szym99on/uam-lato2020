@@ -13,7 +13,11 @@ public class HeroEcoBattleConverter {
         Hero hero = Hero.builder().aCreatures(creatures).build();
         //build hero using ecohero
         //apply skills
+        //aHero.getSkills().map(skillInfo -> ???).foreach(skill -> skill.apply(hero);
         //apply artifacts
+        //aHero.getArtifacts().map(artifactInfo -> ???).foreach(artifact -> artifact.apply(hero);
+        //get spells
+        //hero.addSpells(aHero.getSpells().map(spellInfo ->
         return hero;
     }
 }
