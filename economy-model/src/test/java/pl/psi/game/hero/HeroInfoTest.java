@@ -13,24 +13,24 @@ public class HeroInfoTest {
         HeroInfoFactory heroInfoFactory = new HeroInfoFactory();
         List<HeroInfo> heroInfoList=new ArrayList<>();
         heroInfoList=heroInfoFactory.getAll();
-        assertEquals(heroInfoList.get(0).getName(),"Isra");
+        assertEquals(heroInfoList.get(0).getName(),"Edric");
     }
     @Test
     void CheckGetFractionMetode()
     {
         HeroInfoFactory heroInfoFactory = new HeroInfoFactory();
         List<HeroInfo> heroInfoList=new ArrayList<>();
-        heroInfoList=heroInfoFactory.getHeroInfoListByFraction(HeroInfo.Fraction.NECROPOLIS);
-        assertEquals(heroInfoList.get(0).getName(),"Isra");
+        heroInfoList=heroInfoFactory.getHeroInfoListByFraction(HeroInfo.Fraction.TOWER);
+        assertEquals(heroInfoList.get(0).getName(),"Fafner");
     }
     @Test
     void CheckIfFractionClassSetStatistics()
     {
         HeroInfoFactory heroInfoFactory = new HeroInfoFactory();
-        HeroInfo heroInfo=heroInfoFactory.getHeroInfoByName("Isra");
-        assertEquals(heroInfo.getAttack(),1);
+        HeroInfo heroInfo=heroInfoFactory.getHeroInfoByName("Edric");
+        assertEquals(heroInfo.getAttack(),2);
         assertEquals(heroInfo.getDefense(),2);
-        assertEquals(heroInfo.getPower(),2);
+        assertEquals(heroInfo.getPower(),1);
         assertEquals(heroInfo.getKnowledge(),1);
     }
 }

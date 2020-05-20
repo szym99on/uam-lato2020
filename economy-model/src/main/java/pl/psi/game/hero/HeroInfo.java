@@ -10,30 +10,36 @@ public class HeroInfo {
     private final String name;
     private final Fraction fraction;
     public enum Fraction{
+        CASTLE,
+        TOWER,
+        INFERNO,
+        FORTRESS,
+        RAMPART,
+        DUNGEON,
         STRONGHOLD,
         NECROPOLIS,
-        RAMPART
+        CONFLUX
     }
     private final FractionClass fractionClass;
     public enum FractionClass{
-        Knight(2,2,1,1),
-        Cleric(1,0,2,2),
-        Ranger(1,3,1,1),
-        Druid(0,2,1,2),
-        Alchemist(1,1,2,2),
-        Wizard(0,0,2,3),
-        Demoniac(2,2,1,1),
-        Heretic(1,1,2,1),
-        DeathKnight(1,2,2,1),
-        Necromancer(1,0,2,2),
-        Overlord(2,2,1,1),
-        Warlock(0,0,3,2),
-        Barbarian(4,0,1,1),
-        BattleMage(2,1,1,1),
-        Beastmaster(0,4,1,1),
-        Witch(0,1,2,2),
-        Planeswalker(3,1,1,1),
-        Elementalis(0,0,3,3);
+        KNIGHT(2,2,1,1),
+        CLERIC(1,0,2,2),
+        RANGER(1,3,1,1),
+        DRUID(0,2,1,2),
+        ALCHEMIST(1,1,2,2),
+        WIZARD(0,0,2,3),
+        DEMONIAC(2,2,1,1),
+        HERETIC(1,1,2,1),
+        DEATH_KNIGHT(1,2,2,1),
+        NECROMANCER(1,0,2,2),
+        OVERLORD(2,2,1,1),
+        WARLOCK(0,0,3,2),
+        BARBARIAN(4,0,1,1),
+        BATTLE_MAGE(2,1,1,1),
+        BEASTMASTER(0,4,1,1),
+        WITCH(0,1,2,2),
+        PLANESWALKER(3,1,1,1),
+        ELEMENTALIS(0,0,3,3);
         final int attack;
         final int defense;
         final int power;
