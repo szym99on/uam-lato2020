@@ -28,6 +28,14 @@ public class ArtifactsRequest {
         // Perhaps it could be implemented as another stat (maybe similar to armor?).
     }
 
+    @Disabled
+    @Test
+    void shouldGrantImmunityToBerserkSpell(){
+        // There are artifacts that target specific spells, making your creatures immune to their effects.
+        // There has to be a way to apply that on creatures.
+        // This immunity only relates to the specific spell - in this case the Berserk Spell.
+    }
+
 
     @Disabled
     @Test
