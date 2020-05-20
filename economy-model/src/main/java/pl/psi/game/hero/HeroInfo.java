@@ -10,14 +10,9 @@ public class HeroInfo {
     private final String name;
     private final Fraction fraction;
     public enum Fraction{
-        HEAD,
-        NECK,
-        TORSO,
-        SHOULDERS,
-        RIGHT_HAND,
-        LEFT_HAND,
-        FINGERS,
-        FEET
+        STRONGHOLD,
+        NECROPOLIS,
+        RAMPART
     }
 
     @Builder
