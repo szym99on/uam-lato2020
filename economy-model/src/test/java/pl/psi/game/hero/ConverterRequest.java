@@ -13,25 +13,6 @@ public class ConverterRequest {
 
         assertEquals(economyHero.getAttack(),2);
     }*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /*@Test
     void getSpellInfoList(){
     }
@@ -44,18 +25,6 @@ public class ConverterRequest {
     void getArtifactInfoList(){
     }
      */
-
-
-
-
-
-
-
-
-
-
-
-
     /*@Test
     void getCreatureInfoStackList(){
     }
