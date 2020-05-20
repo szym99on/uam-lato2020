@@ -199,4 +199,5 @@ public class ConverterTest {
         //assertEquals(5, creature.getAttack().upperEndpoint());
         //assertEquals(3, creature.getAttack().lowerEndpoint());
     }
+
 }

@@ -11,10 +11,10 @@ public class Hero {
     private List<Creature> creatures;
     //private List<Spell> spells;
     //private Integer manaPoints;
-    //private Integer attack;
-    //private Integer defense;
-    //private Integer power;
-    //private Integer knowledge;
+//    private Integer attack;
+//    private Integer defense;
+//    private Integer power;
+//    private Integer knowledge;
 
     @Builder
     public Hero(List<Creature> aCreatures /*,List<Spell> aSpells, Integer aManaPoints, Integer aAttack, Integer aDefense, Integer aPower, Integer aKnowledge*/) {
@@ -41,15 +41,55 @@ public class Hero {
 
 /*
     public void increaseAttack(int aAmount) {
+        if (attack + aAmount <= 0){
+            attack = 1;
+        }
+        else{
+            attack += aAmount;
+        }
     }
 
     public void increaseDefense(int aAmount) {
+        if (defense + aAmount <= 0){
+            defense = 1;
+        }
+        else{
+            defense += aAmount;
+        }
     }
 
     public void increasePower(int aAmount) {
+        if (power + aAmount <= 0){
+            power = 1;
+        }
+        else{
+            power += aAmount;
+        }
     }
 
     public void increaseKnowledge(int aAmount) {
+        if (knowledge + aAmount <= 0){
+            knowledge = 1;
+        }
+        else{
+            knowledge += aAmount;
+        }
     }
-    */
+
+    public Integer getAttack() {
+        return attack;
+    }
+
+    public Integer getDefense() {
+        return defense;
+    }
+
+    public Integer getPower() {
+        return power;
+    }
+
+    public Integer getKnowledge() {
+        return knowledge;
+    }
+*/
 }
