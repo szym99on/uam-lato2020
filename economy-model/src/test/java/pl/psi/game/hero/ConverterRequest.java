@@ -1,66 +1,19 @@
 package pl.psi.game.hero;
 
-public class ConverterRequest {
-    /*@Test
-    void CreateEconomyFactory()
-    {
-        EconomyFactory economyfactory = new EconomyFactory();
-    }*/
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
+public class ConverterRequest {
     /*@Test
     void CreateEconomyHero()
     {
-        EconomyFactory economyfactory = new EconomyFactory();
-        economyHero = economyfactory.createHero();
+        HeroInfoFactory heroInfoFactory = new HeroInfoFactory();
+        HeroInfo heroInfo = heroInfoFactory.getHeroInfoByName("Edric");
+        EconomyHero economyHero = EconomyHero.builder().aHeroInfo(heroInfo).build();
+
+        assertEquals(economyHero.getAttack(),2);
     }*/
 
-    /*@Test
-    void AddCreaturesToEconomyHero()
-    {
-        EconomyFactory economyfactory = new EconomyFactory();
-        economyHero = economyfactory.createHero();
-
-        FractionsInfoAbstractFactory fractionsInfoAbstractFactory = new FractionsInfoAbstractFactory();
-        ////CreatureInfo creatureInfo = fractionsInfoAbstractFactory.getByType(FractionsInfo.Type.NECROPOLIS).createCreature(1);
-
-        Integer creatureCount = 1;
-        economyHero.addCreatureInfo(creatureInfo,creatureCount);
-    }*/
-
-    /*@Test
-    void AddSpellsInfoToEconomyHero()
-    {
-        EconomyFactory economyfactory = new EconomyFactory();
-        economyHero = economyfactory.createHero();
-
-        List<SpellInfo> spellsInfo = new ArrayList<SpellInfo>();
-        SpellBookInfoFactory spellBookInfoFactory = new SpellBookInfoFactory();
-        spellsInfo=spellBookInfoFactory.getSpellsByType(SpellInfo.Type.AIR);
-
-        economyHero.addSpellsInfo(spellsInfo);
-    }*/
-
-    /*@Test
-    void AddSpellsInfoToEconomyHero()
-    {
-        EconomyFactory economyfactory = new EconomyFactory();
-        economyHero = economyfactory.createHero();
-
-        List<SpellInfo> spellsInfo = new ArrayList<SpellInfo>();
-        SpellBookInfoFactory spellBookInfoFactory = new SpellBookInfoFactory();
-        spellsInfo=spellBookInfoFactory.getSpellsByType(SpellInfo.Type.AIR);
-
-        economyHero.addSpellsInfo(spellsInfo);
-    }*/
-
-    /*@Test
-    void getSpellInfoList(){
-    }
-     */
-    /*@Test
-    void getArtifactInfoList(){
-    }
-     */
     /*@Test
     void getCreatureInfoStackList(){
     }

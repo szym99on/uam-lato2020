@@ -11,10 +11,10 @@ public class Hero {
     private List<Creature> creatures;
     //private List<Spell> spells;
     //private int manaPoints;
-//    private int attack;
-//    private int defense;
-//    private int power;
-//    private int knowledge;
+    private int attack;
+    private int defense;
+    private int power;
+    private int knowledge;
 
     @Builder
     public Hero(List<Creature> aCreatures /*,List<Spell> aSpells, int aManaPoints, int aAttack, int aDefense, int aPower, int aKnowledge*/) {
@@ -22,10 +22,10 @@ public class Hero {
         creatures = aCreatures;
         //spells = aSpells;
         //manaPoints = aManaPoints;
-        //attack = aAttack;
-        //defense = aDefense;
-        //power = aPower;
-        //knowledge = aKnowledge;
+        attack = 0;
+        defense = 0;
+        power = 0;
+        knowledge = 0;
     }
 
     public List<Creature> getCreatures() {
@@ -39,7 +39,7 @@ public class Hero {
 //        return manaPoints;
 //    }
 
-/*
+
     public void increaseAttack(int aAmount) {
         if (attack + aAmount < 0){
             attack = 0;
@@ -48,7 +48,6 @@ public class Hero {
             attack += aAmount;
         }
     }
-
     public void increaseDefense(int aAmount) {
         if (defense + aAmount < 0){
             defense = 0;
@@ -57,7 +56,6 @@ public class Hero {
             defense += aAmount;
         }
     }
-
     public void increasePower(int aAmount) {
         if (power + aAmount < 0){
             power = 0;
@@ -66,7 +64,6 @@ public class Hero {
             power += aAmount;
         }
     }
-
     public void increaseKnowledge(int aAmount) {
         if (knowledge + aAmount < 0){
             knowledge = 0;
@@ -79,17 +76,13 @@ public class Hero {
     public Integer getAttack() {
         return attack;
     }
-
     public Integer getDefense() {
         return defense;
     }
-
     public Integer getPower() {
         return power;
     }
-
     public Integer getKnowledge() {
         return knowledge;
     }
-*/
 }

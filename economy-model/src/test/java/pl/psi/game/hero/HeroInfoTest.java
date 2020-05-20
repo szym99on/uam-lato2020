@@ -13,7 +13,7 @@ public class HeroInfoTest {
         HeroInfoFactory heroInfoFactory = new HeroInfoFactory();
         List<HeroInfo> heroInfoList=new ArrayList<>();
         heroInfoList=heroInfoFactory.getAll();
-        assertEquals(heroInfoList.get(0).getName(),"Edric");
+        assertEquals("Edric",heroInfoList.get(0).getName());
     }
     @Test
     void CheckGetFractionMetode()
@@ -21,16 +21,16 @@ public class HeroInfoTest {
         HeroInfoFactory heroInfoFactory = new HeroInfoFactory();
         List<HeroInfo> heroInfoList=new ArrayList<>();
         heroInfoList=heroInfoFactory.getHeroInfoListByFraction(HeroInfo.Fraction.TOWER);
-        assertEquals(heroInfoList.get(0).getName(),"Fafner");
+        assertEquals("Fafner",heroInfoList.get(0).getName());
     }
     @Test
     void CheckIfFractionClassSetStatistics()
     {
         HeroInfoFactory heroInfoFactory = new HeroInfoFactory();
         HeroInfo heroInfo=heroInfoFactory.getHeroInfoByName("Edric");
-        assertEquals(heroInfo.getAttack(),2);
-        assertEquals(heroInfo.getDefense(),2);
-        assertEquals(heroInfo.getPower(),1);
-        assertEquals(heroInfo.getKnowledge(),1);
+        assertEquals(2,heroInfo.getAttack());
+        assertEquals(2,heroInfo.getDefense());
+        assertEquals(1,heroInfo.getPower());
+        assertEquals(1,heroInfo.getKnowledge());
     }
 }
