@@ -68,16 +68,21 @@ public class ArtifactsRequest {
 //        assertEquals(6, hero.getKnowledge());
     }
 
+    EconomyHero prepareEconomyHeroWithKnowledgeCreaturesAndSpellsToConvert(){
+//        Creature creature = Creature.builder().aMaxHp(10).build();
+//        List <Creature> creatures = new ArrayList<>();
+//        creatures.add(creature);
+//        Spell spell = Spell.builder().build();
+//        List <Spell> spells = new ArrayList<>();
+//        spells.add(spell);
+        EconomyHero heroToConvert = null; //= EconomyHero.builder().aKnowledge(2).aCreatures(creatures).aSpells(spell).build();
+        return heroToConvert;
+    }
+
     @Disabled
     @Test
     void shouldApplyArtifactsEffectsOnConversion(){
-        Creature creature = Creature.builder().aMaxHp(10).build();
-        List <Creature> creatures = new ArrayList<>();
-        creatures.add(creature);
-        Spell spell = Spell.builder().build();
-        List <Spell> spells = new ArrayList<>();
-        spells.add(spell);
-//        EconomyHero ecoHero = EconomyHero.builder().aKnowledge(2).aCreatures(creatures).aSpells(spell).build();
+        EconomyHero ecoHero = prepareEconomyHeroWithKnowledgeCreaturesAndSpellsToConvert();
         ArtifactInfo artifactAffectingStats = ArtifactsInfoFactory.getArtifact("Skull helmet");
         ArtifactInfo artifactAffectingSpells = ArtifactsInfoFactory.getArtifact("Cape of Conjuring");
         ArtifactInfo artifactAffectingCreatures = ArtifactsInfoFactory.getArtifact("Ring of Vitality");
