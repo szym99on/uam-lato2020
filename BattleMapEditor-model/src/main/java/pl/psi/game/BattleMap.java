@@ -13,7 +13,6 @@ import java.util.Map;
 @Setter
 public class BattleMap {
     private String mapName;
-    private String lastModificationData;
     private HashMap<Point,String> board;
 
     public final static int BOARD_WIDTH = 14;
