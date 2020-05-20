@@ -23,4 +23,14 @@ public class HeroInfoTest {
         heroInfoList=heroInfoFactory.getHeroInfoListByFraction(HeroInfo.Fraction.NECROPOLIS);
         assertEquals(heroInfoList.get(0).getName(),"Isra");
     }
+    @Test
+    void CheckIfFractionClassSetStatistics()
+    {
+        HeroInfoFactory heroInfoFactory = new HeroInfoFactory();
+        HeroInfo heroInfo=heroInfoFactory.getHeroInfoByName("Isra");
+        assertEquals(heroInfo.getAttack(),1);
+        assertEquals(heroInfo.getDefense(),2);
+        assertEquals(heroInfo.getPower(),2);
+        assertEquals(heroInfo.getKnowledge(),1);
+    }
 }

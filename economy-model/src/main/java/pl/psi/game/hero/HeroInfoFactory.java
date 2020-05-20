@@ -17,7 +17,7 @@ public class HeroInfoFactory {
 
     private final static List<HeroInfo> heroList = new ArrayList<>();
     {
-        heroList.add(HeroInfo.builder().aName(ISRA).aFraction(HeroInfo.Fraction.NECROPOLIS).aAttack(1).aDefense(2).aPower(2).aKnowledge(1).build());
+        heroList.add(HeroInfo.builder().aName(ISRA).aFraction(HeroInfo.Fraction.NECROPOLIS).aFractionClass(HeroInfo.FractionClass.DeathKnight).build());
     }
 
     public static List<HeroInfo> getAll(){
