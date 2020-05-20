@@ -2,12 +2,11 @@ package pl.psi.game.hero.skills;
 
 public class ConverterRequest {
 
-    /*
-    @Test
-    void ApplyEffectsOfSkillOnSpell()
-    {
-        SkillInfoFactory skillsInfoFactory = new SkillsInfoFactory();
-        ////SkillInfo skillInfo = skillsInfoFactory.getByType(SkillInfo.Type.SPELL).stream().findFirst();
-        assertTrue(skillInfo.Location == SkillInfo.Type.SPELL);
+    /*@Test
+    void applySkillOnHero(){
+        SkillInfo skillInfo = SkillInfo.builder().build();
+        Hero hero = Hero.builder().build();
+
+        skillInfo.applyOnHero(hero);
     }*/
 }

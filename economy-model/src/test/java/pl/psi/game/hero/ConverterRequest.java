@@ -52,4 +52,18 @@ public class ConverterRequest {
 
         economyHero.addSpellsInfo(spellsInfo);
     }*/
+
+    /*@Test
+    void getSpellInfoList(){
+    }
+     */
+    /*@Test
+    void getArtifactInfoList(){
+    }
+     */
+    /*@Test
+    void getCreatureInfoStackList(){
+    }
+     */
+
 }
