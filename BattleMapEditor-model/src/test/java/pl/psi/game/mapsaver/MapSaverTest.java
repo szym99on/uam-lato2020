@@ -8,7 +8,7 @@ import pl.psi.game.mapmaker.MapMaker;
 import java.io.File;
 
 class MapSaverTest {
-
+/*
     @Test
     void saveMapTest() {
         MapMaker mm = new MapMaker();
@@ -28,4 +28,6 @@ class MapSaverTest {
         String mapName = mm.getMapInProduction().getMapName();
         ms.saveMap(mm.getMapInProduction());
     }
+
+ */
 }
