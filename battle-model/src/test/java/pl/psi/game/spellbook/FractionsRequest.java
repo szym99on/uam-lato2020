@@ -13,7 +13,7 @@ public class FractionsRequest {
 
 //        AirElementalCreatureFactory AirElementalCreatureFactory = new AirElementalCreatureFactory();
 //
-//        Creature creature = AirElementalCreatureFactory.createCreature(1);
+//        Creature creature = AirElementalCreatureFactory.createCreature(4);
 //        assertEquals(25, creature.getMaxHp());
 //        assertEquals(Range.closed(2,8), creature.getAttack());
 //        assertEquals("Air elemental", creature.getName());
@@ -25,7 +25,7 @@ public class FractionsRequest {
 //
 //        EarthElementalCreatureFactory earthElementalCreatureFactory = new EarthElementalCreatureFactory();
 //
-//        Creature creature = EarthElementalCreatureFactory.createCreature(1);
+//        Creature creature = EarthElementalCreatureFactory.createCreature(4);
 //        assertEquals(40, creature.getMaxHp());
 //        assertEquals(Range.closed(4,8), creature.getAttack());
 //        assertEquals("Earth elemental", creature.getName());
@@ -37,7 +37,7 @@ public class FractionsRequest {
 //
 //        FireElementalCreatureFactory FireElementalCreatureFactory = new FireElementalCreatureFactory();
 //
-//        Creature creature = FireElementalCreatureFactory.createCreature(1);
+//        Creature creature = FireElementalCreatureFactory.createCreature(4);
 //        assertEquals(35, creature.getMaxHp());
 //        assertEquals(Range.closed(4,6), creature.getAttack());
 //        assertEquals("Fire elemental", creature.getName());
@@ -49,7 +49,7 @@ public class FractionsRequest {
 //
 //        WaterElementalCreatureFactory WaterElementalCreatureFactory = new WaterElementalCreatureFactory();
 //
-//        Creature creature = WaterElementalCreatureFactory.createCreature(1);
+//        Creature creature = WaterElementalCreatureFactory.createCreature(4);
 //        assertEquals(30, creature.getMaxHp());
 //        assertEquals(Range.closed(3,7), creature.getAttack());
 //        assertEquals("Water elemental", creature.getName());
