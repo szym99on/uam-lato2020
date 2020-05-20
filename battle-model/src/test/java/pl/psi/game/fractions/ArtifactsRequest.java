@@ -18,4 +18,17 @@ public class ArtifactsRequest {
 //        assertEquals(2, creature.getMoveRange());
     }
 
+
+    @Disabled
+    @Test
+    void shouldIncreaseMoveRange(){
+//        Creature creature = Creature.builder().aMoveRange(2).build();
+
+//        creature.increaseMoveRange(2);
+
+//        assertEquals(4,creature.getMoveRange());
+    }
+
+
+
 }
