@@ -24,4 +24,11 @@ public class ArtifactsRequest {
         //assertEquals(2,spell.getDuration());
     }
 
+    @Disabled
+    @Test
+    void shouldPreventSpellCastingOfLevel3AndHigher(){
+        // Recanter's Cloak prevents casting spells of level 3 and higher by both the wearer of the artifact as well as his opponent.
+        // Therefore, we need a way to disable those spells in question without removing them.
+    }
+
 }
