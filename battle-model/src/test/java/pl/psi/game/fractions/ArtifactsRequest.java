@@ -1,6 +1,8 @@
 package pl.psi.game.fractions;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import com.google.common.collect.Range;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -29,6 +31,17 @@ public class ArtifactsRequest {
 //        assertEquals(4,creature.getMoveRange());
     }
 
+    @Disabled
+    @Test
+    void shouldIncreaseHP(){
+        Creature dummyCreature = Creature.builder().aMaxHp(10).build();
+        Creature attacker = Creature.builder().aAttack(Range.closed(1,1)).build();
+        attacker.attack(dummyCreature); //reducing dummy's current HP for test purposes
 
+//        dummyCreature.increaseHP(2); //increasing HP should affect both max and current HP. It should also not allow current HP to exceed max HP.
+
+//        assertEquals(12, dummyCreature.getMaxHP());
+//        assertEquals(11, dummyCreature.getCurrentHP());
+    }
 
 }
