@@ -61,7 +61,6 @@ public class HeroInfoFactory {
     //ELEMENTALIST
     public final static String AENAIN = "Aenain";
     public final static String BRISSA = "Brissa";
-    // more heroes names to come...
 
     private final static List<HeroInfo> heroList = new ArrayList<>();
     {

@@ -14,8 +14,54 @@ public class ConverterRequest {
         assertEquals(economyHero.getAttack(),2);
     }*/
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*@Test
+    void getSpellInfoList(){
+    }
+     */
+    /*@Test
+    void getSkillInfoList(){
+    }
+     */
+    /*@Test
+    void getArtifactInfoList(){
+    }
+     */
+
+
+
+
+
+
+
+
+
+
+
+
     /*@Test
     void getCreatureInfoStackList(){
+    }
+     */
+    /*@Test
+    void getHeroInfo(){
     }
      */
 
