@@ -12,9 +12,14 @@ public class ConverterRequest {
     }*/
     /*@Test
     void applyArtifactOnHero(){
-        ArtifactInfo artifactInfo = ArtifactInfo.builder().build();
+        Artifact artifact = Artifact.builder().build();
         Hero hero = Hero.builder().build();
 
-        artifactInfo.applyOnHero(hero);
+        artifact.applyOnHero(hero);
     }*/
+    /*@Test
+    void mapArtifactInfoToArtifact(){
+        ArtifactFactory.create(artifactInfo);
+    }
+     */
 }

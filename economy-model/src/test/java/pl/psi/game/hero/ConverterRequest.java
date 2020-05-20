@@ -58,11 +58,19 @@ public class ConverterRequest {
     }
      */
     /*@Test
+    void getSkillInfoList(){
+    }
+     */
+    /*@Test
     void getArtifactInfoList(){
     }
      */
     /*@Test
     void getCreatureInfoStackList(){
+    }
+     */
+    /*@Test
+    void getHeroInfo(){
     }
      */
 

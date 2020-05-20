@@ -29,9 +29,8 @@ public class ConverterRequest {
     }*/
     /*
     @Test
-    void createCreatureUsingEconomyCreature(){
-        CreatureInfo creatureInfo = CreatureInfo.builder().build();
-        Creature creature = Creature.createFromInfo(creatureInfo);
+    void mapCreatureInfoToCreature(){
+        fractionCreatureFactory.create(creatureInfo);
      }
     */
 }

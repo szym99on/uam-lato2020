@@ -4,9 +4,14 @@ public class ConverterRequest {
 
     /*@Test
     void applySkillOnHero(){
-        SkillInfo skillInfo = SkillInfo.builder().build();
+        Skill skill = Skill.builder().build();
         Hero hero = Hero.builder().build();
 
-        skillInfo.applyOnHero(hero);
+        skill.applyOnHero(hero);
     }*/
+    /*@Test
+    void mapSkillInfoToSkill(){
+        SkillFactory.create(skillInfo);
+    }
+     */
 }
