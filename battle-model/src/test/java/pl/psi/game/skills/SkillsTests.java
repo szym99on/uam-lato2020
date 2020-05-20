@@ -7,8 +7,11 @@ import pl.psi.game.fractions.Creature;
 import pl.psi.game.hero.converter.Hero;
 import pl.psi.game.hero.EconomyHero;
 import pl.psi.game.hero.converter.HeroEcoBattleConverter;
+import pl.psi.game.spellbook.Spell;
+import pl.psi.game.spellbook.SpellInfo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static pl.psi.game.skills.SkillInfoFactory.*;
 
 public class SkillsTests {
 
@@ -18,10 +21,11 @@ public class SkillsTests {
     @Disabled
     void offenceSkillShouldIncreaseDamage() {
         int lowAttack = 50, highAttack = 100;
-        Skill offenceSkill = new Skill(SkillInfoFactory.getSkill(SkillInfo.SkillType.COMBAT_SKILL));
+        Skill offenceSkill = new Skill(SkillInfoFactory.getSkill(OFFENCE));
+        Hero hero = Hero.builder().build();
         Creature creature = Creature.builder().aAttack(Range.closed(lowAttack, highAttack)).build();
 
-        offenceSkill.cast(Hero);
+        offenceSkill.cast(hero);
 
         Range<Integer> attackAfterSkill = creature.getAttack();
         assertEquals(Range.closed(55,110), attackAfterSkill);
@@ -31,10 +35,11 @@ public class SkillsTests {
     //TODO: better test name - increaseArmor :) not decrease Damage.
     @Disabled
     void armourerSkillShouldIncreaseArmor() {
-        Skill armourSkill = new Skill(SkillInfoFactory.getSkill(SkillInfo.SkillType.COMBAT_SKILL));
+        Skill armourSkill = new Skill(SkillInfoFactory.getSkill(ARMOURER));
         Creature creature = Creature.builder().aArmor(100).build();
+        Hero hero = Hero.builder().build();
 
-        armourSkill.cast(Hero);
+        armourSkill.cast(hero);
 
         assertEquals(110, creature.getArmor());
 
@@ -43,33 +48,34 @@ public class SkillsTests {
     @Test
     //TODO mana point not spell point
     void intelligenceShouldIncreaseHeroesMaxManaPoints() {
-//        Hero hero = Hero.builder().aMaxManaPoints(100).build();
-//        Skill intelligenceSkill = new Skill(SkillInfoFactory.getSkill(SkillInfo.SkillType.MAGIC_SKILL));
+ //       Hero hero = Hero.builder().aMaxManaPoints(100).build();
+ //       Skill intelligenceSkill = new Skill(SkillInfoFactory.getSkill(INTELLIGENCE));
 //
-//        intelligenceSkill.addSkill(hero);
+//       intelligenceSkill.addSkill(hero);
 //
 //        assertEquals(125, hero.aCheckManaPoints());
 
     }
 
     @Test
+    @Disabled
     //TODO looks very bad. Wisdom is totally not generic skill in this case. You should project generic API
     // with this api you have to implement empty method unlockSpellsThirdLvl for each skills (event not necessary)
     void wisdomShouldAllowSpellsBelowThirdLevel() {
-//        Skill wisdomSkill = new Skill(SkillInfoFactory.getSkill(SkillInfo.SkillType.MAGIC_SKILL));
-//        Hero hero = Hero.builder().build();
+//        Skill wisdomSkill = new Skill(SkillInfoFactory.getSkill(WISDOM));
+//        Hero hero = Hero.builder().aSpells(HASTE).build();
 //
-//        wisdomSkill.unlockSpellsThirdLvl(hero);
+//        wisdomSkill.cast(hero);
 //
 //
-//        assertEquals(3, hero.aHeroMaxSpells());
+//        assertEquals(3, hero.getSpells());
 
     }
 
     @Test
     void learningSkillShouldIncreaseEarnedExperience() {
 //        Hero hero = Hero.builder().aEarnedExperience(100).build();
-//        Skill learningSkill = new Skill(SkillInfoFactory.getSkill(SkillInfo.SkillType.ADVENTURE_SKILL));
+ //       Skill learningSkill = new Skill(SkillInfoFactory.getSkill(LEARNING));
 
 //       learningSkill.addSkill(hero);
 
@@ -77,13 +83,14 @@ public class SkillsTests {
     }
 
     @Test
-    void resistanceSkillShouldFailsSpells() {
-//        Skill resistanceSkill = new Skill(SkillInfoFactory.getSkill(SkillInfo.SkillType.COMBAT_SKILL));
-//        Hero hero = Hero.builder().aChanceOfSpellFailure(20).build();
-
+    void resistanceSkillShouldFailSpells() {
+//        Skill resistanceSkill = new Skill(SkillInfoFactory.getSkill(RESISTANCE));
+//        Hero hero = Hero.builder().build();
+//        Creature creature = Creature.builder().aMaxHp(100).build();
+//
 //        resistanceSkill.addSkill(hero);
-
-//       assertEquals(1,hero.getChanceOfSpellFailure);
+//
+//       assertEquals(100, creature.getCurrentHp());
     }
 
 }

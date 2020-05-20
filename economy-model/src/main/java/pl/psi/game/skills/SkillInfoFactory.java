@@ -1,5 +1,7 @@
 package pl.psi.game.skills;
 
+import pl.psi.game.hero.artifacts.ArtifactInfo;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,7 +70,9 @@ public class SkillInfoFactory {
     }
 
 
-    public static SkillInfo getSkill(SkillInfo.SkillType skillType) {
-        return null;
+
+    public static SkillInfo getSkill(String aName){
+        return skillList.stream().filter(s -> s.getName().endsWith(aName)).findAny().orElseThrow();
     }
+
 }

@@ -14,6 +14,6 @@ public class Skill {
 
     public void cast(Hero hero) {};
 
-    public void unlockSpellsThirdLvl(Hero hero) {};
+
 
 }
