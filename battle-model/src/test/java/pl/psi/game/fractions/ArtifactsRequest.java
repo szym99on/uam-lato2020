@@ -20,6 +20,14 @@ public class ArtifactsRequest {
 //        assertEquals(2, creature.getMoveRange());
     }
 
+    @Disabled
+    @Test
+    void shouldIncreaseMagicResistance(){
+        // There are artifacts that reduce incoming magic damage onto creatures by 10% or 15%.
+        // There has to be a way to apply that on creatures.
+        // Perhaps it could be implemented as another stat (maybe similar to armor?).
+    }
+
 
     @Disabled
     @Test
