@@ -8,10 +8,20 @@ public class HeroInfo {
     private final int knowledge;
     private final int power;
     private final String name;
-    private final String fraction;
+    private final Fraction fraction;
+    public enum Fraction{
+        HEAD,
+        NECK,
+        TORSO,
+        SHOULDERS,
+        RIGHT_HAND,
+        LEFT_HAND,
+        FINGERS,
+        FEET
+    }
 
     @Builder
-    public HeroInfo(int aAttack, int aDefense, int aPower, int aKnowledge, String aName, String aFraction){
+    public HeroInfo(int aAttack, int aDefense, int aPower, int aKnowledge, String aName, Fraction aFraction){
         attack = aAttack;
         defense = aDefense;
         power = aPower;
@@ -20,7 +30,7 @@ public class HeroInfo {
         fraction = aFraction;
     }
 
-    public String getFraction() {
+    public Fraction getFraction() {
         return fraction;
     }
 
