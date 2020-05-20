@@ -5,9 +5,6 @@ import lombok.Getter;
 import pl.psi.game.BattleMap;
 import pl.psi.game.mapsaver.MapSaver;
 
-import java.time.format.DateTimeFormatter;
-import java.time.LocalDateTime;
-
 import java.awt.*;
 import java.io.IOException;
 
@@ -27,11 +24,6 @@ public class MapMaker {
     }
 
     public void saveMap() throws IOException {
-        //set last update data
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();
-        mapInProduction.setLastModificationData(dtf.format(now));
-
         mapSaver.saveMap(mapInProduction);
     }
 
