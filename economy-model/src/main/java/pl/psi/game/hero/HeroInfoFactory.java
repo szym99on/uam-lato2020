@@ -6,10 +6,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class HeroInfoFactory {
-    //public final static String STRONGHOLD = "Stronghold";
-    //public final static String NECROPOLIS = "Necropolis";
-    //public final static String RAMPART = "Rampart";
-    //more fractions to come...
 
     public final static String CHARNA = "Charna";
     public final static String ISRA = "Isra";

@@ -1,5 +1,6 @@
 package pl.psi.game.fractions;
 
+
 public class ConverterRequest {
     /*@Test
     void FractionInfoTypes()
@@ -26,14 +27,11 @@ public class ConverterRequest {
     {
         Creature creature = fractionsAbstractFactory.getByType(FractionInfo.Type.NECROPOLIS).createCreature(1);
     }*/
-    /*@Test
-    void ApplyEffectsOfArtifactOnCreature()
-    {
-        Creature creature = fractionsAbstractFactory.getByType(FractionInfo.Type.NECROPOLIS).createCreature(1);
-
-        ArtifactsInfoFactory artifactsInfoFactory = new ArtifactsInfoFactory();
-        ////ArtifactInfo artifact = artifactsInfoFactory.getByType(ArtifactInfo.Location.FINGERS).stream().findFirst();
-
-        creature.applyEffectsOfArtifact(artifact);
-    }*/
+    /*
+    @Test
+    void createCreatureUsingEconomyCreature(){
+        CreatureInfo creatureInfo = CreatureInfo.builder().build();
+        Creature creature = Creature.createFromInfo(creatureInfo);
+     }
+    */
 }
