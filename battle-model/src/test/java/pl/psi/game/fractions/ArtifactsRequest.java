@@ -11,7 +11,7 @@ public class ArtifactsRequest {
     @Disabled
     @Test
     void shouldReturnCreatureStats(){
-//        Creature creature = Creature.builder().aAttack(Range.closed(2, 2)).aMaxHp(10).aArmor(5).aMoveRange(2).build();
+        Creature creature = Creature.builder().aAttack(Range.closed(2, 2)).aMaxHp(10).aArmor(5).aMoveRange(2).build();
 
 //        assertEquals(Range.closed(2, 2), creature.getAttack());
 //        assertEquals(10, creature.getMaxHP());
@@ -24,7 +24,7 @@ public class ArtifactsRequest {
     @Disabled
     @Test
     void shouldIncreaseMoveRange(){
-//        Creature creature = Creature.builder().aMoveRange(2).build();
+        Creature creature = Creature.builder().aMoveRange(2).build();
 
 //        creature.increaseMoveRange(2);
 
