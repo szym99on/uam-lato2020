@@ -69,12 +69,12 @@ public class ArtifactsRequest {
     }
 
     EconomyHero prepareEconomyHeroWithKnowledgeCreaturesAndSpellsToConvert(){
-//        Creature creature = Creature.builder().aMaxHp(10).build();
-//        List <Creature> creatures = new ArrayList<>();
-//        creatures.add(creature);
-//        Spell spell = Spell.builder().build();
-//        List <Spell> spells = new ArrayList<>();
-//        spells.add(spell);
+        Creature creature = Creature.builder().aMaxHp(10).build();
+        List <Creature> creatures = new ArrayList<>();
+        creatures.add(creature);
+        Spell spell = Spell.builder().build();
+        List <Spell> spells = new ArrayList<>();
+        spells.add(spell);
         EconomyHero heroToConvert = null; //= EconomyHero.builder().aKnowledge(2).aCreatures(creatures).aSpells(spell).build();
         return heroToConvert;
     }
