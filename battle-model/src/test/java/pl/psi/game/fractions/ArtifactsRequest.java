@@ -36,6 +36,14 @@ public class ArtifactsRequest {
         // This immunity only relates to the specific spell - in this case the Berserk Spell.
     }
 
+    @Disabled
+    @Test
+    void shouldGrantImmunityToDeathRipple(){
+        // There are artifacts that target specific spells, making your creatures immune to their effects.
+        // There has to be a way to apply that on creatures.
+        // This immunity only relates to the specific spell - in this case the Death Ripple Spell.
+    }
+
 
     @Disabled
     @Test
