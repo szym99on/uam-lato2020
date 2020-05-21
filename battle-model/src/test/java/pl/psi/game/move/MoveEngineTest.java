@@ -44,15 +44,16 @@ class MoveEngineTest {
     @Test
     @Disabled
     //TODO helping methods like putSmth, setActiveCreature should has package access!
+    //putSmth zamienione na put, setActiveCreature???
     void isAnythingOnWayWalk(){
 
 //        Creature c1 = Creature.builder().type(walking).aMoveRange(5).build();
 //        Creature c2 = Creature.build();
-
+//
 //        Board board = new Board();
-//        board.putCreature(1,1, c1);
+//        board.putCreature(1, 1, c1);
 //        board.putCreature(1, 3, c2);
-//        board.putSmth(3, 1);
+//        board.put(new Point(3, 1), new Obstacle());
 //
 //        MoveEngine moveEngine = new MoveEngine(board);
 //        moveEngine.setActiveCreature(new Point(1,1), c1);
@@ -73,7 +74,7 @@ class MoveEngineTest {
 //        Board board = new Board();
 //        board.putCreature(1,1, c1);
 //        board.putCreature(1, 3, c2);
-//        board.putSmth(3, 1);
+//        board.put(3, 1);
 //
 //        MoveEngine moveEngine = new MoveEngine(board);
 //        moveEngine.setActiveCreature(new Point(1,1), c1);
@@ -87,21 +88,21 @@ class MoveEngineTest {
     @Disabled
     //TODO: use assertEquals instead assertFalse/assertTrue.
     //TODO: tests with specific numbers is better that generic like that.
+    //chodzi o specyficzne hp?
     void hurtingFieldWalk(){
-
-//        Creature c = Creature.builder().type(walking).aMoveRange(5).build();
+//
+//        Creature c = Creature.builder().aMaxHp(100).type(walking).aMoveRange(5).build();
 //
 //        Board board = new Board();
 //        board.putCreature(1,1, c);
 //        board.putLava(1, 2);
 //
-//        int hp = c.getCurrentHp();
-//
 //        MoveEngine moveEngine = new MoveEngine(board);
 //        moveEngine.setActiveCreature(new Point(1,1), c);
 //        moveEngine.move(1,3);
-
-//        assertFalse(hp == c.getCurrentHp());
+//
+//        // assertFalse(hp == c.getCurrentHp());
+//        assertEquals(90, c.getCurrentHp());
 
     }
 
@@ -109,7 +110,7 @@ class MoveEngineTest {
     @Disabled
     void hurtingFieldFly(){
 
-//        Creature c = Creature.builder().type(fly).aMoveRange(5).build();
+//        Creature c = Creature.builder().maxHp(100).type(fly).aMoveRange(5).build();
 //
 //        Board board = new Board();
 //        board.putCreature(1,1, c);
@@ -120,8 +121,8 @@ class MoveEngineTest {
 //        MoveEngine moveEngine = new MoveEngine(board);
 //        moveEngine.setActiveCreature(new Point(1,1), c);
 //        moveEngine.move(1,3);
-
-//        assertTrue(hp == c.getCurrentHp());
+//
+//        assertEquals(c.getMaxHp(), c.getCurrentHp());
 
     }
 
