@@ -71,6 +71,11 @@ public class EconomyHero  {
     }
 
     public void buySpell(SpellInfo spell) {
+        if(getGold()>=spell.getCost()){
+            this.decreaseGold(spell.getCost());
+            this.spells.add(spell);
+
+        }
     }
 
     List<SpellInfo> getSpells() {

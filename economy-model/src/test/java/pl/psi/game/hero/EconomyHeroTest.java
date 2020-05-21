@@ -73,16 +73,16 @@ class EconomyHeroTest {
 //        assertEquals(hero.getGold(), 3600);
 //    }
 //
-// @Test
-//    //don't need a list of spells. Changed methods. Maciek
-//    void successBuySpell() {
-//        EconomyHero hero = EconomyHero.builder().gold(3000).build();
-//        SpellInfo spell = SpellBookInfoFactory.getSpell("MAGIC_ARROW");
-//        hero.buySpell(spell);
-//       assertEquals(hero.getGold()-spell.getCost(), 9);
-//       assertEquals(hero.getSpells().size() + 1, 1);
-//
-//    }
+ @Test
+    //don't need a list of spells. Changed methods. Maciek
+    void successBuySpell() {
+        EconomyHero hero = EconomyHero.builder().gold(3000).build();
+        SpellInfo spell = SpellBookInfoFactory.getSpell("MAGIC_ARROW");
+        hero.buySpell(spell);
+       assertEquals(hero.getGold()-spell.getCost(), 9);
+       assertEquals(hero.getSpells().size() + 1, 1);
+
+    }
 //
 //@Test
 //    void buyArtifactShouldNotAddArtifactIfLocationNotEmpty(){
