@@ -1,3 +1,7 @@
+# economy model change to gitignore #
+*.vscode
+*.factorypath
+
 # Compiled source #
 ###################
 *.com
