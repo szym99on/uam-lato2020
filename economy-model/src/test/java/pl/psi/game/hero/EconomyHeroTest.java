@@ -32,22 +32,21 @@ class EconomyHeroTest {
 //      hero.buyCreature(creature);
 //      assertEquals(hero.getGold(), 950);
 //   }
+    @Test
+    void addGoldShouldAddGold() {
+        EconomyHero hero = EconomyHero.builder().gold(2000).build();
+        int howMuch = 50;
+        hero.addGold(howMuch);
+        assertEquals(hero.getGold(), 2050);
+    }
+//
 //    @Test
-//    void addGoldShouldAddGold() {
-//        EconomyHero hero = EconomyHero.builder().gold(2000).build();
-//        int howMuch = 50;
-//        hero.addGold(howMuch);
-//        assertEquals(hero.getGold(), 2050);
-//    }
-////
-//    @Test
-//    //single creature is sufficient for test. Maciek
 //    void sellCreatureShouldReturn75PercentOfOriginalPrice() {
-//        CreatureInfo creature = NecropolisInfoFactory.getCreature(NecropolisInfoFactory.SKELETON);
+//        CreatureInfo creature = NecropolisInfoFactory.getCreature("Skeleton");
 //        EconomyHero hero = EconomyHero.builder().gold(2000).creature(creature).build();
 //        //(cost of Skeleton is 60)
 //        hero.sellCreature(creature);
-//        //TODO as above use concrete values not calculating in assertions
+//
 //        assertEquals(hero.getGold(), 2045);
 //
 //    }
