@@ -16,6 +16,7 @@ public class MoveEngine implements PropertyChangeListener {
     private HashMap.Entry<Point, Creature> activeCreature;
     private final Board board;
     private PropertyChangeSupport propertyChangeSupport;
+    private MoveStrategyIf moveStrategyIf;
 
     public MoveEngine(Board aBoard) {
         board = aBoard;
@@ -27,11 +28,23 @@ public class MoveEngine implements PropertyChangeListener {
     }
 
     public void move(int x, int y) {
+        /*
         Point oldPosition = activeCreature.getKey();
         board.move(x,y,activeCreature.getValue());
         activeCreature = new AbstractMap.SimpleEntry<>(new Point(x,y), activeCreature.getValue());
         propertyChangeSupport.firePropertyChange(GameEngine.CREATURE_MOVED, oldPosition, activeCreature.getKey());
+   */
+        if(activeCreature.getValue().canFly()) {
+            moveStrategyIf = new MoveStrategyFly(board);
+        } else {
+            moveStrategyIf = new MoveStrategyWalk(board);
+        }
+        moveStrategyIf.move(x,y);
     }
+
+
+
+
 
 /*    public void wait(){
     // ta metoda będzie pomijała ruch danej kreatury, przenosząc ją na koniec kolejki.
