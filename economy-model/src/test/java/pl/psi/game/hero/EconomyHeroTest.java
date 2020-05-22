@@ -20,8 +20,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class EconomyHeroTest {
 
 
-   //TODO: you should has CreatureInfo not Creature and map, not list (CreatureInfo + amount) or some wrapper list (wrapper means another object with int amount and CreatureInfo creature)
-   // HashMap should be default choice. Also there are factories for specific races. Maciek
+    //TODO: you should has CreatureInfo not Creature and map, not list (CreatureInfo + amount) or some wrapper list (wrapper means another object with int amount and CreatureInfo creature)
+    // HashMap should be default choice. Also there are factories for specific races. Maciek
 //   @Test
 //   void buyCreatureShouldTakeMoney (){
 //      CreatureInfo creature = NecropolisInfoFactory.getCreature("Skeleton");
@@ -40,23 +40,18 @@ class EconomyHeroTest {
 //        assertEquals(hero.getGold(), 2050);
 //    }
 //
-    @Test
-//    single creature is sufficient for test. Maciek
-    void sellCreatureShouldReturn75PercentOfOriginalPrice() {
-        NecropolisInfoFactory necropolisInfoFactory = new NecropolisInfoFactory();
-        List<CreatureInfo> creatures =  necropolisInfoFactory.getCreatureList();
-        creatures.forEach(System.out::println);
-        System.out.println("PRZED JEDNOSTKAMI");
-        creatures.stream().map(CreatureInfo::getName).forEach(System.out::println);
-        System.out.println("PO JEDNOSTKACH");
-        CreatureInfo creature = necropolisInfoFactory.getCreature("Skeleton");
-        EconomyHero hero = EconomyHero.builder().gold(2000).creature(creature).build();
-        //(cost of Skeleton is 60)
-        hero.sellCreature(creature);
-        //TODO as above use concrete values not calculating in assertions
-        assertEquals(hero.getGold(), 2045);
-
-    }
+//    @Test
+////    single creature is sufficient for test. Maciek
+//    void sellCreatureShouldReturn75PercentOfOriginalPrice() {
+//        NecropolisInfoFactory necropolisInfoFactory = new NecropolisInfoFactory();
+//        CreatureInfo creature = necropolisInfoFactory.getCreature("Skeleton");
+//        EconomyHero hero = EconomyHero.builder().gold(2000).creature(creature).build();
+//        //(cost of Skeleton is 60)
+//        hero.sellCreature(creature);
+//        //TODO as above use concrete values not calculating in assertions
+//        assertEquals(hero.getGold(), 2045);
+//
+//    }
 //
 //    @Test
 //    //you don't need creatures to test selling of artifacts. Could specify artifact name. Maciek
@@ -131,15 +126,15 @@ class EconomyHeroTest {
 //    }
 
 
-
     //metody, które jeszcze trzeba przetestować:
-    //
-      //
-//    generateCreaturesAvailableToBuy()
-//    generateSpellsAvailableToBuy()
-//    buyCharacterSpecialSkill()
-//    freezeShop()
-//    generateShops()
+
+//    generateCreaturesAvailableToBuy() ---> Kacper
+
+//    generateSpellsAvailableToBuy() ---> Lukasz
+//    buyCharacterSpecialSkill() ---> Kacper
+//
+//    freezeShop() ---> Maciek
+//    generateShops() ---> Klaudia
 
 
 }

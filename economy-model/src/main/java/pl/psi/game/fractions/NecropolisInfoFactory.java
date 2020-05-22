@@ -1,6 +1,8 @@
 package pl.psi.game.fractions;
 
 import com.google.common.collect.Range;
+
+import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,4 +18,8 @@ public class NecropolisInfoFactory extends FractionsInfoAbstractFactory {
         creatureList.add(CreatureInfo.builder().aMaxHp(120).aAttack(Range.closed(15, 30)).aName("Black Knight").aArmor(16).aMoveRange(7).build());
         creatureList.add(CreatureInfo.builder().aMaxHp(150).aAttack(Range.closed(25, 50)).aName("Bone Dragon").aArmor(15).aMoveRange(9).build());
     }
+    public static CreatureInfo getCreature(String aName){
+        return creatureList.stream().filter(s -> s.getName().endsWith(aName)).findAny().orElseThrow();
+    }
+
 }
