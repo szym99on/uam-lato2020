@@ -12,7 +12,7 @@ public class CreatureAbstractFactoryTest {
 	
     @Test
     void shouldCreateSkeletonWarrior() {
-    	CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory("Necropolis").getByTier(1);
+    	CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(1);
         Creature creature = creatureAbstractFactory.getCreature(creatureInfo);
         assertEquals(6, creature.getMaxHp());
         assertEquals(Range.closed(1,3), creature.getAttack());
@@ -23,7 +23,7 @@ public class CreatureAbstractFactoryTest {
 
     @Test
     void shouldCreateZombie() {
-    	CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory("Necropolis").getByTier(2);
+    	CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(2);
         Creature creature = creatureAbstractFactory.getCreature(creatureInfo);
         assertEquals(20, creature.getMaxHp());
         assertEquals(Range.closed(2,3), creature.getAttack());
@@ -34,7 +34,7 @@ public class CreatureAbstractFactoryTest {
 
     @Test
     void shouldCreateWraith() {
-    	CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory("Necropolis").getByTier(3);
+    	CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(3);
         Creature creature = creatureAbstractFactory.getCreature(creatureInfo);
         assertEquals(18, creature.getMaxHp());
         assertEquals(Range.closed(3,5), creature.getAttack());
@@ -45,7 +45,7 @@ public class CreatureAbstractFactoryTest {
 
     @Test
     void shouldCreateVampireLord() {
-    	CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory("Necropolis").getByTier(4);
+    	CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(4);
         Creature creature = creatureAbstractFactory.getCreature(creatureInfo);
         assertEquals(40, creature.getMaxHp());
         assertEquals(Range.closed(5,8), creature.getAttack());
@@ -56,7 +56,7 @@ public class CreatureAbstractFactoryTest {
 
     @Test
     void shouldCreatePowerLich() {
-    	CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory("Necropolis").getByTier(5);
+    	CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(5);
         Creature creature = creatureAbstractFactory.getCreature(creatureInfo);
         assertEquals(40, creature.getMaxHp());
         assertEquals(Range.closed(11,15), creature.getAttack());
@@ -67,7 +67,7 @@ public class CreatureAbstractFactoryTest {
 
     @Test
     void shouldCreateDreadKnight() {
-    	CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory("Necropolis").getByTier(6);
+    	CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(6);
         Creature creature = creatureAbstractFactory.getCreature(creatureInfo);
         assertEquals(120, creature.getMaxHp());
         assertEquals(Range.closed(15,30), creature.getAttack());
@@ -78,7 +78,7 @@ public class CreatureAbstractFactoryTest {
 
     @Test
     void shouldCreateGhostDragon() {
-    	CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory("Necropolis").getByTier(7);
+    	CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(7);
         Creature creature = creatureAbstractFactory.getCreature(creatureInfo);
         assertEquals(200, creature.getMaxHp());
         assertEquals(Range.closed(25,50), creature.getAttack());
