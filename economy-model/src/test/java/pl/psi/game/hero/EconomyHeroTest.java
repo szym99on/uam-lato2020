@@ -20,25 +20,25 @@ import static org.junit.jupiter.api.Assertions.*;
 class EconomyHeroTest {
 
 
-    //TODO: you should has CreatureInfo not Creature and map, not list (CreatureInfo + amount) or some wrapper list (wrapper means another object with int amount and CreatureInfo creature)
-    // HashMap should be default choice. Also there are factories for specific races. Maciek
 //   @Test
+//   //TODO: you should has CreatureInfo not Creature and map, not list (CreatureInfo + amount) or some wrapper list (wrapper means another object with int amount and CreatureInfo creature)
+//   // HashMap should be default choice. Also there are factories for specific races. Maciek
 //   void buyCreatureShouldTakeMoney (){
-//      CreatureInfo creature = NecropolisInfoFactory.getCreature("Skeleton");
-//      Map<CreatureInfo, Integer> creatureMap = Map.of(creature, 50);
+//      CreatureInfo creature = NecropolisInfoFactory.getCreature(NecropolisInfoFactory.SKELETON);
+//      Map<CreatureInfo, Integer> creatureMap = Map.of(creature, creature.getCost());
 //      EconomyHero hero = EconomyHero.builder().creature(creature).build();
 //      int creatureCost = creatureMap.get(creature);
 //      int currentMoney = 1000;
 //      hero.buyCreature(creature);
 //      assertEquals(hero.getGold(), 950);
 //   }
-//    @Test
-//    void addGoldShouldAddGold() {
-//        EconomyHero hero = EconomyHero.builder().gold(2000).build();
-//        int howMuch = 50;
-//        hero.addGold(howMuch);
-//        assertEquals(hero.getGold(), 2050);
-//    }
+    @Test
+    void addGoldShouldAddGold() {
+        EconomyHero hero = EconomyHero.builder().gold(2000).build();
+        int howMuch = 50;
+        hero.addGold(howMuch);
+        assertEquals(hero.getGold(), 2050);
+    }
 //
 //    @Test
 ////    single creature is sufficient for test. Maciek
@@ -74,37 +74,18 @@ class EconomyHeroTest {
 //        assertEquals(hero.getGold(), 3600);
 //    }
 //
-//    @Test
+// @Test
 //    //don't need a list of spells. Changed methods. Maciek
 //    void successBuySpell() {
 //        EconomyHero hero = EconomyHero.builder().gold(3000).build();
-//        SpellInfo spell = SpellBookInfoFactory.getSpell("Magic arrow");
+//        SpellInfo spell = SpellBookInfoFactory.getSpell("MAGIC_ARROW");
 //        hero.buySpell(spell);
-//        assertEquals(hero.getGold()-spell.getCost(), 9);
-//        assertEquals(hero.getSpells().size() + 1, 1);
-
+//       assertEquals(hero.getGold()-spell.getCost(), 9);
+//       assertEquals(hero.getSpells().size() + 1, 1);
+//
 //    }
-
-//    @Test
-//    void  buyArtifactShouldAddArtifactIfLocationEmpty(){
-//        //if I don't instantiate factory cant access artifacts
-//        ArtifactInfo artifactHelmet = ArtifactsInfoFactory.getArtifact("Collar of Conjuring");
-//        EconomyHero hero = EconomyHero.builder().artifact(artifactHelmet).gold(2000).build();
 //
-//        //hero state before adding artifact
-//        List<ArtifactInfo> artifactsBefore = hero.getArtifacts();
-//        int moneyBefore = hero.getGold();
-//        List<ArtifactInfo.Location> artifactsLocationsBefore = hero.getArtifactsLocations();
-//
-//        //create artifact to add
-//        ArtifactInfo artifactToAdd = ArtifactsInfoFactory.getArtifact("Buckler of the Gnoll King");
-//        hero.buyArtifact(artifactToAdd);
-//
-//        assertEquals(moneyBefore - artifactToAdd.getCost(),hero.getGold());
-//        assertEquals(artifactsBefore.size()+1, hero.getArtifacts().size());
-//        assertEquals(hero.getArtifact("Buckler of the Gnoll King"), artifactToAdd);
-//    }
-//    @Test
+//@Test
 //    void buyArtifactShouldNotAddArtifactIfLocationNotEmpty(){
 //
 //        ArtifactInfo artifactHelmet = ArtifactsInfoFactory.getArtifact("Collar of Conjuring");
@@ -123,7 +104,28 @@ class EconomyHeroTest {
 //        assertEquals(moneyBefore, hero.getGold() );
 //        assertEquals(artifactsBefore.size(), hero.getArtifacts().size());
 //        assertEquals(hero.getArtifact("Collar of Conjuring"), artifactToAdd);
+//}
+//    @Test
+//    void  buyArtifactShouldAddArtifactIfLocationEmpty(){
+//        //if I don't instantiate factory cant access artifacts
+//        ArtifactsInfoFactory factory = new ArtifactsInfoFactory();
+//        ArtifactInfo artifactHelmet = factory.getArtifact("Collar of Conjuring");
+//        EconomyHero hero = EconomyHero.builder().artifact(artifactHelmet).gold(2000).build();
+//
+//        //hero state before adding artifact
+//        List<ArtifactInfo> artifactsBefore = hero.getArtifacts();
+//        int moneyBefore = hero.getGold();
+//        List<ArtifactInfo.Location> artifactsLocationsBefore = hero.getArtifactsLocations();
+//
+//        //create artifact to add
+//        ArtifactInfo artifactToAdd = factory.getArtifact("Buckler of the Gnoll King");
+//        hero.buyArtifact(artifactToAdd);
+//
+//        assertEquals(moneyBefore - artifactToAdd.getCost(),hero.getGold());
+//        assertEquals(artifactsBefore.size()+1, hero.getArtifacts().size());
+//        assertEquals(hero.getArtifact("Buckler of the Gnoll King"), artifactToAdd);
 //    }
+
 
 
     //metody, które jeszcze trzeba przetestować:
