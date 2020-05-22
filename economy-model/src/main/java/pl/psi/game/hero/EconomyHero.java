@@ -1,55 +1,89 @@
 package pl.psi.game.hero;
 
 import lombok.Builder;
+import lombok.Getter;
+import lombok.Singular;
 import pl.psi.game.fractions.CreatureInfo;
 import pl.psi.game.hero.artifacts.ArtifactInfo;
+import pl.psi.game.spellbook.SpellInfo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
-public class EconomyHero {
+@Builder
+public class EconomyHero  {
 
-//    creatures and artifacts should be supplied by other groups
-    List<CreatureInfo> creatures = new ArrayList<>();
-    List<ArtifactInfo> artifacts = new ArrayList<>();
-    int gold = 2000;
+    //    creatures and artifacts should be supplied by other groups
+    @Singular  private List<CreatureInfo> creatures = new ArrayList<>();
+    @Singular  private List<ArtifactInfo> artifacts = new ArrayList<>();
+    @Singular  private List<SpellInfo> spells = new ArrayList<>();
+    private int gold = 2000;
 
 
-    public EconomyHero(List<CreatureInfo> creatures){
-        this.creatures = creatures;
-    }
-    @Builder
-    public EconomyHero(List<CreatureInfo> creatures, int gold){
-        this.creatures = creatures;
-        this.gold = gold;
-    }
-    public int getGold() {
+    int getGold() {
         return gold;
     }
 
-    public void addGold(int gold){
+    void addGold(int gold){
         this.gold += gold;
     }
+    private void decreaseGold(int gold){
+        this.gold -= gold;
+    }
 
     //to implement
-    public void buyCreature(CreatureInfo creature){
+    void buyCreature(CreatureInfo creature){
     }
 
 
     //to implement
-    public void sellCreature(CreatureInfo creature){
+    void sellCreature(CreatureInfo creature){
+    }
+
+    void buyArtifact(ArtifactInfo artifact){
+//        if(this.isSlotEmpty(artifact.getLocation())){
+//            this.decreaseGold(artifact.getCost());
+//            this.artifacts.add(artifact);
+//        }
     }
 
     //to implement
-    public void buyArtifact(ArtifactInfo artifact){
+    void sellArtifact(ArtifactInfo artifact){
     }
 
-    //to implement
-    public void sellArtifact(ArtifactInfo artifact){
-    }
 
+    //Don't know why it always return false
+    boolean isSlotEmpty(String location){
+        return !this.artifacts.stream().anyMatch(artifact -> artifact.getLocation().equals(location));
+    }
 
     List<ArtifactInfo> getArtifacts() {
-        return new ArrayList<>();
+        return this.artifacts;
+    }
+
+    ArtifactInfo getArtifact(String name){
+        return this.artifacts.stream().filter(artifact -> artifact.getName().equals(name)).findAny().orElse(null);
+    }
+
+    public void sellSpell(SpellInfo spell) {
+    }
+
+    public void buySpell(SpellInfo spell) {
+        if(getGold()>=spell.getCost()){
+            this.decreaseGold(spell.getCost());
+            this.spells.add(spell);
+
+        }
+    }
+
+    List<SpellInfo> getSpells() {
+    return this.spells;
+    }
+
+//request to artifact group for getter to artifact location
+    List<ArtifactInfo.Location> getArtifactsLocations(){
+        return this.artifacts.stream().map(ArtifactInfo::getLocation).collect(Collectors.toList());
     }
 }
