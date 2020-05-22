@@ -1,5 +1,6 @@
 package pl.psi.game.hero;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pl.psi.game.fractions.CreatureInfo;
@@ -19,6 +20,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class EconomyHeroTest {
 
+    @BeforeAll
+    static void initializeFactories(){
+        //TODO: ill explain why you have to do that in meeting
+        new SpellBookInfoFactory();
+    }
+
 
 //   @Test
 //   //TODO: you should has CreatureInfo not Creature and map, not list (CreatureInfo + amount) or some wrapper list (wrapper means another object with int amount and CreatureInfo creature)
@@ -34,7 +41,7 @@ class EconomyHeroTest {
 //   }
     @Test
     void addGoldShouldAddGold() {
-        EconomyHero hero = EconomyHero.builder().gold(2000).build();
+        EconomyHero hero = EconomyHero.builder().aGold(2000).build();
         int howMuch = 50;
         hero.addGold(howMuch);
         assertEquals(hero.getGold(), 2050);
@@ -75,11 +82,13 @@ class EconomyHeroTest {
  @Test
     //don't need a list of spells. Changed methods. Maciek
     void successBuySpell() {
-        EconomyHero hero = EconomyHero.builder().gold(3000).build();
-        SpellInfo spell = SpellBookInfoFactory.getSpell("MAGIC_ARROW");
+        EconomyHero hero = EconomyHero.builder().aGold(3000).build();
+        SpellInfo spell = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.MAGIC_ARROW);
         hero.buySpell(spell);
-       assertEquals(hero.getGold()-spell.getCost(), 9);
-       assertEquals(hero.getSpells().size() + 1, 1);
+        //TODO: condition was totally wrong!
+       assertEquals(3000-spell.getCost(), hero.getGold());
+       //TODO: why you increased size by 1? o.0
+       assertEquals(hero.getSpells().size(), 1);
 
     }
 //

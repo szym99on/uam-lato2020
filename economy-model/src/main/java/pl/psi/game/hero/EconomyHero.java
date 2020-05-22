@@ -12,15 +12,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-@Builder
 public class EconomyHero  {
 
     //    creatures and artifacts should be supplied by other groups
-    @Singular  private List<CreatureInfo> creatures = new ArrayList<>();
-    @Singular  private List<ArtifactInfo> artifacts = new ArrayList<>();
-    @Singular  private List<SpellInfo> spells = new ArrayList<>();
+    @Singular private List<CreatureInfo> creatures = new ArrayList<>();
+    @Singular private List<ArtifactInfo> artifacts = new ArrayList<>();
+    @Singular private List<SpellInfo> spells;
     private int gold = 2000;
 
+    @Builder
+    EconomyHero(int aGold) {
+        gold = aGold;
+        spells = new ArrayList<>();
+    }
 
     int getGold() {
         return gold;

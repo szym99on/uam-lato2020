@@ -5,7 +5,7 @@ import java.util.List;
 
 public class SpellBookInfoFactory {
 
-    private final static String MAGIC_ARROW = "Magic arrow";
+    public final static String MAGIC_ARROW = "Magic arrow";
 
     private final static String LIGHTNING_BOLT = "Lightning bolt";
     private final static String DESTROY_UNDEAD = "Destroy undead";
