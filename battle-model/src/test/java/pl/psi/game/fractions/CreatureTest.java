@@ -106,5 +106,40 @@ class CreatureTest {
 
         assertEquals(0, defender.getCurrentHp());
     }
+    
+    @Test
+    void creatureShouldDealDoubleDamageToAirElemental() {
+    	
+    }
+    
+    @Test
+    void creatureShouldDealDoubleDamageToEarthElemental() {
+    	
+    }
+    
+    @Test
+    void creatureShouldDealDoubleDamageToFireElemental() {
+    	
+    }
+    
+    @Test
+    void creatureShouldDealDoubleDamageToWaterElemental() {
+    	
+    }
+    
+    @Test
+    void creatureShouldDealDoubleDamage() {
+    	
+    }
+    
+    @Test
+    void creatureShouldHealAfterAttack() {
+    	
+    }
+    
+    @Test
+    void creatureShouldIgnore80PercentArmor() {
+    	
+    }
 
 }

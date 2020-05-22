@@ -11,14 +11,16 @@ public class CreatureInfo {
     private final int armor;
     private final String name;
     private final int moveRange;
+    private final int cost;
 
     @Builder
-    public CreatureInfo(int aMaxHp, Range<Integer> aAttack, int aArmor, String aName, int aMoveRange) {
+    public CreatureInfo(int aMaxHp, Range<Integer> aAttack, int aArmor, String aName, int aMoveRange, int aCost) {
         maxHp = aMaxHp;
         attack = aAttack;
         armor = aArmor;
         name = aName;
         moveRange = aMoveRange;
+        cost = aCost;
     }
 
 }

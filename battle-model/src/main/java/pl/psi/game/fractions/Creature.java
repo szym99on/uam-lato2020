@@ -19,7 +19,7 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
     private boolean canCounterAttacked;
     private final int moveRange;
     private DealDamageCounterStrategyIf dealDamageCounterStrategy;
-
+    
     @Builder
     public Creature(int aMaxHp, Range<Integer> aAttack, int aArmor, String aName, int aMoveRange) {
         maxHp = aMaxHp;
@@ -29,7 +29,7 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
         canCounterAttacked = true;
         name = aName;
         moveRange = aMoveRange;
-        dealDamageCounterStrategy = new DefaultDamageCounterStrategy();
+        dealDamageCounterStrategy = new DefaultDamageCounterStrategy();        
     }
 
     public Creature(int aMaxHp, Range<Integer> aAttack, int aArmor) {
@@ -84,7 +84,14 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
         canCounterAttacked = true;
     }
 
-    public void setDealDamageCountStrategy(DealDamageCounterWithIgnoreArmorStrategy aDealDamageCounterWithIgnoreArmorStrategy) {
-        dealDamageCounterStrategy = aDealDamageCounterWithIgnoreArmorStrategy;
+    public void setDealDamageCountStrategy(DealDamageCounterStrategyIf aDealDamageCounterStrategyIf) {
+        dealDamageCounterStrategy = aDealDamageCounterStrategyIf;
+    }
+    
+    public void heal(int hp) {
+    	currentHp += hp;
+    	if (currentHp > maxHp) {
+    		currentHp = maxHp;
+    	}
     }
 }

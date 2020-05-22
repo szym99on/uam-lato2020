@@ -8,12 +8,16 @@ public class NecropolisInfoFactory extends FractionsInfoAbstractFactory {
 
     private final static List<CreatureInfo> creatureList = new ArrayList<>();
     {
-        creatureList.add(CreatureInfo.builder().aMaxHp(6).aAttack(Range.closed(1, 3)).aName("Skeleton Warrior").aArmor(6).aMoveRange(5).build());
-        creatureList.add(CreatureInfo.builder().aMaxHp(20).aAttack(Range.closed(2, 3)).aName("Zombie").aArmor(5).aMoveRange(4).build());
-        creatureList.add(CreatureInfo.builder().aMaxHp(18).aAttack(Range.closed(3, 5)).aName("Wraith").aArmor(7).aMoveRange(7).build());
-        creatureList.add(CreatureInfo.builder().aMaxHp(40).aAttack(Range.closed(5, 8)).aName("Vampire Lord").aArmor(10).aMoveRange(9).build());
-        creatureList.add(CreatureInfo.builder().aMaxHp(40).aAttack(Range.closed(11, 15)).aName("Power Lich").aArmor(10).aMoveRange(7).build());
-        creatureList.add(CreatureInfo.builder().aMaxHp(120).aAttack(Range.closed(15, 30)).aName("Dread Knight").aArmor(18).aMoveRange(9).build());
-        creatureList.add(CreatureInfo.builder().aMaxHp(200).aAttack(Range.closed(25, 50)).aName("Ghost Dragon").aArmor(17).aMoveRange(14).build());
+        creatureList.add(CreatureInfo.builder().aMaxHp(6).aAttack(Range.closed(1, 3)).aName("Skeleton Warrior").aArmor(6).aMoveRange(5).aCost(70).build());
+        creatureList.add(CreatureInfo.builder().aMaxHp(20).aAttack(Range.closed(2, 3)).aName("Zombie").aArmor(5).aMoveRange(4).aCost(125).build());
+        creatureList.add(CreatureInfo.builder().aMaxHp(18).aAttack(Range.closed(3, 5)).aName("Wraith").aArmor(7).aMoveRange(7).aCost(230).build());
+        creatureList.add(CreatureInfo.builder().aMaxHp(40).aAttack(Range.closed(5, 8)).aName("Vampire Lord").aArmor(10).aMoveRange(9).aCost(500).build());
+        creatureList.add(CreatureInfo.builder().aMaxHp(40).aAttack(Range.closed(11, 15)).aName("Power Lich").aArmor(10).aMoveRange(7).aCost(600).build());
+        creatureList.add(CreatureInfo.builder().aMaxHp(120).aAttack(Range.closed(15, 30)).aName("Dread Knight").aArmor(18).aMoveRange(9).aCost(1500).build());
+        creatureList.add(CreatureInfo.builder().aMaxHp(200).aAttack(Range.closed(25, 50)).aName("Ghost Dragon").aArmor(17).aMoveRange(14).aCost(3000).build());
+    }
+    
+    public CreatureInfo getByTier(int aTier) {
+    	return creatureList.get(aTier-1);
     }
 }

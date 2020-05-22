@@ -9,12 +9,16 @@ public class RampartInfoFactory extends FractionsInfoAbstractFactory {
 
     private final static List<CreatureInfo> creatureList = new ArrayList<>();
     {
-        creatureList.add(CreatureInfo.builder().aMaxHp(10).aAttack(Range.closed(2, 3)).aName("Centaur Captain").aArmor(3).aMoveRange(8).build());
-        creatureList.add(CreatureInfo.builder().aMaxHp(20).aAttack(Range.closed(2, 4)).aName("Battle Dwarf").aArmor(7).aMoveRange(5).build());
-        creatureList.add(CreatureInfo.builder().aMaxHp(15).aAttack(Range.closed(3, 5)).aName("Grand Elf").aArmor(5).aMoveRange(7).build());
-        creatureList.add(CreatureInfo.builder().aMaxHp(30).aAttack(Range.closed(5, 9)).aName("Silver Pegasus").aArmor(10).aMoveRange(12).build());
-        creatureList.add(CreatureInfo.builder().aMaxHp(65).aAttack(Range.closed(10, 14)).aName("Dendroid Soldier").aArmor(12).aMoveRange(4).build());
-        creatureList.add(CreatureInfo.builder().aMaxHp(110).aAttack(Range.closed(18, 22)).aName("War Unicorn").aArmor(14).aMoveRange(9).build());
-        creatureList.add(CreatureInfo.builder().aMaxHp(250).aAttack(Range.closed(40, 50)).aName("Gold Dragon").aArmor(27).aMoveRange(16).build());
+        creatureList.add(CreatureInfo.builder().aMaxHp(10).aAttack(Range.closed(2, 3)).aName("Centaur Captain").aArmor(3).aMoveRange(8).aCost(90).build());
+        creatureList.add(CreatureInfo.builder().aMaxHp(20).aAttack(Range.closed(2, 4)).aName("Battle Dwarf").aArmor(7).aMoveRange(5).aCost(150).build());
+        creatureList.add(CreatureInfo.builder().aMaxHp(15).aAttack(Range.closed(3, 5)).aName("Grand Elf").aArmor(5).aMoveRange(7).aCost(225).build());
+        creatureList.add(CreatureInfo.builder().aMaxHp(30).aAttack(Range.closed(5, 9)).aName("Silver Pegasus").aArmor(10).aMoveRange(12).aCost(275).build());
+        creatureList.add(CreatureInfo.builder().aMaxHp(65).aAttack(Range.closed(10, 14)).aName("Dendroid Soldier").aArmor(12).aMoveRange(4).aCost(425).build());
+        creatureList.add(CreatureInfo.builder().aMaxHp(110).aAttack(Range.closed(18, 22)).aName("War Unicorn").aArmor(14).aMoveRange(9).aCost(950).build());
+        creatureList.add(CreatureInfo.builder().aMaxHp(250).aAttack(Range.closed(40, 50)).aName("Gold Dragon").aArmor(27).aMoveRange(16).aCost(4000).build());
+    }
+    
+    public CreatureInfo getByTier(int aTier) {
+    	return creatureList.get(aTier-1);
     }
 }
