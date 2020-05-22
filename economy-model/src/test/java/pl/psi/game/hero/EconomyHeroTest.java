@@ -7,6 +7,8 @@ import pl.psi.game.fractions.CreatureInfo;
 import pl.psi.game.fractions.NecropolisInfoFactory;
 import pl.psi.game.hero.artifacts.ArtifactInfo;
 import pl.psi.game.hero.artifacts.ArtifactsInfoFactory;
+import pl.psi.game.skills.SkillInfo;
+import pl.psi.game.skills.SkillInfoFactory;
 import pl.psi.game.spellbook.SpellBookInfoFactory;
 import pl.psi.game.spellbook.SpellInfo;
 
@@ -48,12 +50,14 @@ class EconomyHeroTest {
     }
 //
 //    @Test
+////    single creature is sufficient for test. Maciek
 //    void sellCreatureShouldReturn75PercentOfOriginalPrice() {
-//        CreatureInfo creature = NecropolisInfoFactory.getCreature("Skeleton");
+//        NecropolisInfoFactory necropolisInfoFactory = new NecropolisInfoFactory();
+//        CreatureInfo creature = necropolisInfoFactory.getCreature("Skeleton");
 //        EconomyHero hero = EconomyHero.builder().gold(2000).creature(creature).build();
 //        //(cost of Skeleton is 60)
 //        hero.sellCreature(creature);
-//
+//        //TODO as above use concrete values not calculating in assertions
 //        assertEquals(hero.getGold(), 2045);
 //
 //    }
@@ -62,18 +66,18 @@ class EconomyHeroTest {
 //    //you don't need creatures to test selling of artifacts. Could specify artifact name. Maciek
 //    void sellArtifactShouldReturn75PercentOfOriginalPrice() {
 //        EconomyHero hero = EconomyHero.builder().gold(3000).build();
-//        ArtifactInfo artifact = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.HELM_OF_THE_ALABASTER_UNICORN);
+//        ArtifactInfo artifact = ArtifactsInfoFactory.getArtifact("Helm of the Alabaster Unicorn");
 //        int artifactCost = 200;
 //        hero.sellArtifact(artifact);
 //        assertEquals(hero.getGold(), 3150);
 //
 //    }
-//
+
 //    //converted spell to spellinfo. Maciek.
 //    @Test
 //    void sellSpellShouldReturn75PercentOfOriginalPrice() {
 //        EconomyHero hero = EconomyHero.builder().gold(3000).build();
-//        SpellInfo spell = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.MAGIC_ARROW);
+//        SpellInfo spell = SpellBookInfoFactory.getSpell("Magic arrow");
 //        int spellCost = 800;
 //        hero.sellSpell(spell);
 //        assertEquals(hero.getGold(), 3600);
@@ -91,7 +95,16 @@ class EconomyHeroTest {
        assertEquals(hero.getSpells().size(), 1);
 
     }
-//
+// @Test
+//    //don't need a list of spells. Changed methods. Maciek
+//    void successBuySpell() {
+//        EconomyHero hero = EconomyHero.builder().gold(3000).build();
+//        SpellInfo spell = SpellBookInfoFactory.getSpell("MAGIC_ARROW");
+//        hero.buySpell(spell);
+//       assertEquals(hero.getGold()-spell.getCost(), 9);
+//       assertEquals(hero.getSpells().size() + 1, 1);
+//    }
+
 //@Test
 //    void buyArtifactShouldNotAddArtifactIfLocationNotEmpty(){
 //
@@ -133,15 +146,32 @@ class EconomyHeroTest {
 //        assertEquals(hero.getArtifact("Buckler of the Gnoll King"), artifactToAdd);
 //    }
 
+//    void successBuySpell() {
+//        EconomyHero hero = EconomyHero.builder().gold(3000).build();
+//        SpellInfo spell = SpellBookInfoFactory.getSpell("MAGIC_ARROW");
+//        hero.buySpell(spell);
+//       assertEquals(hero.getGold()-spell.getCost(), 9);
+//       assertEquals(hero.getSpells().size() + 1, 1);
+//
+//    }
 
+//    @Test
+//    void successBuyCharacterSpecialSkill() {
+//        EconomyHero hero = EconomyHero.builder().gold(2000).build();
+//        SkillInfo skillInfo = new SkillInfoFactory().getSkill(SkillInfo.SkillType.ARMOUR);
+//        hero.buyCharacterSpecialSkill();
+//        assertEquals(hero.getGold()-skillInfo.getCost(), 1800);
+//    }
 
     //metody, które jeszcze trzeba przetestować:
-    //
-//    generateCreaturesAvailableToBuy()
-//    generateSpellsAvailableToBuy()
-//    buyCharacterSpecialSkill()
-//    freezeShop()
-//    generateShops()
+
+//    generateCreaturesAvailableToBuy() ---> Kacper
+
+//    generateSpellsAvailableToBuy() ---> Lukasz
+//    buyCharacterSpecialSkill() ---> Kacper
+//
+//    freezeShop() ---> Maciek
+//    generateShops() ---> Klaudia
 
 
 }

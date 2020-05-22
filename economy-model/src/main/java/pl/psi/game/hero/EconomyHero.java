@@ -25,7 +25,6 @@ public class EconomyHero  {
         gold = aGold;
         spells = new ArrayList<>();
     }
-
     int getGold() {
         return gold;
     }
@@ -33,20 +32,30 @@ public class EconomyHero  {
     void addGold(int gold){
         this.gold += gold;
     }
+
     private void decreaseGold(int gold){
         this.gold -= gold;
     }
+    
+//    void buyCreature(CreatureInfo creature) {
+//        if(getGold() >= creature.getCost()) {
+//            this.decreaseGold(creature.getCost());
+//            this.creatures.add(creature);
+//
+//        }
+//
+//    }
 
     //to implement
-    void buyCreature(CreatureInfo creature){
+    void sellCreature(CreatureInfo creature) {
+
     }
 
-
-    //to implement
-    void sellCreature(CreatureInfo creature){
+    List<CreatureInfo> getCreatures() {
+        return this.creatures;
     }
 
-    void buyArtifact(ArtifactInfo artifact){
+    void buyArtifact(ArtifactInfo artifact) {
 //        if(this.isSlotEmpty(artifact.getLocation())){
 //            this.decreaseGold(artifact.getCost());
 //            this.artifacts.add(artifact);
@@ -54,12 +63,12 @@ public class EconomyHero  {
     }
 
     //to implement
-    void sellArtifact(ArtifactInfo artifact){
+    void sellArtifact(ArtifactInfo artifact) {
+
     }
 
-
     //Don't know why it always return false
-    boolean isSlotEmpty(String location){
+    boolean isSlotEmpty(String location) {
         return !this.artifacts.stream().anyMatch(artifact -> artifact.getLocation().equals(location));
     }
 
@@ -67,27 +76,27 @@ public class EconomyHero  {
         return this.artifacts;
     }
 
-    ArtifactInfo getArtifact(String name){
+    ArtifactInfo getArtifact(String name) {
         return this.artifacts.stream().filter(artifact -> artifact.getName().equals(name)).findAny().orElse(null);
     }
 
-    public void sellSpell(SpellInfo spell) {
-    }
-
     public void buySpell(SpellInfo spell) {
-        if(getGold()>=spell.getCost()){
+        if(getGold() >= spell.getCost()) {
             this.decreaseGold(spell.getCost());
             this.spells.add(spell);
-
         }
     }
 
-    List<SpellInfo> getSpells() {
-    return this.spells;
+    public void sellSpell(SpellInfo spell) {
+
     }
 
-//request to artifact group for getter to artifact location
-    List<ArtifactInfo.Location> getArtifactsLocations(){
+    List<SpellInfo> getSpells() {
+        return this.spells;
+    }
+
+    //request to artifact group for getter to artifact location
+    List<ArtifactInfo.Location> getArtifactsLocations() {
         return this.artifacts.stream().map(ArtifactInfo::getLocation).collect(Collectors.toList());
     }
 }
