@@ -3,6 +3,7 @@ package pl.psi.game.fractions;
 import com.google.common.collect.Range;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import pl.psi.game.move.GuiTileIf;
 
 import java.beans.PropertyChangeEvent;
@@ -15,8 +16,8 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
     private final Range<Integer> attack;
     private final int armor;
     private final String name;
-    private int currentHp;
-    private boolean canCounterAttacked;
+    @Setter private int currentHp;
+    @Setter private boolean canCounterAttacked;
     private final int moveRange;
     private DealDamageCounterStrategyIf dealDamageCounterStrategy;
     
@@ -94,4 +95,5 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
     		currentHp = maxHp;
     	}
     }
+
 }

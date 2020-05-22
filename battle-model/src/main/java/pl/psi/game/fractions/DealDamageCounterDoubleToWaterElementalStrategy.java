@@ -18,7 +18,7 @@ public class DealDamageCounterDoubleToWaterElementalStrategy implements DealDama
         {
             damageToDeal = damageToDeal - aDefender.getArmor();
         }
-        if (aDefender.getName().equals("Ice elemental")) {
+        if (aDefender.getName().equals("Ice Elemental")) {
         	return damageToDeal * 2;
         }
         return damageToDeal;
