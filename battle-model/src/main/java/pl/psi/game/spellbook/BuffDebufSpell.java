@@ -17,13 +17,13 @@ public class BuffDebufSpell extends Spell implements PropertyChangeListener {
     }
 
     @Override
-    void cast(int x, int y)
+    public void cast(int x, int y)
     {
         //cast(Board.getCreature(x,y));
     }
 
     @Override
-    void cast(Creature aCreature)
+    public void cast(Creature aCreature)
     {
         creature=aCreature;
         int power = 1; //Have to be replace by hero.getPower
@@ -47,7 +47,7 @@ public class BuffDebufSpell extends Spell implements PropertyChangeListener {
         }
     }
 
-    void removeSpell(){
+    public void removeSpell(){
         switch (name){
             case "Haste":
 //                creature.decreaseMoveRange(3);

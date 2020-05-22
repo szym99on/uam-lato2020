@@ -24,11 +24,11 @@ public class Spell {
         type = aType;
     }
 
-    void cast (int x, int y){
+    public void cast (int x, int y){
 
     }
 
-    void cast (Creature creature){
+    public void cast (Creature creature){
         //creature.acceptSpell();
     }
 }
