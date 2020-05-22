@@ -6,8 +6,7 @@ import java.util.List;
 
 public class NecropolisInfoFactory extends FractionsInfoAbstractFactory {
 
-    private final static List<CreatureInfo> creatureList = new ArrayList<>();
-    {
+    NecropolisInfoFactory(){
         creatureList.add(CreatureInfo.builder().aMaxHp(6).aAttack(Range.closed(1, 3)).aName("Skeleton Warrior").aArmor(6).aMoveRange(5).build());
         creatureList.add(CreatureInfo.builder().aMaxHp(20).aAttack(Range.closed(2, 3)).aName("Zombie").aArmor(5).aMoveRange(4).build());
         creatureList.add(CreatureInfo.builder().aMaxHp(18).aAttack(Range.closed(3, 5)).aName("Wraith").aArmor(7).aMoveRange(7).build());

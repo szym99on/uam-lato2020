@@ -7,8 +7,7 @@ import java.util.List;
 
 public class RampartInfoFactory extends FractionsInfoAbstractFactory {
 
-    private final static List<CreatureInfo> creatureList = new ArrayList<>();
-    {
+    RampartInfoFactory(){
         creatureList.add(CreatureInfo.builder().aMaxHp(10).aAttack(Range.closed(2, 3)).aName("Centaur Captain").aArmor(3).aMoveRange(8).build());
         creatureList.add(CreatureInfo.builder().aMaxHp(20).aAttack(Range.closed(2, 4)).aName("Battle Dwarf").aArmor(7).aMoveRange(5).build());
         creatureList.add(CreatureInfo.builder().aMaxHp(15).aAttack(Range.closed(3, 5)).aName("Grand Elf").aArmor(5).aMoveRange(7).build());

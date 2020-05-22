@@ -12,7 +12,7 @@ public class ConverterRequest {
         EconomyHero economyHero = EconomyHero.builder().aHeroInfo(heroInfo).build();
 
         assertEquals(economyHero.getAttack(),2);
-    }*/
+    }
     /*@Test
     void getSpellInfoList(){
     }

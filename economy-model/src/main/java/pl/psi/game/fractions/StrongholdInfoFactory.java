@@ -7,8 +7,7 @@ import java.util.List;
 
 public class StrongholdInfoFactory extends FractionsInfoAbstractFactory {
 
-    private final static List<CreatureInfo> creatureList = new ArrayList<>();
-    {
+    StrongholdInfoFactory(){
         creatureList.add(CreatureInfo.builder().aMaxHp(5).aAttack(Range.closed(1, 2)).aName("Hobgoblin").aArmor(3).aMoveRange(7).build());
         creatureList.add(CreatureInfo.builder().aMaxHp(10).aAttack(Range.closed(3, 4)).aName("Wolf Raider").aArmor(5).aMoveRange(8).build());
         creatureList.add(CreatureInfo.builder().aMaxHp(20).aAttack(Range.closed(2, 5)).aName("Orc Chieftain").aArmor(4).aMoveRange(5).build());
