@@ -9,7 +9,8 @@ public class FractionsInfoAbstractFactory {
     public enum Fractions {
         NECROPOLIS,
         RAMPART,
-        STRONGHOLD;
+        STRONGHOLD,
+        ELEMENTAL;
     }
 
     protected final List<CreatureInfo> creatureList = new ArrayList<>();
@@ -22,6 +23,8 @@ public class FractionsInfoAbstractFactory {
                 return new RampartInfoFactory();
             case STRONGHOLD:
                 return new StrongholdInfoFactory();
+            case ELEMENTAL:
+                return new ElementalInfoFactory();
             default: throw new UnsupportedOperationException("Fracction not recognized");
         }
     }

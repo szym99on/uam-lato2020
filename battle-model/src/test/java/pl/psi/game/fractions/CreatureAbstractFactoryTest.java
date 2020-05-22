@@ -86,97 +86,203 @@ public class CreatureAbstractFactoryTest {
         assertEquals(17, creature.getArmor());
         assertEquals(14, creature.getMoveRange());
     }
-    
-    
-    // TODO
+
     @Test
     void shouldCreateCentaurCaptain() {
-
+        CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.RAMPART).getCreatureByTier(1);
+        Creature creature = creatureAbstractFactory.getCreature(creatureInfo);
+        assertEquals(10, creature.getMaxHp());
+        assertEquals(Range.closed(2,3), creature.getAttack());
+        assertEquals("Centaur Captain", creature.getName());
+        assertEquals(3, creature.getArmor());
+        assertEquals(8, creature.getMoveRange());
     }
 
     @Test
     void shouldCreateBattleDwarf() {
-
+        CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.RAMPART).getCreatureByTier(2);
+        Creature creature = creatureAbstractFactory.getCreature(creatureInfo);
+        assertEquals(20, creature.getMaxHp());
+        assertEquals(Range.closed(2,4), creature.getAttack());
+        assertEquals("Battle Dwarf", creature.getName());
+        assertEquals(7, creature.getArmor());
+        assertEquals(5, creature.getMoveRange());
     }
 
     @Test
     void shouldCreateGrandElf() {
-    	
+        CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.RAMPART).getCreatureByTier(3);
+        Creature creature = creatureAbstractFactory.getCreature(creatureInfo);
+        assertEquals(15, creature.getMaxHp());
+        assertEquals(Range.closed(3,5), creature.getAttack());
+        assertEquals("Grand Elf", creature.getName());
+        assertEquals(5, creature.getArmor());
+        assertEquals(7, creature.getMoveRange());
     }
 
     @Test
     void shouldCreateSilverPegasus() {
-    	
+        CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.RAMPART).getCreatureByTier(4);
+        Creature creature = creatureAbstractFactory.getCreature(creatureInfo);
+        assertEquals(30, creature.getMaxHp());
+        assertEquals(Range.closed(5,9), creature.getAttack());
+        assertEquals("Silver Pegasus", creature.getName());
+        assertEquals(10, creature.getArmor());
+        assertEquals(12, creature.getMoveRange());
     }
 
     @Test
     void shouldCreateDendroidSoldier() {
-    	
+        CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.RAMPART).getCreatureByTier(5);
+        Creature creature = creatureAbstractFactory.getCreature(creatureInfo);
+        assertEquals(65, creature.getMaxHp());
+        assertEquals(Range.closed(10,14), creature.getAttack());
+        assertEquals("Dendroid Soldier", creature.getName());
+        assertEquals(12, creature.getArmor());
+        assertEquals(4, creature.getMoveRange());
     }
 
     @Test
     void shouldCreateWarUnicorn() {
-    	
+        CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.RAMPART).getCreatureByTier(6);
+        Creature creature = creatureAbstractFactory.getCreature(creatureInfo);
+        assertEquals(110, creature.getMaxHp());
+        assertEquals(Range.closed(18,22), creature.getAttack());
+        assertEquals("War Unicorn", creature.getName());
+        assertEquals(14, creature.getArmor());
+        assertEquals(9, creature.getMoveRange());
     }
 
     @Test
     void shouldCreateGoldDragon() {
-    	
+        CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.RAMPART).getCreatureByTier(7);
+        Creature creature = creatureAbstractFactory.getCreature(creatureInfo);
+        assertEquals(250, creature.getMaxHp());
+        assertEquals(Range.closed(40,50), creature.getAttack());
+        assertEquals("Gold Dragon", creature.getName());
+        assertEquals(27, creature.getArmor());
+        assertEquals(16, creature.getMoveRange());
     }
     
     @Test
     void shouldCreateHobgoblin() {
-    	
+        CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.STRONGHOLD).getCreatureByTier(1);
+        Creature creature = creatureAbstractFactory.getCreature(creatureInfo);
+        assertEquals(5, creature.getMaxHp());
+        assertEquals(Range.closed(1,2), creature.getAttack());
+        assertEquals("Hobgoblin", creature.getName());
+        assertEquals(3, creature.getArmor());
+        assertEquals(7, creature.getMoveRange());
     }
 
     @Test
     void shouldCreateWolfRaider() {
-    	
+        CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.STRONGHOLD).getCreatureByTier(2);
+        Creature creature = creatureAbstractFactory.getCreature(creatureInfo);
+        assertEquals(10, creature.getMaxHp());
+        assertEquals(Range.closed(3,4), creature.getAttack());
+        assertEquals("Wolf Raider", creature.getName());
+        assertEquals(5, creature.getArmor());
+        assertEquals(8, creature.getMoveRange());
     }
 
     @Test
     void shouldCreateOrcChieftain() {
-    	
+        CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.STRONGHOLD).getCreatureByTier(3);
+        Creature creature = creatureAbstractFactory.getCreature(creatureInfo);
+        assertEquals(20, creature.getMaxHp());
+        assertEquals(Range.closed(2,5), creature.getAttack());
+        assertEquals("Orc Chieftain", creature.getName());
+        assertEquals(4, creature.getArmor());
+        assertEquals(5, creature.getMoveRange());
     }
 
     @Test
     void shouldCreateOgreMagi() {
-    	
+        CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.STRONGHOLD).getCreatureByTier(4);
+        Creature creature = creatureAbstractFactory.getCreature(creatureInfo);
+        assertEquals(60, creature.getMaxHp());
+        assertEquals(Range.closed(6,12), creature.getAttack());
+        assertEquals("Ogre Magi", creature.getName());
+        assertEquals(7, creature.getArmor());
+        assertEquals(5, creature.getMoveRange());
     }
 
     @Test
     void shouldCreateThunderbird() {
-    	
+        CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.STRONGHOLD).getCreatureByTier(5);
+        Creature creature = creatureAbstractFactory.getCreature(creatureInfo);
+        assertEquals(60, creature.getMaxHp());
+        assertEquals(Range.closed(11,15), creature.getAttack());
+        assertEquals("Thunderbird", creature.getName());
+        assertEquals(11, creature.getArmor());
+        assertEquals(11, creature.getMoveRange());
     }
 
     @Test
     void shouldCreateCyclopsKing() {
-    	
+        CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.STRONGHOLD).getCreatureByTier(6);
+        Creature creature = creatureAbstractFactory.getCreature(creatureInfo);
+        assertEquals(70, creature.getMaxHp());
+        assertEquals(Range.closed(16,20), creature.getAttack());
+        assertEquals("Cyclops King", creature.getName());
+        assertEquals(13, creature.getArmor());
+        assertEquals(8, creature.getMoveRange());
     }
 
     @Test
     void shouldCreateAncientBehemoth() {
-    	
+        CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.STRONGHOLD).getCreatureByTier(7);
+        Creature creature = creatureAbstractFactory.getCreature(creatureInfo);
+        assertEquals(300, creature.getMaxHp());
+        assertEquals(Range.closed(30,50), creature.getAttack());
+        assertEquals("Ancient Behemoth", creature.getName());
+        assertEquals(19, creature.getArmor());
+        assertEquals(9, creature.getMoveRange());
     }
     
     @Test
     void shouldCreateStormElemental() {
-    	
+        CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.ELEMENTAL).getCreatureByTier(1);
+        Creature creature = creatureAbstractFactory.getCreature(creatureInfo);
+        assertEquals(25, creature.getMaxHp());
+        assertEquals(Range.closed(2,8), creature.getAttack());
+        assertEquals("Storm Elemental", creature.getName());
+        assertEquals(9, creature.getArmor());
+        assertEquals(8, creature.getMoveRange());
     }
 
     @Test
     void shouldCreateIceElemental() {
-    	
+        CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.ELEMENTAL).getCreatureByTier(2);
+        Creature creature = creatureAbstractFactory.getCreature(creatureInfo);
+        assertEquals(30, creature.getMaxHp());
+        assertEquals(Range.closed(3,7), creature.getAttack());
+        assertEquals("Ice Elemental", creature.getName());
+        assertEquals(10, creature.getArmor());
+        assertEquals(6, creature.getMoveRange());
     }
 
     @Test
     void shouldCreateEnergyElemental() {
-    	
+        CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.ELEMENTAL).getCreatureByTier(3);
+        Creature creature = creatureAbstractFactory.getCreature(creatureInfo);
+        assertEquals(35, creature.getMaxHp());
+        assertEquals(Range.closed(4,6), creature.getAttack());
+        assertEquals("Energy Elemental", creature.getName());
+        assertEquals(8, creature.getArmor());
+        assertEquals(8, creature.getMoveRange());
     }
 
     @Test
     void shouldCreateMagmaElemental() {
-    	
+        CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.ELEMENTAL).getCreatureByTier(4);
+        Creature creature = creatureAbstractFactory.getCreature(creatureInfo);
+        assertEquals(40, creature.getMaxHp());
+        assertEquals(Range.closed(6,10), creature.getAttack());
+        assertEquals("Magma Elemental", creature.getName());
+        assertEquals(11, creature.getArmor());
+        assertEquals(6, creature.getMoveRange());
     }
     
 }
