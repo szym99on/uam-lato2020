@@ -6,6 +6,8 @@ import pl.psi.game.fractions.CreatureInfo;
 import pl.psi.game.fractions.NecropolisInfoFactory;
 import pl.psi.game.hero.artifacts.ArtifactInfo;
 import pl.psi.game.hero.artifacts.ArtifactsInfoFactory;
+import pl.psi.game.skills.SkillInfo;
+import pl.psi.game.skills.SkillInfoFactory;
 import pl.psi.game.spellbook.SpellBookInfoFactory;
 import pl.psi.game.spellbook.SpellInfo;
 
@@ -126,7 +128,22 @@ class EconomyHeroTest {
 //        assertEquals(hero.getArtifact("Buckler of the Gnoll King"), artifactToAdd);
 //    }
 
+//    void successBuySpell() {
+//        EconomyHero hero = EconomyHero.builder().gold(3000).build();
+//        SpellInfo spell = SpellBookInfoFactory.getSpell("MAGIC_ARROW");
+//        hero.buySpell(spell);
+//       assertEquals(hero.getGold()-spell.getCost(), 9);
+//       assertEquals(hero.getSpells().size() + 1, 1);
+//
+//    }
 
+//    @Test
+//    void successBuyCharacterSpecialSkill() {
+//        EconomyHero hero = EconomyHero.builder().gold(2000).build();
+//        SkillInfo skillInfo = new SkillInfoFactory().getSkill(SkillInfo.SkillType.ARMOUR);
+//        hero.buyCharacterSpecialSkill();
+//        assertEquals(hero.getGold()-skillInfo.getCost(), 1800);
+//    }
 
     //metody, które jeszcze trzeba przetestować:
 

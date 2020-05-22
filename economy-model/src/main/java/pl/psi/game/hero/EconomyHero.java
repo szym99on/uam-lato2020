@@ -76,20 +76,20 @@ public class EconomyHero {
         return this.artifacts.stream().filter(artifact -> artifact.getName().equals(name)).findAny().orElse(null);
     }
 
-    public void buySpell(SpellInfo spell) {
-        if(getGold() >= spell.getCost()) {
-            this.decreaseGold(spell.getCost());
-            this.spells.add(spell);
-
-        }
-    }
+//    public void buySpell(SpellInfo spell) {
+//        if(getGold() >= spell.getCost()) {
+//            this.decreaseGold(spell.getCost());
+//            this.spells.add(spell);
+//
+//        }
+//    }
 
     public void sellSpell(SpellInfo spell) {
 
     }
 
     List<SpellInfo> getSpells() {
-    return this.spells;
+        return this.spells;
     }
 
     //request to artifact group for getter to artifact location
