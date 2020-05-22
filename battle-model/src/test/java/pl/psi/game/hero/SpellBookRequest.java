@@ -1,5 +1,6 @@
 package pl.psi.game.hero;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pl.psi.game.fractions.Creature;
 import pl.psi.game.hero.converter.Hero;
@@ -9,15 +10,18 @@ import java.util.List;
 
 public class SpellBookRequest {
 
- /*   @Test
-    void shouldBuffAllAlliedTroops(){
+    @Test
+    @Disabled
+    void shouldBuffAllAlliedTroops()
+    {
 
-        Hero activeHero = ...;
+        Hero activeHero = Hero.builder().build();
         List<Creature> creatures = activeHero.getCreatures();
         Spell spell = Spell.builder().build();
 
         creatures.forEach(a -> spell.cast(a));
-
+    }
+/*
     @Test
     void shouldDealDamageToAllEnemyTroops(){
 
@@ -28,4 +32,13 @@ public class SpellBookRequest {
         creatures.forEach(a -> spell.cast(a));
 
     }*/
+
+    @Test
+    @Disabled
+    void heroShouldReturnPower()
+    {
+        Hero hero = Hero.builder().build();
+
+        int power = hero.getPower();
+    }
 }
