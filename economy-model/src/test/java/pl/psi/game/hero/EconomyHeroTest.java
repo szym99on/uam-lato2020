@@ -1,10 +1,10 @@
 package pl.psi.game.hero;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pl.psi.game.fractions.CreatureInfo;
-import pl.psi.game.fractions.NecropolisInfoFactory;
 import pl.psi.game.hero.artifacts.ArtifactInfo;
 import pl.psi.game.hero.artifacts.ArtifactsInfoFactory;
 import pl.psi.game.skills.SkillInfo;

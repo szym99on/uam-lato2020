@@ -9,6 +9,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import pl.psi.game.GameEngine;
 import pl.psi.game.fractions.Creature;
+import pl.psi.game.hero.EconomyHero;
 import pl.psi.game.hero.converter.Hero;
 import pl.psi.game.move.GuiTileIf;
 import pl.psi.gui.tiles.*;
@@ -27,7 +28,7 @@ public class MainBattleController {
     private final Hero hero2;
     private final GameEngine gameEngine;
 
-    public MainBattleController() {
+    public MainBattleController(EconomyHero h1, EconomyHero h2) {
         // should come form economy
         ArrayList<Creature> creatureList1 = new ArrayList<>();
         creatureList1.add(Creature.builder().aName("C1").aAttack(Range.closed(1, 10)).aMoveRange(1).aArmor(1).aMaxHp(10).build());
@@ -39,7 +40,7 @@ public class MainBattleController {
         creatureList2.add(Creature.builder().aName("C2_2").aAttack(Range.closed(2, 10)).aMoveRange(2).aArmor(2).aMaxHp(20).build());
         creatureList2.add(Creature.builder().aName("C2_3").aAttack(Range.closed(3, 10)).aMoveRange(3).aArmor(3).aMaxHp(30).build());
         creatureList2.add(Creature.builder().aName("C2_4").aAttack(Range.closed(4, 10)).aMoveRange(14).aArmor(4).aMaxHp(40).build());
-
+//---------------------------------------------
         hero1 = new Hero(creatureList1);
         hero2 = new Hero(creatureList2);
         // should come form economy END

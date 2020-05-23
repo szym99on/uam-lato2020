@@ -26,11 +26,12 @@ public class Spell {
         type = aType;
     }
 
+
     public void cast (int x, int y){
 
     }
 
     public void cast (Creature creature){
-        //creature.acceptSpell();
+
     }
 }

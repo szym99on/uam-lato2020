@@ -6,7 +6,7 @@ import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NecropolisInfoFactory extends FractionsInfoAbstractFactory {
+class NecropolisInfoFactory extends FractionsInfoAbstractFactory {
 
     NecropolisInfoFactory(){
             creatureList.add(CreatureInfo.builder().aMaxHp(6).aAttack(Range.closed(1, 3)).aName("Skeleton Warrior").aArmor(6).aMoveRange(5).aCost(70).build());

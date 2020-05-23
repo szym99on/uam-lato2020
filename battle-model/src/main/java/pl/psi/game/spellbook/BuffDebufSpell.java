@@ -31,7 +31,7 @@ public class BuffDebufSpell extends Spell implements PropertyChangeListener {
 
         switch (name){
             case "Haste":
-//                creature.acceptSpell(this);
+//                creature.addToBuffSet(this);
 //                creature.increaseMoveRange(3);
                 break;
         }
@@ -51,7 +51,7 @@ public class BuffDebufSpell extends Spell implements PropertyChangeListener {
         switch (name){
             case "Haste":
 //                creature.decreaseMoveRange(3);
-//                creature.removeSpell(this);
+//                creature.removeFromSet(this);
                 break;
         }
     }

@@ -1,6 +1,8 @@
 package pl.psi.game.hero;
 
 import org.junit.jupiter.api.Test;
+import pl.psi.game.fractions.FractionsInfoAbstractFactory;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;

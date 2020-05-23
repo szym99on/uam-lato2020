@@ -19,6 +19,7 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
     @Setter private int currentHp;
     @Setter private boolean canCounterAttacked;
     private final int moveRange;
+    private int amount;
     private DealDamageCounterStrategyIf dealDamageCounterStrategy;
     
     @Builder
@@ -30,6 +31,7 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
         canCounterAttacked = true;
         name = aName;
         moveRange = aMoveRange;
+        amount = 10;
         dealDamageCounterStrategy = new DefaultDamageCounterStrategy();        
     }
 

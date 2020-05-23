@@ -51,7 +51,7 @@ public class EconomyHero  {
 
     }
 
-    List<CreatureInfo> getCreatures() {
+    public List<CreatureInfo> getCreatures() {
         return this.creatures;
     }
 
