@@ -24,7 +24,7 @@ class EconomyHeroTest {
 
     @BeforeAll
     static void initializeFactories(){
-        //TODO: ill explain why you have to do that in meeting
+        //PW ill explain why you have to do that in meeting
         new SpellBookInfoFactory();
     }
 
@@ -84,6 +84,7 @@ class EconomyHeroTest {
 //    }
 //
  @Test
+ //PW it's corrected test from bellow.
     //don't need a list of spells. Changed methods. Maciek
     void successBuySpell() {
         EconomyHero hero = EconomyHero.builder().aGold(3000).build();
@@ -105,63 +106,51 @@ class EconomyHeroTest {
 //       assertEquals(hero.getSpells().size() + 1, 1);
 //    }
 
-//@Test
-//    void buyArtifactShouldNotAddArtifactIfLocationNotEmpty(){
-//
-//        ArtifactInfo artifactHelmet = ArtifactsInfoFactory.getArtifact("Collar of Conjuring");
-//        EconomyHero hero = EconomyHero.builder().artifact(artifactHelmet).gold(2000).build();
-//
-//        //hero state before adding artifact
-//        List<ArtifactInfo> artifactsBefore = hero.getArtifacts();
-//        int moneyBefore = hero.getGold();
-//        List<ArtifactInfo.Location> artifactsLocationsBefore = hero.getArtifactsLocations();
-//
-//        //create artifact to add
-//        ArtifactInfo artifactToAdd = ArtifactsInfoFactory.getArtifact("Collar of Conjuring");
-//        hero.buyArtifact(artifactToAdd);
-//
-//
-//        assertEquals(moneyBefore, hero.getGold() );
-//        assertEquals(artifactsBefore.size(), hero.getArtifacts().size());
-//        assertEquals(hero.getArtifact("Collar of Conjuring"), artifactToAdd);
-//}
-//    @Test
-//    void  buyArtifactShouldAddArtifactIfLocationEmpty(){
-//        //if I don't instantiate factory cant access artifacts
-//        ArtifactsInfoFactory factory = new ArtifactsInfoFactory();
-//        ArtifactInfo artifactHelmet = factory.getArtifact("Collar of Conjuring");
-//        EconomyHero hero = EconomyHero.builder().artifact(artifactHelmet).gold(2000).build();
-//
-//        //hero state before adding artifact
-//        List<ArtifactInfo> artifactsBefore = hero.getArtifacts();
-//        int moneyBefore = hero.getGold();
-//        List<ArtifactInfo.Location> artifactsLocationsBefore = hero.getArtifactsLocations();
-//
-//        //create artifact to add
-//        ArtifactInfo artifactToAdd = factory.getArtifact("Buckler of the Gnoll King");
-//        hero.buyArtifact(artifactToAdd);
-//
-//        assertEquals(moneyBefore - artifactToAdd.getCost(),hero.getGold());
-//        assertEquals(artifactsBefore.size()+1, hero.getArtifacts().size());
-//        assertEquals(hero.getArtifact("Buckler of the Gnoll King"), artifactToAdd);
-//    }
+    //PW you shouldn't have artifacts in builder but method like equip where you throw exception when slot is already use
+@Test
+@Disabled
+    void buyArtifactShouldNotAddArtifactIfLocationNotEmpty(){
 
-//    void successBuySpell() {
-//        EconomyHero hero = EconomyHero.builder().gold(3000).build();
-//        SpellInfo spell = SpellBookInfoFactory.getSpell("MAGIC_ARROW");
-//        hero.buySpell(spell);
-//       assertEquals(hero.getGold()-spell.getCost(), 9);
-//       assertEquals(hero.getSpells().size() + 1, 1);
-//
-//    }
+        ArtifactInfo artifactHelmet = ArtifactsInfoFactory.getArtifact("Collar of Conjuring");
+        EconomyHero hero = EconomyHero.builder().aGold(2000).build();
+        hero.buyArtifact(artifactHelmet);
 
-//    @Test
-//    void successBuyCharacterSpecialSkill() {
-//        EconomyHero hero = EconomyHero.builder().gold(2000).build();
-//        SkillInfo skillInfo = new SkillInfoFactory().getSkill(SkillInfo.SkillType.ARMOUR);
-//        hero.buyCharacterSpecialSkill();
-//        assertEquals(hero.getGold()-skillInfo.getCost(), 1800);
-//    }
+        //hero state before adding artifact
+        List<ArtifactInfo> artifactsBefore = hero.getArtifacts();
+        int moneyBefore = hero.getGold();
+        List<ArtifactInfo.Location> artifactsLocationsBefore = hero.getArtifactsLocations();
+
+        //create artifact to add
+        ArtifactInfo artifactToAdd = ArtifactsInfoFactory.getArtifact("Collar of Conjuring");
+        hero.buyArtifact(artifactToAdd);
+
+
+        assertEquals(moneyBefore, hero.getGold() );
+        assertEquals(artifactsBefore.size(), hero.getArtifacts().size());
+        assertEquals(hero.getArtifact("Collar of Conjuring"), artifactToAdd);
+}
+    @Test
+    @Disabled
+    void  buyArtifactShouldAddArtifactIfLocationEmpty(){
+        //if I don't instantiate factory cant access artifacts
+        ArtifactsInfoFactory factory = new ArtifactsInfoFactory();
+        ArtifactInfo artifactHelmet = factory.getArtifact("Collar of Conjuring");
+        EconomyHero hero = EconomyHero.builder().aGold(2000).build();
+        hero.buyArtifact(artifactHelmet);
+
+        //hero state before adding artifact
+        List<ArtifactInfo> artifactsBefore = hero.getArtifacts();
+        int moneyBefore = hero.getGold();
+        List<ArtifactInfo.Location> artifactsLocationsBefore = hero.getArtifactsLocations();
+
+        //create artifact to add
+        ArtifactInfo artifactToAdd = factory.getArtifact("Buckler of the Gnoll King");
+        hero.buyArtifact(artifactToAdd);
+
+        assertEquals(moneyBefore - artifactToAdd.getCost(),hero.getGold());
+        assertEquals(artifactsBefore.size()+1, hero.getArtifacts().size());
+        assertEquals(hero.getArtifact("Buckler of the Gnoll King"), artifactToAdd);
+    }
 
     //metody, które jeszcze trzeba przetestować:
 
@@ -173,5 +162,20 @@ class EconomyHeroTest {
 //    freezeShop() ---> Maciek
 //    generateShops() ---> Klaudia
 
+//PW
+    //You have tons methods to test!
+    //First of all create more than one test class like HeroEconomyGoldManagementTest, HeroEconomyArtifactInteractionTest, HeroEconomySpellIntegrationTest etc.
+    // in this class make list of method e.g.
+    // gold management:
+    // add gold to hero
+    // buy some item (correcting counting gold) -> what if stay 0, what if stay -1
+    // sell some item and check gold state
+    // artifacts:
+    // buy some artifact (don't count gold you will have it in another test).
+    // check if exists in correct location
+    // buy 2 artifact to the same location - throw exception like IllegalStateException
+    // buy, sell, and buy to the same location and all should looks fine
+    // buy, sell and check that location is empty
 
+    // I cannot read these tests with pleasure. You have horrible mess here. Please don't use comment too much. You can make empty implementation and user @Disable annotate.
 }

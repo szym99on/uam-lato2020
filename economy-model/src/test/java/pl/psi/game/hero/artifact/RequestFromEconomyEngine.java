@@ -8,12 +8,13 @@ import pl.psi.game.hero.artifacts.ArtifactsInfoFactory;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RequestFromEconomyEngine {
-
+//PW it not request for economy tis functionality is Artifact team response. Test getByLocation and other factory methods
     @BeforeAll
     static void ArtifactsInfoFactory(){
         new ArtifactsInfoFactory();
     }
 
+    //PW
     @Test
     void xxx(){
         ArtifactInfo artifact = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.HELM_OF_THE_ALABASTER_UNICORN);

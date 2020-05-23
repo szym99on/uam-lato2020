@@ -99,4 +99,5 @@ public class EconomyHero  {
     List<ArtifactInfo.Location> getArtifactsLocations() {
         return this.artifacts.stream().map(ArtifactInfo::getLocation).collect(Collectors.toList());
     }
+
 }
