@@ -12,8 +12,8 @@ public class BuffDebufSpell extends Spell implements PropertyChangeListener {
     private Creature creature;
 
 //    @Builder
-    public BuffDebufSpell (String aName, String aDescription, int aCost, int aTier, int aManaCost, SpellInfo.Type aType, String aDuration) {
-        super(aName,aDescription,aCost,aTier,aManaCost,aType,aDuration);
+    public BuffDebufSpell (String aName, String aDescription, int aCost, int aLevel, int aManaCost, SpellInfo.Type aType, String aDuration) {
+        super(aName,aDescription,aCost,aLevel,aManaCost,aType,aDuration);
     }
 
     @Override
