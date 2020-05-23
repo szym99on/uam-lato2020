@@ -2,7 +2,9 @@ package pl.psi.game.spellbook;
 
 import lombok.Builder;
 import pl.psi.game.fractions.Creature;
-
+//PW Spell should be abstract and make new class DamageSpell instead of.
+//Make abstract method cast here, so your child like Buff or Damage will have to implement this and you can use POLIMORPHISM then.
+//cast point against creature will be better (easier to implement integration with board and make some splash damage)
 public class Spell {
 
     protected final String name;
