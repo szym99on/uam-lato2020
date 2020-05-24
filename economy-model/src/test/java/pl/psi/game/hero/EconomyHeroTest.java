@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pl.psi.game.fractions.CreatureInfo;
+import pl.psi.game.fractions.FractionsInfoAbstractFactory;
 import pl.psi.game.fractions.NecropolisInfoFactory;
 import pl.psi.game.hero.artifacts.ArtifactInfo;
 import pl.psi.game.hero.artifacts.ArtifactsInfoFactory;
@@ -24,143 +25,144 @@ class EconomyHeroTest {
 
     @BeforeAll
     static void initializeFactories(){
-        //PW ill explain why you have to do that in meeting
         new SpellBookInfoFactory();
+        new ArtifactsInfoFactory();
+        new FractionsInfoAbstractFactory();
     }
 
 
-//   @Test
-//   //TODO: you should has CreatureInfo not Creature and map, not list (CreatureInfo + amount) or some wrapper list (wrapper means another object with int amount and CreatureInfo creature)
-//   // HashMap should be default choice. Also there are factories for specific races. Maciek
-//   void buyCreatureShouldTakeMoney (){
-//      CreatureInfo creature = NecropolisInfoFactory.getCreature(NecropolisInfoFactory.SKELETON);
-//      Map<CreatureInfo, Integer> creatureMap = Map.of(creature, creature.getCost());
-//      EconomyHero hero = EconomyHero.builder().creature(creature).build();
-//      int creatureCost = creatureMap.get(creature);
-//      int currentMoney = 1000;
-//      hero.buyCreature(creature);
-//      assertEquals(hero.getGold(), 950);
-//   }
+   @Test
+   void buyCreatureShouldTakeGoldAndAddCreature () throws Exception {
+        FractionsInfoAbstractFactory necropolisFactory =  FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS);
+      CreatureInfo creature = necropolisFactory.getCreature(NecropolisInfoFactory.SKELETON_WARRIOR);
+      EconomyHero hero = EconomyHero.builder().aGold(1000).build();
+
+      hero.buyCreature(creature);
+
+      assertEquals(hero.getGold(), 930);
+      assertTrue(hero.getCreatures().contains(creature));
+      assertEquals(hero.getCreatures().size(), 1);
+   }
+
+
+
+
     @Test
-    void addGoldShouldAddGold() {
+    void increaseGoldShouldAddGold() {
         EconomyHero hero = EconomyHero.builder().aGold(2000).build();
         int howMuch = 50;
-        hero.addGold(howMuch);
+
+        hero.increaseGold(howMuch);
+
         assertEquals(hero.getGold(), 2050);
     }
-//
-//    @Test
-////    single creature is sufficient for test. Maciek
-//    void sellCreatureShouldReturn75PercentOfOriginalPrice() {
-//        NecropolisInfoFactory necropolisInfoFactory = new NecropolisInfoFactory();
-//        CreatureInfo creature = necropolisInfoFactory.getCreature("Skeleton");
-//        EconomyHero hero = EconomyHero.builder().gold(2000).creature(creature).build();
-//        //(cost of Skeleton is 60)
-//        hero.sellCreature(creature);
-//        //TODO as above use concrete values not calculating in assertions
-//        assertEquals(hero.getGold(), 2045);
-//
-//    }
-//
-//    @Test
-//    //you don't need creatures to test selling of artifacts. Could specify artifact name. Maciek
-//    void sellArtifactShouldReturn75PercentOfOriginalPrice() {
-//        EconomyHero hero = EconomyHero.builder().gold(3000).build();
-//        ArtifactInfo artifact = ArtifactsInfoFactory.getArtifact("Helm of the Alabaster Unicorn");
-//        int artifactCost = 200;
-//        hero.sellArtifact(artifact);
-//        assertEquals(hero.getGold(), 3150);
-//
-//    }
 
-//    //converted spell to spellinfo. Maciek.
-//    @Test
-//    void sellSpellShouldReturn75PercentOfOriginalPrice() {
-//        EconomyHero hero = EconomyHero.builder().gold(3000).build();
-//        SpellInfo spell = SpellBookInfoFactory.getSpell("Magic arrow");
-//        int spellCost = 800;
-//        hero.sellSpell(spell);
-//        assertEquals(hero.getGold(), 3600);
-//    }
-//
- @Test
- //PW it's corrected test from bellow.
-    //don't need a list of spells. Changed methods. Maciek
-    void successBuySpell() {
-        EconomyHero hero = EconomyHero.builder().aGold(3000).build();
-        SpellInfo spell = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.MAGIC_ARROW);
-        hero.buySpell(spell);
-        //TODO: condition was totally wrong!
-       assertEquals(3000-spell.getCost(), hero.getGold());
-       //TODO: why you increased size by 1? o.0
-       assertEquals(hero.getSpells().size(), 1);
+    @Test
+    void decreaseGoldShouldRemoveGold(){
+        EconomyHero hero = EconomyHero.builder().aGold(2000).build();
+        int howMuch = 50;
+
+        hero.decreaseGold(howMuch);
+
+        assertEquals(hero.getGold(),1950);
+    }
+
+    @Test
+    void sellSkeletonWarriorShouldReturn75PercentOfOriginalPrice() throws Exception {
+        FractionsInfoAbstractFactory necropolisFactory =  FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS);
+        CreatureInfo creature = necropolisFactory.getCreature(NecropolisInfoFactory.SKELETON_WARRIOR);
+        EconomyHero hero = EconomyHero.builder().aGold(2000).build();
+        hero.addCreature(creature);
+
+        hero.sellCreature(creature);
+
+        assertEquals(hero.getGold(), 2052);
+        assertFalse(hero.getCreatures().contains(creature));
+        assertEquals(hero.getCreatures().size(), 0);
+    }
+
+    @Test
+    void sellDreadKnightShouldReturn75PercentOfOriginalPrice() throws Exception {
+        FractionsInfoAbstractFactory necropolisFactory =  FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS);
+        CreatureInfo creature = necropolisFactory.getCreature(NecropolisInfoFactory.DREAD_KNIGHT);
+        EconomyHero hero = EconomyHero.builder().aGold(2000).build();
+        hero.addCreature(creature);
+
+        hero.sellCreature(creature);
+
+        assertEquals(hero.getGold(), 3125);
+        assertFalse(hero.getCreatures().contains(creature));
+        assertEquals(hero.getCreatures().size(), 0);
 
     }
-// @Test
-//    //don't need a list of spells. Changed methods. Maciek
-//    void successBuySpell() {
-//        EconomyHero hero = EconomyHero.builder().gold(3000).build();
-//        SpellInfo spell = SpellBookInfoFactory.getSpell("MAGIC_ARROW");
-//        hero.buySpell(spell);
-//       assertEquals(hero.getGold()-spell.getCost(), 9);
-//       assertEquals(hero.getSpells().size() + 1, 1);
-//    }
 
-    //PW you shouldn't have artifacts in builder but method like equip where you throw exception when slot is already use
-@Test
-@Disabled
-    void buyArtifactShouldNotAddArtifactIfLocationNotEmpty(){
-
-        ArtifactInfo artifactHelmet = ArtifactsInfoFactory.getArtifact("Collar of Conjuring");
+    @Test
+    void sellArtifactShouldReturn75PercentOfOriginalPriceAndRemoveArtifact() throws Exception {
+        ArtifactInfo artifact = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.HELM_OF_THE_ALABASTER_UNICORN);
         EconomyHero hero = EconomyHero.builder().aGold(2000).build();
-        hero.buyArtifact(artifactHelmet);
-
-        //hero state before adding artifact
-        List<ArtifactInfo> artifactsBefore = hero.getArtifacts();
-        int moneyBefore = hero.getGold();
-        List<ArtifactInfo.Location> artifactsLocationsBefore = hero.getArtifactsLocations();
-
-        //create artifact to add
-        ArtifactInfo artifactToAdd = ArtifactsInfoFactory.getArtifact("Collar of Conjuring");
-        hero.buyArtifact(artifactToAdd);
+        hero.addArtifact(artifact);
 
 
-        assertEquals(moneyBefore, hero.getGold() );
-        assertEquals(artifactsBefore.size(), hero.getArtifacts().size());
-        assertEquals(hero.getArtifact("Collar of Conjuring"), artifactToAdd);
+        hero.sellArtifact(artifact);
+
+
+        assertEquals(hero.getGold(), 2750);
+        assertFalse(hero.getArtifacts().contains(artifact));
+        assertEquals(hero.getArtifacts().size(), 0);
+
+    }
+
+    @Test
+    void sellSpellShouldReturn75PercentOfOriginalPriceAndRemoveSpell() throws Exception {
+        SpellInfo spell = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.MAGIC_ARROW);
+        EconomyHero hero = EconomyHero.builder().aGold(2000).build();
+        hero.addSpell(spell);
+
+        hero.sellSpell(spell);
+
+        assertEquals(hero.getGold(), 2075);
+        assertFalse(hero.getSpells().contains(spell));
+        assertEquals(hero.getSpells().size(),0);
+    }
+
+    @Test
+    void buySpellShouldTakeGoldAndAddSpell() {
+        SpellInfo spell = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.MAGIC_ARROW);
+        EconomyHero hero = EconomyHero.builder().aGold(3000).build();
+
+        hero.buySpell(spell);
+
+        assertEquals(hero.getGold(), 2900);
+        assertTrue(hero.getSpells().contains(spell));
+        assertEquals(hero.getSpells().size(), 1);
+
+    }
+
+
+@Test
+    void buyArtifactShouldNotAddArtifactIfSlotAlreadyTaken() throws Exception {
+
+        assertThrows(Exception.class, () -> {
+            ArtifactInfo artifact = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.CAPE_OF_CONJURING);
+            EconomyHero hero = EconomyHero.builder().aGold(2000).build();
+
+            hero.buyArtifact(artifact);
+            hero.buyArtifact(artifact);
+        });
 }
     @Test
-    @Disabled
-    void  buyArtifactShouldAddArtifactIfLocationEmpty(){
-        //if I don't instantiate factory cant access artifacts
-        ArtifactsInfoFactory factory = new ArtifactsInfoFactory();
-        ArtifactInfo artifactHelmet = factory.getArtifact("Collar of Conjuring");
+    void  buyArtifactShouldAddArtifactIfLocationEmpty() throws Exception {
+        ArtifactInfo artifact = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.COLLAR_OF_CONJURING);
         EconomyHero hero = EconomyHero.builder().aGold(2000).build();
-        hero.buyArtifact(artifactHelmet);
 
-        //hero state before adding artifact
-        List<ArtifactInfo> artifactsBefore = hero.getArtifacts();
-        int moneyBefore = hero.getGold();
-        List<ArtifactInfo.Location> artifactsLocationsBefore = hero.getArtifactsLocations();
+        hero.buyArtifact(artifact);
 
-        //create artifact to add
-        ArtifactInfo artifactToAdd = factory.getArtifact("Buckler of the Gnoll King");
-        hero.buyArtifact(artifactToAdd);
+        assertEquals(hero.getArtifact(artifact.getName()),artifact);
+        assertEquals(hero.getArtifacts().size(),1);
 
-        assertEquals(moneyBefore - artifactToAdd.getCost(),hero.getGold());
-        assertEquals(artifactsBefore.size()+1, hero.getArtifacts().size());
-        assertEquals(hero.getArtifact("Buckler of the Gnoll King"), artifactToAdd);
     }
 
-    //metody, które jeszcze trzeba przetestować:
 
-//    generateCreaturesAvailableToBuy() ---> Kacper
-
-//    generateSpellsAvailableToBuy() ---> Lukasz
-//    buyCharacterSpecialSkill() ---> Kacper
-//
-//    freezeShop() ---> Maciek
-//    generateShops() ---> Klaudia
 
 //PW
     //You have tons methods to test!

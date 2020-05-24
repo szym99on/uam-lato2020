@@ -28,7 +28,7 @@ public class SpellBookInfoFactory {
 
     private final static List<SpellInfo> spellList = new ArrayList<>();
     {
-        spellList.add(SpellInfo.builder().aCost(1).aDescription("Target, enemy troop receives ((Power x 10) + 10) damage.").aDuration("Instant").aManaCost(5).aName(MAGIC_ARROW).aTier(1).aType(SpellInfo.Type.AIR).build());
+        spellList.add(SpellInfo.builder().aCost(100).aDescription("Target, enemy troop receives ((Power x 10) + 10) damage.").aDuration("Instant").aManaCost(5).aName(MAGIC_ARROW).aTier(1).aType(SpellInfo.Type.AIR).build());
         spellList.add(SpellInfo.builder().aCost(1).aDescription("Target, enemy troop receives ((Power x 10) + 20) damage.").aDuration("Instant").aManaCost(5).aName(MAGIC_ARROW).aTier(2).aType(SpellInfo.Type.AIR).build());
         spellList.add(SpellInfo.builder().aCost(1).aDescription("Target, enemy troop receives ((Power x 10) + 30) damage.").aDuration("Instant").aManaCost(5).aName(MAGIC_ARROW).aTier(3).aType(SpellInfo.Type.AIR).build());
         spellList.add(SpellInfo.builder().aCost(1).aDescription("Target, enemy creature receives ((Power x 25) + 10) damage.").aDuration("Instant").aManaCost(10).aName(LIGHTNING_BOLT).aTier(1).aType(SpellInfo.Type.AIR).build());

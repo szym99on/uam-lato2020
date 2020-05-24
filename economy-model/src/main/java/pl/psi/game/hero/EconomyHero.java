@@ -11,43 +11,56 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
+@Getter
 public class EconomyHero  {
 
-    //    creatures and artifacts should be supplied by other groups
-    @Singular private List<CreatureInfo> creatures = new ArrayList<>();
-    @Singular private List<ArtifactInfo> artifacts = new ArrayList<>();
-    @Singular private List<SpellInfo> spells;
+    private List<CreatureInfo> creatures;
+    private List<ArtifactInfo> artifacts;
+    private List<SpellInfo> spells;
     private int gold = 2000;
 
     @Builder
     EconomyHero(int aGold) {
         gold = aGold;
+        creatures = new ArrayList<>();
+        artifacts = new ArrayList<>();
         spells = new ArrayList<>();
     }
-    int getGold() {
-        return gold;
-    }
 
-    void addGold(int gold){
+
+    void increaseGold(int gold){
         this.gold += gold;
     }
 
-    private void decreaseGold(int gold){
+    void  decreaseGold(int gold){
         this.gold -= gold;
     }
     
-//    void buyCreature(CreatureInfo creature) {
-//        if(getGold() >= creature.getCost()) {
-//            this.decreaseGold(creature.getCost());
-//            this.creatures.add(creature);
-//
-//        }
-//
-//    }
+    void buyCreature(CreatureInfo creature) throws Exception {
+        if(this.getGold() >= creature.getCost()) {
 
-    //to implement
-    void sellCreature(CreatureInfo creature) {
+            this.decreaseGold(creature.getCost());
+            this.creatures.add(creature);
+
+        } else {
+            String output = String.format("Not enough gold to buy creature: %s", creature.getName());
+            throw new Exception(output);
+        }
+
+    }
+
+    void sellCreature(CreatureInfo creature) throws Exception {
+
+        if(!this.creatures.contains(creature)) {
+            String output = String.format("Hero doesn't have creature: %s", creature.getName());
+            throw new Exception(output);
+        }
+        int sellCreatureValue = (int) (creature.getCost() * 0.75);
+
+        this.increaseGold(sellCreatureValue);
+        this.creatures.remove(creature);
 
     }
 
@@ -55,21 +68,34 @@ public class EconomyHero  {
         return this.creatures;
     }
 
-    void buyArtifact(ArtifactInfo artifact) {
-//        if(this.isSlotEmpty(artifact.getLocation())){
-//            this.decreaseGold(artifact.getCost());
-//            this.artifacts.add(artifact);
-//        }
+    void buyArtifact(ArtifactInfo artifact) throws Exception {
+        if(this.isSlotEmpty(artifact.getLocation().toString())){
+            String output = String.format("Location: %s is taken.",artifact.getLocation().toString());
+            throw new Exception(output);
+        }
+        if(this.getGold() >= artifact.getCost()) {
+            this.decreaseGold(artifact.getCost());
+            this.artifacts.add(artifact);
+        } else {
+            String output = String.format("Not enough gold to buy %s", artifact.getName());
+            throw new Exception(output);
+        }
+
     }
 
-    //to implement
-    void sellArtifact(ArtifactInfo artifact) {
-
+    void sellArtifact(ArtifactInfo artifact) throws Exception {
+        if(!this.artifacts.contains(artifact)) {
+            String output = String.format("Hero doesn't have artifact: %s", artifact.getName());
+            throw new Exception(output);
+        }
+        int sellArtifactValue = (int) (artifact.getCost() * 0.75);
+        this.increaseGold(sellArtifactValue);
+        this.artifacts.remove(artifact);
     }
 
-    //Don't know why it always return false
+
     boolean isSlotEmpty(String location) {
-        return !this.artifacts.stream().anyMatch(artifact -> artifact.getLocation().equals(location));
+        return this.artifacts.stream().anyMatch(artifact -> artifact.getLocation().toString().equals(location));
     }
 
     List<ArtifactInfo> getArtifacts() {
@@ -87,8 +113,14 @@ public class EconomyHero  {
         }
     }
 
-    public void sellSpell(SpellInfo spell) {
-
+    public void sellSpell(SpellInfo spell) throws Exception {
+        if(!this.spells.contains(spell)) {
+            String output = String.format("Hero doesn't have spell: %s", spell.getName());
+            throw new Exception(output);
+        }
+        int sellSpellValue = (int) (spell.getCost() * 0.75);
+        this.increaseGold(sellSpellValue);
+        this.spells.remove(spell);
     }
 
     List<SpellInfo> getSpells() {
@@ -98,6 +130,18 @@ public class EconomyHero  {
     //request to artifact group for getter to artifact location
     List<ArtifactInfo.Location> getArtifactsLocations() {
         return this.artifacts.stream().map(ArtifactInfo::getLocation).collect(Collectors.toList());
+    }
+
+    void addCreature(CreatureInfo creature) {
+        this.creatures.add(creature);
+    }
+
+    void addArtifact(ArtifactInfo artifact) {
+        this.artifacts.add(artifact);
+    }
+
+    void addSpell(SpellInfo spell) {
+        this.spells.add(spell);
     }
 
 }
