@@ -28,7 +28,7 @@ public class MainBattleController {
     private final Hero hero2;
     private final GameEngine gameEngine;
 
-    public MainBattleController(EconomyHero h1, EconomyHero h2) {
+    public MainBattleController() {
         // should come form economy
         ArrayList<Creature> creatureList1 = new ArrayList<>();
         creatureList1.add(Creature.builder().aName("C1").aAttack(Range.closed(1, 10)).aMoveRange(1).aArmor(1).aMaxHp(10).build());
