@@ -21,10 +21,25 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ArtifactTest {
+
+    //PW - you shouldn't be interested how converter will works.
+    //try something like this:
+    @Test
+    @Disabled
+    void artifactShouldIncreaseKnowledgeBy2PointsPW(){
+        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact("Skull helmet");
+        Artifact skullHelmet = ArtifactFactory.createFromInfo(artifactInfo);
+        Hero battleHero = new Hero(new ArrayList<>()); // should have possibility to inject statistic like knowledge
+
+        skullHelmet.apply(battleHero);
+
+        assertEquals(7, battleHero.getKnowledge());
+    }
+
     @Test
     @Disabled
     void artifactShouldIncreaseKnowledgeBy2Points() {
-        //EconomyHero hero = EconomyHero.builder().aKnowledge(7).build();
+//        EconomyHero hero = EconomyHero.builder().aKnowledge(7).build();
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact("Skull helmet");
         //hero.equip(artifactInfo);
         HeroEcoBattleConverter converter = new HeroEcoBattleConverter();
@@ -48,7 +63,7 @@ public class ArtifactTest {
     @Test
     @Disabled
     void artifactShouldIncreaseCreatureMoveRangeBy2Points() {
-        EconomyHero hero = EconomyHero.builder().build();
+//        EconomyHero hero = EconomyHero.builder().build();
         Creature creature = Creature.builder().aMaxHp(100).aAttack(Range.closed(2, 2)).aArmor(0).aMoveRange(5).build();
 //        hero.addCreature(creature);
 
@@ -56,12 +71,12 @@ public class ArtifactTest {
         ArtifactFactory factory = new ArtifactFactory();
         Artifact artifact = factory.createArtifact(artifactInfo);
 
-        artifact.apply(hero);
+//        artifact.apply(hero);
 
         HeroEcoBattleConverter converter = new HeroEcoBattleConverter();
-        Hero battleHero = converter.convertEconomyHeroToBattleHero(hero);
+//        Hero battleHero = converter.convertEconomyHeroToBattleHero(hero);
 
-        assertEquals(7, battleHero.getCreatures().get(0).getMoveRange());
+//        assertEquals(7, battleHero.getCreatures().get(0).getMoveRange());
     }
 
     @Test

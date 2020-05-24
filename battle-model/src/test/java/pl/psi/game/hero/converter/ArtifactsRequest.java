@@ -21,9 +21,9 @@ public class ArtifactsRequest {
     @Test
     void shouldIncreaseAttack(){
 //        Hero hero = hero.builder().aAttack(1).build();
-
+//
 //        hero.increaseAttack(5);
-
+//
 //        assertEquals(6, hero.getAttack());
     }
 

@@ -1,6 +1,5 @@
 package pl.psi.game.skills;
 
-import pl.psi.game.fractions.Creature;
 import pl.psi.game.hero.converter.Hero;
 
 public class Skill {
@@ -13,8 +12,8 @@ public class Skill {
 
     public void addSkill(Hero hero) {};
 
-    public void cast(Creature creature) {};
+    public void cast(Hero hero) {};
 
-    public void unlockSpellsThirdLvl(Hero hero) {};
+
 
 }

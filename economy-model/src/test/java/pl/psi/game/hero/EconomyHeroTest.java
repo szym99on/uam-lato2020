@@ -1,116 +1,181 @@
 package pl.psi.game.hero;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import pl.psi.game.fractions.CreatureInfo;
 import pl.psi.game.hero.artifacts.ArtifactInfo;
 import pl.psi.game.hero.artifacts.ArtifactsInfoFactory;
+import pl.psi.game.skills.SkillInfo;
+import pl.psi.game.skills.SkillInfoFactory;
 import pl.psi.game.spellbook.SpellBookInfoFactory;
+import pl.psi.game.spellbook.SpellInfo;
 
+import java.util.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class EconomyHeroTest {
 
+    @BeforeAll
+    static void initializeFactories(){
+        //PW ill explain why you have to do that in meeting
+        new SpellBookInfoFactory();
+    }
 
-//    @Test
-//    //TODO: you should has CreatureInfo not Creature and map, not list (CreatureInfo + amount) or some wrapper list (wrapper means another object with int amount and CreatureInfo creature)
-//    void buyCreature(){
-//        List<Creature> creatures = new ArrayList<Creature>();
-//        Hero hero = EconomyHero.builder().creatures(creatures).build();
-//        Creature creature = CreatureInfoFactory.getCreature(CreatureInfoFactory.CREATURE_NAME);
-//        int creatureCost = creature.getCost();
-//        int currentGold = hero.getGold();
-//        hero.buyCreature(creature);
-//        assertEquals(hero.getGold(), currentGold - creatureCost);
-//    }
-//
-//
-//
-//
-//    @Test
-//    void addGoldShouldAddGold() {
-//        List<Creature> creatures = new ArrayList<Creature>();
-//        Hero hero = EconomyHero.builder().creatures(creatures).build();
-//        int howMuch = 50;
-//        int moneyBefore = hero.getGold();
-//        hero.addGold(howMuch);
-//        //TODO 2050 will be better than moneyBefore + howMuch
-//        assertEquals(hero.getGold(), moneyBefore + howMuch);
-//    }
+
+//   @Test
+//   //TODO: you should has CreatureInfo not Creature and map, not list (CreatureInfo + amount) or some wrapper list (wrapper means another object with int amount and CreatureInfo creature)
+//   // HashMap should be default choice. Also there are factories for specific races. Maciek
+//   void buyCreatureShouldTakeMoney (){
+//      CreatureInfo creature = NecropolisInfoFactory.getCreature(NecropolisInfoFactory.SKELETON);
+//      Map<CreatureInfo, Integer> creatureMap = Map.of(creature, creature.getCost());
+//      EconomyHero hero = EconomyHero.builder().creature(creature).build();
+//      int creatureCost = creatureMap.get(creature);
+//      int currentMoney = 1000;
+//      hero.buyCreature(creature);
+//      assertEquals(hero.getGold(), 950);
+//   }
+    @Test
+    void addGoldShouldAddGold() {
+        EconomyHero hero = EconomyHero.builder().aGold(2000).build();
+        int howMuch = 50;
+        hero.addGold(howMuch);
+        assertEquals(hero.getGold(), 2050);
+    }
 //
 //    @Test
+////    single creature is sufficient for test. Maciek
 //    void sellCreatureShouldReturn75PercentOfOriginalPrice() {
-//        List<Creature> creatures = new ArrayList<Creature>();
-//        Creature creature = CreatureInfoFactory.getCreature(CratureInfoFactory.SKELETON);
-//        creatures.add(creature);
-//        Hero hero = EconomyHero.builder().creatures(creatures).build();
-//        int moneyBefore = hero.getGold();
-//        int costOfCreature = creature.getCost();
+//        NecropolisInfoFactory necropolisInfoFactory = new NecropolisInfoFactory();
+//        CreatureInfo creature = necropolisInfoFactory.getCreature("Skeleton");
+//        EconomyHero hero = EconomyHero.builder().gold(2000).creature(creature).build();
+//        //(cost of Skeleton is 60)
 //        hero.sellCreature(creature);
 //        //TODO as above use concrete values not calculating in assertions
-//        assertEquals(hero.getGold(), moneyBefore + (0.75 * costOfCreature));
+//        assertEquals(hero.getGold(), 2045);
 //
 //    }
 //
 //    @Test
+//    //you don't need creatures to test selling of artifacts. Could specify artifact name. Maciek
 //    void sellArtifactShouldReturn75PercentOfOriginalPrice() {
-//        List<Creature> creatures = new ArrayList<Creature>();
-//        Hero hero = EconomyHero.builder().creatures(creatures).build();
-//        Artifact artifact = ArtifactsInfoFactoryFactory.getArtifact(ArtifactsInfoFactory.ARTIFACT_NAME);
-//        int moneyBefore = hero.getGold();
+//        EconomyHero hero = EconomyHero.builder().gold(3000).build();
+//        ArtifactInfo artifact = ArtifactsInfoFactory.getArtifact("Helm of the Alabaster Unicorn");
+//        int artifactCost = 200;
 //        hero.sellArtifact(artifact);
-//        assertEquals(hero.getGold(), moneyBefore + 0.75 * artifact.getCost());
+//        assertEquals(hero.getGold(), 3150);
 //
 //    }
-//
+
+//    //converted spell to spellinfo. Maciek.
 //    @Test
 //    void sellSpellShouldReturn75PercentOfOriginalPrice() {
-//        List<Creature> creatures = new ArrayList<Creature>();
-//        Hero hero = EconomyHero.builder().creatures(creatures).build();
-//        Spell spell = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.SPELL_NAME);
-//        int moneyBefore = hero.getGold();
+//        EconomyHero hero = EconomyHero.builder().gold(3000).build();
+//        SpellInfo spell = SpellBookInfoFactory.getSpell("Magic arrow");
+//        int spellCost = 800;
 //        hero.sellSpell(spell);
-//        assertEquals(hero.getGold(), moneyBefore + 0.75 * spell.getCost());
+//        assertEquals(hero.getGold(), 3600);
 //    }
 //
-//    @Test
-//    //TODO spellInfo not spell
+ @Test
+ //PW it's corrected test from bellow.
+    //don't need a list of spells. Changed methods. Maciek
+    void successBuySpell() {
+        EconomyHero hero = EconomyHero.builder().aGold(3000).build();
+        SpellInfo spell = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.MAGIC_ARROW);
+        hero.buySpell(spell);
+        //TODO: condition was totally wrong!
+       assertEquals(3000-spell.getCost(), hero.getGold());
+       //TODO: why you increased size by 1? o.0
+       assertEquals(hero.getSpells().size(), 1);
+
+    }
+// @Test
+//    //don't need a list of spells. Changed methods. Maciek
 //    void successBuySpell() {
-//        List<Creature> creatures = new ArrayList<Creature>();
-//        Hero hero = EconomyHero.builder().creatures(creatures).build();
-//        Spell spell = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.SPELL_NAME);
-//        int moneyBefore = hero.getGold();
+//        EconomyHero hero = EconomyHero.builder().gold(3000).build();
+//        SpellInfo spell = SpellBookInfoFactory.getSpell("MAGIC_ARROW");
 //        hero.buySpell(spell);
-//        //TODO as above
-//        assertEquals(hero.getGold(), moneyBefore - spell.getCost());
-//        //TODO ?! why you test creature list after buy spell? o.0
-//        assertEquals(hero.getCreatures().size() + 1, hero.getCreatures().size());
-//
+//       assertEquals(hero.getGold()-spell.getCost(), 9);
+//       assertEquals(hero.getSpells().size() + 1, 1);
 //    }
-//
+
+    //PW you shouldn't have artifacts in builder but method like equip where you throw exception when slot is already use
+@Test
+@Disabled
+    void buyArtifactShouldNotAddArtifactIfLocationNotEmpty(){
+
+        ArtifactInfo artifactHelmet = ArtifactsInfoFactory.getArtifact("Collar of Conjuring");
+        EconomyHero hero = EconomyHero.builder().aGold(2000).build();
+        hero.buyArtifact(artifactHelmet);
+
+        //hero state before adding artifact
+        List<ArtifactInfo> artifactsBefore = hero.getArtifacts();
+        int moneyBefore = hero.getGold();
+        List<ArtifactInfo.Location> artifactsLocationsBefore = hero.getArtifactsLocations();
+
+        //create artifact to add
+        ArtifactInfo artifactToAdd = ArtifactsInfoFactory.getArtifact("Collar of Conjuring");
+        hero.buyArtifact(artifactToAdd);
+
+
+        assertEquals(moneyBefore, hero.getGold() );
+        assertEquals(artifactsBefore.size(), hero.getArtifacts().size());
+        assertEquals(hero.getArtifact("Collar of Conjuring"), artifactToAdd);
+}
     @Test
-    //TODO test is not too good... you check only that you have some artifact but nothing else. If you buy artifact you should check what if slot is already used etc.
-    //TODO corrected by PW
     @Disabled
-    void successBuyArtifact(){
-//        EconomyHero hero = EconomyHero.builder().build();
-//        List<ArtifactInfo> artifactsBefore = hero.getArtifacts();
-//        int moneyBefore = hero.getGold();
-//        ArtifactInfo artifact = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.HELM_OF_THE_ALABASTER_UNICORN);
-//        hero.buyArtifact(artifact);
-//        assertEquals(hero.getGold(), moneyBefore - artifact.getCost());
-//        assertEquals(artifactsBefore.size()+1, hero.getArtifacts().size());
+    void  buyArtifactShouldAddArtifactIfLocationEmpty(){
+        //if I don't instantiate factory cant access artifacts
+        ArtifactsInfoFactory factory = new ArtifactsInfoFactory();
+        ArtifactInfo artifactHelmet = factory.getArtifact("Collar of Conjuring");
+        EconomyHero hero = EconomyHero.builder().aGold(2000).build();
+        hero.buyArtifact(artifactHelmet);
+
+        //hero state before adding artifact
+        List<ArtifactInfo> artifactsBefore = hero.getArtifacts();
+        int moneyBefore = hero.getGold();
+        List<ArtifactInfo.Location> artifactsLocationsBefore = hero.getArtifactsLocations();
+
+        //create artifact to add
+        ArtifactInfo artifactToAdd = factory.getArtifact("Buckler of the Gnoll King");
+        hero.buyArtifact(artifactToAdd);
+
+        assertEquals(moneyBefore - artifactToAdd.getCost(),hero.getGold());
+        assertEquals(artifactsBefore.size()+1, hero.getArtifacts().size());
+        assertEquals(hero.getArtifact("Buckler of the Gnoll King"), artifactToAdd);
     }
 
     //metody, które jeszcze trzeba przetestować:
-    //
-//    generateCreaturesAvailableToBuy()
-//    generateSpellsAvailableToBuy()
-//    buyCharacterSpecialSkill()
-//    freezeShop()
-//    generateShops()
 
+//    generateCreaturesAvailableToBuy() ---> Kacper
 
+//    generateSpellsAvailableToBuy() ---> Lukasz
+//    buyCharacterSpecialSkill() ---> Kacper
+//
+//    freezeShop() ---> Maciek
+//    generateShops() ---> Klaudia
+
+//PW
+    //You have tons methods to test!
+    //First of all create more than one test class like HeroEconomyGoldManagementTest, HeroEconomyArtifactInteractionTest, HeroEconomySpellIntegrationTest etc.
+    // in this class make list of method e.g.
+    // gold management:
+    // add gold to hero
+    // buy some item (correcting counting gold) -> what if stay 0, what if stay -1
+    // sell some item and check gold state
+    // artifacts:
+    // buy some artifact (don't count gold you will have it in another test).
+    // check if exists in correct location
+    // buy 2 artifact to the same location - throw exception like IllegalStateException
+    // buy, sell, and buy to the same location and all should looks fine
+    // buy, sell and check that location is empty
+
+    // I cannot read these tests with pleasure. You have horrible mess here. Please don't use comment too much. You can make empty implementation and user @Disable annotate.
 }

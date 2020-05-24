@@ -48,7 +48,6 @@ public class ArtifactsInfoFactory {
     public final static String GUARDIANS_BOOTS = "Guardian’s Boots";
     public final static String MAGISTERS_SANDALS = "Magister’s Sandals";
 
-
     private final static List<ArtifactInfo> artifactList = new ArrayList<>();
     {
         artifactList.add(ArtifactInfo.builder().aCost(1000).aDescription("+1 knowledge").aName(HELM_OF_THE_ALABASTER_UNICORN).aLocation(ArtifactInfo.Location.HEAD).build());

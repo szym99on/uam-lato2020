@@ -21,5 +21,6 @@ public class DamageSpellsTest {
         spell.cast(creature);
         assertEquals(0, creature.getCurrentHp());
         //DMG przechodzący na pozostałe jednostki w przypadku stackowania ?
+        //PW tak
     }
 }

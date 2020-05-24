@@ -3,10 +3,7 @@ package pl.psi.game.converter;
 import com.google.common.collect.Range;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import pl.psi.game.fractions.Creature;
-import pl.psi.game.fractions.CreatureAbstractFactory;
-import pl.psi.game.fractions.FractionsInfoAbstractFactory;
-import pl.psi.game.fractions.NecropolisCreatureFactory;
+import pl.psi.game.fractions.*;
 import pl.psi.game.hero.EconomyHero;
 import pl.psi.game.hero.artifacts.ArtifactInfo;
 import pl.psi.game.hero.artifacts.ArtifactsInfoFactory;
@@ -155,9 +152,9 @@ public class ConverterTest {
     @Test
     @Disabled
     //TODO: Why should have 10 mana? o.0
+    //ManaPoints = Knowledge*10
     void heroShouldHave10ManaPoints() {
-        //EconomyFactory economyfactory = new EconomyFactory();
-        //economyHero = economyfactory.createHero();
+        //EconomyHero economyHero = EconomyHero.builder().aKnowledge(1).build();
         HeroEcoBattleConverter heroEcoBattleConverter = new HeroEcoBattleConverter();
         //Hero hero = heroEcoBattleConverter.convertEconomyHeroToBattleHero(economyHero);
 
@@ -167,13 +164,12 @@ public class ConverterTest {
     @Test
     @Disabled
     //TODO: Why should increase hp?
+    ////CreatureHP += HeroDefense
     void heroShouldIncreaseCreatureMaxHpTo8() {
-        FractionsInfoAbstractFactory fractionsInfoAbstractFactory = new FractionsInfoAbstractFactory();
-        //CreatureInfo creatureInfo = fractionsInfoAbstractFactory.getByType(FractionsInfo.Type.NECROPOLIS).createCreature(1);
+        //CreatureInfo creatureInfo = CreatureInfo.builder().aMaxHp(6).build();
         //List<CreatureInfo> ecoCreatureList = new ArrayList<>();
         //ecoCreatureList.add(creatureInfo);
-        //EconomyFactory economyfactory = new EconomyFactory();
-        //economyHero = economyfactory.createHero();
+        //EconomyHero economyHero = EconomyHero.builder().aAttack(2).build();
         Integer creatureCount = 1;
         //economyHero.addCreatureInfo(creatureInfo,creatureCount);
         HeroEcoBattleConverter heroEcoBattleConverter = new HeroEcoBattleConverter();
@@ -187,13 +183,12 @@ public class ConverterTest {
     @Test
     @Disabled
     //TODO: as above? why??
+        // CreatureAttack += HeroAttack
     void heroShouldIncreaseCreatureAttackTo35() {
-        FractionsInfoAbstractFactory fractionsInfoAbstractFactory = new FractionsInfoAbstractFactory();
-        //CreatureInfo creatureInfo = fractionsInfoAbstractFactory.getByType(FractionsInfo.Type.NECROPOLIS).createCreature(1);
+        //CreatureInfo creatureInfo = CreatureInfo.builder().aAttack(Range.closed(1,3)).build();
         //List<CreatureInfo> ecoCreatureList = new ArrayList<>();
         //ecoCreatureList.add(creatureInfo);
-        //EconomyFactory economyfactory = new EconomyFactory();
-        //economyHero = economyfactory.createHero();
+        //EconomyHero economyHero = EconomyHero.builder().aAttack(2).build();
         Integer creatureCount = 1;
         //economyHero.addCreatureInfo(creatureInfo,creatureCount);
         HeroEcoBattleConverter heroEcoBattleConverter = new HeroEcoBattleConverter();
@@ -204,4 +199,5 @@ public class ConverterTest {
         //assertEquals(5, creature.getAttack().upperEndpoint());
         //assertEquals(3, creature.getAttack().lowerEndpoint());
     }
+
 }
