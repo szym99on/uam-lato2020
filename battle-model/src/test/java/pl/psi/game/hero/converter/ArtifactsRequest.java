@@ -25,32 +25,23 @@ public class ArtifactsRequest {
         hero.increaseAttack(5);
         assertEquals(5, hero.getAttack());
     }
-
     @Test
     void shouldIncreaseDefence(){
         Hero hero = Hero.builder().build();
         hero.increaseDefence(5);
         assertEquals(5, hero.getDefence());
     }
-
-    @Disabled
     @Test
     void shouldIncreaseSpellPower(){
-//        Hero hero = hero.builder().aSpellPower(1).build();
-
-//        hero.increaseSpellPower(5);
-
-//        assertEquals(6, hero.getSpellPower());
+        Hero hero = Hero.builder().build();
+        hero.increasePower(5);
+        assertEquals(5, hero.getPower());
     }
-
-    @Disabled
     @Test
     void shouldIncreaseKnowledge(){
-//        Hero hero = Hero.builder().aKnowledge(1).build();
-
-//        hero.increaseKnowledge(5);
-
-//        assertEquals(6, hero.getKnowledge());
+        Hero hero = Hero.builder().build();
+        hero.increaseKnowledge(5);
+        assertEquals(5, hero.getKnowledge());
     }
 
     EconomyHero prepareEconomyHeroWithKnowledgeCreaturesAndSpellsToConvert(){
