@@ -3,26 +3,24 @@ package pl.psi.game.fractions;
 import com.google.common.collect.Range;
 import lombok.Builder;
 import lombok.Getter;
+import pl.psi.game.AbstractItemInfo;
 
 @Getter
-public class CreatureInfo {
+public class CreatureInfo extends AbstractItemInfo {
     private final int maxHp;
     private final Range<Integer> attack;
     private final int armor;
-    private final String name;
-    private int currentHp;
-    private boolean canCounterAttacked;
     private final int moveRange;
+    private final int cost;
 
     @Builder
-    public CreatureInfo(int aMaxHp, Range<Integer> aAttack, int aArmor, String aName, int aMoveRange) {
+    public CreatureInfo(int aMaxHp, Range<Integer> aAttack, int aArmor, String aName, int aMoveRange, String aDescription, int aCost) {
+        super(aName, aDescription, aCost);
         maxHp = aMaxHp;
         attack = aAttack;
-        currentHp = maxHp;
         armor = aArmor;
-        canCounterAttacked = true;
-        name = aName;
         moveRange = aMoveRange;
+        cost = aCost;
     }
 
 }

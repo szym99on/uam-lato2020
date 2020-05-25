@@ -1,12 +1,16 @@
 package pl.psi.game.hero;
 
 import org.junit.jupiter.api.Test;
+import pl.psi.game.fractions.FractionsInfoAbstractFactory;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class HeroInfoTest {
+
+    //PW is static method so you don't have to do instance of HeroInfoFactory
     @Test
     void CheckGetAllMetode()
     {

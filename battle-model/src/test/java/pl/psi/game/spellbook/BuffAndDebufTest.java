@@ -17,7 +17,7 @@ public class BuffAndDebufTest {
     @Disabled
     void shouldIncreasedCreatureMoveRange() {
         Creature creature = Creature.builder().aMoveRange(3).build();
-
+        //PW USE STATIC NOT PURE STRING!!!!!!!!
         SpellInfo spellInfo = SpellBookInfoFactory.getSpell("Haste");
         SpellFactory factory = new SpellFactory();
         Spell spell = factory.createSpell(spellInfo);
@@ -29,7 +29,7 @@ public class BuffAndDebufTest {
 
     @Test
     @Disabled
-    void shouldDecreaseDamageFromRangedAttacks(){
+        void shouldDecreaseDamageFromRangedAttacks(){
         Creature defender1 = Creature.builder().aArmor(0).aMaxHp(10).build();
         Creature defender2 = Creature.builder().aArmor(0).aMaxHp(10).build();
         Creature attacker1 = ShootingCreature.builder().aAttack(Range.closed(8,8)).aMaxHp(NOT_IMPORTANT_HP).build();
@@ -148,4 +148,7 @@ public class BuffAndDebufTest {
         assertEquals(10,creature.getArmor());
         assertEquals(10,creature.getMoveRange());
     }
+
+    //PW looks really nice, you get testing idea correctly :).
+    // You should test each spell :)
 }
