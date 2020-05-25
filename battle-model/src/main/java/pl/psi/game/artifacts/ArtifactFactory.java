@@ -134,7 +134,7 @@ public class ArtifactFactory {
         else if (artifactInfo.equals(MAGISTERS_SANDALS)){
             return new HeroStatisticBuffArtifact(0,0,2,0);
         }
-        else 
+        else
             return null;
     }
 }
