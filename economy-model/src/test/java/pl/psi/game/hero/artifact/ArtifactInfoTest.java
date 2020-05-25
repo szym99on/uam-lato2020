@@ -8,7 +8,7 @@ import pl.psi.game.hero.artifacts.ArtifactsInfoFactory;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static pl.psi.game.hero.artifacts.ArtifactInfo.Location.*;
 import static pl.psi.game.hero.artifacts.ArtifactsInfoFactory.*;
 
@@ -92,5 +92,28 @@ public class ArtifactInfoTest {
             assertEquals(artifactList.get(i).getName(), artifactInfoList.get(i).getName());
         }
     }
-    
+
+    @Test
+    void shouldFindAppropriateArtifactsByLocation(){
+        assertTrue(getByLocation(HEAD).stream().allMatch(s -> s.getLocation() == HEAD));
+        assertTrue(getByLocation(NECK).stream().allMatch(s -> s.getLocation() == NECK));
+        assertTrue(getByLocation(TORSO).stream().allMatch(s -> s.getLocation() == TORSO));
+        assertTrue(getByLocation(SHOULDERS).stream().allMatch(s -> s.getLocation() == SHOULDERS));
+        assertTrue(getByLocation(RIGHT_HAND).stream().allMatch(s -> s.getLocation() == RIGHT_HAND));
+        assertTrue(getByLocation(LEFT_HAND).stream().allMatch(s -> s.getLocation() == LEFT_HAND));
+        assertTrue(getByLocation(FEET).stream().allMatch(s -> s.getLocation() == FEET));
+        assertTrue(getByLocation(FINGERS).stream().allMatch(s -> s.getLocation() == FINGERS));
+
+
+        assertFalse(getByLocation(HEAD).stream().allMatch(s -> s.getLocation() == NECK));
+        assertFalse(getByLocation(NECK).stream().allMatch(s -> s.getLocation() == TORSO));
+        assertFalse(getByLocation(TORSO).stream().allMatch(s -> s.getLocation() == SHOULDERS));
+        assertFalse(getByLocation(SHOULDERS).stream().allMatch(s -> s.getLocation() == RIGHT_HAND));
+        assertFalse(getByLocation(RIGHT_HAND).stream().allMatch(s -> s.getLocation() == FINGERS));
+        assertFalse(getByLocation(LEFT_HAND).stream().allMatch(s -> s.getLocation() == FEET));
+        assertFalse(getByLocation(FEET).stream().allMatch(s -> s.getLocation() == NECK));
+        assertFalse(getByLocation(FINGERS).stream().allMatch(s -> s.getLocation() == SHOULDERS));
+
+    }
+
 }
