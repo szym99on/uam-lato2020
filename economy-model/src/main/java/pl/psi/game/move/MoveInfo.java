@@ -4,7 +4,9 @@ import lombok.Builder;
 
 public class MoveInfo {
 
-    private final boolean canFly;
+
+    private final boolean onlyFly;
+    private final String type;
 
     public enum AirMagic{
         BASIC,
@@ -19,7 +21,8 @@ public class MoveInfo {
     }
 
     @Builder
-    public MoveInfo(boolean aCanFly){
-        canFly = aCanFly;
+    public MoveInfo(boolean aOnlyFly,String aType){
+        onlyFly = aOnlyFly;
+        type = aType;
     }
 }
