@@ -18,7 +18,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ArtifactsRequest {
-    
+
     @Test
     void shouldIncreaseAttack(){
         Hero hero = Hero.builder().build();//(0,0,0,0) brak konwersji z economy
@@ -26,14 +26,11 @@ public class ArtifactsRequest {
         assertEquals(5, hero.getAttack());
     }
 
-    @Disabled
     @Test
     void shouldIncreaseDefence(){
-//        Hero hero = hero.builder().aDefence(1).build();
-
-//        hero.increaseDefence(5);
-
-//        assertEquals(6, hero.getDefence());
+        Hero hero = Hero.builder().build();
+        hero.increaseDefence(5);
+        assertEquals(5, hero.getDefence());
     }
 
     @Disabled

@@ -14,7 +14,7 @@ public class Hero {
     //private List<Spell> spells;
     //private int manaPoints;
     private int attack;
-    private int defense;
+    private int defence;
     private int power;
     private int knowledge;
 
@@ -26,7 +26,7 @@ public class Hero {
         //spells = aSpells;
         //manaPoints = aManaPoints;
         attack = 0;
-        defense = 0;
+        defence = 0;
         power = 0;
         knowledge = 0;
     }
@@ -51,12 +51,12 @@ public class Hero {
             attack += aAmount;
         }
     }
-    public void increaseDefense(int aAmount) {
-        if (defense + aAmount < 0){
-            defense = 0;
+    public void increaseDefence(int aAmount) {
+        if (defence + aAmount < 0){
+            defence = 0;
         }
         else{
-            defense += aAmount;
+            defence += aAmount;
         }
     }
     public void increasePower(int aAmount) {
@@ -79,8 +79,8 @@ public class Hero {
     public Integer getAttack() {
         return attack;
     }
-    public Integer getDefense() {
-        return defense;
+    public Integer getDefence() {
+        return defence;
     }
     public Integer getPower() {
         return power;
