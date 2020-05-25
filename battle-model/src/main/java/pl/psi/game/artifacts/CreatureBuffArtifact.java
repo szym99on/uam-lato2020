@@ -1,13 +1,17 @@
 package pl.psi.game.artifacts;
 
-import pl.psi.game.hero.artifacts.ArtifactInfo;
 import pl.psi.game.hero.converter.Hero;
 
-public class CreatureBuffArtifact extends Artifact {
-    public CreatureBuffArtifact(String aName, ArtifactInfo.Location aLocation) {
-        super(aName, aLocation);
-    }
+class CreatureBuffArtifact extends Artifact {
+    private final int speed;
+    private final int magicResistance;
+    private final int health;
 
+    CreatureBuffArtifact(int aSpeed, int aMagicResistance, int aHealth){
+        speed = aSpeed;
+        magicResistance = aMagicResistance;
+        health = aHealth;
+    }
     @Override
     public void apply(Hero aHero) {
 
