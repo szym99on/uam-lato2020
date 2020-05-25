@@ -2,7 +2,11 @@ package pl.psi.game.hero.artifact;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import pl.psi.game.hero.artifacts.ArtifactInfo;
 import pl.psi.game.hero.artifacts.ArtifactsInfoFactory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static pl.psi.game.hero.artifacts.ArtifactInfo.Location.*;
@@ -13,7 +17,49 @@ public class ArtifactInfoTest {
     static void initializeFactories(){
         new ArtifactsInfoFactory();
     }
-
+    private final static List<ArtifactInfo> artifactList = new ArrayList<>();
+    {
+        artifactList.add(ArtifactInfo.builder().aCost(1000).aDescription("+1 knowledge").aName(HELM_OF_THE_ALABASTER_UNICORN).aLocation(ArtifactInfo.Location.HEAD).build());
+        artifactList.add(ArtifactInfo.builder().aCost(3000).aDescription("+2 knowledge").aName(SKULL_HELMET).aLocation(ArtifactInfo.Location.HEAD).build());
+        artifactList.add(ArtifactInfo.builder().aCost(4000).aDescription("+3 knowledge").aName(HELM_OF_CHAOS).aLocation(ArtifactInfo.Location.HEAD).build());
+        artifactList.add(ArtifactInfo.builder().aCost(5000).aDescription("+4 knowledge").aName(CROWN_OF_THE_SUPREME_MAGI).aLocation(ArtifactInfo.Location.HEAD).build());
+        artifactList.add(ArtifactInfo.builder().aCost(6000).aDescription("+5 knowledge").aName(HELLSTORM_HELMET).aLocation(ArtifactInfo.Location.HEAD).build());
+        artifactList.add(ArtifactInfo.builder().aCost(6000).aDescription("+3 spell power, +3 knowledge").aName(NECKLACE_OF_DRAGONTEETH).aLocation(ArtifactInfo.Location.NECK).build());
+        artifactList.add(ArtifactInfo.builder().aCost(12000).aDescription("+3 to all 4 primary skills").aName(CELESTIAL_NECKLACE_OF_BLISS).aLocation(ArtifactInfo.Location.NECK).build());
+        artifactList.add(ArtifactInfo.builder().aCost(500).aDescription("+1 spells duration").aName(COLLAR_OF_CONJURING).aLocation(ArtifactInfo.Location.NECK).build());
+        artifactList.add(ArtifactInfo.builder().aCost(1000).aDescription("Renders your units immune to the berserk spell (4 level in the School of fire magic)").aName(PENDANT_OF_DISPASSION).aLocation(ArtifactInfo.Location.NECK).build());
+        artifactList.add(ArtifactInfo.builder().aCost(2500).aDescription("Renders your units immune to the death ripple spell (2nd level spell in the School of Earth Magic)\n").aName(PENDANT_OF_LIFE).aLocation(ArtifactInfo.Location.NECK).build());
+        artifactList.add(ArtifactInfo.builder().aCost(1000).aDescription("+1 spell power").aName(BREASTPLATE_OF_PETRIFIED_WOOD).aLocation(ArtifactInfo.Location.TORSO).build());
+        artifactList.add(ArtifactInfo.builder().aCost(3000).aDescription("+2 spell power").aName(RIB_CAGE).aLocation(ArtifactInfo.Location.TORSO).build());
+        artifactList.add(ArtifactInfo.builder().aCost(8000).aDescription("+4 to attack, +4 defence ").aName(DRAGON_SCALE_ARMOR).aLocation(ArtifactInfo.Location.TORSO).build());
+        artifactList.add(ArtifactInfo.builder().aCost(4000).aDescription("+1 to all 4 primary skills").aName(ARMOR_OF_WONDER).aLocation(ArtifactInfo.Location.TORSO).build());
+        artifactList.add(ArtifactInfo.builder().aCost(10000).aDescription("+10 spell power, -2 knowledge").aName(TITANS_CUIRAS).aLocation(ArtifactInfo.Location.TORSO).build());
+        artifactList.add(ArtifactInfo.builder().aCost(1500).aDescription("+3 spells duration").aName(CAPE_OF_CONJURING).aLocation(ArtifactInfo.Location.SHOULDERS).build());
+        artifactList.add(ArtifactInfo.builder().aCost(4000).aDescription("+2 spell power, +2 knowledge ").aName(DRAGON_WING_TABARD).aLocation(ArtifactInfo.Location.SHOULDERS).build());
+        artifactList.add(ArtifactInfo.builder().aCost(4000).aDescription("+10% to magic resistance").aName(SURCOAT_OF_COUNTERPOISE).aLocation(ArtifactInfo.Location.SHOULDERS).build());
+        artifactList.add(ArtifactInfo.builder().aCost(8000).aDescription("Prevents casting spells of level 3 and higher in combat").aName(RECANTERS_CLOAK).aLocation(ArtifactInfo.Location.SHOULDERS).build());
+        artifactList.add(ArtifactInfo.builder().aCost(10000).aDescription("+2 units speed").aName(CAPE_OF_VELOCITY).aLocation(ArtifactInfo.Location.SHOULDERS).build());
+        artifactList.add(ArtifactInfo.builder().aCost(2000).aDescription("+2 attack skill").aName(CENTAURS_AX).aLocation(ArtifactInfo.Location.RIGHT_HAND).build());
+        artifactList.add(ArtifactInfo.builder().aCost(3000).aDescription("+3 attack skill").aName(BLACKSHARD_OF_THE_DEAD_KNIGHT).aLocation(ArtifactInfo.Location.RIGHT_HAND).build());
+        artifactList.add(ArtifactInfo.builder().aCost(4000).aDescription("+4 attack skill").aName(GREATER_GNOLLS_FLAIL).aLocation(ArtifactInfo.Location.RIGHT_HAND).build());
+        artifactList.add(ArtifactInfo.builder().aCost(5000).aDescription("+5 attack skill").aName(OGRES_CLUB_OF_HAVOC).aLocation(ArtifactInfo.Location.RIGHT_HAND).build());
+        artifactList.add(ArtifactInfo.builder().aCost(10000).aDescription("+12 attack skill, -3 defence skill").aName(TITANS_GLADIUS).aLocation(ArtifactInfo.Location.RIGHT_HAND).build());
+        artifactList.add(ArtifactInfo.builder().aCost(2000).aDescription("+2 defence skill").aName(SHIELD_OF_THE_DWARVEN_LORDS).aLocation(ArtifactInfo.Location.LEFT_HAND).build());
+        artifactList.add(ArtifactInfo.builder().aCost(3000).aDescription("+3 defence skill").aName(SHIELD_OF_THE_YAWNING_DEAD).aLocation(ArtifactInfo.Location.LEFT_HAND).build());
+        artifactList.add(ArtifactInfo.builder().aCost(4000).aDescription("+4 defence skill").aName(BUCKLER_OF_THE_GNOLL_KING).aLocation(ArtifactInfo.Location.LEFT_HAND).build());
+        artifactList.add(ArtifactInfo.builder().aCost(5000).aDescription("+5 defence skill").aName(TARG_OF_THE_RAMPAGING_OGRE).aLocation(ArtifactInfo.Location.LEFT_HAND).build());
+        artifactList.add(ArtifactInfo.builder().aCost(10000).aDescription("+12 defence skill, -3 attack skill").aName(SENTINELS_SHIELD).aLocation(ArtifactInfo.Location.LEFT_HAND).build());
+        artifactList.add(ArtifactInfo.builder().aCost(5000).aDescription("+1 untis health").aName(RING_OF_VITALITY).aLocation(ArtifactInfo.Location.FINGERS).build());
+        artifactList.add(ArtifactInfo.builder().aCost(7000).aDescription("+2 untis health").aName(RING_OF_LIFE).aLocation(ArtifactInfo.Location.FINGERS).build());
+        artifactList.add(ArtifactInfo.builder().aCost(1000).aDescription("+2 spells duration").aName(RING_OF_CONJURING).aLocation(ArtifactInfo.Location.FINGERS).build());
+        artifactList.add(ArtifactInfo.builder().aCost(5000).aDescription("+1 units speed").aName(RING_OF_THE_WAYFARER).aLocation(ArtifactInfo.Location.FINGERS).build());
+        artifactList.add(ArtifactInfo.builder().aCost(2000).aDescription("+1 to attack, +1 defence").aName(QUIET_EYE_OF_THE_DRAGON).aLocation(ArtifactInfo.Location.FINGERS).build());
+        artifactList.add(ArtifactInfo.builder().aCost(8000).aDescription("+2 to all 4 primary skills").aName(SANDALS_OF_THE_SAINT).aLocation(ArtifactInfo.Location.FEET).build());
+        artifactList.add(ArtifactInfo.builder().aCost(2000).aDescription("+1 spell power,+1 knowledge").aName(DRAGONBONE_GREAVES).aLocation(ArtifactInfo.Location.FEET).build());
+        artifactList.add(ArtifactInfo.builder().aCost(6000).aDescription("+15% to magic resistance").aName(BOOTS_OF_POLARITY).aLocation(ArtifactInfo.Location.FEET).build());
+        artifactList.add(ArtifactInfo.builder().aCost(3000).aDescription("+3 defence skill").aName(GUARDIANS_BOOTS).aLocation(ArtifactInfo.Location.FEET).build());
+        artifactList.add(ArtifactInfo.builder().aCost(3000).aDescription("+2 spell power").aName(MAGISTERS_SANDALS).aLocation(ArtifactInfo.Location.FEET).build());
+    }
     @Test
     void shouldFindAppropriateArtifactByName(){
         assertEquals(HELM_OF_THE_ALABASTER_UNICORN,getArtifact(HELM_OF_THE_ALABASTER_UNICORN).getName());
@@ -36,4 +82,15 @@ public class ArtifactInfoTest {
         assertEquals(3000,getArtifact(GUARDIANS_BOOTS).getCost());
         assertEquals(FEET, getArtifact(GUARDIANS_BOOTS).getLocation());
     }
+
+    @Test
+    void shoulReturnListOfAllArtifacts(){
+        List<ArtifactInfo> artifactInfoList = getAll();
+
+        assertEquals(40, artifactInfoList.size());
+        for(int i = 0; i < 40; i++ ){
+            assertEquals(artifactList.get(i).getName(), artifactInfoList.get(i).getName());
+        }
+    }
+    
 }
