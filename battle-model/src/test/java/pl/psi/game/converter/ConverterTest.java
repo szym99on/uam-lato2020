@@ -32,24 +32,6 @@ public class ConverterTest {
     }
     @Test
     @Disabled
-            //fake
-    //TODO: check assertThrow method.
-    void ConvertEconomyHeroToBattleHero()
-    {
-        try{
-            InitializeEconomyHero();
-            Hero hero = Hero.builder().build();
-            hero = HeroEcoBattleConverter.convert(economyHero);
-            assertTrue(false);
-        }
-        catch (Exception e)
-        {
-            assertTrue(true);
-        }
-    }
-    @Test
-    @Disabled
-    //TODO: Looks fine, but you should check stacking creatures here too. creatureCount e.g. 10
     void ConvertOneEconomyCreatureToBattleCreature()
     {
         InitializeEconomyHero();
