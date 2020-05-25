@@ -1,7 +1,9 @@
 package pl.psi.game.hero;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import pl.psi.game.fractions.FractionsInfoAbstractFactory;
+import pl.psi.game.spellbook.SpellBookInfoFactory;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -10,7 +12,11 @@ import java.util.List;
 
 public class HeroInfoTest {
 
-    //PW is static method so you don't have to do instance of HeroInfoFactory
+    @BeforeAll
+    static void initializeHeroInfoFactory(){
+        new HeroInfoFactory();
+    }
+
     @Test
     void CheckGetAllMetode()
     {
