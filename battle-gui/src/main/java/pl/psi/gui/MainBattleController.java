@@ -58,8 +58,8 @@ public class MainBattleController {
         creatureList2.add(Creature.builder().aName("C2_3").aAttack(Range.closed(3, 10)).aMoveRange(3).aArmor(3).aMaxHp(30).build());
         creatureList2.add(Creature.builder().aName("C2_4").aAttack(Range.closed(4, 10)).aMoveRange(14).aArmor(4).aMaxHp(40).build());*/
 //---------------------------------------------
-        hero1 = new Hero(necropolisCreatures);
-        hero2 = new Hero(strongholdCreatures);
+        hero1 = Hero.builder().aCreatures(necropolisCreatures).build();
+        hero2 = Hero.builder().aCreatures(strongholdCreatures).build();
         // should come form economy END
 
         gameEngine = new GameEngine(hero1, hero2);
