@@ -33,8 +33,11 @@ public class HeroEcoBattleConverter {
         CreatureAbstractFactory creatureFactory = new CreatureAbstractFactory();
         List<Creature> covertedCreatures = aEconomyHero.getCreatures().stream().map(creatureFactory::getCreature).collect(Collectors.toList());
 
-
         Hero hero = Hero.builder().aCreatures(covertedCreatures).build();
+        //hero.increaseAttack(aEconomyHero.getAttack());
+        //hero.increaseDefence(aEconomyHero.getDefence());
+        //hero.increasePower(aEconomyHero.getPower());
+        //hero.increaseKnowledge(aEconomyHero.getKnowledge());
         //aEconomyHero.getArtifacts().forEach(a -> a.apply(heroEco));
         return hero;
     }
