@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 public class HeroEcoBattleConverter {
 
-    public Hero convertEconomyHeroToBattleHero(EconomyHero aEconomyHero) {
+    public static Hero convert(EconomyHero aEconomyHero) {
         //build hero using ecohero
         //
         //apply skills

@@ -3,6 +3,7 @@ package pl.psi.game.hero.converter;
 import lombok.Builder;
 import pl.psi.game.fractions.Creature;
 import pl.psi.game.skills.Skill;
+import pl.psi.game.spellbook.Spell;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,20 +12,20 @@ public class Hero {
 
     private List<Creature> creatures;
     private Skill skill;
-    //private List<Spell> spells;
-    //private int manaPoints;
+    private List<Spell> spells;
+    private int mana;
     private int attack;
     private int defence;
     private int power;
     private int knowledge;
 
     @Builder
-    public Hero(List<Creature> aCreatures,Skill aSkill /*,List<Spell> aSpells, int aManaPoints, int aAttack, int aDefense, int aPower, int aKnowledge*/) {
+    public Hero(List<Creature> aCreatures,Skill aSkill,List<Spell> aSpells) {
 
         creatures = aCreatures;
         skill = aSkill;
-        //spells = aSpells;
-        //manaPoints = aManaPoints;
+        spells = aSpells;
+        mana = 0;
         attack = 0;
         defence = 0;
         power = 0;
@@ -34,14 +35,9 @@ public class Hero {
     public List<Creature> getCreatures() {
         return new ArrayList<>(creatures);
     }
-    /*public List<Spell> getSpells() {
+    public List<Spell> getSpells() {
         return new ArrayList<>(spells);
-    }*/
-
-//    public Integer getManaPoints() {
-//        return manaPoints;
-//    }
-
+    }
 
     public void increaseAttack(int aAmount) {
         if (attack + aAmount < 0){
@@ -87,5 +83,8 @@ public class Hero {
     }
     public Integer getKnowledge() {
         return knowledge;
+    }
+    public Integer getMana() {
+        return mana;
     }
 }
