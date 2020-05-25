@@ -1,22 +1,15 @@
 package pl.psi.game.hero.artifacts;
 
-import com.google.common.base.Converter;
 import com.google.common.collect.Range;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pl.psi.game.artifacts.Artifact;
 import pl.psi.game.artifacts.ArtifactFactory;
-import pl.psi.game.artifacts.ArtifactForSpells;
 import pl.psi.game.fractions.Creature;
-import pl.psi.game.hero.EconomyHero;
 import pl.psi.game.hero.converter.Hero;
 import pl.psi.game.hero.converter.HeroEcoBattleConverter;
-import pl.psi.game.spellbook.Spell;
-import pl.psi.game.spellbook.SpellBook;
-import pl.psi.game.spellbook.SpellBookInfoFactory;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 

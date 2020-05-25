@@ -4,10 +4,10 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pl.psi.game.hero.artifacts.ArtifactInfo;
 import pl.psi.game.hero.artifacts.ArtifactsInfoFactory;
+import pl.psi.game.hero.economyHero.EconomyHero;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static pl.psi.game.hero.artifacts.ArtifactInfo.Location.HEAD;
 
 public class ArtifactRequest {
 

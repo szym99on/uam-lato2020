@@ -3,12 +3,10 @@ package pl.psi.game.hero.converter;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pl.psi.game.fractions.Creature;
-import pl.psi.game.hero.EconomyHero;
+import pl.psi.game.hero.economyHero.EconomyHero;
 import pl.psi.game.hero.artifacts.ArtifactInfo;
 import pl.psi.game.hero.artifacts.ArtifactsInfoFactory;
 import pl.psi.game.spellbook.Spell;
-import pl.psi.game.spellbook.SpellBookInfoFactory;
-import pl.psi.game.spellbook.SpellInfo;
 
 import java.util.ArrayList;
 import java.util.List;

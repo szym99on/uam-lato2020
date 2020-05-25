@@ -1,4 +1,4 @@
-package pl.psi.game.hero;
+package pl.psi.game.hero.economyHero;
 
 import lombok.Builder;
 import lombok.Getter;
