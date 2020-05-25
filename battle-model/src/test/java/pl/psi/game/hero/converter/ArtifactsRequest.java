@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pl.psi.game.fractions.Creature;
 import pl.psi.game.hero.EconomyHero;
+import pl.psi.game.hero.HeroInfo;
+import pl.psi.game.hero.HeroInfoFactory;
 import pl.psi.game.hero.artifacts.ArtifactInfo;
 import pl.psi.game.hero.artifacts.ArtifactsInfoFactory;
 import pl.psi.game.spellbook.Spell;
@@ -16,15 +18,12 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ArtifactsRequest {
-
-    @Disabled
+    
     @Test
     void shouldIncreaseAttack(){
-//        Hero hero = hero.builder().aAttack(1).build();
-//
-//        hero.increaseAttack(5);
-//
-//        assertEquals(6, hero.getAttack());
+        Hero hero = Hero.builder().build();//(0,0,0,0) brak konwersji z economy
+        hero.increaseAttack(5);
+        assertEquals(5, hero.getAttack());
     }
 
     @Disabled
@@ -116,7 +115,7 @@ public class ArtifactsRequest {
         creatures.add(c1);
         creatures.add(c2);
 
-        Hero hero = new Hero(creatures);
+        Hero hero = Hero.builder().aCreatures(creatures).build();
 
         List<Creature> expected = new ArrayList<>();
         expected.add(c1);

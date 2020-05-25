@@ -2,6 +2,7 @@ package pl.psi.game.hero.converter;
 
 import lombok.Builder;
 import pl.psi.game.fractions.Creature;
+import pl.psi.game.skills.Skill;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
 public class Hero {
 
     private List<Creature> creatures;
+    private Skill skill;
     //private List<Spell> spells;
     //private int manaPoints;
     private int attack;
@@ -17,9 +19,10 @@ public class Hero {
     private int knowledge;
 
     @Builder
-    public Hero(List<Creature> aCreatures /*,List<Spell> aSpells, int aManaPoints, int aAttack, int aDefense, int aPower, int aKnowledge*/) {
+    public Hero(List<Creature> aCreatures,Skill aSkill /*,List<Spell> aSpells, int aManaPoints, int aAttack, int aDefense, int aPower, int aKnowledge*/) {
 
         creatures = aCreatures;
+        skill = aSkill;
         //spells = aSpells;
         //manaPoints = aManaPoints;
         attack = 0;

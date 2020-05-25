@@ -11,7 +11,7 @@ public class ConverterRequest {
         new HeroInfoFactory();
     }
     /*@Test
-    void CreateEconomyHero()
+    void CreateEconomyHeroFromHeroInfo()
     {
         HeroInfo heroInfo = HeroInfoFactory.getHeroInfoByName(HeroInfoFactory.EDRIC);
         EconomyHero economyHero = EconomyHero.builder().aHeroInfo(heroInfo).build();
