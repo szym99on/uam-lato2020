@@ -116,4 +116,47 @@ public class ArtifactInfoTest {
 
     }
 
+    @Test
+    void shouldFindAppropriateArtifactsByCost(){
+        assertEquals(1, getByCost(500).size());
+        assertTrue(getByCost(500).stream().allMatch(s -> s.getCost() == 500));
+
+        assertEquals(4, getByCost(1000).size());
+        assertTrue(getByCost(1000).stream().allMatch(s -> s.getCost() == 1000));
+
+        assertEquals(1, getByCost(1500).size());
+        assertTrue(getByCost(1500).stream().allMatch(s -> s.getCost() == 1500));
+
+        assertEquals(4, getByCost(2000).size());
+        assertTrue(getByCost(2000).stream().allMatch(s -> s.getCost() == 2000));
+
+        assertEquals(1, getByCost(2500).size());
+        assertTrue(getByCost(2500).stream().allMatch(s -> s.getCost() == 2500));
+
+        assertEquals(6, getByCost(3000).size());
+        assertTrue(getByCost(3000).stream().allMatch(s -> s.getCost() == 3000));
+
+        assertEquals(6, getByCost(4000).size());
+        assertTrue(getByCost(4000).stream().allMatch(s -> s.getCost() == 4000));
+
+        assertEquals(5, getByCost(5000).size());
+        assertTrue(getByCost(5000).stream().allMatch(s -> s.getCost() == 5000));
+
+        assertEquals(3, getByCost(6000).size());
+        assertTrue(getByCost(6000).stream().allMatch(s -> s.getCost() == 6000));
+
+        assertEquals(1, getByCost(7000).size());
+        assertTrue(getByCost(7000).stream().allMatch(s -> s.getCost() == 7000));
+
+        assertEquals(3, getByCost(8000).size());
+        assertTrue(getByCost(8000).stream().allMatch(s -> s.getCost() == 8000));
+
+        assertEquals(4, getByCost(10000).size());
+        assertTrue(getByCost(10000).stream().allMatch(s -> s.getCost() == 10000));
+
+        assertEquals(1, getByCost(12000).size());
+        assertTrue(getByCost(12000).stream().allMatch(s -> s.getCost() == 12000));
+
+    }
+
 }
