@@ -1,4 +1,10 @@
 package pl.psi.game.artifacts;
 
-class SpellPreventCastingArtifact {
+import pl.psi.game.spellbook.Spell;
+
+class SpellPreventCastingArtifact extends SpellBuffArtifact{
+    @Override
+    void buffSpell(Spell s) {
+
+    }
 }

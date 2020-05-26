@@ -10,9 +10,7 @@ abstract class SpellBuffArtifact extends Artifact{
     }
 
 
-    void buffSpell(Spell s) {
-
-    }
+    abstract void buffSpell(Spell s);
 
     @Override
     public int getAttack() { return 0; }

@@ -1,4 +1,10 @@
 package pl.psi.game.artifacts;
 
-class CreatureImmunityArtifact {
+import pl.psi.game.fractions.Creature;
+
+class CreatureImmunityArtifact extends CreatureBuffArtifact {
+    @Override
+    void buffCreature(Creature c) {
+
+    }
 }
