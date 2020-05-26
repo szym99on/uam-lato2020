@@ -12,6 +12,7 @@ abstract class SpellBuffArtifact extends Artifact{
 
     abstract void buffSpell(Spell s);
 
+    //For tests
     @Override
     public int getAttack() { return 0; }
 
