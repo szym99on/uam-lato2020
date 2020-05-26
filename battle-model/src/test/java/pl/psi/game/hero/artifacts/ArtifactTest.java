@@ -28,6 +28,9 @@ public class ArtifactTest {
         Artifact skullHelmet = ArtifactFactory.createArtifact(artifactInfo);
 
         assertEquals(0, skullHelmet.getAttack());
+        assertEquals(0, skullHelmet.getDefence());
+        assertEquals(2, skullHelmet.getKnowledge());
+        assertEquals(0, skullHelmet.getPower());
     }
 
 
