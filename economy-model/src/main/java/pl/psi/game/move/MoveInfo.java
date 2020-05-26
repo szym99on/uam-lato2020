@@ -1,17 +1,19 @@
 package pl.psi.game.move;
 
-import lombok.Builder;
-
 public class MoveInfo {
 
     
-    private final String groundType;
-    private final boolean diagonalMove;
+    private String groundType;
+    private int moveCost;
+    private double diagonalMoveCost;
 
-
-    @Builder
-    public MoveInfo(boolean aDiagonalMove,String aGroundType){
-        diagonalMove = aDiagonalMove;
+    public MoveInfo(
+            String aGroundType,
+            int aMoveCost
+            ){
+        moveCost = aMoveCost;
         groundType = aGroundType;
+        diagonalMoveCost = moveCost * 1.41;
     }
+
 }

@@ -28,8 +28,7 @@ public class MoveEngine implements PropertyChangeListener {
     }
 
     public void move(int x, int y) {
-
-       /*
+        /*
         if(activeCreature.getValue().canFly()) {
             moveStrategyIf = new MoveStrategyFly(board);
         } else {
@@ -38,7 +37,7 @@ public class MoveEngine implements PropertyChangeListener {
         moveStrategyIf.move(x,y);
     */
     }
-    
+
 /*    public void wait(){
     // ta metoda będzie pomijała ruch danej kreatury, przenosząc ją na koniec kolejki.
    // Każda kreatura może wykonać tę metodę raz na turę
