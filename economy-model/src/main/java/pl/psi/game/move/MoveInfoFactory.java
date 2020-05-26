@@ -36,6 +36,10 @@ public class MoveInfoFactory {
         }
     };
 
+    public ArrayList<MoveInfo> getMoveList() {
+        return moveList;
+    }
+
     private ArrayList<MoveInfo> moveList = new ArrayList<>();
     {
         for (Object[] floor : floors

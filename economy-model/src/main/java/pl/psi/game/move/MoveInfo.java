@@ -5,7 +5,19 @@ public class MoveInfo {
     
     private String groundType;
     private int moveCost;
-    private double diagonalMoveCost;
+    private int diagonalMoveCost;
+
+    public String getGroundType() {
+        return groundType;
+    }
+
+    public int getMoveCost() {
+        return moveCost;
+    }
+
+    public int getDiagonalMoveCost() {
+        return diagonalMoveCost;
+    }
 
     public MoveInfo(
             String aGroundType,
@@ -13,7 +25,7 @@ public class MoveInfo {
             ){
         moveCost = aMoveCost;
         groundType = aGroundType;
-        diagonalMoveCost = moveCost * 1.41;
+        diagonalMoveCost = (int)(moveCost * 1.41);
     }
 
 }
