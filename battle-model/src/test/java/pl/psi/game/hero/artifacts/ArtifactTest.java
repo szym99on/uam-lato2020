@@ -33,31 +33,21 @@ public class ArtifactTest {
         assertEquals(0, skullHelmet.getPower());
     }
 
-
-    //PW - you shouldn't be interested how converter will works.
-    //try something like this:
     @Test
-    @Disabled
-    void artifactShouldIncreaseKnowledgeBy2PointsPW(){
-        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact("Skull helmet");
+    void artifactShouldIncreaseKnowledgeBy2Points(){
+        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(SKULL_HELMET);
         Artifact skullHelmet = ArtifactFactory.createArtifact(artifactInfo);
-        Hero battleHero = Hero.builder().build();// should have possibility to inject statistic like knowledge
+        Hero battleHero = Hero.builder().build();// default hero stats = 0
 
-        skullHelmet.apply(battleHero);
+        try{skullHelmet.apply(battleHero);}
+        catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        assertEquals(7, battleHero.getKnowledge());
-    }
-
-    @Test
-    @Disabled
-    void artifactShouldIncreaseKnowledgeBy2Points() {
-//        EconomyHero hero = EconomyHero.builder().aKnowledge(7).build();
-        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact("Skull helmet");
-        //hero.equip(artifactInfo);
-        HeroEcoBattleConverter converter = new HeroEcoBattleConverter();
-       // Hero battleHero = converter.convertEconomyHeroToBattleHero(hero);
-
-        //assertEquals(90, battleHero.getMana());
+        assertEquals(2, battleHero.getKnowledge());
+        assertEquals(0, battleHero.getAttack());
+        assertEquals(0, battleHero.getDefence());
+        assertEquals(0, battleHero.getPower());
     }
 
     @Test
