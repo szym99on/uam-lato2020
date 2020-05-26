@@ -16,9 +16,6 @@ class SpellDurationArtifact extends SpellBuffArtifact {
     }
 
 
-    public int getAttack() {
-        return 0;
-    }
 }
 
 

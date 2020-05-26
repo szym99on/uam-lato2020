@@ -9,5 +9,20 @@ abstract class SpellBuffArtifact extends Artifact{
         aHero.getSpells().forEach(s -> buffSpell(s) );
     }
 
-    abstract void buffSpell(Spell s);
- }
+
+    void buffSpell(Spell s) {
+
+    }
+
+    @Override
+    public int getAttack() { return 0; }
+
+    @Override
+    public int getDefence() { return 0; }
+
+    @Override
+    public int getPower() { return 0; }
+
+    @Override
+    public int getKnowledge() { return 0; }
+}

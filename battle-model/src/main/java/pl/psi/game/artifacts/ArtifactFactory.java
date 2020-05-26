@@ -34,10 +34,10 @@ public class ArtifactFactory {
             return new SpellDurationArtifact(1);
         }
 //        else if (artifactInfo.getName().equals(PENDANT_OF_DISPASSION)){
-//            return new CreatureBuffArtifact(0, 0, 0);
+//            return new CreatureImmunityArtifact();
 //        }
 //        else if (artifactInfo.getName().equals(PENDANT_OF_LIFE)){
-//            return new CreatureBuffArtifact(0, 0, 0);
+//            return new CreatureImmunityArtifact();
 //        }
         else if (artifactInfo.getName().equals(BREASTPLATE_OF_PETRIFIED_WOOD)){
             return new HeroStatisticArtifact(0,0,1,0);
@@ -61,13 +61,13 @@ public class ArtifactFactory {
             return new HeroStatisticArtifact(0,0,2,2);
         }
         else if (artifactInfo.getName().equals(SURCOAT_OF_COUNTERPOISE)){
-            return new CreatureBuffArtifact(0,10,0);
+            return new CreatureMagicResistanceArtifact(10);
         }
 //        else if (artifactInfo.getName().equals(RECANTERS_CLOAK)){
-//            return new SpellDurationArtifact(0);
+//            return new SpellPreventCastingArtifact(0);
 //        }
         else if (artifactInfo.getName().equals(CAPE_OF_VELOCITY)){
-            return new CreatureBuffArtifact(2,0,0);
+            return new CreatureSpeedArtifact(2);
         }
         else if (artifactInfo.getName().equals(CENTAURS_AX)){
             return new HeroStatisticArtifact(2,0,0,0);
@@ -100,16 +100,16 @@ public class ArtifactFactory {
             return new HeroStatisticArtifact(-3,12,0,0);
         }
         else if (artifactInfo.getName().equals(RING_OF_VITALITY)){
-            return new CreatureBuffArtifact(0,0,1);
+            return new CreatureHealthArtifact(1);
         }
         else if (artifactInfo.getName().equals(RING_OF_LIFE)){
-            return new CreatureBuffArtifact(0,0,2);
+            return new CreatureHealthArtifact(2);
         }
         else if (artifactInfo.getName().equals(RING_OF_CONJURING)){
             return new SpellDurationArtifact(2);
         }
         else if (artifactInfo.equals(RING_OF_THE_WAYFARER)){
-            return new CreatureBuffArtifact(1,0,0);
+            return new CreatureSpeedArtifact(1);
         }
         else if (artifactInfo.getName().equals(QUIET_EYE_OF_THE_DRAGON)){
             return new HeroStatisticArtifact(1,1,0,0);
@@ -121,7 +121,7 @@ public class ArtifactFactory {
             return new HeroStatisticArtifact(0,0,1,1);
         }
         else if (artifactInfo.getName().equals(BOOTS_OF_POLARITY)){
-            return new CreatureBuffArtifact(0,15,0);
+            return new CreatureMagicResistanceArtifact(15);
         }
         else if (artifactInfo.getName().equals(GUARDIANS_BOOTS)){
             return new HeroStatisticArtifact(0,3,0,0);

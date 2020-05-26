@@ -28,4 +28,13 @@ class HeroStatisticArtifact extends Artifact {
     public int getAttack() {
         return attack;
     }
+
+    @Override
+    public int getDefence() { return defence; }
+
+    @Override
+    public int getPower() { return power; }
+
+    @Override
+    public int getKnowledge() { return knowledge; }
 }
