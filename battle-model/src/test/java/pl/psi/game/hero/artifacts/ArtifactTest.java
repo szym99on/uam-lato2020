@@ -13,8 +13,7 @@ import pl.psi.game.hero.converter.HeroEcoBattleConverter;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static pl.psi.game.hero.artifacts.ArtifactsInfoFactory.ARMOR_OF_WONDER;
-import static pl.psi.game.hero.artifacts.ArtifactsInfoFactory.SKULL_HELMET;
+import static pl.psi.game.hero.artifacts.ArtifactsInfoFactory.*;
 
 public class ArtifactTest {
     @BeforeAll
@@ -24,14 +23,24 @@ public class ArtifactTest {
     }
 
     @Test
-    void factoryShouldCreateArtifactBasedOnInfo() {
+    void factoryShouldCreateHeroStatisticArtifactBasedOnInfo() {
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(SKULL_HELMET);
         Artifact skullHelmet = ArtifactFactory.createArtifact(artifactInfo);
 
+        assert skullHelmet != null;
         assertEquals(0, skullHelmet.getAttack());
         assertEquals(0, skullHelmet.getDefence());
         assertEquals(2, skullHelmet.getKnowledge());
         assertEquals(0, skullHelmet.getPower());
+    }
+
+    @Test
+    void factoryShouldCreateSpellDurationArtifactBasedOnInfo() {
+        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(CAPE_OF_VELOCITY);
+        Artifact capeOfVelocity = ArtifactFactory.createArtifact(artifactInfo);
+
+        assert capeOfVelocity != null;
+        assertEquals(2, capeOfVelocity.getSpeed());
     }
 
     @Test
@@ -40,7 +49,9 @@ public class ArtifactTest {
         Artifact skullHelmet = ArtifactFactory.createArtifact(artifactInfo);
         Hero battleHero = Hero.builder().build();// default hero stats = 0
 
-        try{skullHelmet.apply(battleHero);}
+        try{
+            assert skullHelmet != null;
+            skullHelmet.apply(battleHero);}
         catch (Exception e) {
             e.printStackTrace();
         }
@@ -57,7 +68,9 @@ public class ArtifactTest {
         Artifact armorOfWonders = ArtifactFactory.createArtifact(artifactInfo);
         Hero battleHero = Hero.builder().build();// default hero stats = 0
 
-        try{armorOfWonders.apply(battleHero);}
+        try{
+            assert armorOfWonders != null;
+            armorOfWonders.apply(battleHero);}
         catch (Exception e) {
             e.printStackTrace();
         }

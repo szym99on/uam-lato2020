@@ -37,4 +37,7 @@ class HeroStatisticArtifact extends Artifact {
 
     @Override
     public int getKnowledge() { return knowledge; }
+
+    @Override
+    public int getSpeed() { return 0; }
 }

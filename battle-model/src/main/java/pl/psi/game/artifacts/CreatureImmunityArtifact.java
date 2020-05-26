@@ -7,4 +7,7 @@ class CreatureImmunityArtifact extends CreatureBuffArtifact {
     void buffCreature(Creature c) {
 
     }
+
+    @Override
+    public int getSpeed() { return 0; }
 }

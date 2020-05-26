@@ -24,4 +24,5 @@ abstract class CreatureBuffArtifact extends Artifact {
     @Override
     public int getKnowledge() { return 0; }
 
+
 }

@@ -13,4 +13,7 @@ class CreatureMagicResistanceArtifact extends CreatureBuffArtifact {
     void buffCreature(Creature c) {
 //        c.increaseMagicResistance(magicResistance);
     }
+
+    @Override
+    public int getSpeed() { return 0; }
 }

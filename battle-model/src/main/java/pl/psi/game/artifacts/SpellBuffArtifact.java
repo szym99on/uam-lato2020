@@ -23,4 +23,7 @@ abstract class SpellBuffArtifact extends Artifact{
 
     @Override
     public int getKnowledge() { return 0; }
+
+    @Override
+    public int getSpeed() { return 0; }
 }

@@ -15,7 +15,6 @@ class SpellDurationArtifact extends SpellBuffArtifact {
 //        s.increaseDuration(duration);
     }
 
-
 }
 
 

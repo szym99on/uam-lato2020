@@ -13,4 +13,7 @@ class CreatureHealthArtifact extends CreatureBuffArtifact{
     void buffCreature(Creature c) {
 //        c.increaseHP(c);
     }
+
+    @Override
+    public int getSpeed() { return 0; }
 }
