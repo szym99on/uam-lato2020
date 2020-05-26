@@ -18,6 +18,5 @@ class HeroStatisticArtifact extends Artifact {
 
     @Override
     public void apply(Hero aHero) {
-
     }
 }
