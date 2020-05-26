@@ -13,6 +13,7 @@ import pl.psi.game.hero.converter.HeroEcoBattleConverter;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static pl.psi.game.hero.artifacts.ArtifactsInfoFactory.ARMOR_OF_WONDER;
 import static pl.psi.game.hero.artifacts.ArtifactsInfoFactory.SKULL_HELMET;
 
 public class ArtifactTest {
@@ -48,6 +49,23 @@ public class ArtifactTest {
         assertEquals(0, battleHero.getAttack());
         assertEquals(0, battleHero.getDefence());
         assertEquals(0, battleHero.getPower());
+    }
+
+    @Test
+    void artifactShouldIncreaseAllStatsBy1Point(){
+        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(ARMOR_OF_WONDER);
+        Artifact armorOfWonders = ArtifactFactory.createArtifact(artifactInfo);
+        Hero battleHero = Hero.builder().build();// default hero stats = 0
+
+        try{armorOfWonders.apply(battleHero);}
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        assertEquals(1, battleHero.getKnowledge());
+        assertEquals(1, battleHero.getAttack());
+        assertEquals(1, battleHero.getDefence());
+        assertEquals(1, battleHero.getPower());
     }
 
     @Test
