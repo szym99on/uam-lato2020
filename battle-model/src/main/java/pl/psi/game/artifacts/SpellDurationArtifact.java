@@ -2,10 +2,10 @@ package pl.psi.game.artifacts;
 
 import pl.psi.game.hero.converter.Hero;
 
-class SpellBuffArtifact extends Artifact {
+class SpellDurationArtifact extends Artifact {
     private int duration;
 
-    SpellBuffArtifact(int aDuration){
+    SpellDurationArtifact(int aDuration){
         duration = aDuration;
     }
 
