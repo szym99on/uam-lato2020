@@ -22,7 +22,7 @@ public class ArtifactTest {
     void artifactShouldIncreaseKnowledgeBy2PointsPW(){
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact("Skull helmet");
         Artifact skullHelmet = ArtifactFactory.createFromInfo(artifactInfo);
-        Hero battleHero = new Hero(new ArrayList<>()); // should have possibility to inject statistic like knowledge
+        Hero battleHero = Hero.builder().build();// should have possibility to inject statistic like knowledge
 
         skullHelmet.apply(battleHero);
 
