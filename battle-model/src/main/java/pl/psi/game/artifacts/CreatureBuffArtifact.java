@@ -16,4 +16,9 @@ class CreatureBuffArtifact extends Artifact {
     public void apply(Hero aHero) {
 
     }
+
+    @Override
+    public int getAttack() {
+        return 0;
+    }
 }

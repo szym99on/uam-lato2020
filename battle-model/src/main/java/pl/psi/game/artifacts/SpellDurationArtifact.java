@@ -14,6 +14,11 @@ class SpellDurationArtifact extends SpellBuffArtifact {
     void buffSpell(Spell s) {
 //        s.increaseDuration(duration);
     }
+
+
+    public int getAttack() {
+        return 0;
+    }
 }
 
 

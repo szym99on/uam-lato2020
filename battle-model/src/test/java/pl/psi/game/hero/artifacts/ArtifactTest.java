@@ -1,6 +1,7 @@
 package pl.psi.game.hero.artifacts;
 
 import com.google.common.collect.Range;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pl.psi.game.artifacts.Artifact;
@@ -12,9 +13,22 @@ import pl.psi.game.hero.converter.HeroEcoBattleConverter;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static pl.psi.game.hero.artifacts.ArtifactsInfoFactory.SKULL_HELMET;
 
 public class ArtifactTest {
+    @BeforeAll
+    static void initializeFactories() {
+        new ArtifactsInfoFactory();
+        new ArtifactFactory();
+    }
 
+    @Test
+    void factoryShouldCreateArtifactBasedOnInfo() {
+        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(SKULL_HELMET);
+        Artifact skullHelmet = ArtifactFactory.createArtifact(artifactInfo);
+
+        assertEquals(0, skullHelmet.getAttack());
+    }
 
 
     //PW - you shouldn't be interested how converter will works.
@@ -23,7 +37,7 @@ public class ArtifactTest {
     @Disabled
     void artifactShouldIncreaseKnowledgeBy2PointsPW(){
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact("Skull helmet");
-        Artifact skullHelmet = ArtifactFactory.createFromInfo(artifactInfo);
+        Artifact skullHelmet = ArtifactFactory.createArtifact(artifactInfo);
         Hero battleHero = Hero.builder().build();// should have possibility to inject statistic like knowledge
 
         skullHelmet.apply(battleHero);

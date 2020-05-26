@@ -18,5 +18,14 @@ class HeroStatisticArtifact extends Artifact {
 
     @Override
     public void apply(Hero aHero) {
+        aHero.increaseAttack(attack);
+        aHero.increaseDefence(defence);
+        aHero.increasePower(power);
+        aHero.increaseKnowledge(knowledge);
+    }
+
+    @Override
+    public int getAttack() {
+        return attack;
     }
 }
