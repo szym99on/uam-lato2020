@@ -1,6 +1,7 @@
 package pl.psi.game.spellbook;
 
 import com.google.common.collect.Range;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pl.psi.game.Board;
@@ -13,6 +14,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SummonUnitsTest {
 
+    @BeforeAll
+    static void initializeSpellBookInfoFactory(){
+        new SpellBookInfoFactory();
+    }
+
     private final static String STORM_ELEMENTAL = "Summon storm elemental";
     private final static String ENERGY_ELEMENTAL = "Summon energy elemental";
     private final static String MAGMA_ELEMENTAL = "Summon magma elemental";
@@ -21,8 +27,8 @@ public class SummonUnitsTest {
     private CreatureAbstractFactory creatureAbstractFactory = new CreatureAbstractFactory();
     private Board board = new Board();
 
-//    SpellInfo spellInfo = SpellBookInfoFactory.getSpell(STORM_ELEMENTAL);
-//    SpellFactory factory = new SpellFactory();
+    SpellInfo spellInfo = SpellBookInfoFactory.getSpell(STORM_ELEMENTAL);
+    SpellFactory factory = new SpellFactory();
 //    SummonUnits summonUnits = (SummonUnits) factory.createSpell(spellInfo);
 
     @Test
