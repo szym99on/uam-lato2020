@@ -1,5 +1,9 @@
 package pl.psi.game.spellbook;
 
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.jupiter.api.BeforeAll;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +29,7 @@ public class SpellBookInfoFactory {
     private final static String ENERGY_ELEMENTAL = "Summon energy elemental";
     private final static String MAGMA_ELEMENTAL = "Summon magma elemental";
     private final static String ICE_ELEMENTAL = "Summon ice elemental";
+
 
     private final static List<SpellInfo> spellList = new ArrayList<>();
     {
