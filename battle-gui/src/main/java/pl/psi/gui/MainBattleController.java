@@ -9,6 +9,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import pl.psi.game.GameEngine;
 import pl.psi.game.fractions.Creature;
+import pl.psi.game.fractions.CreatureAbstractFactory;
+import pl.psi.game.fractions.CreatureInfo;
+import pl.psi.game.fractions.FractionsInfoAbstractFactory;
 import pl.psi.game.hero.EconomyHero;
 import pl.psi.game.hero.converter.Hero;
 import pl.psi.game.move.GuiTileIf;
@@ -16,6 +19,7 @@ import pl.psi.gui.tiles.*;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainBattleController {
 
@@ -28,9 +32,22 @@ public class MainBattleController {
     private final Hero hero2;
     private final GameEngine gameEngine;
 
-    public MainBattleController(EconomyHero h1, EconomyHero h2) {
+    public MainBattleController() {
         // should come form economy
-        ArrayList<Creature> creatureList1 = new ArrayList<>();
+        //initialize factory
+        CreatureAbstractFactory creatureAbstractFactory = new CreatureAbstractFactory();
+
+        List<Creature> necropolisCreatures = new ArrayList<>();
+        List<Creature> strongholdCreatures = new ArrayList<>();
+        for(int i=1;i<5;i++)
+        {
+            necropolisCreatures.add(creatureAbstractFactory.getCreature(
+                    FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(i)));
+            strongholdCreatures.add(creatureAbstractFactory.getCreature(
+                    FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.STRONGHOLD).getCreatureByTier(i)));
+        }
+
+        /*ArrayList<Creature> creatureList1 = new ArrayList<>();
         creatureList1.add(Creature.builder().aName("C1").aAttack(Range.closed(1, 10)).aMoveRange(1).aArmor(1).aMaxHp(10).build());
         creatureList1.add(Creature.builder().aName("C2").aAttack(Range.closed(2, 10)).aMoveRange(2).aArmor(2).aMaxHp(20).build());
         creatureList1.add(Creature.builder().aName("C3").aAttack(Range.closed(3, 10)).aMoveRange(3).aArmor(3).aMaxHp(30).build());
@@ -39,10 +56,10 @@ public class MainBattleController {
         creatureList2.add(Creature.builder().aName("C2_1").aAttack(Range.closed(1, 10)).aMoveRange(1).aArmor(1).aMaxHp(10).build());
         creatureList2.add(Creature.builder().aName("C2_2").aAttack(Range.closed(2, 10)).aMoveRange(2).aArmor(2).aMaxHp(20).build());
         creatureList2.add(Creature.builder().aName("C2_3").aAttack(Range.closed(3, 10)).aMoveRange(3).aArmor(3).aMaxHp(30).build());
-        creatureList2.add(Creature.builder().aName("C2_4").aAttack(Range.closed(4, 10)).aMoveRange(14).aArmor(4).aMaxHp(40).build());
+        creatureList2.add(Creature.builder().aName("C2_4").aAttack(Range.closed(4, 10)).aMoveRange(14).aArmor(4).aMaxHp(40).build());*/
 //---------------------------------------------
-        hero1 = new Hero(creatureList1);
-        hero2 = new Hero(creatureList2);
+        hero1 = Hero.builder().aCreatures(necropolisCreatures).build();
+        hero2 = Hero.builder().aCreatures(strongholdCreatures).build();
         // should come form economy END
 
         gameEngine = new GameEngine(hero1, hero2);
