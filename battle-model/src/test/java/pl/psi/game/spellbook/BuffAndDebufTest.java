@@ -1,6 +1,7 @@
 package pl.psi.game.spellbook;
 
 import com.google.common.collect.Range;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pl.psi.game.fractions.Creature;
@@ -12,6 +13,100 @@ public class BuffAndDebufTest {
 
     private final static int NOT_IMPORTANT_HP =100;
     private final static int NOT_IMPORTANT_0 = 0;
+
+    @BeforeAll
+    static void initializeFactories(){
+        new SpellBookInfoFactory();
+    }
+
+    @Test
+    void factoryShouldCreateHasteSpell() {
+        SpellFactory factory = new SpellFactory();
+        Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.HASTE));
+
+        assertEquals("Haste",spell.getName());
+        assertEquals(SpellInfo.Type.AIR,spell.getType());
+        assertEquals(1,spell.getLevel());
+        assertEquals(6,spell.getManaCost());
+        assertEquals("1 Round/Power",spell.getDuration());
+    }
+    @Test
+    void factoryShouldCreateAirShieldSpell() {
+        SpellFactory factory = new SpellFactory();
+        Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.AIR_SHIELD));
+
+        assertEquals("Air shield",spell.getName());
+        assertEquals(SpellInfo.Type.AIR,spell.getType());
+        assertEquals(3,spell.getLevel());
+        assertEquals(12,spell.getManaCost());
+        assertEquals("1 Round/Power",spell.getDuration());
+    }
+    @Test
+    void factoryShouldCreateBloodlustSpell() {
+        SpellFactory factory = new SpellFactory();
+        Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.BLOODLUST));
+
+        assertEquals("Bloodlust",spell.getName());
+        assertEquals(SpellInfo.Type.FIRE,spell.getType());
+        assertEquals(1,spell.getLevel());
+        assertEquals(5,spell.getManaCost());
+        assertEquals("1 Round/Power",spell.getDuration());
+    }
+    @Test
+    void factoryShouldCreateFireShieldSpell() {
+        SpellFactory factory = new SpellFactory();
+        Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.FIRE_SHIELD));
+
+        assertEquals("Fire shield",spell.getName());
+        assertEquals(SpellInfo.Type.FIRE,spell.getType());
+        assertEquals(4,spell.getLevel());
+        assertEquals(16,spell.getManaCost());
+        assertEquals("1 Round/Power",spell.getDuration());
+    }
+    @Test
+    void factoryShouldCreateSlowSpell() {
+        SpellFactory factory = new SpellFactory();
+        Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.SLOW));
+
+        assertEquals("Slow",spell.getName());
+        assertEquals(SpellInfo.Type.EARTH,spell.getType());
+        assertEquals(1,spell.getLevel());
+        assertEquals(6,spell.getManaCost());
+        assertEquals("1 Round/Power",spell.getDuration());
+    }
+    @Test
+    void factoryShouldCreateStoneskinSpell() {
+        SpellFactory factory = new SpellFactory();
+        Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.STONESKIN));
+
+        assertEquals("Stoneskin",spell.getName());
+        assertEquals(SpellInfo.Type.EARTH,spell.getType());
+        assertEquals(1,spell.getLevel());
+        assertEquals(5,spell.getManaCost());
+        assertEquals("1 Round/Power",spell.getDuration());
+    }
+    @Test
+    void factoryShouldCreateWeaknessSpell() {
+        SpellFactory factory = new SpellFactory();
+        Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.WEAKNESS));
+
+        assertEquals("Weakness",spell.getName());
+        assertEquals(SpellInfo.Type.WATER,spell.getType());
+        assertEquals(2,spell.getLevel());
+        assertEquals(8,spell.getManaCost());
+        assertEquals("1 Round/Power",spell.getDuration());
+    }
+    @Test
+    void factoryShouldCreatePrayerSpell() {
+        SpellFactory factory = new SpellFactory();
+        Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.PRAYER));
+
+        assertEquals("Prayer",spell.getName());
+        assertEquals(SpellInfo.Type.WATER,spell.getType());
+        assertEquals(4,spell.getLevel());
+        assertEquals(16,spell.getManaCost());
+        assertEquals("1 Round/Power",spell.getDuration());
+    }
 
     @Test
     @Disabled
