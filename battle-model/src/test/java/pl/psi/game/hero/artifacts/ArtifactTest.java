@@ -22,14 +22,13 @@ public class ArtifactTest {
         new ArtifactFactory();
     }
 
-    @Disabled
     @Test
     void factoryShouldCreateCreatureHealthArtifact(){
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(RING_OF_LIFE);
         Artifact ringOfLife = ArtifactFactory.createArtifact(artifactInfo);
 
         assert ringOfLife != null;
-//        assertEquals(2, ringOfLife.getHealth());
+        assertEquals(2, ringOfLife.getHealth());
     }
 
     @Disabled
@@ -42,14 +41,13 @@ public class ArtifactTest {
         // could be assertEquals(DEATH_RIPPLE, pendantOfLife.getSpell()); -depends on implementation of immunity
     }
 
-    @Disabled
     @Test
     void factoryShouldCreateCreatureMagicResistanceArtifact(){
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(BOOTS_OF_POLARITY);
         Artifact bootsOfPolarity = ArtifactFactory.createArtifact(artifactInfo);
 
         assert bootsOfPolarity != null;
-//        assertEquals(15, bootsOfPolarity.getMagicResistance());
+        assertEquals(15, bootsOfPolarity.getMagicResistance());
     }
 
     @Test
@@ -73,14 +71,13 @@ public class ArtifactTest {
         assertEquals(0, skullHelmet.getPower());
     }
 
-    @Disabled
     @Test
     void factoryShouldCreateSpellDurationArtifact(){
         ArtifactInfo artifactsInfo = ArtifactsInfoFactory.getArtifact(COLLAR_OF_CONJURING);
         Artifact collarOfConjuring = ArtifactFactory.createArtifact(artifactsInfo);
 
         assert collarOfConjuring != null;
-//        assertEquals(1, collarOfConjuring.getDuration());
+        assertEquals(1, collarOfConjuring.getDuration());
     }
 
     @Disabled
