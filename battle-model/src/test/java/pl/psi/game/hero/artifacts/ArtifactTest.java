@@ -24,6 +24,16 @@ public class ArtifactTest {
 
     @Disabled
     @Test
+    void factoryShouldCreateCreatureHealthArtifact(){
+        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(RING_OF_LIFE);
+        Artifact ringOfLife = ArtifactFactory.createArtifact(artifactInfo);
+
+        assert ringOfLife != null;
+//        assertEquals(2, ringOfLife.getHealth());
+    }
+
+    @Disabled
+    @Test
     void factoryShouldCreateCreatureImmunityArtifact(){
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(PENDANT_OF_LIFE);
         Artifact pendantOfLife = ArtifactFactory.createArtifact(artifactInfo);
