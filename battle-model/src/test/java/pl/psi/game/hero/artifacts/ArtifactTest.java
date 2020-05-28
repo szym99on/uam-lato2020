@@ -51,7 +51,18 @@ public class ArtifactTest {
 
         assert recantersCloak != null;
     }
-    
+
+    @Disabled
+    @Test
+    void factoryShouldCreateSpellDurationArtifact(){
+        ArtifactInfo artifactsInfo = ArtifactsInfoFactory.getArtifact(COLLAR_OF_CONJURING);
+        Artifact collarOfConjuring = ArtifactFactory.createArtifact(artifactsInfo);
+
+        assert collarOfConjuring != null;
+//        assertEquals(1, collarOfConjuring.getDuration());
+    }
+
+
     @Test
     void artifactShouldIncreaseKnowledgeBy2Points() {
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(SKULL_HELMET);
