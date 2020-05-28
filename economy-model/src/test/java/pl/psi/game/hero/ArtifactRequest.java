@@ -1,5 +1,6 @@
 package pl.psi.game.hero;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pl.psi.game.hero.artifacts.ArtifactInfo;
@@ -10,6 +11,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class ArtifactRequest {
+
+    @BeforeAll
+    static void ArtifactsInfoFactory(){
+        new ArtifactsInfoFactory();
+    }
+
+    //PW
+    @Test
+    void xxx(){
+        ArtifactInfo artifact = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.HELM_OF_THE_ALABASTER_UNICORN);
+        assertEquals("Helm of the Alabaster Unicorn", artifact.getName());
+    }
 
     @Disabled
     @Test
