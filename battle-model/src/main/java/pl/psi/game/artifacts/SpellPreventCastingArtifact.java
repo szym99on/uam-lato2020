@@ -7,4 +7,7 @@ class SpellPreventCastingArtifact extends SpellBuffArtifact{
     void buffSpell(Spell s) {
 
     }
+
+    @Override
+    public int getDuration() { return 0; }
 }

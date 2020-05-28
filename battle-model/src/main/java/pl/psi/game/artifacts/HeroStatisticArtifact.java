@@ -46,4 +46,7 @@ class HeroStatisticArtifact extends Artifact {
 
     @Override
     public int getMagicResistance() { return 0; }
+
+    @Override
+    public int getDuration() { return 0; }
 }
