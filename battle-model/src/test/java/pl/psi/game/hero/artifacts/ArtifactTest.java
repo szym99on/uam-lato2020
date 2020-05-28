@@ -41,7 +41,7 @@ public class ArtifactTest {
         assertEquals(2, ringOfLife.getHealth());
     }
 
-    @Disabled
+    @Disabled // waiting for immunity implementation by fractions/spells
     @Test
     void factoryShouldCreateCreatureImmunityArtifact(){
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(PENDANT_OF_LIFE);
@@ -90,7 +90,7 @@ public class ArtifactTest {
         assertEquals(1, collarOfConjuring.getDuration());
     }
 
-    @Disabled
+    @Disabled // waiting for implementation of cast prevention by spells
     @Test
     void factoryShouldCreateSpellPreventCastingArtifact(){
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(RECANTERS_CLOAK);
