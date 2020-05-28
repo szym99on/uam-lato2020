@@ -24,6 +24,16 @@ public class ArtifactTest {
 
     @Disabled
     @Test
+    void factoryShouldCreateCreatureImmunityArtifact(){
+        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(PENDANT_OF_LIFE);
+        Artifact pendantOfLife = ArtifactFactory.createArtifact(artifactInfo);
+
+        assert pendantOfLife != null;
+        // could be assertEquals(DEATH_RIPPLE, pendantOfLife.getSpell()); -depends on implementation of immunity
+    }
+
+    @Disabled
+    @Test
     void factoryShouldCreateCreatureMagicResistanceArtifact(){
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(BOOTS_OF_POLARITY);
         Artifact bootsOfPolarity = ArtifactFactory.createArtifact(artifactInfo);
