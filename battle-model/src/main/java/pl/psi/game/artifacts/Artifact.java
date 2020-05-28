@@ -12,4 +12,5 @@ public abstract class Artifact{
     public abstract int getKnowledge();
     public abstract int getSpeed();
     public abstract int getHealth();
+    public abstract int getMagicResistance();
 }

@@ -31,4 +31,6 @@ abstract class SpellBuffArtifact extends Artifact{
     @Override
     public int getHealth() { return 0; }
 
+    @Override
+    public int getMagicResistance() { return 0; }
 }

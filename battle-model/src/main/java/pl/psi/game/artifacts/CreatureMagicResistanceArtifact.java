@@ -15,6 +15,9 @@ class CreatureMagicResistanceArtifact extends CreatureBuffArtifact {
     }
 
     @Override
+    public int getMagicResistance() { return magicResistance; }
+
+    @Override
     public int getHealth() { return 0; }
 
     @Override

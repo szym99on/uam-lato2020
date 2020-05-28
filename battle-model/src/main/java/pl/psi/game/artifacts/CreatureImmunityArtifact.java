@@ -13,4 +13,7 @@ class CreatureImmunityArtifact extends CreatureBuffArtifact {
 
     @Override
     public int getSpeed() { return 0; }
+
+    @Override
+    public int getMagicResistance() { return 0; }
 }
