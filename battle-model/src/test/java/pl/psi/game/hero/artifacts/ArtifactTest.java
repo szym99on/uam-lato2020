@@ -321,4 +321,26 @@ public class ArtifactTest {
 
         assertEquals(3,battleHero.getSpells().get(0).getDuration());
     }
+
+
+
+//    SpellPreventCastingArtifact tests
+
+    @Disabled // waiting for implementation of cast prevention by spells
+    @Test
+    void artifactShouldPreventCastingOfSpellsOfAndAboveLevel3(){
+//        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(RECANTERS_CLOAK);
+//        Artifact recantersCloak = ArtifactFactory.createArtifact(artifactInfo);
+//
+//        create battleHero with multiple spells of different levels
+//
+//        try {
+//            assert recantersCloak != null;
+//            recantersCloak.apply(battleHero);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//        assert spells of level 3 and above are uncastable
+    }
 }
