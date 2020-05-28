@@ -9,18 +9,25 @@ import pl.psi.game.artifacts.ArtifactFactory;
 import pl.psi.game.fractions.Creature;
 import pl.psi.game.hero.converter.Hero;
 import pl.psi.game.hero.converter.HeroEcoBattleConverter;
+import pl.psi.game.spellbook.Spell;
+import pl.psi.game.spellbook.SpellBookInfoFactory;
+import pl.psi.game.spellbook.SpellFactory;
+import pl.psi.game.spellbook.SpellInfo;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static pl.psi.game.hero.artifacts.ArtifactsInfoFactory.*;
+import static pl.psi.game.spellbook.SpellBookInfoFactory.*;
 
 public class ArtifactTest {
     @BeforeAll
     static void initializeFactories() {
         new ArtifactsInfoFactory();
         new ArtifactFactory();
+        new SpellBookInfoFactory();
+        new SpellFactory();
     }
 
 //    ArtifactFactory tests
@@ -287,5 +294,31 @@ public class ArtifactTest {
         assertEquals(1, battleHero.getAttack());
         assertEquals(1, battleHero.getDefence());
         assertEquals(1, battleHero.getPower());
+    }
+
+
+
+//    SpellDurationArtifact tests
+
+    @Disabled // waiting for increaseDuration implementation by spells
+    @Test
+    void artifactShouldIncreaseSpellDurationBy2(){
+        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(RING_OF_CONJURING);
+        Artifact ringOfConjuring = ArtifactFactory.createArtifact(artifactInfo);
+        List< Spell > spells = new ArrayList<>();
+        SpellInfo spellInfo = SpellBookInfoFactory.getSpell(HASTE);
+        SpellFactory spellFactory = new SpellFactory();
+        Spell haste = spellFactory.createSpell(spellInfo);
+        spells.add(haste);
+        Hero battleHero = Hero.builder().aSpells(spells).build();
+
+        try {
+            assert ringOfConjuring != null;
+            ringOfConjuring.apply(battleHero);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        assertEquals(3,battleHero.getSpells().get(0).getDuration());
     }
 }
