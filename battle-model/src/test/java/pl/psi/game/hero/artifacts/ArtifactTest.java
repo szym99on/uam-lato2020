@@ -96,7 +96,7 @@ public class ArtifactTest {
 
 //    CreatureHealthArtifact test
 
-    @Disabled //waiting for increaseHP() implementation by fractions
+    @Disabled // waiting for increaseHP() implementation by fractions
     @Test
     void artifactShouldIncreaseHealthBy2Points(){
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(RING_OF_LIFE);
@@ -121,7 +121,7 @@ public class ArtifactTest {
 
 //    CreatureImmunityArtifact test
 
-    @Disabled //waiting for immunity implementation by fractions/spells
+    @Disabled // waiting for immunity implementation by fractions/spells
     @Test
     void artifactShouldGrantImmunityToCreature(){
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(PENDANT_OF_DISPASSION);
@@ -140,6 +140,30 @@ public class ArtifactTest {
 
 //        assert creature has immunity
 
+    }
+
+
+
+//    CreatureMagicResistanceArtifact tests
+
+    @Disabled // waiting for magic resistance implementation by fractions
+    @Test
+    void artifactShouldIncreaseMagicResistanceBy15Percent(){
+        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(BOOTS_OF_POLARITY);
+        Artifact bootsOfPolarity = ArtifactFactory.createArtifact(artifactInfo);
+        List<Creature> creatures = new ArrayList<>();
+//        Creature creature = Creature.builder().aMagicResistance(0).build();
+//        creatures.add(creature);
+//        Hero battleHero = Hero.builder().aCreatures(creatures).build();
+//
+//        try {
+//            assert bootsOfPolarity != null;
+//            bootsOfPolarity.apply(battleHero);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//        assertEquals(15, battleHero.getCreatures().get(0).getMagicResistance());
     }
 
 
