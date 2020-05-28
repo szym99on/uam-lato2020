@@ -43,6 +43,15 @@ public class ArtifactTest {
         assertEquals(2, capeOfVelocity.getSpeed());
     }
 
+    @Disabled
+    @Test
+    void factoryShouldCreateSpellPreventCastingArtifact(){
+        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(RECANTERS_CLOAK);
+        Artifact recantersCloak = ArtifactFactory.createArtifact(artifactInfo);
+
+        assert recantersCloak != null;
+    }
+    
     @Test
     void artifactShouldIncreaseKnowledgeBy2Points() {
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(SKULL_HELMET);
