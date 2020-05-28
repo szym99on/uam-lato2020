@@ -11,4 +11,5 @@ public abstract class Artifact{
     public abstract int getPower();
     public abstract int getKnowledge();
     public abstract int getSpeed();
+    public abstract int getHealth();
 }

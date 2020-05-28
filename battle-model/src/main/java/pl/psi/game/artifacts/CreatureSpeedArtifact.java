@@ -18,4 +18,8 @@ class CreatureSpeedArtifact extends CreatureBuffArtifact{
     public int getSpeed() {
         return speed;
     }
+
+    @Override
+    public int getHealth() { return 0; }
+
 }
