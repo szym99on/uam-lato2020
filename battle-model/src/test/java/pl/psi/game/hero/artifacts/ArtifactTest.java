@@ -168,6 +168,30 @@ public class ArtifactTest {
 
 
 
+//    CreatureSpeedArtifact tests
+
+    @Disabled // waiting for increaseMoveRange implementation by fractions
+    @Test
+    void artifactShouldIncreaseMoveRangeBy2Points(){
+        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(CAPE_OF_VELOCITY);
+        Artifact capeOfVelocity = ArtifactFactory.createArtifact(artifactInfo);
+        List<Creature> creatures = new ArrayList<>();
+        Creature creature = Creature.builder().aMoveRange(2).build();
+        creatures.add(creature);
+        Hero battleHero = Hero.builder().aCreatures(creatures).build();
+
+        try {
+            assert capeOfVelocity != null;
+            capeOfVelocity.apply(battleHero);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        assertEquals(4, battleHero.getCreatures().get(0).getMoveRange());
+    }
+
+
+
 //    HeroStatisticArtifact tests
 
     @Test
