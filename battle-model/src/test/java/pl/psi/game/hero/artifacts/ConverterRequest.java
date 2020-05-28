@@ -11,11 +11,11 @@ public class ConverterRequest {
     {
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.HELM_OF_THE_ALABASTER_UNICORN);
     }
-   /* @Test
+    @Test
     void applyArtifactOnHero() {
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.HELM_OF_THE_ALABASTER_UNICORN);
         Hero hero = Hero.builder().build();
         Artifact artifact = ArtifactFactory.createArtifact(artifactInfo);
         artifact.apply(hero);
-    }*/
+    }
 }
