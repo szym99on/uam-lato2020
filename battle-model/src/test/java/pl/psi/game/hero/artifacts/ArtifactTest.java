@@ -35,7 +35,7 @@ public class ArtifactTest {
     }
 
     @Test
-    void factoryShouldCreateSpellDurationArtifactBasedOnInfo() {
+    void factoryShouldCreateCreatureSpeedArtifactBasedOnInfo() {
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(CAPE_OF_VELOCITY);
         Artifact capeOfVelocity = ArtifactFactory.createArtifact(artifactInfo);
 
