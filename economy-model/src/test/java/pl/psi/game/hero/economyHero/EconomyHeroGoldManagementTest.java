@@ -236,20 +236,14 @@ public class EconomyHeroGoldManagementTest {
     //end of round
 
   /*  @Test
-    void winTheRoundShouldAddGoldToHero(){
+    void endTheRoundShouldAddGoldToHero(){
         EconomyHero hero = EconomyHero.builder().aGold(100).build();
-        endRound(hero,1); //hero win the first round(?)
-        //win 1 Round should add 500 gold (?)
+        endRound(hero,1); //hero end the first round(?)
+        //end 1 Round should add 500 gold (?)
         assertEquals(600,hero.getGold());
 
+
     }
-    @Test
-    void loseTheRoundShouldNotAddGoldToHero(){
-        EconomyHero hero1 = EconomyHero.builder().aGold(100).build();
-        EconomyHero hero2 = EconomyHero.builder().aGold(100).build();
-        endRound(hero1,1); //hero1 win the first round(?)
-        //lose 1 Round should not add 500 gold to hero2(?)
-        assertEquals(100,hero2.getGold());
-    }*/
+    */
 
 }

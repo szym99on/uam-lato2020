@@ -1,6 +1,7 @@
 package pl.psi.game.hero.economyHero;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pl.psi.game.fractions.CreatureInfo;
 import pl.psi.game.fractions.FractionsInfoAbstractFactory;
@@ -8,9 +9,12 @@ import pl.psi.game.fractions.NecropolisInfoFactory;
 import pl.psi.game.hero.artifacts.ArtifactInfo;
 import pl.psi.game.hero.artifacts.ArtifactsInfoFactory;
 import pl.psi.game.hero.economyHero.EconomyHero;
+import pl.psi.game.skills.SkillInfo;
+import pl.psi.game.skills.SkillInfoFactory;
 import pl.psi.game.spellbook.SpellBookInfoFactory;
 import pl.psi.game.spellbook.SpellInfo;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
 class EconomyHeroTest {
@@ -22,6 +26,7 @@ class EconomyHeroTest {
         new FractionsInfoAbstractFactory();
     }
 
+<<<<<<< HEAD
 @Test
     void buyArtifactShouldNotAddArtifactIfSlotAlreadyTaken() throws Exception {
 
@@ -33,20 +38,128 @@ class EconomyHeroTest {
             hero.buyArtifact(artifact);
         });
 }
+=======
+
+   @Test
+   void buyCreatureShouldTakeGoldAndAddCreature () throws Exception {
+        FractionsInfoAbstractFactory necropolisFactory =  FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS);
+      CreatureInfo creature = necropolisFactory.getCreature(NecropolisInfoFactory.SKELETON_WARRIOR);
+      EconomyHero hero = EconomyHero.builder().aGold(1000).build();
+
+      hero.buyCreature(creature);
+
+      assertEquals(hero.getGold(), 930);
+      assertTrue(hero.getCreatures().contains(creature));
+      assertEquals(hero.getCreatures().size(), 1);
+   }
+
+
+
+
     @Test
-    void  buyArtifactShouldAddArtifactIfLocationEmpty() throws Exception {
-        ArtifactInfo artifact = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.COLLAR_OF_CONJURING);
+    void increaseGoldShouldAddGold() {
         EconomyHero hero = EconomyHero.builder().aGold(2000).build();
+        int howMuch = 50;
 
-        hero.buyArtifact(artifact);
+        hero.increaseGold(howMuch);
 
-        assertEquals(hero.getArtifact(artifact.getName()),artifact);
-        assertEquals(hero.getArtifacts().size(),1);
+        assertEquals(hero.getGold(), 2050);
+    }
+
+    @Test
+    void decreaseGoldShouldRemoveGold(){
+        EconomyHero hero = EconomyHero.builder().aGold(2000).build();
+        int howMuch = 50;
+
+        hero.decreaseGold(howMuch);
+
+        assertEquals(hero.getGold(),1950);
+    }
+
+    @Test
+    void sellSkeletonWarriorShouldReturn75PercentOfOriginalPrice() throws Exception {
+        FractionsInfoAbstractFactory necropolisFactory =  FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS);
+        CreatureInfo creature = necropolisFactory.getCreature(NecropolisInfoFactory.SKELETON_WARRIOR);
+        EconomyHero hero = EconomyHero.builder().aGold(2000).build();
+        hero.addCreature(creature);
+
+        hero.sellCreature(creature);
+
+        assertEquals(hero.getGold(), 2052);
+        assertFalse(hero.getCreatures().contains(creature));
+        assertEquals(hero.getCreatures().size(), 0);
+    }
+
+    @Test
+    void sellDreadKnightShouldReturn75PercentOfOriginalPrice() throws Exception {
+        FractionsInfoAbstractFactory necropolisFactory =  FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS);
+        CreatureInfo creature = necropolisFactory.getCreature(NecropolisInfoFactory.DREAD_KNIGHT);
+        EconomyHero hero = EconomyHero.builder().aGold(2000).build();
+        hero.addCreature(creature);
+
+        hero.sellCreature(creature);
+
+        assertEquals(hero.getGold(), 3125);
+        assertFalse(hero.getCreatures().contains(creature));
+        assertEquals(hero.getCreatures().size(), 0);
 
     }
 
+    @Test
+    void sellArtifactShouldReturn75PercentOfOriginalPriceAndRemoveArtifact() throws Exception {
+        ArtifactInfo artifact = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.HELM_OF_THE_ALABASTER_UNICORN);
+        EconomyHero hero = EconomyHero.builder().aGold(2000).build();
+        hero.addArtifact(artifact);
 
 
+        hero.sellArtifact(artifact);
+
+
+        assertEquals(hero.getGold(), 2750);
+        assertFalse(hero.getArtifacts().contains(artifact));
+        assertEquals(hero.getArtifacts().size(), 0);
+
+    }
+
+    @Test
+    void sellSpellShouldReturn75PercentOfOriginalPriceAndRemoveSpell() throws Exception {
+        SpellInfo spell = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.MAGIC_ARROW);
+        EconomyHero hero = EconomyHero.builder().aGold(2000).build();
+        hero.addSpell(spell);
+
+        hero.sellSpell(spell);
+
+        assertEquals(hero.getGold(), 2075);
+        assertFalse(hero.getSpells().contains(spell));
+        assertEquals(hero.getSpells().size(),0);
+    }
+
+    @Test
+    void buySpellShouldTakeGoldAndAddSpell() {
+        SpellInfo spell = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.MAGIC_ARROW);
+        EconomyHero hero = EconomyHero.builder().aGold(3000).build();
+
+        hero.buySpell(spell);
+
+        assertEquals(hero.getGold(), 2900);
+        assertTrue(hero.getSpells().contains(spell));
+        assertEquals(hero.getSpells().size(), 1);
+
+    }
+
+    @Disabled
+>>>>>>> 5f1074d54c6ed0b2878639635c8b21ea4a49e7aa
+    @Test
+    void buyCharacterSpecialSkillShouldTakeGoldAndAddSkill() {
+        SkillInfo skill = SkillInfoFactory.getSkill(SkillInfoFactory.ARCHERY);
+        EconomyHero hero = EconomyHero.builder().aGold(3000).build();
+
+        hero.buySkill(skill);
+
+        assertEquals(hero.getGold(), 2000);
+        assertTrue(hero.getSkills().contains(skill));
+    }
+    
 //PW
     //You have tons methods to test!
     //First of all create more than one test class like HeroEconomyGoldManagementTest, HeroEconomyArtifactInteractionTest, HeroEconomySpellIntegrationTest etc.
