@@ -6,22 +6,23 @@ import java.awt.*;
 
 public class Obstacle implements GuiTileIf{
 
-//    private final String type;
-//    private final int attack;
-//    private final Point point;
+    private final String type;
+    private final int attack;
+    private final int reduceMoveRange;
+    private final boolean isEndingMove;
 
-//    @Builder
-//    public Obstacle(String type, int attack, Point point){
-//        this.type = type;
-//        this.attack = attack;
-//        this.point = point;
-//    }
+    @Builder
+    public Obstacle(String aType, int aAttack, int aReduceMoveRange, boolean aIsEndingMove){
+        type = aType;
+        attack = aAttack;
+        reduceMoveRange = aReduceMoveRange;
+        isEndingMove = aIsEndingMove;
+    }
 
 
     @Override
     public String getDisplayName() {
-        // return type;
-        return "X";
+        return type;
     }
 
     @Override

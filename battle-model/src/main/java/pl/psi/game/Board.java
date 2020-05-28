@@ -17,12 +17,12 @@ public class Board {
 
     public Board() {
         board = new HashMap<>();
-        board.put(new Point(7,2), new Obstacle());
-        board.put(new Point(7,3), new Obstacle());
-        board.put(new Point(7,4), new Obstacle());
-        board.put(new Point(7,5), new Obstacle());
-        board.put(new Point(7,6), new Obstacle());
-        board.put(new Point(7,7), new Obstacle());
+        board.put(new Point(7,2), Obstacle.builder().aType("X").build());
+        board.put(new Point(7,3), Obstacle.builder().aType("X").build());
+        board.put(new Point(7,4), Obstacle.builder().aType("X").build());
+        board.put(new Point(7,5), Obstacle.builder().aType("X").build());
+        board.put(new Point(7,6), Obstacle.builder().aType("X").build());
+        board.put(new Point(7,7), Obstacle.builder().aType("X").build());
     }
 
     public void putCreature(int x, int y, Creature aCreature) {
@@ -35,6 +35,18 @@ public class Board {
         }
 
         board.put(new Point(x, y), aCreature);
+    }
+
+    public void putObstacle(int x, int y, Obstacle aObstacle) {
+        if (x > BOARD_WIDTH || x < 0 || y > BOARD_HIGH || y < 0) {
+            throw new IllegalArgumentException("You tried put obstacle outside the board");
+        }
+
+        if (!isTileEmpty(x, y)) {
+            throw new IllegalArgumentException("Field isn't empty");
+        }
+
+        board.put(new Point(x, y), aObstacle);
     }
 
     public boolean isTileEmpty(int x, int y) {
