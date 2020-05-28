@@ -128,6 +128,25 @@ public class ArtifactTest {
     }
 
     @Test
+    void artifactShouldIncreaseDefenceBy2Points(){
+        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(SHIELD_OF_THE_DWARVEN_LORDS);
+        Artifact shieldOfTheDwarvenLords = ArtifactFactory.createArtifact(artifactInfo);
+        Hero battleHero = Hero.builder().build();// default hero stats = 0
+
+        try{
+            assert shieldOfTheDwarvenLords != null;
+            shieldOfTheDwarvenLords.apply(battleHero);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        assertEquals(0, battleHero.getKnowledge());
+        assertEquals(0, battleHero.getAttack());
+        assertEquals(2, battleHero.getDefence());
+        assertEquals(0, battleHero.getPower());
+    }
+
+    @Test
     void artifactShouldIncreaseAllStatsBy1Point() {
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(ARMOR_OF_WONDER);
         Artifact armorOfWonders = ArtifactFactory.createArtifact(artifactInfo);
