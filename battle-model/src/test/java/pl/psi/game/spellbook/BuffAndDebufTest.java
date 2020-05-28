@@ -112,14 +112,12 @@ public class BuffAndDebufTest {
     @Disabled
     void shouldIncreasedCreatureMoveRange() {
         Creature creature = Creature.builder().aMoveRange(3).build();
-        //PW USE STATIC NOT PURE STRING!!!!!!!!
-        SpellInfo spellInfo = SpellBookInfoFactory.getSpell("Haste");
         SpellFactory factory = new SpellFactory();
-        Spell spell = factory.createSpell(spellInfo);
+        Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.HASTE));
 
         spell.cast(creature);
-        assertEquals(6, creature.getMoveRange());
 
+        assertEquals(6, creature.getMoveRange());
     }
 
     @Test
@@ -128,13 +126,10 @@ public class BuffAndDebufTest {
         Creature defender1 = Creature.builder().aArmor(0).aMaxHp(10).build();
         Creature defender2 = Creature.builder().aArmor(0).aMaxHp(10).build();
         Creature attacker1 = ShootingCreature.builder().aAttack(Range.closed(8,8)).aMaxHp(NOT_IMPORTANT_HP).build();
-
-        SpellInfo spellInfo = SpellBookInfoFactory.getSpell("Air shield");
         SpellFactory factory = new SpellFactory();
-        Spell spell = factory.createSpell(spellInfo);
+        Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.AIR_SHIELD));
 
         spell.cast(defender2);
-
         attacker1.attack(defender1);
         attacker1.attack(defender2);
 
@@ -149,13 +144,10 @@ public class BuffAndDebufTest {
         Creature defender2 = Creature.builder().aArmor(NOT_IMPORTANT_0).aMaxHp(10).build();
         Creature attacker1 = Creature.builder().aAttack(Range.closed(5,5)).aMaxHp(NOT_IMPORTANT_HP).build();
         Creature attacker2 = Creature.builder().aAttack(Range.closed(5,5)).aMaxHp(NOT_IMPORTANT_HP).build();
-
-        SpellInfo spellInfo = SpellBookInfoFactory.getSpell("Bloodlust");
         SpellFactory factory = new SpellFactory();
-        Spell spell = factory.createSpell(spellInfo);
+        Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.BLOODLUST));
 
         spell.cast(attacker2);
-
         attacker1.attack(defender1);
         attacker2.attack(defender2);
 
@@ -168,13 +160,10 @@ public class BuffAndDebufTest {
     void attakerShouldReciveDMG(){
         Creature defender = Creature.builder().aArmor(NOT_IMPORTANT_0).aAttack(Range.closed(0,0)).aMaxHp(20).build();
         Creature attacker = Creature.builder().aAttack(Range.closed(10,10)).aMaxHp(20).build();
-
-        SpellInfo spellInfo = SpellBookInfoFactory.getSpell("Fire shield");
         SpellFactory factory = new SpellFactory();
-        Spell spell = factory.createSpell(spellInfo);
+        Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.FIRE_SHIELD));
 
         spell.cast(defender);
-
         attacker.attack(defender);
 
         assertEquals(18,attacker.getCurrentHp());
@@ -184,10 +173,8 @@ public class BuffAndDebufTest {
     @Disabled
     void shouldDecreaseCreatureMoveRange() {
         Creature c = Creature.builder().aMoveRange(8).build();
-
-        SpellInfo spellInfo = SpellBookInfoFactory.getSpell("Slow");
         SpellFactory factory = new SpellFactory();
-        Spell spell = factory.createSpell(spellInfo);
+        Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.SLOW));
 
         spell.cast(c);
 
@@ -198,15 +185,12 @@ public class BuffAndDebufTest {
     @Disabled
     void shouldIncreaseArmor(){
         Creature c = Creature.builder().aArmor(5).build();
-
-        SpellInfo spellInfo = SpellBookInfoFactory.getSpell("Stoneskin");
         SpellFactory factory = new SpellFactory();
-        Spell spell = factory.createSpell(spellInfo);
+        Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.STONESKIN));
 
         spell.cast(c);
 
         assertEquals(15,c.getArmor());
-
     }
 
     @Test
@@ -215,10 +199,8 @@ public class BuffAndDebufTest {
         Creature attacker = Creature.builder().aAttack(Range.closed(9,9)).aMaxHp(NOT_IMPORTANT_HP).build();
         Creature defender1 = Creature.builder().aArmor(NOT_IMPORTANT_0).aMaxHp(10).build();
         Creature defender2 = Creature.builder().aArmor(NOT_IMPORTANT_0).aMaxHp(10).build();
-
-        SpellInfo spellInfo = SpellBookInfoFactory.getSpell("Weakness");
         SpellFactory factory = new SpellFactory();
-        Spell spell = factory.createSpell(spellInfo);
+        Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.WEAKNESS));
 
         attacker.attack(defender1);
         spell.cast(attacker);
@@ -232,10 +214,8 @@ public class BuffAndDebufTest {
     @Disabled
     void shouldIncreaseAttackArmorMoveRange(){
         Creature creature = Creature.builder().aAttack(Range.closed(5,5)).aArmor(5).aMoveRange(5).build();
-
-        SpellInfo spellInfo = SpellBookInfoFactory.getSpell("Prayer");
         SpellFactory factory = new SpellFactory();
-        Spell spell = factory.createSpell(spellInfo);
+        Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.PRAYER));
 
         spell.cast(creature);
 
