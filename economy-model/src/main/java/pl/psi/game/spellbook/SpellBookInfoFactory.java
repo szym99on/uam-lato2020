@@ -1,9 +1,5 @@
 package pl.psi.game.spellbook;
 
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.jupiter.api.BeforeAll;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +10,6 @@ public class SpellBookInfoFactory {
     private final static String LIGHTNING_BOLT = "Lightning bolt";
     private final static String DESTROY_UNDEAD = "Destroy undead";
     private final static String FIRE_BALL = "Fire ball";
-
 
     private final static String HASTE = "Haste";
     private final static String AIR_SHIELD = "Air shield";
@@ -29,8 +24,7 @@ public class SpellBookInfoFactory {
     private final static String ENERGY_ELEMENTAL = "Summon energy elemental";
     private final static String MAGMA_ELEMENTAL = "Summon magma elemental";
     private final static String ICE_ELEMENTAL = "Summon ice elemental";
-
-
+    
     private final static List<SpellInfo> spellList = new ArrayList<>();
     {
         spellList.add(SpellInfo.builder().aCost(1).aDescription("Target, enemy troop receives ((Power x 10) + 10) damage.").aDuration("Instant").aManaCost(5).aName(MAGIC_ARROW).aLevel(1).aType(SpellInfo.Type.AIR).build());
