@@ -1,6 +1,7 @@
 package pl.psi.game.hero.economyHero;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pl.psi.game.fractions.CreatureInfo;
 import pl.psi.game.fractions.FractionsInfoAbstractFactory;
@@ -8,9 +9,12 @@ import pl.psi.game.fractions.NecropolisInfoFactory;
 import pl.psi.game.hero.artifacts.ArtifactInfo;
 import pl.psi.game.hero.artifacts.ArtifactsInfoFactory;
 import pl.psi.game.hero.economyHero.EconomyHero;
+import pl.psi.game.skills.SkillInfo;
+import pl.psi.game.skills.SkillInfoFactory;
 import pl.psi.game.spellbook.SpellBookInfoFactory;
 import pl.psi.game.spellbook.SpellInfo;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
 class EconomyHeroTest {
@@ -128,6 +132,18 @@ class EconomyHeroTest {
         assertTrue(hero.getSpells().contains(spell));
         assertEquals(hero.getSpells().size(), 1);
 
+    }
+
+    @Disabled
+    @Test
+    void buyCharacterSpecialSkillShouldTakeGoldAndAddSkill() {
+        SkillInfo skill = SkillInfoFactory.getSkill(SkillInfoFactory.ARCHERY);
+        EconomyHero hero = EconomyHero.builder().aGold(3000).build();
+
+        hero.buySkill(skill);
+
+        assertEquals(hero.getGold(), 2000);
+        assertTrue(hero.getSkills().contains(skill));
     }
     
 //PW
