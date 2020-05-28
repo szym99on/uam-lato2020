@@ -129,33 +129,7 @@ class EconomyHeroTest {
         assertEquals(hero.getSpells().size(), 1);
 
     }
-
-
-@Test
-    void buyArtifactShouldNotAddArtifactIfSlotAlreadyTaken() throws Exception {
-
-        assertThrows(Exception.class, () -> {
-            ArtifactInfo artifact = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.CAPE_OF_CONJURING);
-            EconomyHero hero = EconomyHero.builder().aGold(2000).build();
-
-            hero.buyArtifact(artifact);
-            hero.buyArtifact(artifact);
-        });
-}
-    @Test
-    void  buyArtifactShouldAddArtifactIfLocationEmpty() throws Exception {
-        ArtifactInfo artifact = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.COLLAR_OF_CONJURING);
-        EconomyHero hero = EconomyHero.builder().aGold(2000).build();
-
-        hero.buyArtifact(artifact);
-
-        assertEquals(hero.getArtifact(artifact.getName()),artifact);
-        assertEquals(hero.getArtifacts().size(),1);
-
-    }
-
-
-
+    
 //PW
     //You have tons methods to test!
     //First of all create more than one test class like HeroEconomyGoldManagementTest, HeroEconomyArtifactInteractionTest, HeroEconomySpellIntegrationTest etc.
