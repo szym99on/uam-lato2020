@@ -11,6 +11,7 @@ import pl.psi.game.hero.converter.Hero;
 import pl.psi.game.hero.converter.HeroEcoBattleConverter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static pl.psi.game.hero.artifacts.ArtifactsInfoFactory.*;
@@ -21,6 +22,8 @@ public class ArtifactTest {
         new ArtifactsInfoFactory();
         new ArtifactFactory();
     }
+
+//    ArtifactFactory tests
 
     @Test
     void factoryShouldCreateCreatureHealthArtifact(){
@@ -88,6 +91,35 @@ public class ArtifactTest {
 
         assert recantersCloak != null;
     }
+
+
+
+//    CreatureHealthArtifact test
+
+    @Disabled //waiting for increaseHP() implementation by fractions
+    @Test
+    void artifactShouldIncreaseHealthBy2Points(){
+        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(RING_OF_LIFE);
+        Artifact ringOfLife = ArtifactFactory.createArtifact(artifactInfo);
+        List<Creature> creatures = new ArrayList<>();
+        Creature creature = Creature.builder().aMaxHp(10).build();
+        creatures.add(creature);
+        Hero battleHero = Hero.builder().aCreatures(creatures).build();
+
+        try{
+            assert ringOfLife != null;
+            ringOfLife.apply(battleHero);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        assertEquals(12, battleHero.getCreatures().get(0).getMaxHp());
+        assertEquals(12, battleHero.getCreatures().get(0).getCurrentHp());
+    }
+
+
+
+//    HeroStatisticArtifact tests
 
     @Test
     void artifactShouldIncreaseKnowledgeBy2Points() {
