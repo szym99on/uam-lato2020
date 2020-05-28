@@ -137,6 +137,17 @@ public class EconomyHero {
         this.spells.remove(spell);
     }
 
+    public void checkBoughtSpell(SpellInfo spell) throws Exception{
+        if(this.spells.contains(spell)){
+            String output = String.format("Hero has got this spell %s ", spell.getName());
+            throw new Exception(output);
+        }
+        if(getGold() >= spell.getCost()){
+            this.decreaseGold(spell.getCost());
+            this.spells.add(spell);
+        }
+    }
+
     List<SpellInfo> getSpells() {
         return this.spells;
     }

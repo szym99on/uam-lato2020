@@ -7,12 +7,12 @@ public class SpellBookInfoFactory {
 
     public final static String MAGIC_ARROW = "Magic arrow";
 
-    private final static String LIGHTNING_BOLT = "Lightning bolt";
+    public final static String LIGHTNING_BOLT = "Lightning bolt";
     private final static String DESTROY_UNDEAD = "Destroy undead";
     private final static String FIRE_BALL = "Fire ball";
 
 
-    private final static String HASTE = "Haste";
+    public final static String HASTE = "Haste";
     private final static String AIR_SHIELD = "Air shield";
     private final static String BLOODLUST = "Bloodlust";
     private final static String FIRE_SHIELD = "Fire shield";
@@ -21,7 +21,7 @@ public class SpellBookInfoFactory {
     private final static String WEAKNESS = "Weakness";
     private final static String PRAYER = "Prayer";
 
-    private final static String AIR_ELEMENTAL = "Summon air elemental";
+    public final static String AIR_ELEMENTAL = "Summon air elemental";
     private final static String FIRE_ELEMENTAL = "Summon fire elemental";
     private final static String EARTH_ELEMENTAL = "Summon earth elemental";
     private final static String WATER_ELEMENTAL = "Summon water elemental";
