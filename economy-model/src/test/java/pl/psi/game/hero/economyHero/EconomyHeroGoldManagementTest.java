@@ -1,6 +1,8 @@
 package pl.psi.game.hero.economyHero;
 
+import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pl.psi.game.fractions.CreatureInfo;
 import pl.psi.game.fractions.FractionsInfoAbstractFactory;
@@ -235,15 +237,16 @@ public class EconomyHeroGoldManagementTest {
 
     //end of round
 
-  /*  @Test
+    @Test
+    @Disabled
     void endTheRoundShouldAddGoldToHero(){
         EconomyHero hero = EconomyHero.builder().aGold(100).build();
-        endRound(hero,1); //hero end the first round(?)
+        //endRound(hero,1); //hero end the first round(?)
         //end 1 Round should add 500 gold (?)
         assertEquals(600,hero.getGold());
 
 
     }
-    */
+
 
 }
