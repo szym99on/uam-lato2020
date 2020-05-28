@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Getter
-public class EconomyHero  {
+public class EconomyHero {
 
     private List<CreatureInfo> creatures;
     private List<ArtifactInfo> artifacts;
@@ -30,16 +30,30 @@ public class EconomyHero  {
     }
 
 
-    void increaseGold(int gold){
+    void increaseGold(int gold) {
+
         this.gold += gold;
     }
 
-    void  decreaseGold(int gold){
+    void decreaseGold(int gold)  {
+
+        if (gold < 0) {
+            String output = String.format("You can't decrease a negative gold");
+            throw new IllegalStateException(output);
+        }
+        int secgold = this.getGold() - gold;
+
+        if (secgold < 0) {
+            String output = String.format("Not enough gold to decrease");
+            throw new IllegalStateException(output);
+        }
         this.gold -= gold;
+
+
     }
-    
+
     void buyCreature(CreatureInfo creature) throws Exception {
-        if(this.getGold() >= creature.getCost()) {
+        if (this.getGold() >= creature.getCost()) {
 
             this.decreaseGold(creature.getCost());
             this.creatures.add(creature);
@@ -53,7 +67,7 @@ public class EconomyHero  {
 
     void sellCreature(CreatureInfo creature) throws Exception {
 
-        if(!this.creatures.contains(creature)) {
+        if (!this.creatures.contains(creature)) {
             String output = String.format("Hero doesn't have creature: %s", creature.getName());
             throw new Exception(output);
         }
@@ -69,11 +83,11 @@ public class EconomyHero  {
     }
 
     void buyArtifact(ArtifactInfo artifact) throws Exception {
-        if(this.isSlotEmpty(artifact.getLocation().toString())){
-            String output = String.format("Location: %s is taken.",artifact.getLocation().toString());
+        if (this.isSlotEmpty(artifact.getLocation().toString())) {
+            String output = String.format("Location: %s is taken.", artifact.getLocation().toString());
             throw new Exception(output);
         }
-        if(this.getGold() >= artifact.getCost()) {
+        if (this.getGold() >= artifact.getCost()) {
             this.decreaseGold(artifact.getCost());
             this.artifacts.add(artifact);
         } else {
@@ -84,7 +98,7 @@ public class EconomyHero  {
     }
 
     void sellArtifact(ArtifactInfo artifact) throws Exception {
-        if(!this.artifacts.contains(artifact)) {
+        if (!this.artifacts.contains(artifact)) {
             String output = String.format("Hero doesn't have artifact: %s", artifact.getName());
             throw new Exception(output);
         }
@@ -106,15 +120,15 @@ public class EconomyHero  {
         return this.artifacts.stream().filter(artifact -> artifact.getName().equals(name)).findAny().orElse(null);
     }
 
-    public void buySpell(SpellInfo spell) {
-        if(getGold() >= spell.getCost()) {
+    public void buySpell(SpellInfo spell)  {
+        if (getGold() >= spell.getCost()) {
             this.decreaseGold(spell.getCost());
             this.spells.add(spell);
         }
     }
 
     public void sellSpell(SpellInfo spell) throws Exception {
-        if(!this.spells.contains(spell)) {
+        if (!this.spells.contains(spell)) {
             String output = String.format("Hero doesn't have spell: %s", spell.getName());
             throw new Exception(output);
         }
