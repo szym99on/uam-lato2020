@@ -109,6 +109,25 @@ public class ArtifactTest {
     }
 
     @Test
+    void artifactShouldIncreaseAttackBy2Points(){
+        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(CENTAURS_AX);
+        Artifact centaursAx = ArtifactFactory.createArtifact(artifactInfo);
+        Hero battleHero = Hero.builder().build();// default hero stats = 0
+
+        try{
+            assert centaursAx != null;
+            centaursAx.apply(battleHero);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        assertEquals(0, battleHero.getKnowledge());
+        assertEquals(2, battleHero.getAttack());
+        assertEquals(0, battleHero.getDefence());
+        assertEquals(0, battleHero.getPower());
+    }
+
+    @Test
     void artifactShouldIncreaseAllStatsBy1Point() {
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(ARMOR_OF_WONDER);
         Artifact armorOfWonders = ArtifactFactory.createArtifact(artifactInfo);
