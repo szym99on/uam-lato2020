@@ -119,6 +119,31 @@ public class ArtifactTest {
 
 
 
+//    CreatureImmunityArtifact test
+
+    @Disabled //waiting for immunity implementation by fractions/spells
+    @Test
+    void artifactShouldGrantImmunityToCreature(){
+        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(PENDANT_OF_DISPASSION);
+        Artifact pendantOfDispassion = ArtifactFactory.createArtifact(artifactInfo);
+        List<Creature> creatures = new ArrayList<>();
+        Creature creature = Creature.builder().aMaxHp(10).build();
+        creatures.add(creature);
+        Hero battleHero = Hero.builder().aCreatures(creatures).build();
+
+        try{
+            assert pendantOfDispassion != null;
+            pendantOfDispassion.apply(battleHero);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+//        assert creature has immunity
+
+    }
+
+
+
 //    HeroStatisticArtifact tests
 
     @Test
