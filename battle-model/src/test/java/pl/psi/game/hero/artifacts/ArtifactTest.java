@@ -22,6 +22,25 @@ public class ArtifactTest {
         new ArtifactFactory();
     }
 
+    @Disabled
+    @Test
+    void factoryShouldCreateCreatureMagicResistanceArtifact(){
+        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(BOOTS_OF_POLARITY);
+        Artifact bootsOfPolarity = ArtifactFactory.createArtifact(artifactInfo);
+
+        assert bootsOfPolarity != null;
+//        assertEquals(15, bootsOfPolarity.getMagicResistance());
+    }
+
+    @Test
+    void factoryShouldCreateCreatureSpeedArtifactBasedOnInfo() {
+        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(CAPE_OF_VELOCITY);
+        Artifact capeOfVelocity = ArtifactFactory.createArtifact(artifactInfo);
+
+        assert capeOfVelocity != null;
+        assertEquals(2, capeOfVelocity.getSpeed());
+    }
+
     @Test
     void factoryShouldCreateHeroStatisticArtifactBasedOnInfo() {
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(SKULL_HELMET);
@@ -34,24 +53,6 @@ public class ArtifactTest {
         assertEquals(0, skullHelmet.getPower());
     }
 
-    @Test
-    void factoryShouldCreateCreatureSpeedArtifactBasedOnInfo() {
-        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(CAPE_OF_VELOCITY);
-        Artifact capeOfVelocity = ArtifactFactory.createArtifact(artifactInfo);
-
-        assert capeOfVelocity != null;
-        assertEquals(2, capeOfVelocity.getSpeed());
-    }
-
-    @Disabled
-    @Test
-    void factoryShouldCreateSpellPreventCastingArtifact(){
-        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(RECANTERS_CLOAK);
-        Artifact recantersCloak = ArtifactFactory.createArtifact(artifactInfo);
-
-        assert recantersCloak != null;
-    }
-
     @Disabled
     @Test
     void factoryShouldCreateSpellDurationArtifact(){
@@ -62,6 +63,14 @@ public class ArtifactTest {
 //        assertEquals(1, collarOfConjuring.getDuration());
     }
 
+    @Disabled
+    @Test
+    void factoryShouldCreateSpellPreventCastingArtifact(){
+        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(RECANTERS_CLOAK);
+        Artifact recantersCloak = ArtifactFactory.createArtifact(artifactInfo);
+
+        assert recantersCloak != null;
+    }
 
     @Test
     void artifactShouldIncreaseKnowledgeBy2Points() {
