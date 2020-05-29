@@ -7,7 +7,7 @@ import pl.psi.game.fractions.Creature;
 //Make abstract method cast here, so your child like Buff or Damage will have to implement this and you can use POLIMORPHISM then.
 //cast point against creature will be better (easier to implement integration with board and make some splash damage)
 @Getter
-public class Spell {
+public abstract class Spell {
 
     protected final String name;
     private final String description;
@@ -17,7 +17,7 @@ public class Spell {
     private int manaCost;
     private SpellInfo.Type type;
 
-    @Builder
+//    @Builder
     public Spell (String aName, String aDescription, int aCost, int aLevel, int aManaCost, SpellInfo.Type aType, String aDuration) {
         name = aName;
         description = aDescription;
@@ -29,11 +29,7 @@ public class Spell {
     }
 
 
-    public void cast (int x, int y){
+    abstract public void cast (int x, int y);
 
-    }
-
-    public void cast (Creature creature){
-
-    }
+    abstract public void cast (Creature creature);
 }
