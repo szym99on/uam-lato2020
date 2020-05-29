@@ -9,7 +9,18 @@ import pl.psi.game.spellbook.Spell;
 import java.util.List;
 
 public class SpellBookRequest {
-    
+
+    @Test
+    @Disabled
+    void shouldBuffAllAlliedTroops()
+    {
+
+        Hero activeHero = Hero.builder().build();
+        List<Creature> creatures = activeHero.getCreatures();
+        Spell spell = Spell.builder().build();
+
+        creatures.forEach(a -> spell.cast(a));
+    }
 /*
     @Test
     void shouldDealDamageToAllEnemyTroops(){

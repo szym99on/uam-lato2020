@@ -1,9 +1,7 @@
 package pl.psi.game.hero;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import pl.psi.game.fractions.FractionsInfoAbstractFactory;
-import pl.psi.game.spellbook.SpellBookInfoFactory;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -12,29 +10,28 @@ import java.util.List;
 
 public class HeroInfoTest {
 
-    @BeforeAll
-    static void initializeHeroInfoFactory(){
-        new HeroInfoFactory();
-    }
-
+    //PW is static method so you don't have to do instance of HeroInfoFactory
     @Test
     void CheckGetAllMetode()
     {
-        List<HeroInfo> heroInfoList;
-        heroInfoList=HeroInfoFactory.getAll();
-        assertEquals(HeroInfoFactory.EDRIC,heroInfoList.get(0).getName());
+        HeroInfoFactory heroInfoFactory = new HeroInfoFactory();
+        List<HeroInfo> heroInfoList=new ArrayList<>();
+        heroInfoList=heroInfoFactory.getAll();
+        assertEquals("Edric",heroInfoList.get(0).getName());
     }
     @Test
     void CheckGetFractionMetode()
     {
-        List<HeroInfo> heroInfoList;
-        heroInfoList=HeroInfoFactory.getHeroInfoListByFraction(HeroInfo.Fraction.TOWER);
-        assertEquals(HeroInfoFactory.FAFNER,heroInfoList.get(0).getName());
+        HeroInfoFactory heroInfoFactory = new HeroInfoFactory();
+        List<HeroInfo> heroInfoList=new ArrayList<>();
+        heroInfoList=heroInfoFactory.getHeroInfoListByFraction(HeroInfo.Fraction.TOWER);
+        assertEquals("Fafner",heroInfoList.get(0).getName());
     }
     @Test
     void CheckIfFractionClassSetStatistics()
     {
-        HeroInfo heroInfo=HeroInfoFactory.getHeroInfoByName(HeroInfoFactory.EDRIC);
+        HeroInfoFactory heroInfoFactory = new HeroInfoFactory();
+        HeroInfo heroInfo=heroInfoFactory.getHeroInfoByName("Edric");
         assertEquals(2,heroInfo.getAttack());
         assertEquals(2,heroInfo.getDefense());
         assertEquals(1,heroInfo.getPower());

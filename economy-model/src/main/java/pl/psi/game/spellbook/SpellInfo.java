@@ -15,16 +15,16 @@ public class SpellInfo extends AbstractItemInfo {
     }
 
     private final Type type;
-    private final int level;
+    private final int tier;
     private final int manaCost;
     private String duration;
 
 
 
     @Builder
-     SpellInfo(String aName, String aDescription, int aCost, int aLevel, int aManaCost, Type aType, String aDuration) {
+    SpellInfo(String aName, String aDescription, int aCost, int aTier, int aManaCost, Type aType, String aDuration) {
         super(aName,aDescription,aCost);
-        level = aLevel;
+        tier = aTier;
         manaCost = aManaCost;
         type = aType;
         duration = aDuration;

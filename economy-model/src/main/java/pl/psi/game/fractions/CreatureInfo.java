@@ -11,17 +11,15 @@ public class CreatureInfo extends AbstractItemInfo {
     private final Range<Integer> attack;
     private final int armor;
     private final int moveRange;
-    private final boolean canFly;
     private final int cost;
 
     @Builder
-    public CreatureInfo(int aMaxHp, Range<Integer> aAttack, int aArmor, String aName, int aMoveRange, boolean aCanFly, String aDescription, int aCost) {
+    public CreatureInfo(int aMaxHp, Range<Integer> aAttack, int aArmor, String aName, int aMoveRange, String aDescription, int aCost) {
         super(aName, aDescription, aCost);
         maxHp = aMaxHp;
         attack = aAttack;
         armor = aArmor;
         moveRange = aMoveRange;
-        canFly = aCanFly;
         cost = aCost;
     }
 

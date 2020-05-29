@@ -11,7 +11,7 @@ import java.awt.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MoveEngineTest {
-/*
+
     @Test
     void moveShouldBePossible(){
         Creature c = Creature.builder().aMoveRange(1).build();
@@ -165,5 +165,5 @@ class MoveEngineTest {
 
     }
 
-*/
+
 }

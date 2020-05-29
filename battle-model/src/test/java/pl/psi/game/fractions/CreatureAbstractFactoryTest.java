@@ -19,7 +19,6 @@ public class CreatureAbstractFactoryTest {
         assertEquals("Skeleton Warrior", creature.getName());
         assertEquals(6, creature.getArmor());
         assertEquals(5, creature.getMoveRange());
-        assertEquals(false, creature.isCanFly());
     }
 
     @Test
@@ -31,7 +30,6 @@ public class CreatureAbstractFactoryTest {
         assertEquals("Zombie", creature.getName());
         assertEquals(5, creature.getArmor());
         assertEquals(4, creature.getMoveRange());
-        assertEquals(false, creature.isCanFly());
     }
 
     @Test
@@ -43,7 +41,6 @@ public class CreatureAbstractFactoryTest {
         assertEquals("Wraith", creature.getName());
         assertEquals(7, creature.getArmor());
         assertEquals(7, creature.getMoveRange());
-        assertEquals(true, creature.isCanFly());
     }
 
     @Test
@@ -55,7 +52,6 @@ public class CreatureAbstractFactoryTest {
         assertEquals("Vampire Lord", creature.getName());
         assertEquals(10, creature.getArmor());
         assertEquals(9, creature.getMoveRange());
-        assertEquals(true, creature.isCanFly());
     }
 
     @Test
@@ -67,7 +63,6 @@ public class CreatureAbstractFactoryTest {
         assertEquals("Power Lich", creature.getName());
         assertEquals(10, creature.getArmor());
         assertEquals(7, creature.getMoveRange());
-        assertEquals(false, creature.isCanFly());
     }
 
     @Test
@@ -79,7 +74,6 @@ public class CreatureAbstractFactoryTest {
         assertEquals("Dread Knight", creature.getName());
         assertEquals(18, creature.getArmor());
         assertEquals(9, creature.getMoveRange());
-        assertEquals(false, creature.isCanFly());
     }
 
     @Test
@@ -91,7 +85,6 @@ public class CreatureAbstractFactoryTest {
         assertEquals("Ghost Dragon", creature.getName());
         assertEquals(17, creature.getArmor());
         assertEquals(14, creature.getMoveRange());
-        assertEquals(true, creature.isCanFly());
     }
 
     @Test
@@ -103,7 +96,6 @@ public class CreatureAbstractFactoryTest {
         assertEquals("Centaur Captain", creature.getName());
         assertEquals(3, creature.getArmor());
         assertEquals(8, creature.getMoveRange());
-        assertEquals(false, creature.isCanFly());
     }
 
     @Test
@@ -115,7 +107,6 @@ public class CreatureAbstractFactoryTest {
         assertEquals("Battle Dwarf", creature.getName());
         assertEquals(7, creature.getArmor());
         assertEquals(5, creature.getMoveRange());
-        assertEquals(false, creature.isCanFly());
     }
 
     @Test
@@ -127,7 +118,6 @@ public class CreatureAbstractFactoryTest {
         assertEquals("Grand Elf", creature.getName());
         assertEquals(5, creature.getArmor());
         assertEquals(7, creature.getMoveRange());
-        assertEquals(false, creature.isCanFly());
     }
 
     @Test
@@ -139,7 +129,6 @@ public class CreatureAbstractFactoryTest {
         assertEquals("Silver Pegasus", creature.getName());
         assertEquals(10, creature.getArmor());
         assertEquals(12, creature.getMoveRange());
-        assertEquals(true, creature.isCanFly());
     }
 
     @Test
@@ -151,7 +140,6 @@ public class CreatureAbstractFactoryTest {
         assertEquals("Dendroid Soldier", creature.getName());
         assertEquals(12, creature.getArmor());
         assertEquals(4, creature.getMoveRange());
-        assertEquals(false, creature.isCanFly());
     }
 
     @Test
@@ -163,7 +151,6 @@ public class CreatureAbstractFactoryTest {
         assertEquals("War Unicorn", creature.getName());
         assertEquals(14, creature.getArmor());
         assertEquals(9, creature.getMoveRange());
-        assertEquals(false, creature.isCanFly());
     }
 
     @Test
@@ -175,7 +162,6 @@ public class CreatureAbstractFactoryTest {
         assertEquals("Gold Dragon", creature.getName());
         assertEquals(27, creature.getArmor());
         assertEquals(16, creature.getMoveRange());
-        assertEquals(true, creature.isCanFly());
     }
     
     @Test
@@ -187,7 +173,6 @@ public class CreatureAbstractFactoryTest {
         assertEquals("Hobgoblin", creature.getName());
         assertEquals(3, creature.getArmor());
         assertEquals(7, creature.getMoveRange());
-        assertEquals(false, creature.isCanFly());
     }
 
     @Test
@@ -199,7 +184,6 @@ public class CreatureAbstractFactoryTest {
         assertEquals("Wolf Raider", creature.getName());
         assertEquals(5, creature.getArmor());
         assertEquals(8, creature.getMoveRange());
-        assertEquals(false, creature.isCanFly());
     }
 
     @Test
@@ -211,7 +195,6 @@ public class CreatureAbstractFactoryTest {
         assertEquals("Orc Chieftain", creature.getName());
         assertEquals(4, creature.getArmor());
         assertEquals(5, creature.getMoveRange());
-        assertEquals(false, creature.isCanFly());
     }
 
     @Test
@@ -223,7 +206,6 @@ public class CreatureAbstractFactoryTest {
         assertEquals("Ogre Magi", creature.getName());
         assertEquals(7, creature.getArmor());
         assertEquals(5, creature.getMoveRange());
-        assertEquals(false, creature.isCanFly());
     }
 
     @Test
@@ -235,7 +217,6 @@ public class CreatureAbstractFactoryTest {
         assertEquals("Thunderbird", creature.getName());
         assertEquals(11, creature.getArmor());
         assertEquals(11, creature.getMoveRange());
-        assertEquals(true, creature.isCanFly());
     }
 
     @Test
@@ -247,7 +228,6 @@ public class CreatureAbstractFactoryTest {
         assertEquals("Cyclops King", creature.getName());
         assertEquals(13, creature.getArmor());
         assertEquals(8, creature.getMoveRange());
-        assertEquals(false, creature.isCanFly());
     }
 
     @Test
@@ -259,7 +239,6 @@ public class CreatureAbstractFactoryTest {
         assertEquals("Ancient Behemoth", creature.getName());
         assertEquals(19, creature.getArmor());
         assertEquals(9, creature.getMoveRange());
-        assertEquals(false, creature.isCanFly());
     }
     
     @Test
@@ -271,7 +250,6 @@ public class CreatureAbstractFactoryTest {
         assertEquals("Storm Elemental", creature.getName());
         assertEquals(9, creature.getArmor());
         assertEquals(8, creature.getMoveRange());
-        assertEquals(false, creature.isCanFly());
     }
 
     @Test
@@ -283,7 +261,6 @@ public class CreatureAbstractFactoryTest {
         assertEquals("Ice Elemental", creature.getName());
         assertEquals(10, creature.getArmor());
         assertEquals(6, creature.getMoveRange());
-        assertEquals(false, creature.isCanFly());
     }
 
     @Test
@@ -295,7 +272,6 @@ public class CreatureAbstractFactoryTest {
         assertEquals("Energy Elemental", creature.getName());
         assertEquals(8, creature.getArmor());
         assertEquals(8, creature.getMoveRange());
-        assertEquals(true, creature.isCanFly());
     }
 
     @Test
@@ -307,7 +283,6 @@ public class CreatureAbstractFactoryTest {
         assertEquals("Magma Elemental", creature.getName());
         assertEquals(11, creature.getArmor());
         assertEquals(6, creature.getMoveRange());
-        assertEquals(false, creature.isCanFly());
     }
     
 }

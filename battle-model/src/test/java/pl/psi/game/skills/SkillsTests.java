@@ -5,6 +5,10 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pl.psi.game.fractions.Creature;
 import pl.psi.game.hero.converter.Hero;
+import pl.psi.game.hero.EconomyHero;
+import pl.psi.game.hero.converter.HeroEcoBattleConverter;
+import pl.psi.game.spellbook.Spell;
+import pl.psi.game.spellbook.SpellInfo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static pl.psi.game.skills.SkillInfoFactory.*;

@@ -1,32 +1,36 @@
 package pl.psi.game.fractions;
 
-import org.junit.jupiter.api.Test;
 
 public class ConverterRequest {
-    @Test
+    /*@Test
     void FractionInfoTypes()
     {
-        FractionsInfoAbstractFactory.Fractions fraction = FractionsInfoAbstractFactory.Fractions.NECROPOLIS;
-    }
-    @Test
+        FractionsInfo.Type.NECROPOLIS
+    }*/
+    /*@Test
     void FractionEconomyFactoryGetByType()
     {
-        CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(1);
-    }
-    @Test
-    void BattleFraction()
+        fractionsInfoAbstractFactory.getByType(FractionsInfo.Type.NECROPOLIS).createCreature(1);
+    }*/
+    /*@Test
+    void CreatureEconomyClass()
     {
-        CreatureAbstractFactory creatureAbstractFactory = new CreatureAbstractFactory();
-    }
-    @Test
+        CreatureInfo creatureInfo = fractionsInfoAbstractFactory.getByType(FractionsInfo.Type.NECROPOLIS).createCreature(1);
+    }*/
+    /*@Test
+    void BattleFractionMaybe()
+    {
+        FractionsAbstractFactory fractionsAbstractFactory = new FractionsAbstractFactory();
+    }*/
+    /*@Test
     void CreateBattleCreatureFromFactory()
     {
-        CreatureAbstractFactory creatureAbstractFactory = new CreatureAbstractFactory();
-        Creature creature = creatureAbstractFactory.getCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(1));
-    }
-    /*@Test
-    void CreatureAbstractFactoryMethodGetCreatureShouldBeStatic()
-    {
-        CreatureAbstractFactory.getCreature();
+        Creature creature = fractionsAbstractFactory.getByType(FractionInfo.Type.NECROPOLIS).createCreature(1);
     }*/
+    /*
+    @Test
+    void mapCreatureInfoToCreature(){
+        fractionCreatureFactory.create(creatureInfo);
+     }
+    */
 }

@@ -4,14 +4,11 @@ import com.google.common.collect.Range;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pl.psi.game.fractions.*;
-import pl.psi.game.hero.HeroInfo;
-import pl.psi.game.hero.HeroInfoFactory;
+import pl.psi.game.hero.EconomyHero;
 import pl.psi.game.hero.artifacts.ArtifactInfo;
 import pl.psi.game.hero.artifacts.ArtifactsInfoFactory;
 import pl.psi.game.hero.converter.Hero;
 import pl.psi.game.hero.converter.HeroEcoBattleConverter;
-import pl.psi.game.hero.economyHero.EconomyHero;
-import pl.psi.game.spellbook.Spell;
 import pl.psi.game.spellbook.SpellBook;
 import pl.psi.game.spellbook.SpellBookInfoFactory;
 import pl.psi.game.spellbook.SpellInfo;
@@ -23,92 +20,184 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ConverterTest {
 
-    private EconomyHero economyHero;
-    private CreatureAbstractFactory creatureAbstractFactory = new CreatureAbstractFactory();
-    void InitializeEconomyHero()
-    {
-        economyHero = EconomyHero.builder().build();
-        //economyHero = EconomyHero.builder().aHeroInfo(HeroInfoFactory.getHeroInfoByName(HeroInfoFactory.EDRIC)).build();
-    }
     @Test
     @Disabled
-    void ConvertOneEconomyCreatureToBattleCreature()
+            //fake
+    //TODO: check assertThrow method.
+    void ConvertEconomyHeroToBattleHero()
     {
-        InitializeEconomyHero();
-        CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(1);
+        try{
+            //EconomyFactory economyfactory = new EconomyFactory();
+            //economyHero = economyfactory.createHero();
+            HeroEcoBattleConverter converter = new HeroEcoBattleConverter();
+            //Hero battleHero = converter.convertEconomyHeroToBattleHero(economyHero);
+            assertTrue(false);
+        }
+        catch (Exception e)
+        {
+            assertTrue(true);
+        }
+    }
+
+    @Test
+    @Disabled
+    //TODO: you can abstain from economyFactory. Just make constructor for EconomyHero.
+    //TODO: Looks fine, but you should check stacking creatures here too. creatureCount e.g. 10
+    void ApplyEconomyCreaturesToBattleCreatures()
+    {
+        //Economy creatures list
+        ////EconomyFactory economyfactory = new EconomyFactory();
+        ////economyHero = economyfactory.createHero();
+        FractionsInfoAbstractFactory fractionsInfoAbstractFactory = new FractionsInfoAbstractFactory();
+        ////CreatureInfo creatureInfo = fractionsInfoAbstractFactory.getByType(FractionsInfo.Type.NECROPOLIS).createCreature(1);
+        Integer creatureCount = 1;
         ////economyHero.addCreatureInfo(creatureInfo,creatureCount);
-        Hero hero = Hero.builder().build();
+        HeroEcoBattleConverter converter = new HeroEcoBattleConverter();
 
-        hero = HeroEcoBattleConverter.convert(economyHero);
-        Creature creature = creatureAbstractFactory.getCreature(creatureInfo);
+        ////Hero battleHero = converter.convertEconomyHeroToBattleHero(economyHero);
 
-        assertEquals(creature,hero.getCreatures());
+        //Battle creatures list
+        ////FractionsAbstractFactory fractionsAbstractFactory = new FractionsAbstractFactory();
+        ////Creature creature = fractionsAbstractFactory.getByType(FractionInfo.Type.NECROPOLIS).createCreature(1);
+        List<Creature> creatures = new ArrayList<Creature>();
+        ////creatures.add(creature);
+
+        ////assertEquals(creatures,battleHero.getCreatures());
     }
+
     @Test
     @Disabled
-    //Wait for amount change method
-    void ConvertStackEconomyCreatureToBattleCreature()
+    //TODO: Completely not understand...
+    void AppliedEconomyArtifactCreatureNotEqualToBattleCreature()
     {
-        InitializeEconomyHero();
-        CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(1);
+        //Economy creatures list
+        ////EconomyFactory economyfactory = new EconomyFactory();
+        ////economyHero = economyfactory.createHero();
+        FractionsInfoAbstractFactory fractionsInfoAbstractFactory = new FractionsInfoAbstractFactory();
+        ////CreatureInfo creatureInfo = fractionsInfoAbstractFactory.getByType(FractionsInfo.Type.NECROPOLIS).createCreature(1);
+        Integer creatureCount = 1;
         ////economyHero.addCreatureInfo(creatureInfo,creatureCount);
-        Hero hero = Hero.builder().build();
+        HeroEcoBattleConverter converter = new HeroEcoBattleConverter();
 
-        hero = HeroEcoBattleConverter.convert(economyHero);
-        Creature creature = creatureAbstractFactory.getCreature(creatureInfo);
+        ArtifactsInfoFactory artifactsInfoFactory = new ArtifactsInfoFactory();
+        ////ArtifactInfo artifact = artifactsInfoFactory.getByType(ArtifactInfo.Location.FINGERS).stream().findFirst();
+        ////economyHero.addArtifact(artifact);
 
-        assertEquals(creature,hero.getCreatures().get(0));
+        ////Hero battleHero = converter.convertEconomyHeroToBattleHero(economyHero);
+
+        //Battle creatures list
+        ////FractionsAbstractFactory fractionsAbstractFactory = new FractionsAbstractFactory();
+        ////Creature creature = fractionsAbstractFactory.getByType(FractionInfo.Type.NECROPOLIS).createCreature(1);
+        List<Creature> creatures = new ArrayList<Creature>();
+        ////creatures.add(creature);
+
+        ////assertNotEquals(battleHero.getCreatures(),creatures);
     }
+
     @Test
     @Disabled
-    void ConvertEconomySpellToBattleSpell()
+    void economySpellsShoulBeEqualToBattleSpells()
     {
-        InitializeEconomyHero();
-        SpellInfo spellInfo = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.MAGIC_ARROW);
-        ////economyHero.addCreatureInfo(creatureInfo,creatureCount);
-        Hero hero = Hero.builder().build();
+        //Economy spell list
+        ////EconomyFactory economyfactory = new EconomyFactory();
+        ////economyHero = economyfactory.createHero();
+        List<SpellInfo> spellsInfo = new ArrayList<SpellInfo>();
+        SpellBookInfoFactory spellBookInfoFactory = new SpellBookInfoFactory();
+        spellsInfo=spellBookInfoFactory.getSpellsByType(SpellInfo.Type.AIR);
+        ////economyHero.addSpellsInfo(spellsInfo);
+        HeroEcoBattleConverter converter = new HeroEcoBattleConverter();
 
-        hero = HeroEcoBattleConverter.convert(economyHero);
-//        Spell spell = Spell.builder().build();
-//        //Spell spell = SpellBook.getSpellByName(SpellBookInfoFactory.MAGIC_ARROW);
-//
-//        assertEquals(spell,hero.getSpells().get(0));
+
+        ////Hero battleHero = converter.convertEconomyHeroToBattleHero(economyHero);
+
+        //Battle spell list
+        ////List<Spell> spells = new ArrayList<Spell>();
+        ////SpellBookFactory spellBookFactory = new SpellBookFactory();
+        ////spells=spellBookFactory.getSpellsByType(SpellInfo.Type.AIR);
+
+        ////assertEquals(battleHero.getSpells(),spells);
     }
+
+
     @Test
     @Disabled
-    //Wait GetArtifact public to change converter
-    void AppliedArtifactOnHeroChangeHeroStats()
+    void AppliedEconomyArtifactSpellNotEqualToBattleSpell()
     {
-        InitializeEconomyHero();
-        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.HELM_OF_THE_ALABASTER_UNICORN);
-        Hero hero = Hero.builder().build();
+        //Economy spell list
+        ////EconomyFactory economyfactory = new EconomyFactory();
+        ////economyHero = economyfactory.createHero();
+        List<SpellInfo> spellsInfo = new ArrayList<SpellInfo>();
+        SpellBookInfoFactory spellBookInfoFactory = new SpellBookInfoFactory();
+        spellsInfo=spellBookInfoFactory.getSpellsByType(SpellInfo.Type.AIR);
+        ////economyHero.addSpellsInfo(spellsInfo);
+        HeroEcoBattleConverter converter = new HeroEcoBattleConverter();
 
-        hero = HeroEcoBattleConverter.convert(economyHero);
 
-        //assertEquals(hero.getKnowledge(),2);
+        ArtifactsInfoFactory artifactsInfoFactory = new ArtifactsInfoFactory();
+        ////ArtifactInfo artifact = artifactsInfoFactory.getByType(ArtifactInfo.Location.FINGERS).stream().findFirst();
+        ////economyHero.addArtifact(artifact);
+
+        ////Hero battleHero = converter.convertEconomyHeroToBattleHero(economyHero);
+
+        //Battle spell list
+        ////List<Spell> spells = new ArrayList<Spell>();
+        ////SpellBookFactory spellBookFactory = new SpellBookFactory();
+        ////spells=spellBookFactory.getSpellsByType(SpellInfo.Type.AIR);
+
+        ////assertNotEquals(battleHero.getSpells(),spells);
     }
+
+
+
     @Test
     @Disabled
-    void AppliedArtifactOnHeroChangeCreatureStats()
-    {
-        //change later
+    //TODO: Why should have 10 mana? o.0
+    //ManaPoints = Knowledge*10
+    void heroShouldHave10ManaPoints() {
+        //EconomyHero economyHero = EconomyHero.builder().aKnowledge(1).build();
+        HeroEcoBattleConverter heroEcoBattleConverter = new HeroEcoBattleConverter();
+        //Hero hero = heroEcoBattleConverter.convertEconomyHeroToBattleHero(economyHero);
+
+        //assertEquals(10, hero.getManaPoints());
     }
+
     @Test
     @Disabled
-    void AppliedArtifactOnHeroChangeSpell()
-    {
-        //later if exist
+    //TODO: Why should increase hp?
+    ////CreatureHP += HeroDefense
+    void heroShouldIncreaseCreatureMaxHpTo8() {
+        //CreatureInfo creatureInfo = CreatureInfo.builder().aMaxHp(6).build();
+        //List<CreatureInfo> ecoCreatureList = new ArrayList<>();
+        //ecoCreatureList.add(creatureInfo);
+        //EconomyHero economyHero = EconomyHero.builder().aAttack(2).build();
+        Integer creatureCount = 1;
+        //economyHero.addCreatureInfo(creatureInfo,creatureCount);
+        HeroEcoBattleConverter heroEcoBattleConverter = new HeroEcoBattleConverter();
+        //Hero hero =  heroEcoBattleConverter.convertEconomyHeroToBattleHero(economyHero);
+        //List<Creature> creatureList = hero.getCreatures();
+        //Creature creature = creatureList.get(0);
+
+        //assertEquals(8, creature.getMaxHp());
     }
+
     @Test
     @Disabled
-    void CheckManaConversion() {
-        InitializeEconomyHero();
-        ////economyHero.addCreatureInfo(creatureInfo,creatureCount);
-        Hero hero = Hero.builder().build();
+    //TODO: as above? why??
+        // CreatureAttack += HeroAttack
+    void heroShouldIncreaseCreatureAttackTo35() {
+        //CreatureInfo creatureInfo = CreatureInfo.builder().aAttack(Range.closed(1,3)).build();
+        //List<CreatureInfo> ecoCreatureList = new ArrayList<>();
+        //ecoCreatureList.add(creatureInfo);
+        //EconomyHero economyHero = EconomyHero.builder().aAttack(2).build();
+        Integer creatureCount = 1;
+        //economyHero.addCreatureInfo(creatureInfo,creatureCount);
+        HeroEcoBattleConverter heroEcoBattleConverter = new HeroEcoBattleConverter();
+        //Hero hero =  heroEcoBattleConverter.convertEconomyHeroToBattleHero(economyHero);
+        //List<Creature> creatureList = hero.getCreatures();
+        //Creature creature = creatureList.get(0);
 
-        hero = HeroEcoBattleConverter.convert(economyHero);
-
-        assertEquals(10,hero.getMana());
+        //assertEquals(5, creature.getAttack().upperEndpoint());
+        //assertEquals(3, creature.getAttack().lowerEndpoint());
     }
 
 }

@@ -19,12 +19,11 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
     @Setter private int currentHp;
     @Setter private boolean canCounterAttacked;
     private final int moveRange;
-    private boolean canFly;
     private int amount;
     private DealDamageCounterStrategyIf dealDamageCounterStrategy;
     
     @Builder
-    public Creature(int aMaxHp, Range<Integer> aAttack, int aArmor, String aName, int aMoveRange, boolean aCanFly) {
+    public Creature(int aMaxHp, Range<Integer> aAttack, int aArmor, String aName, int aMoveRange) {
         maxHp = aMaxHp;
         attack = aAttack;
         currentHp = maxHp;
@@ -32,9 +31,8 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
         canCounterAttacked = true;
         name = aName;
         moveRange = aMoveRange;
-        canFly = aCanFly;
         amount = 10;
-        dealDamageCounterStrategy = new DefaultDamageCounterStrategy();
+        dealDamageCounterStrategy = new DefaultDamageCounterStrategy();        
     }
 
     public Creature(int aMaxHp, Range<Integer> aAttack, int aArmor) {
@@ -45,7 +43,6 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
         canCounterAttacked = true;
         name = "";
         moveRange = 0;
-        canFly = false;
     }
 
     public void attack(Creature aDefender) {
