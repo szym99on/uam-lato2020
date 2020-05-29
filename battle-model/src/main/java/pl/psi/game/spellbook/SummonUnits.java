@@ -28,10 +28,9 @@ public class SummonUnits extends Spell {
         if(Objects.equals(name, SpellBookInfoFactory.STORM_ELEMENTAL)) {
             CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.ELEMENTAL).getCreatureByTier(1);
             Creature creature = creatureAbstractFactory.getCreature(creatureInfo);
-            
+            //UNRESOLVED PROBLEM WITH PUTTING CREATURE
             //board.putCreature(x,y, creature);
         }
-
 
     }
 

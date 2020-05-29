@@ -24,8 +24,6 @@ public class SummonUnitsTest {
         new FractionsInfoAbstractFactory();
     }
 
-
-
     private final static String STORM_ELEMENTAL = "Summon storm elemental";
     private final static String ENERGY_ELEMENTAL = "Summon energy elemental";
     private final static String MAGMA_ELEMENTAL = "Summon magma elemental";
