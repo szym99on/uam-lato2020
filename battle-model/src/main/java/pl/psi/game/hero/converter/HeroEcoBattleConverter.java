@@ -3,7 +3,7 @@ package pl.psi.game.hero.converter;
 import pl.psi.game.fractions.Creature;
 import pl.psi.game.fractions.CreatureAbstractFactory;
 import pl.psi.game.fractions.FractionsInfoAbstractFactory;
-import pl.psi.game.hero.EconomyHero;
+import pl.psi.game.hero.economyHero.EconomyHero;
 
 import java.util.ArrayList;
 import java.util.List;

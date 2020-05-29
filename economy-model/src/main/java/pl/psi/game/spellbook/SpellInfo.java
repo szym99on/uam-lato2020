@@ -22,7 +22,7 @@ public class SpellInfo extends AbstractItemInfo {
 
 
     @Builder
-    SpellInfo(String aName, String aDescription, int aCost, int aLevel, int aManaCost, Type aType, String aDuration) {
+     SpellInfo(String aName, String aDescription, int aCost, int aLevel, int aManaCost, Type aType, String aDuration) {
         super(aName,aDescription,aCost);
         level = aLevel;
         manaCost = aManaCost;

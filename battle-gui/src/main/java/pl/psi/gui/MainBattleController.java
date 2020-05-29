@@ -12,7 +12,6 @@ import pl.psi.game.fractions.Creature;
 import pl.psi.game.fractions.CreatureAbstractFactory;
 import pl.psi.game.fractions.CreatureInfo;
 import pl.psi.game.fractions.FractionsInfoAbstractFactory;
-import pl.psi.game.hero.EconomyHero;
 import pl.psi.game.hero.converter.Hero;
 import pl.psi.game.move.GuiTileIf;
 import pl.psi.gui.tiles.*;
