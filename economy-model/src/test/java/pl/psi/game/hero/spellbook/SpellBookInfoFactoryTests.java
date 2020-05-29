@@ -29,7 +29,8 @@ public class SpellBookInfoFactoryTests {
     @Test
     void GetProperlyAllSpells(){
         SpellInfo elem = SpellBookInfoFactory.getSpell(STORM_ELEMENTAL);
-
-        assertEquals(SpellBookInfoFactory.getListAllSpells().contains(elem), true);
+        List<SpellInfo> list = SpellBookInfoFactory.getListAllSpells();
+        assertEquals(3 < list.size(), true );
+        assertEquals(list.contains(elem), true);
     }
 }
