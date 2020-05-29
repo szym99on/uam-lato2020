@@ -28,19 +28,12 @@ public class MoveEngine implements PropertyChangeListener {
     }
 
     public void move(int x, int y) {
-        /*
-        Point oldPosition = activeCreature.getKey();
-        board.move(x,y,activeCreature.getValue());
-        activeCreature = new AbstractMap.SimpleEntry<>(new Point(x,y), activeCreature.getValue());
-        propertyChangeSupport.firePropertyChange(GameEngine.CREATURE_MOVED, oldPosition, activeCreature.getKey());
-        */
-        /*
-        if(activeCreature.getValue().canFly()) {
-            moveStrategyIf = new MoveStrategyFly(board);
+        if(activeCreature.getValue().isCanFly()) {
+            moveStrategyIf = new MoveStrategyFly(board, activeCreature);
         } else {
-            moveStrategyIf = new MoveStrategyWalk(board);
+            moveStrategyIf = new MoveStrategyWalk(board, activeCreature);
         }
-        moveStrategyIf.move(x,y);*/
+        moveStrategyIf.move(x,y);
     }
 
 

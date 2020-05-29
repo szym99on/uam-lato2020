@@ -20,6 +20,15 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
     @Setter private boolean canCounterAttacked;
     private final int moveRange;
     private boolean canFly;
+
+    public int getMoveRange() {
+        return moveRange;
+    }
+
+    public boolean isCanFly() {
+        return canFly;
+    }
+
     private int amount;
     private DealDamageCounterStrategyIf dealDamageCounterStrategy;
     
