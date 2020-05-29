@@ -10,6 +10,7 @@ import pl.psi.game.hero.artifacts.ArtifactInfo;
 import pl.psi.game.hero.artifacts.ArtifactsInfoFactory;
 import pl.psi.game.spellbook.Spell;
 import pl.psi.game.spellbook.SpellBookInfoFactory;
+import pl.psi.game.spellbook.SpellFactory;
 import pl.psi.game.spellbook.SpellInfo;
 
 import java.util.ArrayList;
@@ -48,7 +49,9 @@ public class ArtifactsRequest {
         Creature creature = Creature.builder().aMaxHp(10).build();
         List <Creature> creatures = new ArrayList<>();
         creatures.add(creature);
-        Spell spell = Spell.builder().build();
+        SpellInfo spellInfo = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.FIRE_BALL);
+        SpellFactory factory = new SpellFactory();
+        Spell spell = factory.createSpell(spellInfo);
         List <Spell> spells = new ArrayList<>();
         spells.add(spell);
         EconomyHero heroToConvert = null; //= EconomyHero.builder().aKnowledge(2).aCreatures(creatures).aSpells(spell).build();
@@ -59,9 +62,9 @@ public class ArtifactsRequest {
     @Test
     void shouldApplyArtifactsEffectsOnConversion(){
         EconomyHero ecoHero = prepareEconomyHeroWithKnowledgeCreaturesAndSpellsToConvert();
-        ArtifactInfo artifactAffectingStats = ArtifactsInfoFactory.getArtifact("Skull helmet");
-        ArtifactInfo artifactAffectingSpells = ArtifactsInfoFactory.getArtifact("Cape of Conjuring");
-        ArtifactInfo artifactAffectingCreatures = ArtifactsInfoFactory.getArtifact("Ring of Vitality");
+        ArtifactInfo artifactAffectingStats = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.SKULL_HELMET);
+        ArtifactInfo artifactAffectingSpells = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.CAPE_OF_CONJURING);
+        ArtifactInfo artifactAffectingCreatures = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.RING_OF_VITALITY);
 //        ecoHero.equip(artifactAffectingStats);
 //        ecoHero.equip(artifactAffectingSpells);
 //        ecoHero.equip(artifactAffectingCreatures);
@@ -78,20 +81,23 @@ public class ArtifactsRequest {
     @Disabled
     @Test
     void shouldReturnHerosSpellsList() {
-//        Spell s1 = Spell.builder().aTier(1).build();
-//        Spell s2 = Spell.builder().aTier(2).build();
+        SpellInfo info1 = SpellBookInfoFactory.getSpellsByLevel(1).get(0);
+        SpellInfo info2 = SpellBookInfoFactory.getSpellsByLevel(2).get(0);
+        SpellFactory factory = new SpellFactory();
+        Spell s1 = factory.createSpell(info1);
+        Spell s2 = factory.createSpell(info2);
         List<Spell> spells = new ArrayList<>();
-//        spells.add(s1);
-//        spells.add(s2);
+        spells.add(s1);
+        spells.add(s2);
 
-//        Hero hero = new Hero(spells);
+        Hero hero = Hero.builder().aSpells(spells).build();
 
 
         List< Spell > expected = new ArrayList<>();
-//        expected.add(s1);
-//        expected.add(s2);
+        expected.add(s1);
+        expected.add(s2);
 
-//        assertEquals(expected, hero.getSpells());
+        assertEquals(expected, hero.getSpells());
     }
 
     @Disabled

@@ -15,6 +15,8 @@ class SpellDurationArtifact extends SpellBuffArtifact {
 //        s.increaseDuration(duration);
     }
 
+    @Override
+    public int getDuration() { return duration; }
 }
 
 
