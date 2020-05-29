@@ -5,7 +5,7 @@ import pl.psi.game.fractions.Creature;
 //PW Spell should be abstract and make new class DamageSpell instead of.
 //Make abstract method cast here, so your child like Buff or Damage will have to implement this and you can use POLIMORPHISM then.
 //cast point against creature will be better (easier to implement integration with board and make some splash damage)
-public class Spell {
+public abstract class Spell {
 
     protected final String name;
     private final String description;
@@ -34,4 +34,6 @@ public class Spell {
     public void cast (Creature creature){
 
     }
+
+    public abstract void cast(String aCreatureName, int x, int y, int tier);
 }

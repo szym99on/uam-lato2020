@@ -16,8 +16,8 @@ public class SummonUnits extends Spell {
     public SummonUnits(String aName, String aDescription, int aCost, int aLevel, int aManaCost, SpellInfo.Type aType, String aDuration) {
         super(aName, aDescription, aCost, aLevel, aManaCost, aType, aDuration);
     }
-
-    public void summonElemental(String aCreatureName, int x, int y, int tier){
+    @Override
+    public void cast(String aCreatureName, int x, int y, int tier){
         CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.ELEMENTAL).getCreature(aCreatureName);
         Creature creature = creatureAbstractFactory.getCreature(creatureInfo);
         board.putCreature(x,y, creature);
