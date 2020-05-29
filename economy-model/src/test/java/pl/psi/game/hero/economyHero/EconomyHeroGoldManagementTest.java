@@ -23,7 +23,6 @@ public class EconomyHeroGoldManagementTest {
         new FractionsInfoAbstractFactory();
     }
 
-    //simple math on gold
     @Test
     void increaseGoldShouldAddGold() {
         EconomyHero hero = EconomyHero.builder().aGold(2000).build();
@@ -72,7 +71,7 @@ public class EconomyHeroGoldManagementTest {
     //buying 1 item
 
     @Test
-    void buySpellShouldTakeGoldAndAddSpell() {
+    void buySpellShouldTakeGoldAndAddSpell() throws Exception {
         SpellInfo spell = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.MAGIC_ARROW);
         EconomyHero hero = EconomyHero.builder().aGold(3000).build();
 
@@ -86,6 +85,7 @@ public class EconomyHeroGoldManagementTest {
 
     @Test
     void buyCreatureShouldTakeGoldAndAddCreature() throws Exception {
+
         FractionsInfoAbstractFactory necropolisFactory = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS);
         CreatureInfo creature = necropolisFactory.getCreature(NecropolisInfoFactory.SKELETON_WARRIOR);
         EconomyHero hero = EconomyHero.builder().aGold(1000).build();

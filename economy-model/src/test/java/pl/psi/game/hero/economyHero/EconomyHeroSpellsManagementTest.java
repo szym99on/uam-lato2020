@@ -15,7 +15,7 @@ public class EconomyHeroSpellsManagementTest {
     }
 
     @Test
-    void buySpellShouldTakeGoldAndAddSpell_1() throws Exception {
+    void buyMagicArrowShouldTakeGoldAndAddSpell() throws Exception {
         SpellInfo spellInfo = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.MAGIC_ARROW);
         EconomyHero hero = EconomyHero.builder().aGold(3000).build();
 
@@ -27,7 +27,7 @@ public class EconomyHeroSpellsManagementTest {
     }
 
     @Test
-    void buySpellShouldTakeGoldAndAddSpell_2(){
+    void buyLightningBoltShouldTakeGoldAndAddSpell() throws Exception {
         SpellInfo spellInfo = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.LIGHTNING_BOLT);
         EconomyHero hero = EconomyHero.builder().aGold(100).build();
 
@@ -39,7 +39,7 @@ public class EconomyHeroSpellsManagementTest {
     }
 
     @Test
-    void buySpellShouldTakeGoldAndAddSpell_3(){
+    void buyAirElementalShouldTakeGoldAndAddSpell() throws Exception {
         SpellInfo spellInfo = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.AIR_ELEMENTAL);
         EconomyHero hero = EconomyHero.builder().aGold(200).build();
 
@@ -51,7 +51,7 @@ public class EconomyHeroSpellsManagementTest {
     }
 
     @Test
-    void buySpellShouldTakeGoldAndAddSpellForMoreThanOneSpell_1(){
+    void buyTwoSpellsShouldTakeGoldAndAddTwoSpells() throws Exception {
         SpellInfo spell_one = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.HASTE);
         SpellInfo spell_two = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.MAGIC_ARROW);
         EconomyHero hero = EconomyHero.builder().aGold(500).build();
@@ -66,7 +66,7 @@ public class EconomyHeroSpellsManagementTest {
     }
 
     @Test
-    void buySpellShouldTakeGoldAndAddSpellForMoreThanOneSpell_2(){
+    void buyTwoSpellsShouldTakeGoldAndAddSpellForTwoSpells() throws Exception {
         SpellInfo spell_one = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.AIR_ELEMENTAL);
         SpellInfo spell_two = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.LIGHTNING_BOLT);
         EconomyHero hero = EconomyHero.builder().aGold(1000).build();
@@ -110,12 +110,14 @@ public class EconomyHeroSpellsManagementTest {
     @Disabled
     @Test
     void sellSpellShouldReturn75PercentOfOriginalPriceAndRemoveSpellForMoreThanOneSpell_1() throws Exception{
+
         SpellInfo spell_one = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.HASTE);
         SpellInfo spell_two = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.MAGIC_ARROW);
         EconomyHero hero = EconomyHero.builder().aGold(2000).build();
 
         hero.addSpell(spell_one);
         hero.addSpell(spell_two);
+
         assertEquals(hero.getSpells().size(),2);
 
         hero.sellSpell(spell_one);
@@ -127,33 +129,7 @@ public class EconomyHeroSpellsManagementTest {
         assertEquals(hero.getSpells().size(),0);
     }
 
-    @Test
-    void newBuyMethod_1() throws Exception{
-        SpellInfo spell = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.MAGIC_ARROW);
-        EconomyHero hero = EconomyHero.builder().aGold(2000).build();
 
-        hero.checkBoughtSpell(spell);
 
-        assertEquals(hero.getGold(),1900);
-        assertTrue(hero.getSpells().contains(spell));
-        assertEquals(hero.getSpells().size(),1);
-
-    }
-
-    @Disabled
-    @Test
-    void newBuyMethod_2() throws Exception{
-        SpellInfo spell_one = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.MAGIC_ARROW);
-        SpellInfo spell_two = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.MAGIC_ARROW);
-        EconomyHero hero = EconomyHero.builder().aGold(2000).build();
-
-        hero.checkBoughtSpell(spell_one);
-
-        assertEquals(hero.getGold(),1900);
-        assertTrue(hero.getSpells().contains(spell_one));
-
-        hero.checkBoughtSpell(spell_two);
-        assertFalse(hero.getSpells().contains(spell_two));
-    }
 
 }

@@ -120,12 +120,7 @@ public class EconomyHero {
         return this.artifacts.stream().filter(artifact -> artifact.getName().equals(name)).findAny().orElse(null);
     }
 
-    public void buySpell(SpellInfo spell)  {
-        if (getGold() >= spell.getCost()) {
-            this.decreaseGold(spell.getCost());
-            this.spells.add(spell);
-        }
-    }
+
 
     public void sellSpell(SpellInfo spell) throws Exception {
         if (!this.spells.contains(spell)) {
@@ -137,7 +132,7 @@ public class EconomyHero {
         this.spells.remove(spell);
     }
 
-    public void checkBoughtSpell(SpellInfo spell) throws Exception{
+    public void buySpell(SpellInfo spell) throws Exception{
         if(this.spells.contains(spell)){
             String output = String.format("Hero has got this spell %s ", spell.getName());
             throw new Exception(output);
