@@ -62,10 +62,16 @@ public class SpellBookInfoFactory {
     }
 
     public static List<SpellInfo> getSpellsByLevel(int aLevel){
-        return spellList.stream().filter(s -> s.getLevel() == aLevel).collect(Collectors.toList());
+
+        return spellList.stream().filter(spell -> spell.getLevel() == aLevel).collect(Collectors.toList());
     }
 
     public static List<SpellInfo> getSpellsByType(SpellInfo.Type type){
         return spellList.stream().filter(s -> s.getType() == type).collect(Collectors.toList());
     }
+
+    public static int getHighestTier(){
+        return spellList.stream().map(SpellInfo::getLevel).max(Integer::compare).orElseThrow();
+    }
+
 }
