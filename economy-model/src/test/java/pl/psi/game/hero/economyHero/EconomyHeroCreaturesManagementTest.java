@@ -43,20 +43,13 @@ public class EconomyHeroCreaturesManagementTest {
     void buyCreatureShouldNotBuyCreatureWhenNotEnoughGold () throws Exception {
         CreatureInfo creature = necropolisFactory.getCreature(NecropolisInfoFactory.GHOST_DRAGON);
         EconomyHero hero = EconomyHero.builder().aGold(1000).build();
-        boolean thrown = false;
 
-        try {
-
-            hero.buyCreature(creature);
-
-        }catch (Exception e){
-
-        thrown = true;
-
-        }
+        assertThrows(Exception.class, () ->
+                hero.buyCreature(creature)
+        );
 
         assertEquals(hero.getGold(), 1000);
-        assertTrue(thrown);
+
     }
 
     @Test
