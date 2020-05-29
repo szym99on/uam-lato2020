@@ -3,52 +3,65 @@ package pl.psi.game.hero;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import pl.psi.game.hero.artifacts.ArtifactInfo;
-
-import java.awt.*;
+import pl.psi.game.hero.economyHero.EconomyHero;
+import pl.psi.game.spellbook.SpellInfo;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ConverterRequest {
 
-    /*@BeforeAll
+    @BeforeAll
     static void initializeHeroInfoFactory(){
         new HeroInfoFactory();
-    }*/
-    private EconomyHero economyHero;
-    /*@Test
+
+    }
+    @Test
     void CreateEconomyHeroFromHeroInfo()
     {
         HeroInfo heroInfo = HeroInfoFactory.getHeroInfoByName(HeroInfoFactory.EDRIC);
-        economyHero = EconomyHero.builder().aHeroInfo(heroInfo).build();
-    }*/
-    /*@Test
+        EconomyHero economyHero = EconomyHero.builder().aHeroInfo(heroInfo).build();
+    }
+    @Test
     void EconomyHeroNeedGetAttackMethod()
     {
+        HeroInfo heroInfo = HeroInfoFactory.getHeroInfoByName(HeroInfoFactory.EDRIC);
+        EconomyHero economyHero = EconomyHero.builder().aHeroInfo(heroInfo).build();
         assertEquals(2,economyHero.getAttack());
-    }*/
-    /*@Test
+    }
+    @Test
     void EconomyHeroNeedGetDefenceMethod()
     {
-        assertEquals(2,economyHero.getAttack());
-    }*/
-    /*@Test
+        HeroInfo heroInfo = HeroInfoFactory.getHeroInfoByName(HeroInfoFactory.EDRIC);
+        EconomyHero economyHero = EconomyHero.builder().aHeroInfo(heroInfo).build();
+        assertEquals(2,economyHero.getDefense());
+    }
+    @Test
     void EconomyHeroNeedGetPowerMethod()
     {
-        assertEquals(1,economyHero.getAttack());
-    }*/
-    /*@Test
+        HeroInfo heroInfo = HeroInfoFactory.getHeroInfoByName(HeroInfoFactory.EDRIC);
+        EconomyHero economyHero = EconomyHero.builder().aHeroInfo(heroInfo).build();
+        assertEquals(1,economyHero.getPower());
+    }
+    @Test
     void EconomyHeroNeedGetKnowledgeMethod()
     {
-        assertEquals(1,economyHero.getAttack());
-    }*/
-    /*@Test
+        HeroInfo heroInfo = HeroInfoFactory.getHeroInfoByName(HeroInfoFactory.EDRIC);
+        EconomyHero economyHero = EconomyHero.builder().aHeroInfo(heroInfo).build();
+        assertEquals(1,economyHero.getKnowledge());
+    }
+    @Test
     void EconomyHeroGetArtifactsShouldBePublic()
     {
+        HeroInfo heroInfo = HeroInfoFactory.getHeroInfoByName(HeroInfoFactory.EDRIC);
+        EconomyHero economyHero = EconomyHero.builder().aHeroInfo(heroInfo).build();
         List<ArtifactInfo> artifactInfoList = economyHero.getArtifacts();
-    }*/
-    /*@Test
+    }
+    @Test
     void EconomyHeroGetSpellsShouldBePublic()
     {
-        List<ArtifactInfo> artifactInfoList = economyHero.getSpells();
-    }*/
+        HeroInfo heroInfo = HeroInfoFactory.getHeroInfoByName(HeroInfoFactory.EDRIC);
+        EconomyHero economyHero = EconomyHero.builder().aHeroInfo(heroInfo).build();
+        List<SpellInfo> artifactInfoList = economyHero.getSpells();
+    }
 }
