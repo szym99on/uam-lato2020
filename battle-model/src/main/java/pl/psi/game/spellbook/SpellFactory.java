@@ -27,6 +27,7 @@ public class SpellFactory {
             case SpellBookInfoFactory.SLOW :
                 return BuffDebufSpell.builder().aName(spellInfo.getName()).aCost(spellInfo.getCost()).aDescription(spellInfo.getDescription()).aDuration(spellInfo.getDuration()).aManaCost(spellInfo.getManaCost()).aLevel(spellInfo.getLevel()).aType(spellInfo.getType()).build();
             case SpellBookInfoFactory.STORM_ELEMENTAL :
+                return SummonUnits.builder().aName(spellInfo.getName()).build();
             case SpellBookInfoFactory.ENERGY_ELEMENTAL :
             case SpellBookInfoFactory.ICE_ELEMENTAL :
             case SpellBookInfoFactory.MAGMA_ELEMENTAL :
