@@ -64,11 +64,11 @@ public class SpellBookInfoFactory {
 
     public static List<SpellInfo> getSpellsByTier(int aTier){
 
-        return spellList.stream().filter(artifact -> artifact.getTier() == aTier).collect(Collectors.toList());
+        return spellList.stream().filter(spell -> spell.getTier() == aTier).collect(Collectors.toList());
     }
 
     public static List<SpellInfo> getSpellsByType(SpellInfo.Type type){
-        return spellList.stream().filter(artifact -> artifact.getType() == type).collect(Collectors.toList());
+        return spellList.stream().filter(spell -> spell.getType() == type).collect(Collectors.toList());
     }
 
     public static int getHighestTier(){

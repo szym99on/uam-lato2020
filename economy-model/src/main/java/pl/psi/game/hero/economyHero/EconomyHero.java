@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Singular;
 import pl.psi.game.fractions.CreatureInfo;
+import pl.psi.game.hero.HeroInfo;
 import pl.psi.game.hero.artifacts.ArtifactInfo;
 import pl.psi.game.spellbook.SpellInfo;
 
@@ -20,15 +21,17 @@ public class EconomyHero {
     private List<ArtifactInfo> artifacts;
     private List<SpellInfo> spells;
     private int gold = 2000;
+    private HeroInfo heroInfo;
+
 
     @Builder
-    EconomyHero(int aGold) {
+    EconomyHero(int aGold, HeroInfo aHeroInfo) {
         gold = aGold;
         creatures = new ArrayList<>();
         artifacts = new ArrayList<>();
         spells = new ArrayList<>();
+        this.heroInfo = aHeroInfo;
     }
-
 
     void increaseGold(int gold) {
 
@@ -121,6 +124,10 @@ public class EconomyHero {
     }
 
 
+    ArtifactInfo getArtifactByLocation(ArtifactInfo.Location location) {
+        return this.artifacts.stream().filter(artifact -> artifact.getLocation() == location).findAny().orElseThrow();
+    }
+
 
     public void sellSpell(SpellInfo spell) throws Exception {
         if (!this.spells.contains(spell)) {
@@ -162,6 +169,33 @@ public class EconomyHero {
 
     void addSpell(SpellInfo spell) {
         this.spells.add(spell);
+    }
+
+
+
+    //methods from heroInfo
+
+    HeroInfo.Fraction getFraction() {
+        return heroInfo.getFraction();
+    }
+
+    HeroInfo getHeroInfo() {return heroInfo;}
+
+    String getName() {
+        return this.heroInfo.getName();
+    }
+    int getAttack() {
+        System.out.println("I am in the getAttack");
+        return this.heroInfo.getAttack();
+    }
+    int getDefense() {
+        return this.heroInfo.getDefense();
+    }
+    int getPower() {
+        return this.heroInfo.getPower();
+    }
+    int getKnowledge() {
+        return this.heroInfo.getKnowledge();
     }
 
 }

@@ -57,4 +57,16 @@ public class EconomyHeroArtifactsManagementTest {
 
     }
 
+
+    @Test
+    void shouldReturnArtifactByLocation() throws Exception {
+        EconomyHero hero = EconomyHero.builder().aGold(3000).build();
+        ArtifactInfo artifact = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.CAPE_OF_CONJURING);
+        hero.buyArtifact(artifact);
+
+        assertEquals(artifact, hero.getArtifactByLocation(ArtifactInfo.Location.SHOULDERS));
+    }
+
+
+
 }
