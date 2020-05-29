@@ -11,7 +11,7 @@ import java.awt.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MoveEngineTest {
-/*
+
     @Test
     void moveShouldBePossible(){
         Creature c = Creature.builder().aMoveRange(1).build();
@@ -29,7 +29,7 @@ class MoveEngineTest {
 
     @Test
     void moveCreature(){
-        Creature c = Creature.builder().aMoveRange(1).build();
+        Creature c = Creature.builder().aMoveRange(1).aCanFly(true).build();
         Board board = new Board();
         board.putCreature(1,1, c);
 
@@ -165,5 +165,5 @@ class MoveEngineTest {
 
     }
 
-*/
+
 }
