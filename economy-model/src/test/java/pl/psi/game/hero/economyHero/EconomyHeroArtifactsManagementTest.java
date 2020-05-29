@@ -1,15 +1,27 @@
 package pl.psi.game.hero.economyHero;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pl.psi.game.hero.artifacts.ArtifactInfo;
 import pl.psi.game.hero.artifacts.ArtifactsInfoFactory;
+import pl.psi.game.spellbook.SpellBookInfoFactory;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class EconomyHeroArtifactsManagementTest {
 
+
+
+    @BeforeAll
+    static void initializeFactories(){
+        new ArtifactsInfoFactory();
+    }
+
+
     @Test
     void sellArtifactShouldReturn75PercentOfOriginalPriceAndRemoveArtifact() throws Exception {
+
         ArtifactInfo artifact = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.HELM_OF_THE_ALABASTER_UNICORN);
         EconomyHero hero = EconomyHero.builder().aGold(2000).build();
         hero.addArtifact(artifact);
@@ -32,6 +44,7 @@ public class EconomyHeroArtifactsManagementTest {
             hero.buyArtifact(artifact);
         });
     }
+
     @Test
     void  buyArtifactShouldAddArtifactIfLocationEmpty() throws Exception {
         ArtifactInfo artifact = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.COLLAR_OF_CONJURING);
