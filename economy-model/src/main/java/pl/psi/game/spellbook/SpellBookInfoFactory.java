@@ -61,6 +61,10 @@ public class SpellBookInfoFactory {
         return spellList.stream().filter(s -> s.getName().endsWith(aName)).findAny().orElseThrow();
     }
 
+    public static List<SpellInfo> getListAllSpells(){
+        return spellList;
+    }
+
     public static List<SpellInfo> getSpellsByLevel(int aLevel){
         return spellList.stream().filter(s -> s.getLevel() == aLevel).collect(Collectors.toList());
     }

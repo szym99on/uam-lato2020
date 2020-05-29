@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import pl.psi.game.spellbook.SpellBookInfoFactory;
 import pl.psi.game.spellbook.SpellInfo;
+import java.util.ArrayList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,5 +24,12 @@ public class SpellBookInfoFactoryTests {
     void GetProperlySpell(){
         SpellInfo spellInfo = SpellBookInfoFactory.getSpell(STORM_ELEMENTAL);
         assertEquals(spellInfo.getName(), STORM_ELEMENTAL);
+    }
+
+    @Test
+    void GetProperlyAllSpells(){
+        SpellInfo elem = SpellBookInfoFactory.getSpell(STORM_ELEMENTAL);
+
+        assertEquals(SpellBookInfoFactory.getListAllSpells().contains(elem), true);
     }
 }
