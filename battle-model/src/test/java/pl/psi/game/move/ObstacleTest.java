@@ -30,4 +30,9 @@ public class ObstacleTest {
     void obstacleReduceMoveRange(){
     }
 
+    @Test
+    void obstacleEndMove(){
+
+    }
+
 }
