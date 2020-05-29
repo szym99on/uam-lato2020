@@ -1,25 +1,21 @@
 package pl.psi.game.hero.artifacts;
 
 import org.junit.jupiter.api.Test;
+import pl.psi.game.artifacts.Artifact;
+import pl.psi.game.artifacts.ArtifactFactory;
+import pl.psi.game.hero.converter.Hero;
 
 public class ConverterRequest {
-    /*@Test
-    void GetEconomyArtifactFromFactory()
+    @Test
+    void GetArtifactInfoFromFactory()
     {
-        ArtifactsInfoFactory artifactsInfoFactory = new ArtifactsInfoFactory();
-        ArtifactInfo artifact = artifactsInfoFactory.getByType(ArtifactInfo.Location.FINGERS).stream().findFirst();
-        assertTrue(artifact.Location == ArtifactInfo.Location.FINGERS);
-    }*/
-    /*@Test
-    void applyArtifactOnHero(){
-        Artifact artifact = Artifact.builder().build();
-        Hero hero = Hero.builder().build();
-
-        artifact.applyOnHero(hero);
-    }*/
-    /*@Test
-    void mapArtifactInfoToArtifact(){
-        ArtifactFactory.create(artifactInfo);
+        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.HELM_OF_THE_ALABASTER_UNICORN);
     }
-     */
+    @Test
+    void applyArtifactOnHero() {
+        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.HELM_OF_THE_ALABASTER_UNICORN);
+        Hero hero = Hero.builder().build();
+        Artifact artifact = ArtifactFactory.createArtifact(artifactInfo);
+        artifact.apply(hero);
+    }
 }

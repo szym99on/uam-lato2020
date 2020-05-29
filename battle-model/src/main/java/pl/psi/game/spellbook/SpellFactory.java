@@ -3,9 +3,36 @@ package pl.psi.game.spellbook;
 public class SpellFactory {
 
     public Spell createSpell(SpellInfo spellInfo){
+        return  createSpell(spellInfo,1,0);
+    }
+
+    protected Spell createSpell(SpellInfo spellInfo,int power,int additionalDuration){
         switch (spellInfo.getName()){
-            case "Haste" : // or replace by SpellBookInfoFactory.HASTE , it have to be public.
-                return BuffDebufSpell.builder().aName(spellInfo.getName()).aCost(spellInfo.getCost()).aDescription(spellInfo.getDescription()).aDuration(spellInfo.getDuration()).aManaCost(spellInfo.getManaCost()).aTier(spellInfo.getTier()).aType(spellInfo.getType()).build();
+            case SpellBookInfoFactory.MAGIC_ARROW :
+            case SpellBookInfoFactory.LIGHTNING_BOLT :
+            case SpellBookInfoFactory.DESTROY_UNDEAD :
+            case SpellBookInfoFactory.FIRE_BALL :
+                return null; //Wait for damageSpell implementation
+            case SpellBookInfoFactory.WEAKNESS :
+                return BuffDebufSpell.builder().aModificationAttack(-3).aModificationArmor(0).aModificationMoveRange(0).aHeroPower(power).aAdditionalDuration(additionalDuration).aName(spellInfo.getName()).aCost(spellInfo.getCost()).aDescription(spellInfo.getDescription()).aDuration(spellInfo.getDuration()).aManaCost(spellInfo.getManaCost()).aLevel(spellInfo.getLevel()).aType(spellInfo.getType()).build();
+            case SpellBookInfoFactory.HASTE :
+                return BuffDebufSpell.builder().aModificationAttack(0).aModificationArmor(0).aModificationMoveRange(3).aHeroPower(power).aAdditionalDuration(additionalDuration).aName(spellInfo.getName()).aCost(spellInfo.getCost()).aDescription(spellInfo.getDescription()).aDuration(spellInfo.getDuration()).aManaCost(spellInfo.getManaCost()).aLevel(spellInfo.getLevel()).aType(spellInfo.getType()).build();
+            case SpellBookInfoFactory.STONESKIN :
+                return BuffDebufSpell.builder().aModificationAttack(0).aModificationArmor(3).aModificationMoveRange(0).aHeroPower(power).aAdditionalDuration(additionalDuration).aName(spellInfo.getName()).aCost(spellInfo.getCost()).aDescription(spellInfo.getDescription()).aDuration(spellInfo.getDuration()).aManaCost(spellInfo.getManaCost()).aLevel(spellInfo.getLevel()).aType(spellInfo.getType()).build();
+            case SpellBookInfoFactory.PRAYER :
+                return BuffDebufSpell.builder().aModificationAttack(2).aModificationArmor(2).aModificationMoveRange(2).aHeroPower(power).aAdditionalDuration(additionalDuration).aName(spellInfo.getName()).aCost(spellInfo.getCost()).aDescription(spellInfo.getDescription()).aDuration(spellInfo.getDuration()).aManaCost(spellInfo.getManaCost()).aLevel(spellInfo.getLevel()).aType(spellInfo.getType()).build();
+            case SpellBookInfoFactory.AIR_SHIELD :
+            case SpellBookInfoFactory.BLOODLUST :
+            case SpellBookInfoFactory.FIRE_SHIELD :
+            case SpellBookInfoFactory.SLOW :
+                return BuffDebufSpell.builder().aName(spellInfo.getName()).aCost(spellInfo.getCost()).aDescription(spellInfo.getDescription()).aDuration(spellInfo.getDuration()).aManaCost(spellInfo.getManaCost()).aLevel(spellInfo.getLevel()).aType(spellInfo.getType()).build();
+            case SpellBookInfoFactory.STORM_ELEMENTAL :
+                return SummonUnits.builder().aName(spellInfo.getName()).build();
+            case SpellBookInfoFactory.ENERGY_ELEMENTAL :
+            case SpellBookInfoFactory.ICE_ELEMENTAL :
+            case SpellBookInfoFactory.MAGMA_ELEMENTAL :
+                return null; //Wait for summonUnits implementation
+
             default:
                 throw new IllegalArgumentException("This spell doesn't exist");
         }

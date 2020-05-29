@@ -9,11 +9,21 @@ import java.beans.PropertyChangeListener;
 public class BuffDebufSpell extends Spell implements PropertyChangeListener {
 
     private int expireIn;
+    private final int heroPower;
+    private int additionalDuration;
+    private int modificationAttack;
+    private int modificationArmor;
+    private int modificationMoveRange;
     private Creature creature;
 
-//    @Builder
-    public BuffDebufSpell (String aName, String aDescription, int aCost, int aTier, int aManaCost, SpellInfo.Type aType, String aDuration) {
-        super(aName,aDescription,aCost,aTier,aManaCost,aType,aDuration);
+    @Builder
+    public BuffDebufSpell (String aName, String aDescription, int aCost, int aLevel, int aManaCost, SpellInfo.Type aType, String aDuration,int aHeroPower, int aAdditionalDuration,int aModificationAttack, int aModificationArmor,int aModificationMoveRange) {
+        super(aName,aDescription,aCost,aLevel,aManaCost,aType,aDuration);
+        heroPower = aHeroPower;
+        additionalDuration = aAdditionalDuration;
+        modificationAttack = aModificationAttack;
+        modificationArmor = aModificationArmor;
+        modificationMoveRange = aModificationMoveRange;
     }
 
     @Override
@@ -25,16 +35,28 @@ public class BuffDebufSpell extends Spell implements PropertyChangeListener {
     @Override
     public void cast(Creature aCreature)
     {
-        creature=aCreature;
-        int power = 1; //Have to be replace by hero.getPower
-        int expireIn = power;
-
-        switch (name){
-            case "Haste":
-//                creature.addToBuffSet(this);
-//                creature.increaseMoveRange(3);
-                break;
+        //creature.addToBuffSet(this);
+        creature = aCreature;
+        expireIn = heroPower + additionalDuration;
+        if(modificationAttack >= 1){
+//            creature.increaseAttack(attack);
         }
+        else if (modificationAttack <= -1){
+//            creature.decreaseAttack(-attack);
+        }
+        if(modificationArmor >= 1){
+//            creature.increaseArmor(armor);
+        }
+        else if (modificationArmor <= -1){
+//            creature.decreaseArmor(-armor);
+        }
+        if(modificationMoveRange >= 1){
+//            creature.increaseMoveRange(moveRange);
+        }
+        else if(modificationMoveRange <= -1){
+//            creature.decreaseMoveRange(-moveRange);
+        }
+
     }
 
     //listen END_OF_TURN
@@ -48,11 +70,23 @@ public class BuffDebufSpell extends Spell implements PropertyChangeListener {
     }
 
     public void removeSpell(){
-        switch (name){
-            case "Haste":
-//                creature.decreaseMoveRange(3);
-//                creature.removeFromSet(this);
-                break;
+        if(modificationAttack >= 1){
+//            creature.decreaseAttack(attack);
+        }
+        else if (modificationAttack <= -1){
+//            creature.increaseAttack(-attack);
+        }
+        if(modificationArmor >= 1){
+//            creature.decreaseArmor(armor);
+        }
+        else if (modificationArmor <= -1){
+//            creature.increaseArmor(-armor);
+        }
+        if(modificationMoveRange >= 1){
+//            creature.decreaseMoveRange(moveRange);
+        }
+        else if (modificationMoveRange <= -1){
+//            creature.increaseMoveRange(-moveRange)
         }
     }
 }
