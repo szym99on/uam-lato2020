@@ -37,6 +37,7 @@ public class MainBattleController {
 
     public MainBattleController() {
         ArtifactInitializer init = new ArtifactInitializer();
+//        SpellInitializer init = new SpellInitializer();
 
         hero1 = HeroEcoBattleConverter.convert(init.getH1());
         hero2 = HeroEcoBattleConverter.convert(init.getH2());

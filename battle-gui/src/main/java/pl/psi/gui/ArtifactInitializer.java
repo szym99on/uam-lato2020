@@ -4,17 +4,8 @@ import pl.psi.game.fractions.FractionsInfoAbstractFactory;
 import pl.psi.game.hero.HeroInfoFactory;
 import pl.psi.game.hero.artifacts.ArtifactsInfoFactory;
 import pl.psi.game.hero.economyHero.EconomyHero;
-import pl.psi.game.skills.SkillInfoFactory;
-import pl.psi.game.spellbook.SpellBookInfoFactory;
 
-public class ArtifactInitializer {
-
-    ArtifactInitializer() {
-        new HeroInfoFactory();
-        new ArtifactsInfoFactory();
-        new SpellBookInfoFactory();
-        new SkillInfoFactory();
-    }
+public class ArtifactInitializer extends AbstractInitializer {
 
     EconomyHero getH1() {
         EconomyHero h1 = EconomyHero.builder().aGold(100000000).aHeroInfo(HeroInfoFactory.getHeroInfoByName(HeroInfoFactory.EDRIC)).build();
