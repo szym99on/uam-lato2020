@@ -11,7 +11,7 @@ class CreatureSpeedArtifact extends CreatureBuffArtifact{
 
     @Override
     void buffCreature(Creature c) {
-//        c.increaseMoveRange(speed);
+        c.increaseMoveRange(speed);
     }
 
     @Override

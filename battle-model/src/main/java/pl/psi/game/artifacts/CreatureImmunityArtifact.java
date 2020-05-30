@@ -1,11 +1,19 @@
 package pl.psi.game.artifacts;
 
 import pl.psi.game.fractions.Creature;
+import pl.psi.game.fractions.MagicResistance;
+import pl.psi.game.fractions.MagicResistance.*;
+
 
 class CreatureImmunityArtifact extends CreatureBuffArtifact {
+    private final ImmunityType immunityType;
+
+    CreatureImmunityArtifact(ImmunityType aImmunityType) { immunityType = aImmunityType; }
+
     @Override
     void buffCreature(Creature c) {
-
+        MagicResistance magicResistance = new MagicResistance(0, immunityType);
+        c.setMagicResistance(magicResistance);
     }
 
     @Override
