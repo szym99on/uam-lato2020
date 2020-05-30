@@ -55,7 +55,7 @@ public class EconomyHero {
 
     }
 
-    void buyCreature(CreatureInfo creature) throws Exception {
+    public void buyCreature(CreatureInfo creature) throws Exception {
         if (this.getGold() >= creature.getCost()) {
 
             this.decreaseGold(creature.getCost());
@@ -85,7 +85,7 @@ public class EconomyHero {
         return this.creatures;
     }
 
-    void buyArtifact(ArtifactInfo artifact) throws Exception {
+    public void buyArtifact(ArtifactInfo artifact) throws Exception {
         if (this.isSlotEmpty(artifact.getLocation().toString())) {
             String output = String.format("Location: %s is taken.", artifact.getLocation().toString());
             throw new Exception(output);
