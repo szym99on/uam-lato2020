@@ -2,6 +2,7 @@ package pl.psi.game.spellbook;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SpellBookInfoFactory {
 
@@ -60,11 +61,21 @@ public class SpellBookInfoFactory {
         return spellList.stream().filter(s -> s.getName().endsWith(aName)).findAny().orElseThrow();
     }
 
+    public static List<SpellInfo> getListAllSpells(){
+        return spellList;
+    }
+
     public static List<SpellInfo> getSpellsByLevel(int aLevel){
-        return new ArrayList<>();
+
+        return spellList.stream().filter(spell -> spell.getLevel() == aLevel).collect(Collectors.toList());
     }
 
     public static List<SpellInfo> getSpellsByType(SpellInfo.Type type){
-        return new ArrayList<>();
+        return spellList.stream().filter(s -> s.getType() == type).collect(Collectors.toList());
     }
+
+    public static int getHighestTier(){
+        return spellList.stream().map(SpellInfo::getLevel).max(Integer::compare).orElseThrow();
+    }
+
 }

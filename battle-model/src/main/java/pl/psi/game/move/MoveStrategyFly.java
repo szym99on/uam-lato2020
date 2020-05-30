@@ -8,19 +8,22 @@ import java.awt.*;
 import java.beans.PropertyChangeSupport;
 import java.util.AbstractMap;
 import java.util.HashMap;
+import java.util.Map;
 
 public class MoveStrategyFly implements MoveStrategyIf {
     private HashMap.Entry<Point, Creature> activeCreature;
     private final Board board;
     private PropertyChangeSupport propertyChangeSupport;
 
-    MoveStrategyFly(Board aBoard) {
+    MoveStrategyFly(Board aBoard, Map.Entry<Point, Creature> aActiveCreature) {
         board = aBoard;
         propertyChangeSupport = new PropertyChangeSupport(this);
+        activeCreature = aActiveCreature;
     }
 
     @Override
     public void move(int x, int y) {
+
             Point oldPosition = activeCreature.getKey();
             board.move(x,y,activeCreature.getValue());
             activeCreature = new AbstractMap.SimpleEntry<>(new Point(x,y), activeCreature.getValue());

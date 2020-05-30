@@ -3,17 +3,41 @@ package pl.psi.game.fractions;
 public class CreatureAbstractFactory {
 	
 	public Creature getCreature(CreatureInfo creatureInfo) {
-		Creature creature = Creature.builder().aMaxHp(creatureInfo.getMaxHp()).aAttack(creatureInfo.getAttack()).aName(creatureInfo.getName()).aArmor(creatureInfo.getArmor()).aMoveRange(creatureInfo.getMoveRange()).build();
+		Creature creature = Creature.builder().aMaxHp(creatureInfo.getMaxHp()).aAttack(creatureInfo.getAttack()).aName(creatureInfo.getName()).aArmor(creatureInfo.getArmor()).aMoveRange(creatureInfo.getMoveRange()).aCanFly(creatureInfo.isCanFly()).build();
 		addSpecialAttack(creature);
+		addMagicResistance(creature);
 		return creature;
 	}
-	
+
+	private void addMagicResistance(Creature creature) {
+		switch (creature.getName()) {
+			case "Battle Dwarf":
+				creature.setMagicResistance(new MagicResistance(40, MagicResistance.ImmunityType.NONE));
+				break;
+			case "Gold Dragon":
+				creature.setMagicResistance(new MagicResistance(0, MagicResistance.ImmunityType.FOURTH_TIER_AND_BELOW));
+				break;
+			case "Storm Elemental":
+				creature.setMagicResistance(new MagicResistance(0, MagicResistance.ImmunityType.EARTH_SPELLS));
+				break;
+			case "Ice Elemental":
+				creature.setMagicResistance(new MagicResistance(0, MagicResistance.ImmunityType.ICE_SPELLS));
+				break;
+			case "Energy Elemental":
+				creature.setMagicResistance(new MagicResistance(0, MagicResistance.ImmunityType.FIRE_SPELLS));
+				break;
+			case "Magma Elemental":
+				creature.setMagicResistance(new MagicResistance(0, MagicResistance.ImmunityType.AIR_SPELLS));
+				break;
+		}
+	}
+
 	private Creature addSpecialAttack(Creature creature) {
 		switch (creature.getName()) {
 			case "Storm Elemental":
 				creature.setDealDamageCountStrategy(new DealDamageCounterDoubleToEarthElementalStrategy());
 				break;
-			case "Ice elemental":
+			case "Ice Elemental":
 				creature.setDealDamageCountStrategy(new DealDamageCounterDoubleToFireElementalStrategy());
 				break;
 			case "Energy Elemental":

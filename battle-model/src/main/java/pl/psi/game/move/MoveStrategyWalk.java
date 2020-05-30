@@ -8,6 +8,7 @@ import java.awt.*;
 import java.beans.PropertyChangeSupport;
 import java.util.AbstractMap;
 import java.util.HashMap;
+import java.util.Map;
 
 public class MoveStrategyWalk implements MoveStrategyIf {
 
@@ -15,9 +16,10 @@ public class MoveStrategyWalk implements MoveStrategyIf {
     private final Board board;
     private PropertyChangeSupport propertyChangeSupport;
 
-    MoveStrategyWalk(Board aBoard) {
+    MoveStrategyWalk(Board aBoard, Map.Entry<Point, Creature> aActiveCreature) {
         board = aBoard;
         propertyChangeSupport = new PropertyChangeSupport(this);
+        activeCreature = aActiveCreature;
     }
 
     @Override
