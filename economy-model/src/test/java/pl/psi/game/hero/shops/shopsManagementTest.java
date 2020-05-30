@@ -27,6 +27,8 @@ public class shopsManagementTest {
     //initial sketch test generateShops()
 
     @Test
+    //PW what with name? o.0 should add 8 spells and equals 10? o.0
+    // btw requirement was not 2 for each tier but some pyramid
     void generateSpellsAvailableToBuyShouldAdd8Spells() {
 
         SpellShop spellShop = new SpellShop();
@@ -38,6 +40,7 @@ public class shopsManagementTest {
     }
 
     @Test
+    //PW what with tier 5?
     void generateSpellsAvailableToBuyShouldAdd2SpellsOfEachTier() {
 
         SpellShop spellShop = new SpellShop();

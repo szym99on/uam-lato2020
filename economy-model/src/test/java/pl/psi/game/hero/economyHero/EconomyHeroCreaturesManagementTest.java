@@ -40,6 +40,7 @@ public class EconomyHeroCreaturesManagementTest {
     }
 
     @Test
+    //PW not throw just exception use something more specyfic in this case IllegalStateException is better
     void buyCreatureShouldNotBuyCreatureWhenNotEnoughGold () throws Exception {
         CreatureInfo creature = necropolisFactory.getCreature(NecropolisInfoFactory.GHOST_DRAGON);
         EconomyHero hero = EconomyHero.builder().aGold(1000).build();
