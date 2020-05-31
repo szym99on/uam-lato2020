@@ -4,7 +4,7 @@ import lombok.Builder;
 
 public class HeroInfo {
     private final int heroAttack;
-    private final int heroDefense;
+    private final int heroDefence;
     private final int heroPower;
     private final int heroKnowledge;
     private final String name;
@@ -41,13 +41,13 @@ public class HeroInfo {
         PLANESWALKER(3,1,1,1),
         ELEMENTALIS(0,0,3,3);
         final int attack;
-        final int defense;
+        final int defence;
         final int power;
         final int knowledge;
-        private FractionClass(int aAttack, int aDefense, int aPower, int aKnowledge)
+        private FractionClass(int aAttack, int aDefence, int aPower, int aKnowledge)
         {
             attack=aAttack;
-            defense=aDefense;
+            defence=aDefence;
             power=aPower;
             knowledge=aKnowledge;
         }
@@ -56,7 +56,7 @@ public class HeroInfo {
     @Builder
     public HeroInfo(String aName, Fraction aFraction, FractionClass aFractionClass){
         heroAttack = aFractionClass.attack;
-        heroDefense = aFractionClass.defense;
+        heroDefence = aFractionClass.defence;
         heroPower = aFractionClass.power;
         heroKnowledge = aFractionClass.knowledge;
         name = aName;
@@ -74,8 +74,8 @@ public class HeroInfo {
     public int getAttack() {
         return heroAttack;
     }
-    public int getDefense() {
-        return heroDefense;
+    public int getDefence() {
+        return heroDefence;
     }
     public int getPower() {
         return heroPower;
