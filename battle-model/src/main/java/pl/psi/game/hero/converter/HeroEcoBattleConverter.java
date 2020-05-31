@@ -12,20 +12,8 @@ import java.util.stream.Collectors;
 public class HeroEcoBattleConverter {
 
     public static Hero convert(EconomyHero aEconomyHero) {
-        //build hero using ecohero
-        //
-        //apply skills
-        //aHero.getSkills().map(skillInfo -> ???).foreach(skill -> skill.apply(hero);
-        //apply artifacts
-        //aHero.getArtifacts().map(artifactInfo -> ???).foreach(artifact -> artifact.apply(hero);
-        //get spells
-        //hero.addSpells(aHero.getSpells().map(spellInfo -> ???))
-        //get creatures
-        //
         //convert knowledge to manapoints
-        //
         //apply attack and defense on creatures
-        //
         //apply power on spells
 
 

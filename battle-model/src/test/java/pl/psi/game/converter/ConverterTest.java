@@ -99,16 +99,4 @@ public class ConverterTest {
     {
         //later if exist
     }
-    @Test
-    @Disabled
-    void CheckManaConversion() {
-        InitializeEconomyHero();
-        ////economyHero.addCreatureInfo(creatureInfo,creatureCount);
-        Hero hero = Hero.builder().build();
-
-        hero = HeroEcoBattleConverter.convert(economyHero);
-
-        assertEquals(10,hero.getMana());
-    }
-
 }
