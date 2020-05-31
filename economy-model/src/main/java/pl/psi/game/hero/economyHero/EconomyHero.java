@@ -188,7 +188,7 @@ public class EconomyHero {
         System.out.println("I am in the getAttack");
         return this.heroInfo.getAttack();
     }
-    public int getDefensce() {
+    public int getDefence() {
         return this.heroInfo.getDefence();
     }
     public int getPower() {

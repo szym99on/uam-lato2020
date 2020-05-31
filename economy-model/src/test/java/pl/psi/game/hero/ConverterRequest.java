@@ -34,7 +34,7 @@ public class ConverterRequest {
     {
         HeroInfo heroInfo = HeroInfoFactory.getHeroInfoByName(HeroInfoFactory.EDRIC);
         EconomyHero economyHero = EconomyHero.builder().aHeroInfo(heroInfo).build();
-        assertEquals(2,economyHero.getDefense());
+        assertEquals(2,economyHero.getDefence());
     }
     @Test
     void EconomyHeroNeedGetPowerMethod()

@@ -18,14 +18,14 @@ public class HeroInfoTest {
     }
 
     @Test
-    void CheckGetAllMetode()
+    void CheckGetAllMethod()
     {
         List<HeroInfo> heroInfoList;
         heroInfoList=HeroInfoFactory.getAll();
         assertEquals(HeroInfoFactory.EDRIC,heroInfoList.get(0).getName());
     }
     @Test
-    void CheckGetFractionMetode()
+    void CheckGetFractionMethod()
     {
         List<HeroInfo> heroInfoList;
         heroInfoList=HeroInfoFactory.getHeroInfoListByFraction(HeroInfo.Fraction.TOWER);
@@ -36,7 +36,7 @@ public class HeroInfoTest {
     {
         HeroInfo heroInfo=HeroInfoFactory.getHeroInfoByName(HeroInfoFactory.EDRIC);
         assertEquals(2,heroInfo.getAttack());
-        assertEquals(2,heroInfo.getDefense());
+        assertEquals(2,heroInfo.getDefence());
         assertEquals(1,heroInfo.getPower());
         assertEquals(1,heroInfo.getKnowledge());
     }
