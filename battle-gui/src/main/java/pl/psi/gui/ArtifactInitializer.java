@@ -10,8 +10,8 @@ public class ArtifactInitializer extends AbstractInitializer {
     EconomyHero getH1() {
         EconomyHero h1 = EconomyHero.builder().aGold(100000000).aHeroInfo(HeroInfoFactory.getHeroInfoByName(HeroInfoFactory.EDRIC)).build();
         try {
-            // gui is not refreshing, something is fucked up and after some rounds the whole thing looks like shit
-            // movement needs to fix their shit
+            // gui is not refreshing, something is wrong and after some rounds the whole thing looks like a mess
+            // movement needs to fix their stuff
             // air units can move but stuff above makes it impossible to check anything
             // welp, we have to wait ¯\_(ツ)_/¯
             h1.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(7));
