@@ -5,6 +5,8 @@ import pl.psi.game.artifacts.Artifact;
 import pl.psi.game.artifacts.ArtifactFactory;
 import pl.psi.game.hero.converter.Hero;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class ConverterRequest {
     @Test
     void GetArtifactInfoFromFactory()
@@ -17,5 +19,6 @@ public class ConverterRequest {
         Hero hero = Hero.builder().build();
         Artifact artifact = ArtifactFactory.createArtifact(artifactInfo);
         artifact.apply(hero);
+        assertEquals(hero.getKnowledge(),1);
     }
 }
