@@ -14,6 +14,10 @@ class GameEngineTest {
 
     @Test
     void fastestCreatureShouldBeFirst(){
+        Board board = Board.getBoard();
+        board.clearBoard();
+        Board.getBoard();
+        Board.getBoard();
         List<Creature> creatures = new ArrayList<>();
         Creature c1 = Creature.builder().aMoveRange(10).build();
         Creature c2 = Creature.builder().aMoveRange(4).build();
@@ -40,6 +44,9 @@ class GameEngineTest {
 
     @Test
     void checkNewTurn(){
+        Board board = Board.getBoard();
+        board.clearBoard();
+        Board.getBoard();
         List<Creature> creatures = new ArrayList<>();
         Creature c1 = Creature.builder().aMoveRange(10).build();
         Creature c2 = Creature.builder().aMoveRange(4).build();
@@ -70,6 +77,9 @@ class GameEngineTest {
 
     @Test
     void checkResetCounterAttack(){
+        Board board = Board.getBoard();
+        board.clearBoard();
+        Board.getBoard();
         List<Creature> creatures = new ArrayList<>();
         Creature attacker1 = Creature.builder().aMaxHp(10).aAttack(Range.closed(1,1)).build();
         Creature attacker2 = Creature.builder().aMaxHp(10).aAttack(Range.closed(1,1)).build();

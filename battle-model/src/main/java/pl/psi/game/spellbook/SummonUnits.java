@@ -12,7 +12,7 @@ import java.util.Objects;
 public class SummonUnits extends Spell {
 
     private CreatureAbstractFactory creatureAbstractFactory = new CreatureAbstractFactory();
-    private Board board = new Board();
+    private Board board = Board.getBoard();
     private String name;
 
     @Builder

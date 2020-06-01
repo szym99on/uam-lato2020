@@ -15,7 +15,9 @@ class MoveEngineTest {
     @Test
     void moveShouldBePossible(){
         Creature c = Creature.builder().aMoveRange(1).build();
-        Board board = new Board();
+        Board board = Board.getBoard();
+        board.clearBoard();
+        Board.getBoard();
         board.putCreature(1,1, c);
 
         MoveEngine moveEngine = new MoveEngine(board);
@@ -30,7 +32,9 @@ class MoveEngineTest {
     @Test
     void moveCreature(){
         Creature c = Creature.builder().aMoveRange(1).aCanFly(true).build();
-        Board board = new Board();
+        Board board = Board.getBoard();
+        board.clearBoard();
+        Board.getBoard();
         board.putCreature(1,1, c);
 
         MoveEngine moveEngine = new MoveEngine(board);

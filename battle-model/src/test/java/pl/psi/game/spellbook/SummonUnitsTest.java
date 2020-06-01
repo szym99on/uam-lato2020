@@ -30,7 +30,7 @@ public class SummonUnitsTest {
     private final static String ICE_ELEMENTAL = "Summon ice elemental";
 
     private CreatureAbstractFactory creatureAbstractFactory = new CreatureAbstractFactory();
-    private Board board = new Board();
+    private Board board = Board.getBoard();
 
     SpellFactory factory = new SpellFactory();
     Spell summonUnits = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.STORM_ELEMENTAL));

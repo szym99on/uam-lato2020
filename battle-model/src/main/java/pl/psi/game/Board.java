@@ -15,7 +15,9 @@ public class Board {
     public final static int BOARD_WIDTH = 14;
     public final static int BOARD_HIGH = 9;
 
-    public Board() {
+    private static Board INSTANCE = null;
+
+    private Board() {
         board = new HashMap<>();
         board.put(new Point(7,2), Obstacle.builder().aType("X").build());
         board.put(new Point(7,3), Obstacle.builder().aType("X").build());
@@ -23,6 +25,17 @@ public class Board {
         board.put(new Point(7,5), Obstacle.builder().aType("X").build());
         board.put(new Point(7,6), Obstacle.builder().aType("X").build());
         board.put(new Point(7,7), Obstacle.builder().aType("X").build());
+
+    }
+    public static Board getBoard()
+    {
+        if (INSTANCE == null)
+            INSTANCE = new Board();
+
+        return INSTANCE;
+    }
+    public void clearBoard(){
+        board.clear();
     }
 
     public void putCreature(int x, int y, Creature aCreature) {
