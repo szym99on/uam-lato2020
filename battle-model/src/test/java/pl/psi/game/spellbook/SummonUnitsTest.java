@@ -24,10 +24,10 @@ public class SummonUnitsTest {
         new FractionsInfoAbstractFactory();
     }
 
-    private final static String STORM_ELEMENTAL = "Summon storm elemental";
-    private final static String ENERGY_ELEMENTAL = "Summon energy elemental";
-    private final static String MAGMA_ELEMENTAL = "Summon magma elemental";
-    private final static String ICE_ELEMENTAL = "Summon ice elemental";
+    private final static String STORM_ELEMENTAL = "Storm Elemental";
+    private final static String ENERGY_ELEMENTAL = "Energy Elemental";
+    private final static String MAGMA_ELEMENTAL = "Magma Elemental";
+    private final static String ICE_ELEMENTAL = "Ice Elemental";
 
     private CreatureAbstractFactory creatureAbstractFactory = new CreatureAbstractFactory();
     private Board board = Board.getBoard();
@@ -36,37 +36,41 @@ public class SummonUnitsTest {
     Spell summonUnits = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.STORM_ELEMENTAL));
     @Test
      void shouldCreateStormElementalAndPutHimOnTheBoard() {
-
-//        summonUnits.cast( 1, 1);
-//
-//        Creature creature = board.getCreature(1,1);
-//        assertEquals(board.isTileEmpty(1,1), true);
-//        assertEquals("Storm Elemental", creature.getName());
+        board.clearBoard();
+        Spell summonUnits = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.STORM_ELEMENTAL));
+        summonUnits.cast( 1, 1);
+        Creature creature = board.getCreature(1,1);
+        assertEquals(board.isTileEmpty(1,1), false);
+        assertEquals(STORM_ELEMENTAL, creature.getName());
 
     }
-//    @Test
-//    void shouldCreateIceElementalAndPutHimOnTheBoard() {
-//        CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.ELEMENTAL).getCreatureByTier(2);
-//        Creature creature = creatureAbstractFactory.getCreature(creatureInfo);
-//        summonUnits.summonElemental(ICE_ELEMENTAL, 1, 1, 1);
-//        assertEquals(creature, board.getCreature(1,1));
-//    }
-//
-//    @Test
-//    void shouldCreateEnergyElementalAndPutHimOnTheBoard() {
-//        CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.ELEMENTAL).getCreatureByTier(3);
-//        Creature creature = creatureAbstractFactory.getCreature(creatureInfo);
-//        summonUnits.summonElemental(ENERGY_ELEMENTAL, 1, 1, 1);
-//        assertEquals(creature, board.getCreature(1,1));
-//    }
-//
-//    @Test
-//    @Disabled
-//    void shouldCreateMagmaElementalAndPutHimOnTheBoard() {
-//        CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.ELEMENTAL).getCreatureByTier(4);
-//        Creature creature = creatureAbstractFactory.getCreature(creatureInfo);
-//
-//        summonUnits.summonElemental(MAGMA_ELEMENTAL, 1, 1, 1);
-//        assertEquals(creature, board.getCreature(1,1));
-//    }
+    @Test
+    void shouldCreateIceElementalAndPutHimOnTheBoard() {
+        board.clearBoard();
+        Spell summonUnits = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.ICE_ELEMENTAL));
+        summonUnits.cast(1, 1);
+        Creature creature = board.getCreature(1,1);
+        assertEquals(board.isTileEmpty(1,1), false);
+        assertEquals(ICE_ELEMENTAL, creature.getName());
+    }
+
+    @Test
+    void shouldCreateEnergyElementalAndPutHimOnTheBoard() {
+        board.clearBoard();
+        Spell summonUnits = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.ENERGY_ELEMENTAL));
+        summonUnits.cast( 1, 1);
+        Creature creature = board.getCreature(1,1);
+        assertEquals(board.isTileEmpty(1,1), false);
+        assertEquals(ENERGY_ELEMENTAL, creature.getName());
+    }
+
+    @Test
+    void shouldCreateMagmaElementalAndPutHimOnTheBoard() {
+        board.clearBoard();
+        Spell summonUnits = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.MAGMA_ELEMENTAL));
+        summonUnits.cast( 1, 1);
+        Creature creature = board.getCreature(1,1);
+        assertEquals(board.isTileEmpty(1,1), false);
+        assertEquals(MAGMA_ELEMENTAL, creature.getName());
+    }
 }
