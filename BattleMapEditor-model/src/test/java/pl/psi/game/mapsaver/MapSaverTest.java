@@ -5,29 +5,46 @@ import org.junit.jupiter.api.Test;
 import pl.psi.game.BattleMap;
 import pl.psi.game.mapmaker.MapMaker;
 
+import javax.swing.*;
 import java.io.File;
+import java.io.IOException;
 
 class MapSaverTest {
-/*
-    @Test
-    void saveMapTest() {
-        MapMaker mm = new MapMaker();
-        MapSaver ms = new MapSaver();
-        String mapName = mm.getMapInProduction().getMapName();
-        ms.saveMap(mm.getMapInProduction());
 
-        File f = new File(MapMaker.path + mapName + ".txt");
+    @Test
+    void saveMapTest() throws IOException {
+        BattleMap bmFirst = BattleMap.battleMapBuilder().mapName("test").build();
+        MapSaver ms = new MapSaver();
+
+        ms.saveMap(bmFirst);
+
+        File f = new File(MapSaver.getFolderPath() + "test.json");
 
         Assertions.assertTrue(f.exists()); //T
     }
 
     @Test
-    void loadMapTest() {
-        MapMaker mm = new MapMaker();
+    void loadMapTest() throws IOException {
+        BattleMap bmFirst = BattleMap.battleMapBuilder().mapName("test").build();
         MapSaver ms = new MapSaver();
-        String mapName = mm.getMapInProduction().getMapName();
-        ms.saveMap(mm.getMapInProduction());
+
+        ms.saveMap(bmFirst);
+        BattleMap bmSecond = ms.loadMap("test");
+
+        Assertions.assertEquals(bmFirst,bmSecond);
     }
 
- */
+
+    @Test
+    void deleteMap() throws IOException {
+        BattleMap bmFirst = BattleMap.battleMapBuilder().mapName("test").build();
+        MapSaver ms = new MapSaver();
+
+        ms.saveMap(bmFirst);
+        ms.deleteMap("test");
+
+        File file = new File(MapSaver.folderPath + "test.json");
+
+        Assertions.assertFalse(file.exists()); //F
+    }
 }

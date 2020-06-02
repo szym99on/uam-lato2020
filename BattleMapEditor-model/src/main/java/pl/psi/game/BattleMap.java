@@ -10,7 +10,7 @@ import java.util.HashMap;
 @Getter
 @Setter
 public class BattleMap {
-    private String mapName;
+    private String mapName = "New Map";
     private HashMap<Point,String> board;
 
     public final static int BOARD_WIDTH = 14;

@@ -4,18 +4,22 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.Getter;
 import pl.psi.game.BattleMap;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+
 public class MapSaver {
+    @Getter public static final String folderPath = "savedMaps/";
     ObjectMapper mapper = new ObjectMapper();
 
-    public MapSaver(){
+    public MapSaver() {
         mapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
     }
 
@@ -34,16 +38,21 @@ public class MapSaver {
         String path = makePathUsingMapName(mapName);
 
         try {
-            content = new String ( Files.readAllBytes( Paths.get(path) ) );
-        }
-        catch (IOException e) {
+            content = new String(Files.readAllBytes(Paths.get(path)));
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return mapper.readValue(content,BattleMap.class);
+        return mapper.readValue(content, BattleMap.class);
     }
 
-    private String makePathUsingMapName(String mapName){
-        return "savedMaps/" + mapName + ".json";
+    //DeleteMap
+    public void deleteMap(String mapName){
+        File file = new File(folderPath + mapName + ".json");
+        file.delete();
+    }
+
+    private String makePathUsingMapName(String mapName) {
+        return folderPath + mapName + ".json";
     }
 }
