@@ -13,6 +13,11 @@ public class MapMaker {
     private BattleMap mapInProduction;
     private MapSaver mapSaver;
 
+    public MapMaker() {
+        mapInProduction = new BattleMap();
+        mapSaver = new MapSaver();
+    }
+
     //Reset mapInProduction;
     public void newMap(){
         mapInProduction.resetMap();

@@ -22,6 +22,10 @@ public class BattleMap {
         this.board = board;
     }
 
+    public BattleMap(){
+        board = new HashMap<>();
+    }
+
     //Add & Remove Point to/from board------------------------------------------
     //Not sure about fieldType type so i put String as placeholder
     public void addPointToBoard(Point point, String fieldType){
@@ -42,8 +46,6 @@ public class BattleMap {
     private boolean isPointCorrect(Point p){
         if (p.getX()>13 || p.getX() <2)
             return false;
-        if (p.getY()>9 || p.getY()<1)
-            return false;
-        return true;
+        return !(p.getY() > 9) && !(p.getY() < 1);
     }
 }

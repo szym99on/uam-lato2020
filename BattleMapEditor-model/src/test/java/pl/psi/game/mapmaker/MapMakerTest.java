@@ -4,19 +4,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
+import java.util.HashMap;
 
 
 class MapMakerTest {
-/*
-    @Test //not sure
-    void loadMapTest() {
-        MapMaker mm = new MapMaker();
-        mm.saveMap();
-        String mapName = mm.getMapInProduction().getMapName();
-
-        mm.loadMap(mapName);
-    }
-
     @Test
     void addTileTest() {
         MapMaker mm = new MapMaker();
@@ -40,5 +31,11 @@ class MapMakerTest {
         Assertions.assertFalse( mm.getMapInProduction().getBoard().containsKey(p) ); //F
     }
 
- */
+    @Test
+    void rawTest(){
+        HashMap<Integer,String> board = new HashMap<>();
+        board.put(1,"Ala");
+
+        Assertions.assertTrue( board.containsKey(1) );
+    }
 }
