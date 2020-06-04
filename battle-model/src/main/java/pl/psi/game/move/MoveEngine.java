@@ -1,7 +1,6 @@
 package pl.psi.game.move;
 
 import pl.psi.game.Board;
-import pl.psi.game.GameEngine;
 import pl.psi.game.fractions.Creature;
 
 import java.awt.*;
@@ -10,6 +9,8 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.AbstractMap;
 import java.util.HashMap;
+import java.util.LinkedList;
+
 
 public class MoveEngine implements PropertyChangeListener {
 
@@ -36,6 +37,14 @@ public class MoveEngine implements PropertyChangeListener {
         moveStrategyIf.move(x,y);
     }
 
+    public LinkedList getMovePath(int x, int y){
+        if(activeCreature.getValue().isCanFly()) {
+            moveStrategyIf = new MoveStrategyFly(board, activeCreature);
+        } else {
+            moveStrategyIf = new MoveStrategyWalk(board, activeCreature);
+        }
+        return moveStrategyIf.getSteps(x, y);
+    }
 
 
 

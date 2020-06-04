@@ -8,6 +8,7 @@ import java.awt.*;
 import java.beans.PropertyChangeSupport;
 import java.util.AbstractMap;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 
 public class MoveStrategyWalk implements MoveStrategyIf {
@@ -39,9 +40,15 @@ public class MoveStrategyWalk implements MoveStrategyIf {
                 board.move(oldPosition.x, oldPosition.y + goDirection(y, oldPosition.y), activeCreature.getValue());
             }
         }
-        //TODO Can I should move this code to for -> if ?
+
         activeCreature = new AbstractMap.SimpleEntry<>(new Point(x,y), activeCreature.getValue());
         propertyChangeSupport.firePropertyChange(GameEngine.CREATURE_MOVED, oldPosition, activeCreature.getKey());
+    }
+
+    @Override
+    public LinkedList getSteps(int finalX, int finalY) {
+
+        return null;
     }
 
     int goDirection(int x, int oldX){
@@ -52,7 +59,11 @@ public class MoveStrategyWalk implements MoveStrategyIf {
         if(x < oldX) {
             return -1;
         }
-
         return 0;
     }
+
+    private void AStar(int startX, int startY, int finishX, int finishY){
+        Board aStarBoard = Board.getBoard();
+    }
+
 }

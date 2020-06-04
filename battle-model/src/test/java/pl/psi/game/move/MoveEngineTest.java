@@ -7,6 +7,7 @@ import pl.psi.game.fractions.Creature;
 import pl.psi.game.move.MoveEngine;
 
 import java.awt.*;
+import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -169,5 +170,30 @@ class MoveEngineTest {
 
     }
 
+    @Test
+    void movePathFlyingCreatureFrom1_1To4_2(){
+        Creature c = Creature.builder().aMoveRange(20).aCanFly(true).build();
+        Board board = Board.getBoard();
+        board.clearBoard();
+        Board.getBoard();
+        board.putCreature(1,1, c);
+
+        MoveEngine moveEngine = new MoveEngine(board);
+        moveEngine.setActiveCreature(new Point(1,1), c);
+        LinkedList<Step> movePath = moveEngine.getMovePath(4, 2);
+
+        assertEquals(2,movePath.get(0).getX());
+        assertEquals(1,movePath.get(0).getY());
+
+        assertEquals(2,movePath.get(1).getX());
+        assertEquals(2,movePath.get(1).getY());
+
+        assertEquals(3,movePath.get(2).getX());
+        assertEquals(2,movePath.get(2).getY());
+
+        assertEquals(4,movePath.get(3).getX());
+        assertEquals(2,movePath.get(3).getY());
+
+    }
 
 }
