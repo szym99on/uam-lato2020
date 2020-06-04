@@ -63,6 +63,7 @@ public class GameEngine implements PropertyChangeListener {
     public void move(int x, int y){
         moveEngine.move(x,y);
     }
+
     @Override
     public void propertyChange(PropertyChangeEvent aPropertyChangeEvent) {
         activeCreature = new AbstractMap.SimpleEntry<>( (Point)aPropertyChangeEvent.getNewValue(), activeCreature.getValue());

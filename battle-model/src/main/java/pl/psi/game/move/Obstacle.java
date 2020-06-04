@@ -8,7 +8,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class Obstacle implements GuiTileIf, PropertyChangeListener {
+public abstract class Obstacle implements GuiTileIf, PropertyChangeListener {
 
     private final String type;
     private final int attack;
@@ -53,5 +53,8 @@ public class Obstacle implements GuiTileIf, PropertyChangeListener {
     public void endMove(Creature creature){
 
     }
+
+    //powinno być abstract
+    public abstract void apply(Creature aCreature);
 
 }

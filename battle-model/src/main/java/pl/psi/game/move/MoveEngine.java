@@ -10,6 +10,8 @@ import java.beans.PropertyChangeSupport;
 import java.util.AbstractMap;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class MoveEngine implements PropertyChangeListener {
@@ -30,11 +32,18 @@ public class MoveEngine implements PropertyChangeListener {
 
     public void move(int x, int y) {
         if(activeCreature.getValue().isCanFly()) {
+            //activeCreature.getValue().getMoveStrategy().move(x,y);
             moveStrategyIf = new MoveStrategyFly(board, activeCreature);
         } else {
             moveStrategyIf = new MoveStrategyWalk(board, activeCreature);
         }
+
+        List<GuiTileIf> path;
+        List<Obstacle> pathObs = path.stream().filter(t -> t instanceof Obstacle).map(o -> (Obstacle)o).collect(Collectors.toList());
+        pathObs.forEach(o -> o.apply(activeCreature.getValue()));
+
         moveStrategyIf.move(x,y);
+        //moveStrategyIf.move(board, ,oldPosition, x,y);
     }
 
     public LinkedList getMovePath(int x, int y){
