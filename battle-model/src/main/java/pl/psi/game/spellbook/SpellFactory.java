@@ -3,7 +3,7 @@ package pl.psi.game.spellbook;
 public class SpellFactory {
 
     public Spell createSpell(SpellInfo spellInfo){
-        return  createSpell(spellInfo,1,0);
+        return createSpell(spellInfo,1,0);
     }
 
     protected Spell createSpell(SpellInfo spellInfo,int power,int additionalDuration){
@@ -29,9 +29,11 @@ public class SpellFactory {
             case SpellBookInfoFactory.STORM_ELEMENTAL :
                 return SummonUnits.builder().aName(spellInfo.getName()).build();
             case SpellBookInfoFactory.ENERGY_ELEMENTAL :
+                return SummonUnits.builder().aName(spellInfo.getName()).build();
             case SpellBookInfoFactory.ICE_ELEMENTAL :
+                return SummonUnits.builder().aName(spellInfo.getName()).build();
             case SpellBookInfoFactory.MAGMA_ELEMENTAL :
-                return null; //Wait for summonUnits implementation
+                return SummonUnits.builder().aName(spellInfo.getName()).build();
 
             default:
                 throw new IllegalArgumentException("This spell doesn't exist");

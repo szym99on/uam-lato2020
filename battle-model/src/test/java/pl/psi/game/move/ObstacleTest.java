@@ -17,7 +17,7 @@ public class ObstacleTest {
     void obstacleAttack(){
         Creature c = Creature.builder().aMoveRange(1).aMaxHp(10).build();
         Obstacle o = Obstacle.builder().aAttack(1).build();
-        Board board = new Board();
+        Board board = Board.getBoard();
         board.putCreature(1,1, c);
         board.putObstacle(2, 1, o);
 

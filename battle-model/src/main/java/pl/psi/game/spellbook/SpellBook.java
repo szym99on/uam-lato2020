@@ -8,7 +8,7 @@ public class SpellBook {
     private int additionalDuration=0;
     private SpellFactory factory;
 
-    public SpellBook (int aHeroPower){
+    public SpellBook (int aHeroPower, int aHeroMana, List<Spell> aHeroSpells){
         heroPower = aHeroPower;
         factory = new SpellFactory();
     }

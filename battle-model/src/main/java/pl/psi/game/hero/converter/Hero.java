@@ -4,6 +4,7 @@ import lombok.Builder;
 import pl.psi.game.fractions.Creature;
 import pl.psi.game.skills.Skill;
 import pl.psi.game.spellbook.Spell;
+import pl.psi.game.spellbook.SpellBook;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +13,7 @@ public class Hero {
 
     private List<Creature> creatures;
     private Skill skill;
-    private List<Spell> spells;
-    private int mana;
+    private SpellBook spellBook;
     private int attack;
     private int defence;
     private int power;
@@ -24,8 +24,7 @@ public class Hero {
 
         creatures = aCreatures;
         skill = aSkill;
-        spells = aSpells;
-        mana = 0;
+        spellBook = new SpellBook(power,knowledge*10,aSpells);
         attack = 0;
         defence = 0;
         power = 0;
@@ -36,7 +35,8 @@ public class Hero {
         return new ArrayList<>(creatures);
     }
     public List<Spell> getSpells() {
-        return new ArrayList<>(spells);
+        //return new spellBook.getSpells();
+        return new ArrayList<Spell>();
     }
 
     public void increaseAttack(int aAmount) {
@@ -83,8 +83,5 @@ public class Hero {
     }
     public Integer getKnowledge() {
         return knowledge;
-    }
-    public Integer getMana() {
-        return mana;
     }
 }

@@ -29,7 +29,7 @@ public class GameEngine implements PropertyChangeListener {
     private PropertyChangeSupport propertyChangeSupport;
 
     public GameEngine(Hero aHero1, Hero aHero2) {
-        this.board = new Board();
+        this.board = Board.getBoard();
         propertyChangeSupport = new PropertyChangeSupport(this);
         this.moveEngine = new MoveEngine(board);
         moveEngine.addObserver(CREATURE_MOVED, this);

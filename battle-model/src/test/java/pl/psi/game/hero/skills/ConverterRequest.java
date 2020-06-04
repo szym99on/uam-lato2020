@@ -9,9 +9,4 @@ public class ConverterRequest {
 
         skill.applyOnHero(hero);
     }*/
-    /*@Test
-    void mapSkillInfoToSkill(){
-        SkillFactory.create(skillInfo);
-    }
-     */
 }

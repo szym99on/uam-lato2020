@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import pl.psi.game.fractions.Creature;
 import pl.psi.game.fractions.CreatureAbstractFactory;
 import pl.psi.game.fractions.FractionsInfoAbstractFactory;
+import pl.psi.game.hero.HeroInfoFactory;
 import pl.psi.game.hero.converter.Hero;
 import pl.psi.game.hero.converter.HeroEcoBattleConverter;
 import pl.psi.game.hero.economyHero.EconomyHero;
@@ -20,8 +21,7 @@ public class ConverterThrowTest {
     private CreatureAbstractFactory creatureAbstractFactory = new CreatureAbstractFactory();
     void InitializeEconomyHero()
     {
-        economyHero = EconomyHero.builder().build();
-        //economyHero = EconomyHero.builder().aHeroInfo(HeroInfoFactory.getHeroInfoByName(HeroInfoFactory.EDRIC)).build();
+        economyHero = EconomyHero.builder().aHeroInfo(HeroInfoFactory.getHeroInfoByName(HeroInfoFactory.EDRIC)).build();
     }
     @Test
     @Disabled
@@ -38,11 +38,5 @@ public class ConverterThrowTest {
         {
             assertTrue(true);
         }
-    }
-    @Test
-    @Disabled
-    void ThrowIfConvertZeroCreature()
-    {
-        //to do
     }
 }

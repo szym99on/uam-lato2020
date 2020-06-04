@@ -1,9 +1,13 @@
 package pl.psi.game.hero.converter;
 
+import pl.psi.game.artifacts.Artifact;
+import pl.psi.game.artifacts.ArtifactFactory;
 import pl.psi.game.fractions.Creature;
 import pl.psi.game.fractions.CreatureAbstractFactory;
 import pl.psi.game.fractions.FractionsInfoAbstractFactory;
 import pl.psi.game.hero.economyHero.EconomyHero;
+import pl.psi.game.spellbook.Spell;
+import pl.psi.game.spellbook.SpellFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,33 +16,20 @@ import java.util.stream.Collectors;
 public class HeroEcoBattleConverter {
 
     public static Hero convert(EconomyHero aEconomyHero) {
-        //build hero using ecohero
-        //
-        //apply skills
-        //aHero.getSkills().map(skillInfo -> ???).foreach(skill -> skill.apply(hero);
-        //apply artifacts
-        //aHero.getArtifacts().map(artifactInfo -> ???).foreach(artifact -> artifact.apply(hero);
-        //get spells
-        //hero.addSpells(aHero.getSpells().map(spellInfo -> ???))
-        //get creatures
-        //
-        //convert knowledge to manapoints
-        //
         //apply attack and defense on creatures
-        //
-        //apply power on spells
-
-
         //initialize factories
         CreatureAbstractFactory creatureFactory = new CreatureAbstractFactory();
-        List<Creature> covertedCreatures = aEconomyHero.getCreatures().stream().map(creatureFactory::getCreature).collect(Collectors.toList());
-
-        Hero hero = Hero.builder().aCreatures(covertedCreatures).build();
-        //hero.increaseAttack(aEconomyHero.getAttack());
-        //hero.increaseDefence(aEconomyHero.getDefence());
-        //hero.increasePower(aEconomyHero.getPower());
-        //hero.increaseKnowledge(aEconomyHero.getKnowledge());
-        //aEconomyHero.getArtifacts().forEach(a -> a.apply(heroEco));
+        SpellFactory spellFactory = new SpellFactory();
+        List<Creature> convertedCreatures = aEconomyHero.getCreatures().stream().map(creatureFactory::getCreature).collect(Collectors.toList());
+        List<Spell> convertedSpells = aEconomyHero.getSpells().stream().map(spellFactory::createSpell).collect(Collectors.toList());
+        Hero hero = Hero.builder().aCreatures(convertedCreatures).aSpells(convertedSpells).build();
+        hero.increaseAttack(aEconomyHero.getAttack());
+        hero.increaseDefence(aEconomyHero.getDefence());
+        hero.increasePower(aEconomyHero.getPower());
+        hero.increaseKnowledge(aEconomyHero.getKnowledge());
+        List<Artifact> convertedArtifacts = aEconomyHero.getArtifacts().stream().map(ArtifactFactory::createArtifact).collect(Collectors.toList());
+        convertedArtifacts.forEach(a -> a.apply(hero));
+        //hero.getCreatures().forEach(c -> c.apply(hero));
         return hero;
     }
 
