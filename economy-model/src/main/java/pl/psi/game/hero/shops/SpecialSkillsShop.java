@@ -1,7 +1,5 @@
 package pl.psi.game.hero.shops;
 
-import pl.psi.game.hero.artifacts.ArtifactInfo;
-import pl.psi.game.hero.artifacts.ArtifactsInfoFactory;
 import pl.psi.game.skills.SkillInfo;
 import pl.psi.game.skills.SkillInfoFactory;
 
@@ -9,9 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class SpecialSkillsShop  extends  AbstractShop{
 
