@@ -4,6 +4,7 @@ import com.google.common.collect.Range;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import pl.psi.game.hero.converter.Hero;
 import pl.psi.game.move.GuiTileIf;
 
 import java.beans.PropertyChangeEvent;
@@ -13,8 +14,8 @@ import java.beans.PropertyChangeListener;
 public class Creature implements GuiTileIf, PropertyChangeListener {
 
     private int maxHp;
-    private final Range<Integer> attack;
-    private final int armor;
+    private Range<Integer> attack;
+    private int armor;
     private final String name;
     @Setter private int currentHp;
     @Setter private boolean canCounterAttacked;
@@ -107,5 +108,12 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
 
     public void increaseMoveRange(int additionalMoveRange) {
         moveRange += additionalMoveRange;
+    }
+
+    public void apply(Hero hero) {
+        Integer newMin = attack.lowerEndpoint() + hero.getAttack();
+        Integer newMax = attack.upperEndpoint() + hero.getAttack();
+        attack = Range.closed(newMin, newMax);
+        armor += hero.getDefence();
     }
 }
