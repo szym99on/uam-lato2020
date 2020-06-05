@@ -1,6 +1,7 @@
 package pl.psi.game.converter;
 
 import com.google.common.collect.Range;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pl.psi.game.fractions.*;
@@ -25,21 +26,25 @@ public class ConverterTest {
 
     private EconomyHero economyHero;
     private CreatureAbstractFactory creatureAbstractFactory = new CreatureAbstractFactory();
+
+    @BeforeAll
+    static void InitializeFactories(){
+        new HeroInfoFactory();
+    }
+
     void InitializeEconomyHero()
     {
-        economyHero = EconomyHero.builder().build();
-        //economyHero = EconomyHero.builder().aHeroInfo(HeroInfoFactory.getHeroInfoByName(HeroInfoFactory.EDRIC)).build();
+        economyHero = EconomyHero.builder().aGold(100000000).aHeroInfo(HeroInfoFactory.getHeroInfoByName(HeroInfoFactory.EDRIC)).build();
     }
     @Test
     @Disabled
-    void ConvertOneEconomyCreatureToBattleCreature()
+    void ConvertOneEconomyCreatureToBattleCreature() throws Exception
     {
         InitializeEconomyHero();
         CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(1);
-        ////economyHero.addCreatureInfo(creatureInfo,creatureCount);
-        Hero hero = Hero.builder().build();
+        economyHero.buyCreature(creatureInfo);
 
-        hero = HeroEcoBattleConverter.convert(economyHero);
+        Hero hero = HeroEcoBattleConverter.convert(economyHero);
         Creature creature = creatureAbstractFactory.getCreature(creatureInfo);
 
         assertEquals(creature,hero.getCreatures());
@@ -47,31 +52,28 @@ public class ConverterTest {
     @Test
     @Disabled
     //Wait for amount change method
-    void ConvertStackEconomyCreatureToBattleCreature()
+    void ConvertStackEconomyCreatureToBattleCreature() throws Exception
     {
         InitializeEconomyHero();
         CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(1);
-        ////economyHero.addCreatureInfo(creatureInfo,creatureCount);
-        Hero hero = Hero.builder().build();
+        economyHero.buyCreature(creatureInfo);
 
-        hero = HeroEcoBattleConverter.convert(economyHero);
+        Hero hero = HeroEcoBattleConverter.convert(economyHero);
         Creature creature = creatureAbstractFactory.getCreature(creatureInfo);
 
         assertEquals(creature,hero.getCreatures().get(0));
     }
     @Test
     @Disabled
-    void ConvertEconomySpellToBattleSpell()
+    void ConvertEconomySpellToBattleSpell() throws Exception
     {
         InitializeEconomyHero();
         SpellInfo spellInfo = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.MAGIC_ARROW);
-        ////economyHero.addCreatureInfo(creatureInfo,creatureCount);
-        Hero hero = Hero.builder().build();
-
-        hero = HeroEcoBattleConverter.convert(economyHero);
+        economyHero.buySpell(spellInfo);
+        Hero hero = HeroEcoBattleConverter.convert(economyHero);
 //        Spell spell = Spell.builder().build();
 //        //Spell spell = SpellBook.getSpellByName(SpellBookInfoFactory.MAGIC_ARROW);
-//
+//        Spell spell = SpellFactory,createSpell(spellInfo);
 //        assertEquals(spell,hero.getSpells().get(0));
     }
     @Test
@@ -81,11 +83,10 @@ public class ConverterTest {
     {
         InitializeEconomyHero();
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.HELM_OF_THE_ALABASTER_UNICORN);
-        Hero hero = Hero.builder().build();
 
-        hero = HeroEcoBattleConverter.convert(economyHero);
+        Hero hero = HeroEcoBattleConverter.convert(economyHero);
 
-        //assertEquals(hero.getKnowledge(),2);
+        assertEquals(hero.getKnowledge(),2);
     }
     @Test
     @Disabled
