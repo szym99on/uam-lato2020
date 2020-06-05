@@ -22,11 +22,11 @@ public class FlyMoveStrategy implements MoveStrategyIf {
     }
 
     @Override
-    public void move(int x, int y) {
+    public void move(Point destPoint) {
 
             Point oldPosition = activeCreature.getKey();
-            board.move(x,y,activeCreature.getValue());
-            activeCreature = new AbstractMap.SimpleEntry<>(new Point(x,y), activeCreature.getValue());
+            board.move((int) destPoint.getX(), (int) destPoint.getY(),activeCreature.getValue());
+            activeCreature = new AbstractMap.SimpleEntry<>(destPoint, activeCreature.getValue());
             propertyChangeSupport.firePropertyChange(GameEngine.CREATURE_MOVED, oldPosition, activeCreature.getKey());
     }
 
@@ -42,11 +42,13 @@ public class FlyMoveStrategy implements MoveStrategyIf {
     }
 
     @Override
-    public List<Step> getSteps(int finalX, int finalY) {
+    public List<Step> getSteps(Point destPoint) {
         Point oldPosition = activeCreature.getKey();
 
         int oldX = oldPosition.x;
         int oldY = oldPosition.y;
+        int finalX = (int) destPoint.getX();
+        int finalY = (int) destPoint.getY();
 
         double xDistance = Math.abs(finalX - oldPosition.getX());
         double yDistance = Math.abs(finalY - oldPosition.getY());
@@ -64,6 +66,11 @@ public class FlyMoveStrategy implements MoveStrategyIf {
             }
         }
         return moveSteps;
+    }
+
+    @Override
+    public boolean isMovePossible(Board board, Point startPoint, Point destPoint) {
+        return false;
     }
 
 

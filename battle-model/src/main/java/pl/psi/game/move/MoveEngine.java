@@ -40,12 +40,11 @@ public class MoveEngine implements PropertyChangeListener {
             moveStrategyIf = new WalkMoveStrategy(board, activeCreature);
         }
 
-        List<GuiTileIf> path;
+        List<GuiTileIf> path = getMovePath(x, y);
         List<Obstacle> pathObs = path.stream().filter(t -> t instanceof Obstacle).map(o -> (Obstacle)o).collect(Collectors.toList());
         pathObs.forEach(o -> o.apply(activeCreature.getValue()));
 
-        moveStrategyIf.move(x,y);
-        //moveStrategyIf.move(board, ,oldPosition, x,y);
+        moveStrategyIf.move(board,  );
     }
 
     public List getMovePath(int x, int y){
@@ -54,7 +53,7 @@ public class MoveEngine implements PropertyChangeListener {
         } else {
             moveStrategyIf = new WalkMoveStrategy(board, activeCreature);
         }
-        return moveStrategyIf.getSteps(x, y);
+        return moveStrategyIf.getSteps(new Point(x, y));
     }
 
 
