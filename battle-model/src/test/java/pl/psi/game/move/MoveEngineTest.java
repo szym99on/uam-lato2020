@@ -196,4 +196,15 @@ class MoveEngineTest {
 
     }
 
+    @Test
+    void walkingCreatureShouldCanMove(){
+        Board board = Board.getBoard();
+        Creature creature = Creature.builder().aMoveRange(2).moveStrategy(new MoveStrategyWalk()).build();
+        board.putCreature(8,4, creature);
+
+        assertTrue(creature.getMoveStrategy().isMovePossible(board,new Point(8,4),8,5));
+        assertFalse(creature.getMoveStrategy().isMovePossible(board,new Point(8,4),8,7));
+        assertFalse(creature.getMoveStrategy().isMovePossible(board,new Point(8,4),7,4));
+        assertFalse(creature.getMoveStrategy().isMovePossible(board,new Point(8,4),6,4));
+    }
 }
