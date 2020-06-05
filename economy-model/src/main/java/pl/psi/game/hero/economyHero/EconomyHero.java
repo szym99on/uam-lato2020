@@ -175,7 +175,7 @@ public class EconomyHero {
 
     //methods from heroInfo
 
-    HeroInfo.Fraction getFraction() {
+    public HeroInfo.Fraction getFraction() {
         return heroInfo.getFraction();
     }
 
