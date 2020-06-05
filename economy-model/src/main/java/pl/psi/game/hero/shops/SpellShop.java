@@ -1,5 +1,6 @@
 package pl.psi.game.hero.shops;
 
+import lombok.Getter;
 import pl.psi.game.spellbook.SpellBookInfoFactory;
 import pl.psi.game.spellbook.SpellInfo;
 
@@ -14,9 +15,12 @@ public class SpellShop extends AbstractShop{
 //        return Arrays.asList(SpellInfo.SpellInfoEnum.values()).stream().filter(s -> s.getTier==aTier).collect(Collectors.toList());
 //    }
 
+    @Getter
     private List<SpellInfo> spellsAvailableToBuy;
 
-    public SpellShop(){};
+    public SpellShop(){
+
+    };
 
     public SpellShop(String name, String description, List<SpellInfo> spellsAvailableToBuy) {
         super(name, description);
@@ -39,7 +43,7 @@ public class SpellShop extends AbstractShop{
 //       this.spellsAvailableToBuy = spellsAvailableToBuy;
 //    }
 
-    public List<SpellInfo> getSpellsAvailableToBuy() {
+    public void generateSpellsAvailableToBuy() {
 
         List<SpellInfo> spells = SpellBookInfoFactory.getAll().stream().collect(Collectors.toList());
         List<SpellShop> SpellAvailableToBuy = new ArrayList<>();
@@ -53,6 +57,6 @@ public class SpellShop extends AbstractShop{
             spellsAvailableToBuy.add(randomSpell);
         }
 
-        return spellsAvailableToBuy;
+        this.spellsAvailableToBuy=spellsAvailableToBuy;
     }
 }

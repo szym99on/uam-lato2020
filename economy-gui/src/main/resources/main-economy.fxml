@@ -24,7 +24,7 @@
             </Text>
             <Button fx:id="buyCreatureButton" onAction="#handleBuyCreature" mnemonicParsing="false" prefHeight="47.0" prefWidth="73.0" text="BUY"/>
         </VBox>
-        <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+        <VBox fx:id="spellShop" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Spell Shop">
                 <font>
                     <Font size="18.0"/>

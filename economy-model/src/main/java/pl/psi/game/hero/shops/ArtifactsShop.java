@@ -20,7 +20,7 @@ public class ArtifactsShop extends AbstractShop {
         this.artifactsAvailableToBuy = artifactsAvailableToBuy;
     }
 
-    List<ArtifactInfo> generateArtifactsAvailableToBuy() {
+    public List<ArtifactInfo> generateArtifactsAvailableToBuy() {
 
         List<ArtifactInfo> artifacts = ArtifactsInfoFactory.getAll().stream().collect(Collectors.toList());
         List<ArtifactInfo> artifactAvailableToBuy = new ArrayList<>();

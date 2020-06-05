@@ -19,7 +19,7 @@ public class SpecialSkillsShop  extends  AbstractShop{
         this.skillsAvailableToBuy = skillsAvailableToBuy;
     }
 
-     List<SkillInfo> generateSkillsAvailableToBuy() {
+     public List<SkillInfo> generateSkillsAvailableToBuy() {
 
          List<SkillInfo> skills = SkillInfoFactory.getAll().stream().collect(Collectors.toList());
          List<SkillInfo> specialSkillAvailableToBuy = new ArrayList<>();

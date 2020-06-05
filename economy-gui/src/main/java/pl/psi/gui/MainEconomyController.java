@@ -3,10 +3,15 @@ package pl.psi.gui;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.layout.VBox;
 import pl.psi.game.EconomyEngine;
+import pl.psi.game.fractions.CreatureInfo;
 import pl.psi.game.hero.economyHero.EconomyHero;
+import pl.psi.game.spellbook.SpellInfo;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 
@@ -23,6 +28,9 @@ public class MainEconomyController {
 
     @FXML
     private Button buyCreatureButton;
+
+    @FXML
+    private VBox spellShop;
 
     @FXML
     private URL location;
@@ -52,6 +60,13 @@ public class MainEconomyController {
     @FXML
     private void initialize()
     {
+        List<SpellInfo> spells = economyEngine.getSpellsAvailableToBuy();
+        for(int i=0;i<spells.size();i++){
+            Button btn1 = new Button();
+            btn1.setText("Button1");
+            spellShop.getChildren().add(btn1);
+
+        }
     }
 
     public void handleBuySpell(ActionEvent actionEvent) {
@@ -73,4 +88,5 @@ public class MainEconomyController {
         System.out.println("Clicked buy special skill button;");
         buySpecialSkillButton.setText("Buy special skill button clicked");
     }
+
 }
