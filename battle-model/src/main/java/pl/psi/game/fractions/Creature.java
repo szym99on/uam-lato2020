@@ -51,6 +51,7 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
         moveRange = 0;
         canFly = false;
         magicResistance = new MagicResistance(0, MagicResistance.ImmunityType.NONE);
+        attackStrategyIf = new DefaultAttackStrategy(this);
     }
 
     public void attack(Creature aDefender) {
