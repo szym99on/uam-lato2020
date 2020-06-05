@@ -27,10 +27,18 @@ public class ArtifactInitializer extends AbstractInitializer {
             h1.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(3));
 
 //            ################################################################
-//            SCENARIO 2 - hero has MAGIC_ARROW
+//            SCENARIO 2 - hero has MAGIC_ARROW spell
 //            ################################################################
 //            h1.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(3));
 //            h1.buySpell(SpellBookInfoFactory.getSpell(MAGIC_ARROW));
+
+//            ################################################################
+//            SCENARIO 3 - hero has PRAYER and MAGIC_ARROW spells
+//            ################################################################
+//            h1.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(3));
+//            h1.buySpell(SpellBookInfoFactory.getSpell(MAGIC_ARROW));
+//            h1.buySpell(SpellBookInfoFactory.getSpell(PRAYER));
+
         } catch (Exception aE) {
             aE.printStackTrace();
         }
@@ -49,11 +57,20 @@ public class ArtifactInitializer extends AbstractInitializer {
 //            h2.buyArtifact(ArtifactsInfoFactory.getArtifact(OGRES_CLUB_OF_HAVOC)); (waiting for implemention of heroAttack -> creatureAttack)
 
 //            ################################################################
-//            SCENARIO 2 - hero has MAGIC_ARROW and CreatureMagicResistanceArtifact
+//            SCENARIO 2 - hero has MAGIC_ARROW spell and CreatureMagicResistanceArtifact
 //            ################################################################
 //            h2.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(3));
 //            h2.buyArtifact(ArtifactsInfoFactory.getArtifact(SURCOAT_OF_COUNTERPOISE));
 //            h2.buySpell(SpellBookInfoFactory.getSpell(MAGIC_ARROW));
+
+//            ################################################################
+//            SCENARIO 3 - hero has SpellPreventCastingArtifact and PRAYER and MAGIC_ARROW spells
+//            ################################################################
+//            h2.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(3));
+//            h2.buyArtifact(ArtifactsInfoFactory.getArtifact(RECANTERS_CLOAK));
+//            h2.buySpell(SpellBookInfoFactory.getSpell(MAGIC_ARROW));
+//            h2.buySpell(SpellBookInfoFactory.getSpell(PRAYER));
+
         } catch (Exception aE) {
         }
         return h2;
