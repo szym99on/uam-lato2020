@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class ConverterRequest {
-    /*@Test
+    @Test
     void ApplyIncreaseCreatureAttackByHeroAttack()
     {
         Hero hero=Hero.builder().build();
@@ -20,5 +20,5 @@ public class ConverterRequest {
         Creature changedCreature = creatureAbstractFactory.getCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(1));
         changedCreature.apply(hero);
         assertNotEquals(changedCreature,baseCreature);
-    }*/
+    }
 }

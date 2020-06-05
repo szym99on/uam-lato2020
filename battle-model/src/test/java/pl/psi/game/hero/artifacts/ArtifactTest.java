@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static pl.psi.game.fractions.MagicResistance.ImmunityType.NONE;
 import static pl.psi.game.hero.artifacts.ArtifactsInfoFactory.*;
 import static pl.psi.game.spellbook.SpellBookInfoFactory.*;
 
@@ -37,7 +38,6 @@ public class ArtifactTest {
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(RING_OF_LIFE);
         Artifact ringOfLife = ArtifactFactory.createArtifact(artifactInfo);
 
-        assert ringOfLife != null;
         assertEquals(2, ringOfLife.getHealth());
     }
 
@@ -47,7 +47,6 @@ public class ArtifactTest {
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(PENDANT_OF_LIFE);
         Artifact pendantOfLife = ArtifactFactory.createArtifact(artifactInfo);
 
-        assert pendantOfLife != null;
         // could be assertEquals(DEATH_RIPPLE, pendantOfLife.getSpell()); -depends on implementation of immunity
     }
 
@@ -56,7 +55,6 @@ public class ArtifactTest {
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(BOOTS_OF_POLARITY);
         Artifact bootsOfPolarity = ArtifactFactory.createArtifact(artifactInfo);
 
-        assert bootsOfPolarity != null;
         assertEquals(15, bootsOfPolarity.getMagicResistance());
     }
 
@@ -65,7 +63,6 @@ public class ArtifactTest {
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(CAPE_OF_VELOCITY);
         Artifact capeOfVelocity = ArtifactFactory.createArtifact(artifactInfo);
 
-        assert capeOfVelocity != null;
         assertEquals(2, capeOfVelocity.getSpeed());
     }
 
@@ -74,7 +71,6 @@ public class ArtifactTest {
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(SKULL_HELMET);
         Artifact skullHelmet = ArtifactFactory.createArtifact(artifactInfo);
 
-        assert skullHelmet != null;
         assertEquals(0, skullHelmet.getAttack());
         assertEquals(0, skullHelmet.getDefence());
         assertEquals(2, skullHelmet.getKnowledge());
@@ -86,7 +82,6 @@ public class ArtifactTest {
         ArtifactInfo artifactsInfo = ArtifactsInfoFactory.getArtifact(COLLAR_OF_CONJURING);
         Artifact collarOfConjuring = ArtifactFactory.createArtifact(artifactsInfo);
 
-        assert collarOfConjuring != null;
         assertEquals(1, collarOfConjuring.getDuration());
     }
 
@@ -96,14 +91,12 @@ public class ArtifactTest {
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(RECANTERS_CLOAK);
         Artifact recantersCloak = ArtifactFactory.createArtifact(artifactInfo);
 
-        assert recantersCloak != null;
     }
 
 
 
 //    CreatureHealthArtifact test
 
-    @Disabled // waiting for increaseHP() implementation by fractions
     @Test
     void artifactShouldIncreaseHealthBy2Points(){
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(RING_OF_LIFE);
@@ -114,7 +107,6 @@ public class ArtifactTest {
         Hero battleHero = Hero.builder().aCreatures(creatures).build();
 
         try{
-            assert ringOfLife != null;
             ringOfLife.apply(battleHero);
         } catch (Exception e) {
             e.printStackTrace();
@@ -139,7 +131,6 @@ public class ArtifactTest {
         Hero battleHero = Hero.builder().aCreatures(creatures).build();
 
         try{
-            assert pendantOfDispassion != null;
             pendantOfDispassion.apply(battleHero);
         } catch (Exception e) {
             e.printStackTrace();
@@ -153,31 +144,28 @@ public class ArtifactTest {
 
 //    CreatureMagicResistanceArtifact tests
 
-    @Disabled // waiting for magic resistance implementation by fractions
     @Test
     void artifactShouldIncreaseMagicResistanceBy15Percent(){
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(BOOTS_OF_POLARITY);
         Artifact bootsOfPolarity = ArtifactFactory.createArtifact(artifactInfo);
         List<Creature> creatures = new ArrayList<>();
-//        Creature creature = Creature.builder().aMagicResistance(0).build();
-//        creatures.add(creature);
-//        Hero battleHero = Hero.builder().aCreatures(creatures).build();
-//
-//        try {
-//            assert bootsOfPolarity != null;
-//            bootsOfPolarity.apply(battleHero);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        assertEquals(15, battleHero.getCreatures().get(0).getMagicResistance());
+        Creature creature = Creature.builder().build();
+        creatures.add(creature);
+        Hero battleHero = Hero.builder().aCreatures(creatures).build();
+
+        try {
+            bootsOfPolarity.apply(battleHero);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        assertEquals(15, battleHero.getCreatures().get(0).getMagicResistance().getAllSpellsResistancePercentage());
     }
 
 
 
 //    CreatureSpeedArtifact tests
 
-    @Disabled // waiting for increaseMoveRange implementation by fractions
     @Test
     void artifactShouldIncreaseMoveRangeBy2Points(){
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(CAPE_OF_VELOCITY);
@@ -188,7 +176,6 @@ public class ArtifactTest {
         Hero battleHero = Hero.builder().aCreatures(creatures).build();
 
         try {
-            assert capeOfVelocity != null;
             capeOfVelocity.apply(battleHero);
         } catch (Exception e) {
             e.printStackTrace();
@@ -208,7 +195,6 @@ public class ArtifactTest {
         Hero battleHero = Hero.builder().build();// default hero stats = 0
 
         try {
-            assert skullHelmet != null;
             skullHelmet.apply(battleHero);
         } catch (Exception e) {
             e.printStackTrace();
@@ -227,7 +213,6 @@ public class ArtifactTest {
         Hero battleHero = Hero.builder().build();// default hero stats = 0
 
         try{
-            assert centaursAx != null;
             centaursAx.apply(battleHero);
         } catch (Exception e) {
             e.printStackTrace();
@@ -246,7 +231,6 @@ public class ArtifactTest {
         Hero battleHero = Hero.builder().build();// default hero stats = 0
 
         try{
-            assert shieldOfTheDwarvenLords != null;
             shieldOfTheDwarvenLords.apply(battleHero);
         } catch (Exception e) {
             e.printStackTrace();
@@ -265,7 +249,6 @@ public class ArtifactTest {
         Hero battleHero = Hero.builder().build();// default hero stats = 0
 
         try{
-            assert magistersSandals != null;
             magistersSandals.apply(battleHero);
         } catch (Exception e) {
             e.printStackTrace();
@@ -284,7 +267,6 @@ public class ArtifactTest {
         Hero battleHero = Hero.builder().build();// default hero stats = 0
 
         try {
-            assert armorOfWonders != null;
             armorOfWonders.apply(battleHero);
         } catch (Exception e) {
             e.printStackTrace();
@@ -313,7 +295,6 @@ public class ArtifactTest {
         Hero battleHero = Hero.builder().aSpells(spells).build();
 
         try {
-            assert ringOfConjuring != null;
             ringOfConjuring.apply(battleHero);
         } catch (Exception e) {
             e.printStackTrace();
@@ -335,7 +316,6 @@ public class ArtifactTest {
 //        create battleHero with multiple spells of different levels
 //
 //        try {
-//            assert recantersCloak != null;
 //            recantersCloak.apply(battleHero);
 //        } catch (Exception e) {
 //            e.printStackTrace();

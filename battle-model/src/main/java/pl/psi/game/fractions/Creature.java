@@ -4,6 +4,7 @@ import com.google.common.collect.Range;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import pl.psi.game.hero.converter.Hero;
 import pl.psi.game.move.GuiTileIf;
 
 import java.beans.PropertyChangeEvent;
@@ -13,16 +14,17 @@ import java.beans.PropertyChangeListener;
 public class Creature implements GuiTileIf, PropertyChangeListener {
 
     private int maxHp;
-    private final Range<Integer> attack;
-    private final int armor;
+    private Range<Integer> attack;
+    private int armor;
     private final String name;
     @Setter private int currentHp;
     @Setter private boolean canCounterAttacked;
     private int moveRange;
     private boolean canFly;
     private int amount;
-    private DealDamageCounterStrategyIf dealDamageCounterStrategy;
+    @Setter private DealDamageCounterStrategyIf dealDamageCounterStrategy;
     @Setter private MagicResistance magicResistance;
+    @Setter private AttackStrategyIf attackStrategyIf;
     
     @Builder
     public Creature(int aMaxHp, Range<Integer> aAttack, int aArmor, String aName, int aMoveRange, boolean aCanFly) {
@@ -37,6 +39,7 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
         amount = 10;
         dealDamageCounterStrategy = new DefaultDamageCounterStrategy();
         magicResistance = new MagicResistance(0, MagicResistance.ImmunityType.NONE);
+        attackStrategyIf = new DefaultAttackStrategy(this);
     }
 
     public Creature(int aMaxHp, Range<Integer> aAttack, int aArmor) {
@@ -49,13 +52,11 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
         moveRange = 0;
         canFly = false;
         magicResistance = new MagicResistance(0, MagicResistance.ImmunityType.NONE);
+        attackStrategyIf = new DefaultAttackStrategy(this);
     }
 
     public void attack(Creature aDefender) {
-        dealDamage(aDefender);
-        if (aDefender.canCounterAttacked) {
-            aDefender.counterAttack(this);
-        }
+        attackStrategyIf.attack(aDefender);
     }
 
     @Override
@@ -69,7 +70,7 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
         return sb.toString();
     }
 
-    private void counterAttack(Creature aDefender) {
+    public void counterAttack(Creature aDefender) {
         dealDamage(aDefender);
         canCounterAttacked = false;
     }
@@ -92,10 +93,6 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
     public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
         canCounterAttacked = true;
     }
-
-    public void setDealDamageCountStrategy(DealDamageCounterStrategyIf aDealDamageCounterStrategyIf) {
-        dealDamageCounterStrategy = aDealDamageCounterStrategyIf;
-    }
     
     public void heal(int hp) {
     	currentHp += hp;
@@ -111,5 +108,12 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
 
     public void increaseMoveRange(int additionalMoveRange) {
         moveRange += additionalMoveRange;
+    }
+
+    public void apply(Hero hero) {
+        Integer newMin = attack.lowerEndpoint() + hero.getAttack();
+        Integer newMax = attack.upperEndpoint() + hero.getAttack();
+        attack = Range.closed(newMin, newMax);
+        armor += hero.getDefence();
     }
 }

@@ -24,11 +24,11 @@ public class Hero {
 
         creatures = aCreatures;
         skill = aSkill;
-        spellBook = new SpellBook(power,knowledge*10,aSpells);
         attack = 0;
         defence = 0;
         power = 0;
         knowledge = 0;
+        //spellBook = new SpellBook(aSpells);
     }
 
     public List<Creature> getCreatures() {
@@ -62,6 +62,7 @@ public class Hero {
         else{
             power += aAmount;
         }
+        //spellBook.increasePower(aAmount);
     }
     public void increaseKnowledge(int aAmount) {
         if (knowledge + aAmount < 0){
@@ -70,6 +71,7 @@ public class Hero {
         else{
             knowledge += aAmount;
         }
+        //spellBook.increaseMana(aAmount*10);
     }
 
     public Integer getAttack() {
