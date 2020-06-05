@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
-public class MoveStrategyWalk implements MoveStrategyIf {
+public class WalkMoveStrategy implements MoveStrategyIf {
 
     private HashMap.Entry<Point, Creature> activeCreature;
     private final Board board;

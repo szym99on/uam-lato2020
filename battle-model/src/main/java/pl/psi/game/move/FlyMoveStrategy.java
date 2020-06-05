@@ -8,7 +8,7 @@ import java.awt.*;
 import java.beans.PropertyChangeSupport;
 import java.util.*;
 
-public class MoveStrategyFly implements MoveStrategyIf {
+public class FlyMoveStrategy implements MoveStrategyIf {
     private HashMap.Entry<Point, Creature> activeCreature;
     private final Board board;
     private PropertyChangeSupport propertyChangeSupport;
