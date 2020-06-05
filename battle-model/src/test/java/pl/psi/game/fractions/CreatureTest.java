@@ -151,7 +151,14 @@ class CreatureTest {
     
     @Test
     void creatureShouldDealDoubleDamage() {
-        //TODO Add test with consideration of counter attack
+        Creature defender = new Creature(10, NOT_IMPORTANT_RANGE, NOT_IMPORTANT_0, "", 0, NOT_IMPORTANT_FALSE);
+        Creature attacker = new Creature(10, Range.closed(2, 2), NOT_IMPORTANT_0, "", 0, NOT_IMPORTANT_FALSE);
+        attacker.setAttackStrategyIf(new DoubleAttackStrategy(attacker));
+
+        attacker.attack(defender);
+
+        assertEquals(6, defender.getCurrentHp());
+        assertEquals(9, attacker.getCurrentHp());
     }
     
     @Test
@@ -176,6 +183,18 @@ class CreatureTest {
         attacker.attack(defender);
 
         assertEquals(2, defender.getCurrentHp());
+    }
+
+    @Test
+    void creatureShouldBlockCounterAttack() {
+        Creature defender = new Creature(10, NOT_IMPORTANT_RANGE, NOT_IMPORTANT_0, "", 0, NOT_IMPORTANT_FALSE);
+        Creature attacker = new Creature(10, Range.closed(2, 2), NOT_IMPORTANT_0, "", 0, NOT_IMPORTANT_FALSE);
+        attacker.setAttackStrategyIf(new AttackWithCounterBlockedStrategy(attacker));
+
+        attacker.attack(defender);
+
+        assertEquals(8, defender.getCurrentHp());
+        assertEquals(10, attacker.getCurrentHp());
     }
 
 }
