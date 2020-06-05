@@ -10,11 +10,12 @@ import static pl.psi.game.hero.artifacts.ArtifactsInfoFactory.*;
 import static pl.psi.game.spellbook.SpellBookInfoFactory.*;
 
 public class ArtifactInitializer extends AbstractInitializer {
-    // gui is not refreshing, something is wrong and after some rounds the whole thing looks like a mess
-    // movement needs to fix their stuff
-    // air units can move but stuff above makes it impossible to check anything
-    // units can't move directly to their right or left nor can they move directly above or underneath their position
-    // welp, we have to wait ¯\_(ツ)_/¯
+//    gui is not refreshing, something is wrong and after some rounds the whole thing looks like a mess
+//    movement needs to fix their stuff
+//    air units can move but stuff above makes it impossible to check anything
+//    units can't move directly to their right or left nor can they move directly above or underneath their position
+//    the only artifacts that work and can be presented are those that manipulate creature's statistics
+//    welp, we have to wait ¯\_(ツ)_/¯
 
 
     EconomyHero getH1() {
@@ -53,8 +54,6 @@ public class ArtifactInitializer extends AbstractInitializer {
 //            h2.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(3));
 //            h2.buyArtifact(ArtifactsInfoFactory.getArtifact(SURCOAT_OF_COUNTERPOISE));
 //            h2.buySpell(SpellBookInfoFactory.getSpell(MAGIC_ARROW));
-
-
         } catch (Exception aE) {
         }
         return h2;
