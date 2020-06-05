@@ -7,6 +7,7 @@ import pl.psi.game.fractions.Creature;
 import java.awt.*;
 import java.beans.PropertyChangeSupport;
 import java.util.*;
+import java.util.List;
 
 public class FlyMoveStrategy implements MoveStrategyIf {
     private HashMap.Entry<Point, Creature> activeCreature;
@@ -14,7 +15,7 @@ public class FlyMoveStrategy implements MoveStrategyIf {
     private PropertyChangeSupport propertyChangeSupport;
     private LinkedList<Step> moveSteps = new LinkedList();
 
-    MoveStrategyFly(Board aBoard, Map.Entry<Point, Creature> aActiveCreature) {
+    FlyMoveStrategy(Board aBoard, Map.Entry<Point, Creature> aActiveCreature) {
         board = aBoard;
         propertyChangeSupport = new PropertyChangeSupport(this);
         activeCreature = aActiveCreature;
@@ -41,7 +42,7 @@ public class FlyMoveStrategy implements MoveStrategyIf {
     }
 
     @Override
-    public LinkedList getSteps(int finalX, int finalY) {
+    public List<Step> getSteps(int finalX, int finalY) {
         Point oldPosition = activeCreature.getKey();
 
         int oldX = oldPosition.x;

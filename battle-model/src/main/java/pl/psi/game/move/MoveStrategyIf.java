@@ -1,11 +1,13 @@
 package pl.psi.game.move;
 
+import pl.psi.game.Board;
 
-import java.util.LinkedList;
+import java.awt.*;
+import java.util.List;
 
 public interface MoveStrategyIf {
 
-    void move(int x, int y); // zaorać
-    LinkedList<Step> getSteps(int finalX, int finalY);
-    // boolean isMovePossible(board,oldPoint,x,y) x,y -> point
+    void move(Point desPoint);
+    List<Step> getSteps(Point destPoint);
+    boolean isMovePossible(Board board, Point startPoint, Point destPoint);
 }

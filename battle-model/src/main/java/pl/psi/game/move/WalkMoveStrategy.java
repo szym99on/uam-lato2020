@@ -8,7 +8,7 @@ import java.awt.*;
 import java.beans.PropertyChangeSupport;
 import java.util.AbstractMap;
 import java.util.HashMap;
-import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 public class WalkMoveStrategy implements MoveStrategyIf {
@@ -17,18 +17,18 @@ public class WalkMoveStrategy implements MoveStrategyIf {
     private final Board board;
     private PropertyChangeSupport propertyChangeSupport;
 
-    MoveStrategyWalk(Board aBoard, Map.Entry<Point, Creature> aActiveCreature) {
+    WalkMoveStrategy(Board aBoard, Map.Entry<Point, Creature> aActiveCreature) {
         board = aBoard;
         propertyChangeSupport = new PropertyChangeSupport(this);
         activeCreature = aActiveCreature;
     }
 
     @Override
-    public void move(int x, int y) {
+    public void move(Point destPoint) {
         Point oldPosition = activeCreature.getKey();
 
-        double xDistance = Math.abs(x - oldPosition.getX());
-        double yDistance = Math.abs(y - oldPosition.getY());
+        int xDistance = (int) Math.abs(destPoint.getX() - oldPosition.getX());
+        int yDistance = (int) Math.abs(destPoint.getY() - oldPosition.getY());
 
         //TODO Improve to A* Algoritm
         for (int i = 0; i < Math.max(xDistance,yDistance) ; i++) {
@@ -46,7 +46,7 @@ public class WalkMoveStrategy implements MoveStrategyIf {
     }
 
     @Override
-    public LinkedList getSteps(int finalX, int finalY) {
+    public List<Step> getSteps(Point destPoint) {
 
         return null;
     }

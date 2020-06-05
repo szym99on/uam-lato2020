@@ -26,16 +26,18 @@ public class MoveEngine implements PropertyChangeListener {
         propertyChangeSupport = new PropertyChangeSupport(this);
     }
 
-    public boolean isMovePossible(int x, int y) {
-        return board.isTileEmpty(x,y) && new Point(x,y).distance(activeCreature.getKey()) <= activeCreature.getValue().getMoveRange();
+    public boolean isMovePossible(Board board, Point startPoint, Point endPoint) {
+
+
+        return board.isTileEmpty((int) endPoint.getX(),(int) endPoint.getY()) && endPoint.distance(activeCreature.getKey()) <= activeCreature.getValue().getMoveRange();
     }
 
     public void move(int x, int y) {
         if(activeCreature.getValue().isCanFly()) {
             //activeCreature.getValue().getMoveStrategy().move(x,y);
-            moveStrategyIf = new MoveStrategyFly(board, activeCreature);
+            moveStrategyIf = new FlyMoveStrategy(board, activeCreature);
         } else {
-            moveStrategyIf = new MoveStrategyWalk(board, activeCreature);
+            moveStrategyIf = new WalkMoveStrategy(board, activeCreature);
         }
 
         List<GuiTileIf> path;
@@ -46,11 +48,11 @@ public class MoveEngine implements PropertyChangeListener {
         //moveStrategyIf.move(board, ,oldPosition, x,y);
     }
 
-    public LinkedList getMovePath(int x, int y){
+    public List getMovePath(int x, int y){
         if(activeCreature.getValue().isCanFly()) {
-            moveStrategyIf = new MoveStrategyFly(board, activeCreature);
+            moveStrategyIf = new FlyMoveStrategy(board, activeCreature);
         } else {
-            moveStrategyIf = new MoveStrategyWalk(board, activeCreature);
+            moveStrategyIf = new WalkMoveStrategy(board, activeCreature);
         }
         return moveStrategyIf.getSteps(x, y);
     }
