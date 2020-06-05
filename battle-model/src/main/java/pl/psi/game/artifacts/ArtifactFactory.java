@@ -108,7 +108,7 @@ public class ArtifactFactory {
         else if (artifactInfo.getName().equals(RING_OF_CONJURING)){
             return new SpellDurationArtifact(2);
         }
-        else if (artifactInfo.equals(RING_OF_THE_WAYFARER)){
+        else if (artifactInfo.getName().equals(RING_OF_THE_WAYFARER)){
             return new CreatureSpeedArtifact(1);
         }
         else if (artifactInfo.getName().equals(QUIET_EYE_OF_THE_DRAGON)){
@@ -130,6 +130,6 @@ public class ArtifactFactory {
             return new HeroStatisticArtifact(0,0,2,0);
         }
         else
-            return null;
+            throw new UnsupportedOperationException("Incorrect ArtifactInfo");
     }
 }
