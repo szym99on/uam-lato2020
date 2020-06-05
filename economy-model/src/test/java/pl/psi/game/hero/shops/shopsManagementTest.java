@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class shopsManagementTest {
 
@@ -62,17 +62,14 @@ public class shopsManagementTest {
 
     }
 
+
     @Test
-    void generateArtifactsAvailableToBuyShouldGenerateArtifacts(){
+    void generateArtifactsAvailableToBuyShouldGenerateArtifactsInRange2To12(){
 
         ArtifactsShop artifactsShop = new ArtifactsShop();
         List<ArtifactInfo> artifacts = artifactsShop.generateArtifactsAvailableToBuy();
-        Random ran = new Random();
-        int x = ran.nextInt(10) + 2;
-//        List<ArtifactInfo> artifactsAvailableToBuy =
 
-
-
+        assertTrue(2<=artifacts.size() && artifacts.size()<=12);
     }
 
 
