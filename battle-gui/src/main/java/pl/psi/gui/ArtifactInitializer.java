@@ -17,10 +17,10 @@ public class ArtifactInitializer extends AbstractInitializer {
         EconomyHero h1 = EconomyHero.builder().aGold(100000000).aHeroInfo(HeroInfoFactory.getHeroInfoByName(HeroInfoFactory.EDRIC)).build();
         try {
 //            ################################################################
-//            SCENARIO 1
+//            SCENARIO 1 - CreatureSpeedArtifact
 //            ################################################################
-            h1.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(7));
-            h1.buyArtifact(ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.BOOTS_OF_POLARITY));
+            h1.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(3));
+            h1.buyArtifact(ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.CAPE_OF_VELOCITY));
         } catch (Exception aE) {
             aE.printStackTrace();
         }
@@ -31,9 +31,9 @@ public class ArtifactInitializer extends AbstractInitializer {
         EconomyHero h2 = EconomyHero.builder().aGold(100000000).aHeroInfo(HeroInfoFactory.getHeroInfoByName(HeroInfoFactory.ALAMAR)).build();
         try {
 //            ################################################################
-//            SCENARIO 1
+//            SCENARIO 1 - CreatureSpeedArtifact
 //            ################################################################
-            h2.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.RAMPART).getCreatureByTier(7));
+            h2.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(3));
         } catch (Exception aE) {
         }
         return h2;
