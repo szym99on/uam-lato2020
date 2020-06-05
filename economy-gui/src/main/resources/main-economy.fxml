@@ -8,116 +8,95 @@
 <?import javafx.scene.text.Text?>
 
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="775.0" prefWidth="1071.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-    <children>
-        <Button layoutX="31.0" layoutY="689.0" mnemonicParsing="false" prefHeight="72.0" prefWidth="1032.0" text=" READY">
-            <font>
-                <Font name="Arial" size="22.0" />
-            </font>
-        </Button>
-        <VBox layoutX="547.0" layoutY="59.0" prefHeight="620.0" prefWidth="516.0" style="-fx-border-style: solid;">
-            <children>
-                <VBox prefHeight="200.0" prefWidth="502.0" style="-fx-border-style: solid;">
-                    <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Creature Shop">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Text>
-                        <Button mnemonicParsing="false" prefHeight="47.0" prefWidth="73.0" text="BUY" />
-                    </children>
-                </VBox>
-                <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
-                    <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Spell Shop">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Text>
-                        <Button mnemonicParsing="false" prefHeight="47.0" prefWidth="73.0" text="BUY" />
-                    </children>
-                </VBox>
-                <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
-                    <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Special Skill Shop">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Text>
-                        <Button mnemonicParsing="false" prefHeight="47.0" prefWidth="73.0" text="BUY" />
-                    </children>
-                </VBox>
-                <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
-                    <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Atifacts Shop">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Text>
-                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="47.0" prefWidth="73.0" text="BUY" />
-                    </children>
-                </VBox>
-            </children>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="775.0"
+      prefWidth="1071.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.psi.gui.MainEconomyController">
+    <Button fx:id="passTurnButton" onAction="#handlePassTurn" layoutX="31.0" layoutY="689.0" mnemonicParsing="false" prefHeight="72.0" prefWidth="1032.0" text=" READY">
+        <font>
+            <Font name="Arial" size="22.0"/>
+        </font>
+    </Button>
+    <VBox layoutX="547.0" layoutY="59.0" prefHeight="620.0" prefWidth="516.0" style="-fx-border-style: solid;">
+        <VBox prefHeight="200.0" prefWidth="502.0" style="-fx-border-style: solid;">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Creature Shop">
+                <font>
+                    <Font size="18.0"/>
+                </font>
+            </Text>
+            <Button fx:id="buyCreatureButton" onAction="#handleBuyCreature" mnemonicParsing="false" prefHeight="47.0" prefWidth="73.0" text="BUY"/>
         </VBox>
-        <Text layoutX="454.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SHOPS" textAlignment="CENTER" wrappingWidth="186.375">
+        <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Spell Shop">
+                <font>
+                    <Font size="18.0"/>
+                </font>
+            </Text>
+            <Button fx:id="buySpellButton" onAction="#handleBuySpell" mnemonicParsing="false" prefHeight="47.0" prefWidth="73.0" text="BUY"/>
+        </VBox>
+        <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Special Skill Shop">
+                <font>
+                    <Font size="18.0"/>
+                </font>
+            </Text>
+            <Button fx:id="buySpecialSkillButton" onAction="#handleBuySpecialSkill"  mnemonicParsing="false" prefHeight="47.0" prefWidth="73.0" text="BUY"/>
+        </VBox>
+        <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Atifacts Shop">
+                <font>
+                    <Font size="18.0"/>
+                </font>
+            </Text>
+            <Button fx:id="buyArtifactButton" onAction="#handleBuyArtifact" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
+                    nodeOrientation="LEFT_TO_RIGHT" prefHeight="47.0" prefWidth="73.0" text="BUY"/>
+        </VBox>
+    </VBox>
+    <Text layoutX="454.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SHOPS" textAlignment="CENTER"
+          wrappingWidth="186.375">
+        <font>
+            <Font name="System Bold" size="30.0"/>
+        </font>
+    </Text>
+    <VBox layoutX="31.0" layoutY="59.0" prefHeight="620.0" prefWidth="516.0" style="-fx-border-style: solid;">
+        <VBox prefHeight="200.0" prefWidth="502.0" style="-fx-border-style: solid;">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Creatures">
+                <font>
+                    <Font size="18.0"/>
+                </font>
+            </Text>
+        </VBox>
+        <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Spells">
+                <font>
+                    <Font size="18.0"/>
+                </font>
+            </Text>
+        </VBox>
+        <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Special Skills">
+                <font>
+                    <Font size="18.0"/>
+                </font>
+            </Text>
+        </VBox>
+        <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Artifacts">
+                <font>
+                    <Font size="18.0"/>
+                </font>
+            </Text>
+        </VBox>
+    </VBox>
+    <ToolBar layoutX="772.0" layoutY="14.0" prefHeight="40.0" prefWidth="259.0" style="-fx-background-color: black;">
+        <Text fill="#ffe602" strokeType="OUTSIDE" strokeWidth="0.0" text="GOLD: " textAlignment="CENTER">
             <font>
-                <Font name="System Bold" size="30.0" />
+                <Font name="System Bold" size="15.0"/>
             </font>
         </Text>
-        <VBox layoutX="31.0" layoutY="59.0" prefHeight="620.0" prefWidth="516.0" style="-fx-border-style: solid;">
-            <children>
-                <VBox prefHeight="200.0" prefWidth="502.0" style="-fx-border-style: solid;">
-                    <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Creatures">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Text>
-                    </children>
-                </VBox>
-                <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
-                    <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Spells">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Text>
-                    </children>
-                </VBox>
-                <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
-                    <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Special Skills">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Text>
-                    </children>
-                </VBox>
-                <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
-                    <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Artifacts">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Text>
-                    </children>
-                </VBox>
-            </children>
-        </VBox>
-        <ToolBar layoutX="772.0" layoutY="14.0" prefHeight="40.0" prefWidth="259.0" style="-fx-background-color: black;">
-            <items>
-                <Text fill="#ffe602" strokeType="OUTSIDE" strokeWidth="0.0" text="GOLD: " textAlignment="CENTER">
-                    <font>
-                        <Font name="System Bold" size="15.0" />
-                    </font>
-                </Text>
-                <Text fill="#ffe602" strokeType="OUTSIDE" strokeWidth="0.0" text="1000">
-                    <font>
-                        <Font name="System Bold" size="15.0" />
-                    </font>
-                </Text>
-            </items>
-        </ToolBar>
-    </children>
+        <Text fill="#ffe602" strokeType="OUTSIDE" strokeWidth="0.0" text="1000">
+            <font>
+                <Font name="System Bold" size="15.0"/>
+            </font>
+        </Text>
+    </ToolBar>
 </Pane>
 

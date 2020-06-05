@@ -4,11 +4,13 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pl.psi.game.fractions.FractionsInfoAbstractFactory;
+import pl.psi.game.hero.artifacts.ArtifactInfo;
 import pl.psi.game.hero.artifacts.ArtifactsInfoFactory;
 import pl.psi.game.spellbook.SpellBookInfoFactory;
 import pl.psi.game.spellbook.SpellInfo;
 
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -60,6 +62,18 @@ public class shopsManagementTest {
 
     }
 
+    @Test
+    void generateArtifactsAvailableToBuyShouldGenerateArtifacts(){
+
+        ArtifactsShop artifactsShop = new ArtifactsShop();
+        List<ArtifactInfo> artifacts = artifactsShop.generateArtifactsAvailableToBuy();
+        Random ran = new Random();
+        int x = ran.nextInt(10) + 2;
+//        List<ArtifactInfo> artifactsAvailableToBuy =
+
+
+
+    }
 
 
     @Test
