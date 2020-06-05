@@ -3,12 +3,9 @@ package pl.psi.game.fractions;
 import com.google.common.collect.Range;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import pl.psi.game.fractions.Creature;
-import pl.psi.game.fractions.ShootingCreature;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -101,7 +98,7 @@ class CreatureTest {
     void creatureShouldIgnoreArmorWithCorrectStrategy(){
         Creature defender = Creature.builder().aMaxHp(100).aAttack(Range.closed(2, 2)).aArmor(50).build();
         Creature attacker = new Creature(10, Range.closed(100, 100), 0);
-        attacker.setDealDamageCountStrategy(new DealDamageCounterWithIgnoreArmorStrategy());
+        attacker.setDealDamageCounterStrategy(new DealDamageCounterWithIgnoreArmorStrategy());
 
         attacker.attack(defender);
 
@@ -112,7 +109,7 @@ class CreatureTest {
     void creatureShouldDealDoubleDamageToAirElemental() {
         Creature defender = new Creature(10, NOT_IMPORTANT_RANGE, NOT_IMPORTANT_0, "Storm Elemental", 0, NOT_IMPORTANT_FALSE);
         Creature attacker = new Creature(NOT_IMPORTANT_0, Range.closed(2, 2), NOT_IMPORTANT_0, "", 0, NOT_IMPORTANT_FALSE);
-        attacker.setDealDamageCountStrategy(new DealDamageCounterDoubleToAirElementalStrategy());
+        attacker.setDealDamageCounterStrategy(new DealDamageCounterDoubleToAirElementalStrategy());
 
         attacker.attack(defender);
 
@@ -123,7 +120,7 @@ class CreatureTest {
     void creatureShouldDealDoubleDamageToEarthElemental() {
         Creature defender = new Creature(10, NOT_IMPORTANT_RANGE, NOT_IMPORTANT_0, "Magma Elemental", 0, NOT_IMPORTANT_FALSE);
         Creature attacker = new Creature(NOT_IMPORTANT_0, Range.closed(2, 2), NOT_IMPORTANT_0, "", 0, NOT_IMPORTANT_FALSE);
-        attacker.setDealDamageCountStrategy(new DealDamageCounterDoubleToEarthElementalStrategy());
+        attacker.setDealDamageCounterStrategy(new DealDamageCounterDoubleToEarthElementalStrategy());
 
         attacker.attack(defender);
 
@@ -134,7 +131,7 @@ class CreatureTest {
     void creatureShouldDealDoubleDamageToFireElemental() {
         Creature defender = new Creature(10, NOT_IMPORTANT_RANGE, NOT_IMPORTANT_0, "Energy Elemental", 0, NOT_IMPORTANT_FALSE);
         Creature attacker = new Creature(NOT_IMPORTANT_0, Range.closed(2, 2), NOT_IMPORTANT_0, "", 0, NOT_IMPORTANT_FALSE);
-        attacker.setDealDamageCountStrategy(new DealDamageCounterDoubleToFireElementalStrategy());
+        attacker.setDealDamageCounterStrategy(new DealDamageCounterDoubleToFireElementalStrategy());
 
         attacker.attack(defender);
 
@@ -145,7 +142,7 @@ class CreatureTest {
     void creatureShouldDealDoubleDamageToWaterElemental() {
         Creature defender = new Creature(10, NOT_IMPORTANT_RANGE, NOT_IMPORTANT_0, "Ice Elemental", 0, NOT_IMPORTANT_FALSE);
         Creature attacker = new Creature(NOT_IMPORTANT_0, Range.closed(2, 2), NOT_IMPORTANT_0, "", 0, NOT_IMPORTANT_FALSE);
-        attacker.setDealDamageCountStrategy(new DealDamageCounterDoubleToWaterElementalStrategy());
+        attacker.setDealDamageCounterStrategy(new DealDamageCounterDoubleToWaterElementalStrategy());
 
         attacker.attack(defender);
 
@@ -156,7 +153,7 @@ class CreatureTest {
     void creatureShouldDealDoubleDamage() {
         Creature defender = new Creature(10, NOT_IMPORTANT_RANGE, NOT_IMPORTANT_0, "", 0, NOT_IMPORTANT_FALSE);
         Creature attacker = new Creature(NOT_IMPORTANT_0, Range.closed(2, 2), NOT_IMPORTANT_0, "", 0, NOT_IMPORTANT_FALSE);
-        attacker.setDealDamageCountStrategy(new DealDamageCounterDoubleStrategy());
+        attacker.setDealDamageCounterStrategy(new DealDamageCounterDoubleStrategy());
 
         attacker.attack(defender);
 
@@ -167,7 +164,7 @@ class CreatureTest {
     void creatureShouldHealAfterAttack() {
         Creature defender = new Creature(10, NOT_IMPORTANT_RANGE, NOT_IMPORTANT_0, "", 0, NOT_IMPORTANT_FALSE);
         Creature attacker = new Creature(10, Range.closed(2, 2), NOT_IMPORTANT_0, "", 0, NOT_IMPORTANT_FALSE);
-        attacker.setDealDamageCountStrategy(new DealDamageCounterWithHealStrategy());
+        attacker.setDealDamageCounterStrategy(new DealDamageCounterWithHealStrategy());
         attacker.setCurrentHp(5);
         defender.setCanCounterAttacked(false);
 
@@ -180,7 +177,7 @@ class CreatureTest {
     void creatureShouldIgnore80PercentArmor() {
         Creature defender = new Creature(10, NOT_IMPORTANT_RANGE, 10, "", 0, NOT_IMPORTANT_FALSE);
         Creature attacker = new Creature(NOT_IMPORTANT_0, Range.closed(10, 10), NOT_IMPORTANT_0, "", 0, NOT_IMPORTANT_FALSE);
-        attacker.setDealDamageCountStrategy(new DealDamageCounterWithIgnore80PercentArmorStrategy());
+        attacker.setDealDamageCounterStrategy(new DealDamageCounterWithIgnore80PercentArmorStrategy());
 
         attacker.attack(defender);
 

@@ -21,8 +21,9 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
     private int moveRange;
     private boolean canFly;
     private int amount;
-    private DealDamageCounterStrategyIf dealDamageCounterStrategy;
+    @Setter private DealDamageCounterStrategyIf dealDamageCounterStrategy;
     @Setter private MagicResistance magicResistance;
+    @Setter private AttackStrategyIf attackStrategyIf;
     
     @Builder
     public Creature(int aMaxHp, Range<Integer> aAttack, int aArmor, String aName, int aMoveRange, boolean aCanFly) {
@@ -37,6 +38,7 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
         amount = 10;
         dealDamageCounterStrategy = new DefaultDamageCounterStrategy();
         magicResistance = new MagicResistance(0, MagicResistance.ImmunityType.NONE);
+        attackStrategyIf = new DefaultAttackStrategy(this);
     }
 
     public Creature(int aMaxHp, Range<Integer> aAttack, int aArmor) {
@@ -52,10 +54,7 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
     }
 
     public void attack(Creature aDefender) {
-        dealDamage(aDefender);
-        if (aDefender.canCounterAttacked) {
-            aDefender.counterAttack(this);
-        }
+        attackStrategyIf.attack(aDefender);
     }
 
     @Override
@@ -69,7 +68,7 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
         return sb.toString();
     }
 
-    private void counterAttack(Creature aDefender) {
+    public void counterAttack(Creature aDefender) {
         dealDamage(aDefender);
         canCounterAttacked = false;
     }
@@ -91,10 +90,6 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
     @Override
     public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
         canCounterAttacked = true;
-    }
-
-    public void setDealDamageCountStrategy(DealDamageCounterStrategyIf aDealDamageCounterStrategyIf) {
-        dealDamageCounterStrategy = aDealDamageCounterStrategyIf;
     }
     
     public void heal(int hp) {
