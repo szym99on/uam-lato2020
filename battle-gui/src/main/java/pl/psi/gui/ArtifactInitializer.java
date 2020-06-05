@@ -19,12 +19,9 @@ public class ArtifactInitializer extends AbstractInitializer {
         EconomyHero h1 = EconomyHero.builder().aGold(100000000).aHeroInfo(HeroInfoFactory.getHeroInfoByName(HeroInfoFactory.EDRIC)).build();
         try {
 //            ################################################################
-//            SCENARIO 1 - CreatureSpeedArtifact, CreatureHealthArtifact, HeroStatisticArtifact
+//            SCENARIO 1 - no artifacts equipped by hero
 //            ################################################################
             h1.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(3));
-            h1.buyArtifact(ArtifactsInfoFactory.getArtifact(CAPE_OF_VELOCITY)); // +2 moveRange
-            h1.buyArtifact(ArtifactsInfoFactory.getArtifact(RING_OF_LIFE)); // +2 Health
-//            h1.buyArtifact(ArtifactsInfoFactory.getArtifact(OGRES_CLUB_OF_HAVOC)); (waiting for implemention of heroAttack -> creatureAttack)
         } catch (Exception aE) {
             aE.printStackTrace();
         }
@@ -35,9 +32,12 @@ public class ArtifactInitializer extends AbstractInitializer {
         EconomyHero h2 = EconomyHero.builder().aGold(100000000).aHeroInfo(HeroInfoFactory.getHeroInfoByName(HeroInfoFactory.ALAMAR)).build();
         try {
 //            ################################################################
-//            SCENARIO 1 - no artifacts equipped by hero
+//            SCENARIO 1 - CreatureSpeedArtifact, CreatureHealthArtifact, HeroStatisticArtifact
 //            ################################################################
             h2.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(3));
+            h2.buyArtifact(ArtifactsInfoFactory.getArtifact(CAPE_OF_VELOCITY)); // +2 moveRange
+            h2.buyArtifact(ArtifactsInfoFactory.getArtifact(RING_OF_LIFE)); // +2 Health
+//            h2.buyArtifact(ArtifactsInfoFactory.getArtifact(OGRES_CLUB_OF_HAVOC)); (waiting for implemention of heroAttack -> creatureAttack)
         } catch (Exception aE) {
         }
         return h2;
