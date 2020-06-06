@@ -1,5 +1,6 @@
 package pl.psi.game.hero.shops;
 
+import lombok.Getter;
 import pl.psi.game.hero.artifacts.ArtifactInfo;
 import pl.psi.game.hero.artifacts.ArtifactsInfoFactory;
 
@@ -10,6 +11,7 @@ import java.util.stream.Collectors;
 
 public class ArtifactsShop extends AbstractShop {
 
+    @Getter
     private List<ArtifactInfo> artifactsAvailableToBuy;
 
    public ArtifactsShop(){}
@@ -20,10 +22,11 @@ public class ArtifactsShop extends AbstractShop {
         this.artifactsAvailableToBuy = artifactsAvailableToBuy;
     }
 
-    public List<ArtifactInfo> generateArtifactsAvailableToBuy() {
+    @Override
+    public void generateItemsAvailableToBuy() {
 
-        List<ArtifactInfo> artifacts = ArtifactsInfoFactory.getAll().stream().collect(Collectors.toList());
-        List<ArtifactInfo> artifactAvailableToBuy = new ArrayList<>();
+        List<ArtifactInfo> artifacts = new ArrayList<>(ArtifactsInfoFactory.getAll());
+        List<ArtifactInfo> artifactsAvailableToBuy = new ArrayList<>();
 
         Random ran = new Random();
         int artifactCount = ran.nextInt(10) + 2;
@@ -31,10 +34,10 @@ public class ArtifactsShop extends AbstractShop {
             int randomIndex = ran.nextInt(artifacts.size());
             ArtifactInfo randomArtifact = artifacts.get(randomIndex);
             artifacts.remove(randomIndex);
-            artifactAvailableToBuy.add(randomArtifact);
+            artifactsAvailableToBuy.add(randomArtifact);
         }
 
-       return artifactAvailableToBuy;
+       this.artifactsAvailableToBuy = artifactsAvailableToBuy;
     }
 
 

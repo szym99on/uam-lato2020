@@ -1,5 +1,7 @@
 package pl.psi.game.hero.shops;
 
+import lombok.Getter;
+import pl.psi.game.hero.economyHero.EconomyHero;
 import pl.psi.game.skills.SkillInfo;
 import pl.psi.game.skills.SkillInfoFactory;
 
@@ -10,18 +12,21 @@ import java.util.stream.Collectors;
 
 public class SpecialSkillsShop  extends  AbstractShop{
 
-    private List<SkillInfo> skillsAvailableToBuy;
+
+    @Getter
+    private List<SkillInfo> specialSkillsAvailableToBuy;
 
     public SpecialSkillsShop(){}
 
     public SpecialSkillsShop(String name, String description, List<SkillInfo> skillsAvailableToBuy) {
         super(name, description);
-        this.skillsAvailableToBuy = skillsAvailableToBuy;
+        this.specialSkillsAvailableToBuy = skillsAvailableToBuy;
     }
 
-     public List<SkillInfo> generateSkillsAvailableToBuy() {
+     @Override
+     public void generateItemsAvailableToBuy(){
 
-         List<SkillInfo> skills = SkillInfoFactory.getAll().stream().collect(Collectors.toList());
+         List<SkillInfo> skills = new ArrayList<>(SkillInfoFactory.getAll());
          List<SkillInfo> specialSkillAvailableToBuy = new ArrayList<>();
 
          Random ran = new Random();
@@ -33,7 +38,7 @@ public class SpecialSkillsShop  extends  AbstractShop{
              specialSkillAvailableToBuy.add(randomSkill);
          }
 
-         return specialSkillAvailableToBuy;
+         this.specialSkillsAvailableToBuy = specialSkillAvailableToBuy;
     }
 
 }

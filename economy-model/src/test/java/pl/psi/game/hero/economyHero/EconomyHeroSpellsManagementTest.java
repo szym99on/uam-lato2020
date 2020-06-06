@@ -15,7 +15,7 @@ public class EconomyHeroSpellsManagementTest {
     }
 
     @Test
-    void buyMagicArrowShouldTakeGoldAndAddSpell() throws Exception {
+    void buyMagicArrowShouldTakeGoldAndAddSpell() throws IllegalStateException {
         SpellInfo spellInfo = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.MAGIC_ARROW);
         EconomyHero hero = EconomyHero.builder().aGold(3000).build();
 
@@ -27,7 +27,7 @@ public class EconomyHeroSpellsManagementTest {
     }
 
     @Test
-    void buyLightningBoltShouldTakeGoldAndAddSpell() throws Exception {
+    void buyLightningBoltShouldTakeGoldAndAddSpell() throws IllegalStateException {
         SpellInfo spellInfo = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.LIGHTNING_BOLT);
         EconomyHero hero = EconomyHero.builder().aGold(100).build();
 
@@ -39,7 +39,7 @@ public class EconomyHeroSpellsManagementTest {
     }
 
     @Test
-    void buyStormElementalShouldTakeGoldAndAddSpell() throws Exception {
+    void buyStormElementalShouldTakeGoldAndAddSpell() throws IllegalStateException {
         SpellInfo spellInfo = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.STORM_ELEMENTAL);
         EconomyHero hero = EconomyHero.builder().aGold(200).build();
 
@@ -51,7 +51,7 @@ public class EconomyHeroSpellsManagementTest {
     }
 
     @Test
-    void buyTwoSpellsShouldTakeGoldAndAddTwoSpells() throws Exception {
+    void buyTwoSpellsShouldTakeGoldAndAddTwoSpells() throws IllegalStateException {
         SpellInfo spell_one = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.HASTE);
         SpellInfo spell_two = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.MAGIC_ARROW);
         EconomyHero hero = EconomyHero.builder().aGold(500).build();
@@ -66,7 +66,7 @@ public class EconomyHeroSpellsManagementTest {
     }
 
     @Test
-    void buyTwoSpellsShouldTakeGoldAndAddSpellForTwoSpells() throws Exception {
+    void buyTwoSpellsShouldTakeGoldAndAddSpellForTwoSpells() throws IllegalStateException {
         SpellInfo spell_one = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.STORM_ELEMENTAL);
         SpellInfo spell_two = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.LIGHTNING_BOLT);
         EconomyHero hero = EconomyHero.builder().aGold(1000).build();
@@ -81,7 +81,7 @@ public class EconomyHeroSpellsManagementTest {
     }
 
     @Test
-    void sellSpellShouldReturn75PercentOfOriginalPriceAndRemoveSpell_1() throws Exception {
+    void sellSpellShouldReturn75PercentOfOriginalPriceAndRemoveSpell_1() throws IllegalStateException {
         SpellInfo spell = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.MAGIC_ARROW);
         EconomyHero hero = EconomyHero.builder().aGold(2000).build();
         hero.addSpell(spell);
@@ -95,7 +95,7 @@ public class EconomyHeroSpellsManagementTest {
 
     @Disabled
     @Test
-    void sellSpellShouldReturn75PercentOfOriginalPriceAndRemoveSpell_2() throws Exception {
+    void sellSpellShouldReturn75PercentOfOriginalPriceAndRemoveSpell_2() throws IllegalStateException {
         SpellInfo spell = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.HASTE);
         EconomyHero hero = EconomyHero.builder().aGold(2000).build();
         hero.addSpell(spell);
@@ -109,7 +109,7 @@ public class EconomyHeroSpellsManagementTest {
 
     @Disabled
     @Test
-    void sellSpellShouldReturn75PercentOfOriginalPriceAndRemoveSpellForMoreThanOneSpell_1() throws Exception{
+    void sellSpellShouldReturn75PercentOfOriginalPriceAndRemoveSpellForMoreThanOneSpell_1() throws IllegalStateException{
 
         SpellInfo spell_one = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.HASTE);
         SpellInfo spell_two = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.MAGIC_ARROW);

@@ -71,6 +71,7 @@ public class SpellBookInfoFactory {
     public static List<SpellInfo> getSpellsByLevel(int aLevel){
 
         return spellList.stream().filter(spell -> spell.getLevel() == aLevel).collect(Collectors.toList());
+
     }
 
     public static List<SpellInfo> getSpellsByType(SpellInfo.Type type){

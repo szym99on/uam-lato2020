@@ -4,9 +4,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import pl.psi.game.EconomyEngine;
 import pl.psi.game.fractions.CreatureInfo;
+import pl.psi.game.fractions.CreatureStack;
+import pl.psi.game.hero.artifacts.ArtifactInfo;
 import pl.psi.game.hero.economyHero.EconomyHero;
+import pl.psi.game.hero.shops.ArtifactsShop;
+import pl.psi.game.skills.SkillInfo;
+import pl.psi.game.spellbook.SpellBookInfoFactory;
 import pl.psi.game.spellbook.SpellInfo;
 
 import java.net.URL;
@@ -27,10 +33,21 @@ public class MainEconomyController {
     public Button buySpecialSkillButton;
 
     @FXML
+    public Text gold;
+
+    @FXML
     private Button buyCreatureButton;
 
     @FXML
     private VBox spellShop;
+
+    @FXML
+    private VBox skillShop;
+    @FXML
+    public VBox artifactsShop;
+    @FXML
+    public VBox creatureShop;
+
 
     @FXML
     private URL location;
@@ -61,17 +78,62 @@ public class MainEconomyController {
     private void initialize()
     {
         List<SpellInfo> spells = economyEngine.getSpellsAvailableToBuy();
-        for(int i=0;i<spells.size();i++){
-            Button btn1 = new Button();
-            btn1.setText("Button1");
-            spellShop.getChildren().add(btn1);
+        for(SpellInfo spell : spells){
+            Button btn = new Button();
+            btn.setId(spell.getName());
+            btn.setText(spell.getName());
+            btn.setOnAction(this::handleBuySpell);
+            spellShop.getChildren().add(btn);
 
         }
+        List<SkillInfo> skills = economyEngine.getSkillsAvailableToBuy();
+        for(SkillInfo skill : skills){
+            Button btn = new Button();
+            btn.setId(skill.getName());
+            btn.setText(skill.getName());
+            btn.setOnAction(e -> System.out.println(btn.getId()));
+            skillShop.getChildren().add(btn);
+
+        }
+        List<ArtifactInfo> artifacts = economyEngine.getArtifactsAvailableToBuy();
+        for(ArtifactInfo artifact : artifacts){
+            Button btn = new Button();
+            btn.setId(artifact.getName());
+            btn.setText(artifact.getName());
+            btn.setOnAction(e -> System.out.println(btn.getId()));
+            artifactsShop.getChildren().add(btn);
+
+        }
+//        List<CreatureStack> creatures = economyEngine.getCreaturesAvailableToBuy();
+//        for(CreatureStack creatureStack : creatures){
+//            Button btn = new Button();
+//        btn.setId(creatureStack.getName());
+//            btn.setText(creatureStack.getName());
+//        btn.setOnAction(e -> System.out.println(btn.getId()));
+
+//            creatureShop.getChildren().add(btn);
+//
+//        }
     }
 
     public void handleBuySpell(ActionEvent actionEvent) {
         System.out.println("Clicked buy spell button;");
-        buySpellButton.setText("Buy spell button clicked");
+        System.out.println("ID is: ");
+        System.out.println(((Button)actionEvent.getSource()).getId());
+        String spellName = ((Button)actionEvent.getSource()).getId();
+        SpellInfo spell = SpellBookInfoFactory.getSpell(spellName);
+        System.out.println("Spell is:");
+        System.out.println(spell.getName());
+
+        if(economyEngine.buySpell(spell)) {
+            System.out.println("Spell bought");
+            gold.setText(String.valueOf(Integer.parseInt(gold.getText())-spell.getCost()));
+            spellShop.getChildren().remove(buySpellButton);
+        } else {
+            System.out.println("Couldn't buy spell");
+
+        }
+
     }
 
     public void handleBuyArtifact(ActionEvent actionEvent) {

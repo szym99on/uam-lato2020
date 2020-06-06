@@ -1,21 +1,25 @@
 package pl.psi.game;
 
-import pl.psi.game.fractions.CreatureInfo;
+import pl.psi.game.fractions.FractionsInfoAbstractFactory;
 import pl.psi.game.hero.artifacts.ArtifactInfo;
+import pl.psi.game.hero.artifacts.ArtifactsInfoFactory;
 import pl.psi.game.hero.economyHero.EconomyHero;
 import pl.psi.game.hero.shops.ArtifactsShop;
 import pl.psi.game.hero.shops.CreaturesShop;
 import pl.psi.game.hero.shops.SpecialSkillsShop;
 import pl.psi.game.hero.shops.SpellShop;
+import pl.psi.game.skills.SkillInfo;
+import pl.psi.game.skills.SkillInfoFactory;
+import pl.psi.game.spellbook.SpellBookInfoFactory;
 import pl.psi.game.spellbook.SpellInfo;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.util.ArrayList;
 import java.util.List;
 
 public class EconomyEngine implements PropertyChangeListener {
+
 
     public static final String END_OF_TURN = "END_OF_TURN";
     public static final String ITEM_BOUGHT = "ITEM_BOUGHT";
@@ -35,6 +39,13 @@ public class EconomyEngine implements PropertyChangeListener {
     private PropertyChangeSupport propertyChangeSupport;
 
     public EconomyEngine(EconomyHero economyHero1, EconomyHero economyHero2) {
+
+        new FractionsInfoAbstractFactory();
+        new ArtifactsInfoFactory();
+        new SpellBookInfoFactory();
+        new SkillInfoFactory();
+
+
         this.activeHero = economyHero1;
         this.spellShop1 = new SpellShop();
         this.spellShop2 = new SpellShop();
@@ -45,14 +56,14 @@ public class EconomyEngine implements PropertyChangeListener {
         this.creaturesShop1 = new CreaturesShop();
         this.creaturesShop2 = new CreaturesShop();
 
-        spellShop1.generateSpellsAvailableToBuy();
-        spellShop2.generateSpellsAvailableToBuy();
+        spellShop1.generateItemsAvailableToBuy();
+        spellShop2.generateItemsAvailableToBuy();
 
-        artifactsShop1.generateArtifactsAvailableToBuy();
-        artifactsShop2.generateArtifactsAvailableToBuy();
+        artifactsShop1.generateItemsAvailableToBuy();
+        artifactsShop2.generateItemsAvailableToBuy();
 
-        specialSkillsShop1.generateSkillsAvailableToBuy();
-        specialSkillsShop2.generateSkillsAvailableToBuy();
+        specialSkillsShop1.generateItemsAvailableToBuy();
+        specialSkillsShop2.generateItemsAvailableToBuy();
 
 //        creaturesShop1.generateCreaturesAvailableToBuy();
 //        creaturesShop2.generateCreaturesAvailableToBuy();
@@ -64,13 +75,30 @@ public class EconomyEngine implements PropertyChangeListener {
 
 
     public List<SpellInfo> getSpellsAvailableToBuy() {
-        List<SpellInfo> spells = new ArrayList<>();
+        return this.activeHero == economyHero1 ? spellShop1.getSpellsAvailableToBuy() : spellShop2.getSpellsAvailableToBuy();
+
+    }
+
+    public List<SkillInfo> getSkillsAvailableToBuy() {
+        return this.activeHero == economyHero1 ? specialSkillsShop1.getSpecialSkillsAvailableToBuy() : specialSkillsShop2.getSpecialSkillsAvailableToBuy();
+
+    }
+    public List<ArtifactInfo> getArtifactsAvailableToBuy() {
+        return this.activeHero == economyHero1 ? artifactsShop1.getArtifactsAvailableToBuy() : artifactsShop2.getArtifactsAvailableToBuy();
+    }
+//    public List<CreatureStack> getCreaturesAvailableToBuy() {
+//        return this.activeHero == economyHero1 ? creaturesShop1.getCreaturesAvailableToBuy() : creaturesShop2.getCreaturesAvailableToBuy();
+//
+//    }
+
+    public  boolean buySpell(SpellInfo spell){
         if (this.activeHero == economyHero1) {
-            spells = spellShop1.getSpellsAvailableToBuy();
+            return economyHero1.buySpell(spell);
+            //should remove spell from the shop
         } else {
-            spells = spellShop2.getSpellsAvailableToBuy();
+            return economyHero2.buySpell(spell);
+            //should remove spell from the shop
         }
-        return spells;
     }
 
 }
