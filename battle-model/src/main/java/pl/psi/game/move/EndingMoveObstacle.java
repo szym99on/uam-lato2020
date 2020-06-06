@@ -12,5 +12,7 @@ class EndingMoveObstacle extends Obstacle {
     @Override
     public void apply(Creature aCreature) {
 
+
+
     }
 }
