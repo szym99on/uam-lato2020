@@ -9,7 +9,7 @@ class DealDamageObstacle extends Obstacle {
     public void apply(Creature aCreature) {
 
         // dealDamage bierze przciwnika i od niego ile damga
-        aCreature.dealDamage(1);
+        aCreature.dealDamage();
 
     }
 }

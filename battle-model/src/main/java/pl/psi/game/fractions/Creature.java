@@ -80,6 +80,11 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
         aDefender.currentHp = aDefender.currentHp - damageToDeal;
     }
 
+    //potrzebna do zadawania dmg przez lave ~movement
+    void dealDamageObs(int damage) {
+        this.currentHp = this.currentHp - damage;
+    }
+
     public boolean canShoot(){
         return false;
     }
