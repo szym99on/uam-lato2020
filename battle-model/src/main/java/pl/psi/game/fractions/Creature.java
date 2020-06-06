@@ -14,7 +14,9 @@ import java.beans.PropertyChangeListener;
 public class Creature implements GuiTileIf, PropertyChangeListener {
 
     private int maxHp;
+    private Range<Integer> basicAttack;
     private Range<Integer> attack;
+    private int basicArmor;
     private int armor;
     private final String name;
     @Setter private int currentHp;
@@ -29,8 +31,10 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
     @Builder
     public Creature(int aMaxHp, Range<Integer> aAttack, int aArmor, String aName, int aMoveRange, boolean aCanFly) {
         maxHp = aMaxHp;
+        basicAttack = aAttack;
         attack = aAttack;
         currentHp = maxHp;
+        basicArmor = aArmor;
         armor = aArmor;
         canCounterAttacked = true;
         name = aName;
@@ -44,8 +48,10 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
 
     public Creature(int aMaxHp, Range<Integer> aAttack, int aArmor) {
         maxHp = aMaxHp;
+        basicAttack = aAttack;
         attack = aAttack;
         currentHp = maxHp;
+        basicArmor = aArmor;
         armor = aArmor;
         canCounterAttacked = true;
         name = "";
@@ -106,14 +112,38 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
         currentHp += hp;
     }
 
+    public void increaseAttack(int additionalAttack) {
+        Integer newMin = basicAttack.lowerEndpoint() + additionalAttack;
+        Integer newMax = basicAttack.upperEndpoint() + additionalAttack;
+        attack = Range.closed(newMin, newMax);
+    }
+
+    public void decreaseAttack(int substractiveAttack) {
+        Integer newMin = basicAttack.lowerEndpoint() - substractiveAttack;
+        Integer newMax = basicAttack.upperEndpoint() - substractiveAttack;
+        attack = Range.closed(newMin, newMax);
+    }
+
+    public void increaseArmor(int additionalArmor) {
+        armor = basicArmor + additionalArmor;
+    }
+
+    public void decreaseArmor(int substractiveArmor) {
+        armor = basicArmor - substractiveArmor;
+    }
+
     public void increaseMoveRange(int additionalMoveRange) {
         moveRange += additionalMoveRange;
     }
 
+    public void decreaseMoveRange(int substractiveMoveRange) {
+        moveRange -= substractiveMoveRange;
+    }
+
     public void apply(Hero hero) {
-        Integer newMin = attack.lowerEndpoint() + hero.getAttack();
-        Integer newMax = attack.upperEndpoint() + hero.getAttack();
+        Integer newMin = basicAttack.lowerEndpoint() + hero.getAttack();
+        Integer newMax = basicAttack.upperEndpoint() + hero.getAttack();
         attack = Range.closed(newMin, newMax);
-        armor += hero.getDefence();
+        armor = basicArmor + hero.getDefence();
     }
 }
