@@ -8,7 +8,9 @@ public abstract class Obstacle implements GuiTileIf {
     private final String name;
 
     public Obstacle(String aName){
+
         name = aName;
+
     }
 
     @Override

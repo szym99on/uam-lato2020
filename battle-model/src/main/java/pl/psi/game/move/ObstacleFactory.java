@@ -6,7 +6,7 @@ public class ObstacleFactory {
         Obstacle obstacle;
 
         if (name.equals("lava")){
-            obstacle = new DealDamageObstacle();
+            obstacle = new DealDamageObstacle(name);
         } else if (name.equals("marsh")) {
             obstacle = new ReduceMoveRangeObstacle();
         } else if (name.equals("river")){

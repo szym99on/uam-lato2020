@@ -5,11 +5,17 @@ import pl.psi.game.move.Obstacle;
 
 class DealDamageObstacle extends Obstacle {
 
+    private final int attack;
+
+    public DealDamageObstacle(String aName) {
+        super(aName);
+        attack = 1;
+    }
+
     @Override
     public void apply(Creature aCreature) {
 
-        // dealDamage bierze przciwnika i od niego ile damga
-        aCreature.dealDamage();
+        aCreature.dealDamageObs(attack);
 
     }
 }

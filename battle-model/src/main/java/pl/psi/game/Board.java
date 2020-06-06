@@ -3,6 +3,7 @@ package pl.psi.game;
 import pl.psi.game.fractions.Creature;
 import pl.psi.game.move.GuiTileIf;
 import pl.psi.game.move.Obstacle;
+import pl.psi.game.move.ObstacleFactory;
 
 import java.awt.*;
 import java.util.HashMap;
@@ -19,12 +20,14 @@ public class Board {
 
     private Board() {
         board = new HashMap<>();
-        board.put(new Point(7,2), Obstacle.builder().aType("X").build());
-        board.put(new Point(7,3), Obstacle.builder().aType("X").build());
-        board.put(new Point(7,4), Obstacle.builder().aType("X").build());
-        board.put(new Point(7,5), Obstacle.builder().aType("X").build());
-        board.put(new Point(7,6), Obstacle.builder().aType("X").build());
-        board.put(new Point(7,7), Obstacle.builder().aType("X").build());
+        ObstacleFactory obstacleFactory = new ObstacleFactory();
+        putObstacle(7, 2, obstacleFactory.createObstacle("lava"));
+        putObstacle(7, 3, obstacleFactory.createObstacle("lava"));
+        putObstacle(7, 4, obstacleFactory.createObstacle("lava"));
+        putObstacle(7, 5, obstacleFactory.createObstacle("lava"));
+        putObstacle(7, 6, obstacleFactory.createObstacle("lava"));
+        putObstacle(7, 7, obstacleFactory.createObstacle("lava"));
+
 
     }
     public static Board getBoard()
@@ -34,6 +37,7 @@ public class Board {
 
         return INSTANCE;
     }
+
     public void clearBoard(){
         board.clear();
     }
