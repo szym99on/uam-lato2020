@@ -3,20 +3,20 @@ package pl.psi.gui;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import pl.psi.game.EconomyEngine;
-import pl.psi.game.fractions.CreatureInfo;
-import pl.psi.game.fractions.CreatureStack;
 import pl.psi.game.hero.artifacts.ArtifactInfo;
 import pl.psi.game.hero.economyHero.EconomyHero;
-import pl.psi.game.hero.shops.ArtifactsShop;
 import pl.psi.game.skills.SkillInfo;
+import pl.psi.game.skills.SkillInfoFactory;
 import pl.psi.game.spellbook.SpellBookInfoFactory;
 import pl.psi.game.spellbook.SpellInfo;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -47,8 +47,17 @@ public class MainEconomyController {
     public VBox artifactsShop;
     @FXML
     public VBox creatureShop;
-
-
+    @FXML
+    public VBox spellShopInside;
+    @FXML
+    public VBox spellShopInside2;
+    @FXML
+    public VBox skillShopInside;
+    @FXML
+    public VBox skillShopInside2;
+    @FXML
+    public VBox artifactsShopInside;
+    @FXML VBox artifactsShopInside2;
     @FXML
     private URL location;
 
@@ -59,7 +68,7 @@ public class MainEconomyController {
     private final EconomyHero economyHero2;
     private final EconomyEngine economyEngine;
 
-    public MainEconomyController(){
+    public MainEconomyController() {
         economyHero1 = EconomyHero.builder().aGold(3000).build();
         economyHero2 = EconomyHero.builder().aGold(3000).build();
         economyEngine = new EconomyEngine(economyHero1, economyHero2);
@@ -67,42 +76,139 @@ public class MainEconomyController {
 
 
     @FXML
-    private void handleBuyCreature(ActionEvent event)
-    {
+    private void handleBuyCreature(ActionEvent event) {
         System.out.println("Clicked buy creature button;");
         buyCreatureButton.setText("Buy creature button clicked");
     }
 
 
     @FXML
-    private void initialize()
-    {
+    private void initialize() {
+        int spellvar = 0;
         List<SpellInfo> spells = economyEngine.getSpellsAvailableToBuy();
-        for(SpellInfo spell : spells){
-            Button btn = new Button();
-            btn.setId(spell.getName());
-            btn.setText(spell.getName());
-            btn.setOnAction(this::handleBuySpell);
-            spellShop.getChildren().add(btn);
+        for (SpellInfo spell : spells) {
+
+            if (spellvar < 5) {
+                HBox hbox = new HBox();
+                hbox.setSpacing(10);
+                spellShopInside.getChildren().add(hbox);
+                Button btn = new Button();
+                btn.setId(spell.getName());
+                btn.setText(spell.getName());
+                btn.setMinSize(170, 30);
+                btn.setOnAction(this::handleBuySpell);
+                hbox.getChildren().add(btn);
+                String cost = String.valueOf(spell.getCost());
+                TextField text = new TextField(cost);
+                text.setEditable(false);
+                text.setMaxWidth(70);
+                text.setMinSize(50, 30);
+                text.setId(spell.getName());
+                hbox.getChildren().add(text);
+                spellvar++;
+
+            } else {
+                HBox hbox = new HBox();
+                hbox.setSpacing(10);
+                spellShopInside2.getChildren().add(hbox);
+                Button btn = new Button();
+                btn.setId(spell.getName());
+                btn.setText(spell.getName());
+                btn.setMinSize(170, 30);
+                btn.setOnAction(this::handleBuySpell);
+                hbox.getChildren().add(btn);
+                String cost = String.valueOf(spell.getCost());
+                TextField text = new TextField(cost);
+                text.setEditable(false);
+                text.setMaxWidth(70);
+                text.setMinSize(50, 30);
+                text.setId(spell.getName());
+                hbox.getChildren().add(text);
+            }
 
         }
+        int skillvar =0;
         List<SkillInfo> skills = economyEngine.getSkillsAvailableToBuy();
-        for(SkillInfo skill : skills){
-            Button btn = new Button();
-            btn.setId(skill.getName());
-            btn.setText(skill.getName());
-            btn.setOnAction(e -> System.out.println(btn.getId()));
-            skillShop.getChildren().add(btn);
+        for (SkillInfo skill : skills) {
+            if(skillvar<5){
+                HBox hbox = new HBox();
+                hbox.setSpacing(10);
+                skillShopInside.getChildren().add(hbox);
+                Button btn = new Button();
+                btn.setId(skill.getName());
+                btn.setText(skill.getName());
+                btn.setMinSize(170, 30);
+                btn.setOnAction(this::handleBuySpecialSkill);
+                hbox.getChildren().add(btn);
+                String cost = String.valueOf(skill.getCost());
+                TextField text = new TextField(cost);
+                text.setEditable(false);
+                text.setMaxWidth(70);
+                text.setMinSize(50, 30);
+                text.setId(skill.getName());
+                hbox.getChildren().add(text);
+                skillvar++;
+            }
+            else{
+                HBox hbox = new HBox();
+                hbox.setSpacing(10);
+                skillShopInside2.getChildren().add(hbox);
+                Button btn = new Button();
+                btn.setId(skill.getName());
+                btn.setText(skill.getName());
+                btn.setMinSize(170, 30);
+                btn.setOnAction(this::handleBuySpecialSkill);
+                hbox.getChildren().add(btn);
+                String cost = String.valueOf(skill.getCost());
+                TextField text = new TextField(cost);
+                text.setEditable(false);
+                text.setMaxWidth(70);
+                text.setMinSize(50, 30);
+                text.setId(skill.getName());
+                hbox.getChildren().add(text);
+            }
+
 
         }
+        int artvar = 0;
         List<ArtifactInfo> artifacts = economyEngine.getArtifactsAvailableToBuy();
-        for(ArtifactInfo artifact : artifacts){
-            Button btn = new Button();
-            btn.setId(artifact.getName());
-            btn.setText(artifact.getName());
-            btn.setOnAction(e -> System.out.println(btn.getId()));
-            artifactsShop.getChildren().add(btn);
-
+        for (ArtifactInfo artifact : artifacts) {
+            if(artvar<5) {
+                HBox hbox = new HBox();
+                hbox.setSpacing(10);
+                artifactsShopInside.getChildren().add(hbox);
+                Button btn = new Button();
+                btn.setId(artifact.getName());
+                btn.setMinSize(170, 30);
+                btn.setText(artifact.getName());
+                btn.setOnAction(e -> System.out.println(btn.getId()));
+                hbox.getChildren().add(btn);
+                String cost = String.valueOf(artifact.getCost());
+                TextField text = new TextField(cost);
+                text.setEditable(false);
+                text.setMaxWidth(70);
+                text.setMinSize(50, 30);
+                text.setId(artifact.getName());
+                hbox.getChildren().add(text);
+                artvar++;
+            }else{
+                HBox hbox = new HBox();
+                hbox.setSpacing(10);
+                artifactsShopInside2.getChildren().add(hbox);
+                Button btn = new Button();
+                btn.setId(artifact.getName());
+                btn.setMinSize(170, 30);
+                btn.setText(artifact.getName());
+                btn.setOnAction(e -> System.out.println(btn.getId()));
+                hbox.getChildren().add(btn);
+                String cost = String.valueOf(artifact.getCost());
+                TextField text = new TextField(cost);
+                text.setEditable(false);
+                text.setMaxWidth(70);
+                text.setMinSize(50, 30);
+                text.setId(artifact.getName());
+                hbox.getChildren().add(text);
+            }
         }
 //        List<CreatureStack> creatures = economyEngine.getCreaturesAvailableToBuy();
 //        for(CreatureStack creatureStack : creatures){
@@ -119,15 +225,16 @@ public class MainEconomyController {
     public void handleBuySpell(ActionEvent actionEvent) {
         System.out.println("Clicked buy spell button;");
         System.out.println("ID is: ");
-        System.out.println(((Button)actionEvent.getSource()).getId());
-        String spellName = ((Button)actionEvent.getSource()).getId();
+        System.out.println(((Button) actionEvent.getSource()).getId());
+        String spellName = ((Button) actionEvent.getSource()).getId();
         SpellInfo spell = SpellBookInfoFactory.getSpell(spellName);
         System.out.println("Spell is:");
         System.out.println(spell.getName());
 
-        if(economyEngine.buySpell(spell)) {
+        if (economyEngine.buySpell(spell)) {
+
             System.out.println("Spell bought");
-            gold.setText(String.valueOf(Integer.parseInt(gold.getText())-spell.getCost()));
+            gold.setText(String.valueOf(Integer.parseInt(gold.getText()) - spell.getCost()));
             spellShop.getChildren().remove(buySpellButton);
         } else {
             System.out.println("Couldn't buy spell");
@@ -147,6 +254,8 @@ public class MainEconomyController {
     }
 
     public void handleBuySpecialSkill(ActionEvent actionEvent) {
+
+
         System.out.println("Clicked buy special skill button;");
         buySpecialSkillButton.setText("Buy special skill button clicked");
     }

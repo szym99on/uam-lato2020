@@ -1,11 +1,11 @@
 package pl.psi.game.hero.economyHero;
-import org.junit.jupiter.api.Test;
+
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import pl.psi.game.fractions.CreatureInfo;
 import pl.psi.game.fractions.FractionsInfoAbstractFactory;
 import pl.psi.game.fractions.NecropolisInfoFactory;
-import pl.psi.game.hero.artifacts.ArtifactsInfoFactory;
-import pl.psi.game.spellbook.SpellBookInfoFactory;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class EconomyHeroCreaturesManagementTest {

@@ -8,6 +8,7 @@
 <?import javafx.scene.text.Text?>
 
 
+<?import javafx.scene.layout.HBox?>
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="775.0"
       prefWidth="1071.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.psi.gui.MainEconomyController">
     <Button fx:id="passTurnButton" onAction="#handlePassTurn" layoutX="31.0" layoutY="689.0" mnemonicParsing="false" prefHeight="72.0" prefWidth="1032.0" text=" READY">
@@ -22,7 +23,6 @@
                     <Font size="18.0"/>
                 </font>
             </Text>
-            <Button fx:id="buyCreatureButton" onAction="#handleBuyCreature" mnemonicParsing="false" prefHeight="47.0" prefWidth="73.0" text="BUY"/>
         </VBox>
         <VBox fx:id="spellShop" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Spell Shop">
@@ -30,7 +30,15 @@
                     <Font size="18.0"/>
                 </font>
             </Text>
-            <Button fx:id="buySpellButton" onAction="#handleBuySpell" mnemonicParsing="false" prefHeight="47.0" prefWidth="73.0" text="BUY"/>
+            <HBox fx:id="spellShopLayout" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+                <VBox fx:id="spellShopInside" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+
+                </VBox>
+                <VBox fx:id="spellShopInside2" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+
+                </VBox>
+            </HBox>
+
         </VBox>
         <VBox fx:id="skillShop" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Special Skill Shop">
@@ -38,7 +46,14 @@
                     <Font size="18.0"/>
                 </font>
             </Text>
-            <Button fx:id="buySpecialSkillButton" onAction="#handleBuySpecialSkill"  mnemonicParsing="false" prefHeight="47.0" prefWidth="73.0" text="BUY"/>
+            <HBox fx:id="skillShopLayout" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+                <VBox fx:id="skillShopInside" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+
+                </VBox>
+                <VBox fx:id="skillShopInside2" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+
+                </VBox>
+            </HBox>
         </VBox>
         <VBox fx:id="artifactsShop"  prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Atifacts Shop">
@@ -46,8 +61,14 @@
                     <Font size="18.0"/>
                 </font>
             </Text>
-            <Button fx:id="buyArtifactButton" onAction="#handleBuyArtifact" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
-                    nodeOrientation="LEFT_TO_RIGHT" prefHeight="47.0" prefWidth="73.0" text="BUY"/>
+            <HBox fx:id="artifactShopLayout" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+                <VBox fx:id="artifactsShopInside" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+
+                </VBox>
+                <VBox fx:id="artifactsShopInside2" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+
+                </VBox>
+            </HBox>
         </VBox>
     </VBox>
     <Text layoutX="454.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SHOPS" textAlignment="CENTER"
