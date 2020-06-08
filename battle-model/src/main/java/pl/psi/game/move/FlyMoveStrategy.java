@@ -42,7 +42,7 @@ public class FlyMoveStrategy implements MoveStrategyIf {
     }
 
     @Override
-    public List<Step> getSteps(Point destPoint) {
+    public List<Point> getSteps(Point destPoint) {
         Point oldPosition = activeCreature.getKey();
 
         int oldX = oldPosition.x;

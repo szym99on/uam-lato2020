@@ -2,8 +2,9 @@ package pl.psi.game.move;
 
 import org.junit.jupiter.api.Test;
 import java.awt.*;
+import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DijkstraAgloTest {
 
@@ -62,5 +63,28 @@ public class DijkstraAgloTest {
         int distance = algo.getDistance(startPoint, endPoint);
 
         assertEquals(8, distance);
+    }
+
+    @Test
+    void getFourNeighbors(){
+        Point point = new Point(2, 2);
+        List<Point> neighbors = algo.getNeighbors(point);
+
+        assertTrue(neighbors.contains(new Point(1, 2)));
+        assertTrue(neighbors.contains(new Point(3, 2)));
+        assertTrue(neighbors.contains(new Point(2, 1)));
+        assertTrue(neighbors.contains(new Point(2, 3)));
+        assertFalse(neighbors.contains(new Point(10, 10)));
+    }
+
+    @Test
+    void getTwoNeighbors(){
+        Point point = new Point(1, 1);
+        List<Point> neighbors = algo.getNeighbors(point);
+
+        assertTrue(neighbors.contains(new Point(1, 2)));
+        assertTrue(neighbors.contains(new Point(2, 1)));
+        assertFalse(neighbors.contains(new Point(0, 1)));
+        assertFalse(neighbors.contains(new Point(1, 0)));
     }
 }
