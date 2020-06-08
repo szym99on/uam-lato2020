@@ -8,9 +8,9 @@ public class ObstacleFactory {
         if (name.equals("lava")){
             obstacle = new DealDamageObstacle(name);
         } else if (name.equals("marsh")) {
-            obstacle = new ReduceMoveRangeObstacle();
+            obstacle = new ReduceMoveRangeObstacle(name);
         } else if (name.equals("river")){
-            obstacle = new EndingMoveObstacle();
+            obstacle = new EndingMoveObstacle(name);
         } else {
             throw new IllegalArgumentException("Unknown obstacle: " + name);
         }

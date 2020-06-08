@@ -46,7 +46,7 @@ public class WalkMoveStrategy implements MoveStrategyIf {
     }
 
     @Override
-    public List<Step> getSteps(Point destPoint) {
+    public List<Point> getSteps(Point destPoint) {
 
         return null;
     }
