@@ -1,4 +1,4 @@
 package pl.psi.game.skills;
 
-public class SkillsFacade {
+public class SkillsFactory {
 }
