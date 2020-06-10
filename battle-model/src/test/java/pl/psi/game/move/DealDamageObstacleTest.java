@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 public class DealDamageObstacleTest {
-
+//TODO weź popraw te testy, żeby nie używać getCurrentHp będą wtedy bardziej czytelne
     @Test
     void walkingCreatureDealDamage(){
 

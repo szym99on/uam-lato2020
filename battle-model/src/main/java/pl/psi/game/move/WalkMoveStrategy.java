@@ -29,7 +29,7 @@ public class WalkMoveStrategy implements MoveStrategyIf {
 
         int xDistance = (int) Math.abs(destPoint.getX() - oldPosition.getX());
         int yDistance = (int) Math.abs(destPoint.getY() - oldPosition.getY());
-
+/*
         //TODO Improve to A* Algoritm
         for (int i = 0; i < Math.max(xDistance,yDistance) ; i++) {
             if(i < xDistance ) {
@@ -40,15 +40,20 @@ public class WalkMoveStrategy implements MoveStrategyIf {
                 board.move(oldPosition.x, oldPosition.y + goDirection(y, oldPosition.y), activeCreature.getValue());
             }
         }
-
-        activeCreature = new AbstractMap.SimpleEntry<>(new Point(x,y), activeCreature.getValue());
+*/
+        activeCreature = new AbstractMap.SimpleEntry<>(destPoint, activeCreature.getValue());
         propertyChangeSupport.firePropertyChange(GameEngine.CREATURE_MOVED, oldPosition, activeCreature.getKey());
     }
 
     @Override
-    public List<Step> getSteps(Point destPoint) {
+    public List<GuiTileIf> getSteps(Point destPoint) {
 
         return null;
+    }
+
+    @Override
+    public boolean isMovePossible(Board board, Point startPoint, Point destPoint) {
+        return false;
     }
 
     int goDirection(int x, int oldX){

@@ -8,6 +8,6 @@ import java.util.List;
 public interface MoveStrategyIf {
 
     void move(Point desPoint);
-    List<Point> getSteps(Point destPoint);
+    List<GuiTileIf> getSteps(Point destPoint);
     boolean isMovePossible(Board board, Point startPoint, Point destPoint);
 }

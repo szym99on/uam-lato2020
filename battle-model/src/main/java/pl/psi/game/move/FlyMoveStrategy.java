@@ -13,7 +13,7 @@ public class FlyMoveStrategy implements MoveStrategyIf {
     private HashMap.Entry<Point, Creature> activeCreature;
     private final Board board;
     private PropertyChangeSupport propertyChangeSupport;
-    private LinkedList<Step> moveSteps = new LinkedList();
+    private LinkedList<GuiTileIf> moveSteps = new LinkedList();
 
     FlyMoveStrategy(Board aBoard, Map.Entry<Point, Creature> aActiveCreature) {
         board = aBoard;
@@ -42,8 +42,9 @@ public class FlyMoveStrategy implements MoveStrategyIf {
     }
 
     @Override
-    public List<Step> getSteps(Point destPoint) {
-        Point oldPosition = activeCreature.getKey();
+    public List<GuiTileIf> getSteps(Point destPoint) {
+
+        Point oldPosition = activeCreature.getKey().getLocation();
 
         int oldX = oldPosition.x;
         int oldY = oldPosition.y;
@@ -57,12 +58,12 @@ public class FlyMoveStrategy implements MoveStrategyIf {
 
             if(i < xDistance ) {
                 oldX += goDirection(finalX, oldX);
-                moveSteps.add(new Step(oldX, oldY));
+                moveSteps.add(new EmptyTile(new Point(oldX, oldY)));
             }
 
             if(i < yDistance ) {
                 oldY += goDirection(finalY, oldY);
-                moveSteps.add(new Step(oldX, oldY));
+                moveSteps.add(new EmptyTile(new Point(oldX, oldY)));
             }
         }
         return moveSteps;
@@ -70,7 +71,10 @@ public class FlyMoveStrategy implements MoveStrategyIf {
 
     @Override
     public boolean isMovePossible(Board board, Point startPoint, Point destPoint) {
-        return false;
+
+        double distance = Math.abs(destPoint.getX() - startPoint.getX()) + Math.abs(destPoint.getY() - startPoint.getY());
+
+        return activeCreature.getValue().getMoveRange() - distance >= 0;
     }
 
 
