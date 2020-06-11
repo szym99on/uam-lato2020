@@ -13,7 +13,7 @@ public class FlyMoveStrategy implements MoveStrategyIf {
     private HashMap.Entry<Point, Creature> activeCreature;
     private final Board board;
     private PropertyChangeSupport propertyChangeSupport;
-    private LinkedList<Step> moveSteps = new LinkedList();
+    private LinkedList<Point> moveSteps = new LinkedList();
 
     FlyMoveStrategy(Board aBoard, Map.Entry<Point, Creature> aActiveCreature) {
         board = aBoard;
@@ -57,12 +57,12 @@ public class FlyMoveStrategy implements MoveStrategyIf {
 
             if(i < xDistance ) {
                 oldX += goDirection(finalX, oldX);
-                moveSteps.add(new Step(oldX, oldY));
+                moveSteps.add(new Point(oldX, oldY));
             }
 
             if(i < yDistance ) {
                 oldY += goDirection(finalY, oldY);
-                moveSteps.add(new Step(oldX, oldY));
+                moveSteps.add(new Point(oldX, oldY));
             }
         }
         return moveSteps;

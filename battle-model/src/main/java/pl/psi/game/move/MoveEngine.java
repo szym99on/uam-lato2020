@@ -44,7 +44,7 @@ public class MoveEngine implements PropertyChangeListener {
         List<Obstacle> pathObs = path.stream().filter(t -> t instanceof Obstacle).map(o -> (Obstacle)o).collect(Collectors.toList());
         pathObs.forEach(o -> o.apply(activeCreature.getValue()));
 
-        moveStrategyIf.move(board,  );
+//        moveStrategyIf.move(board,  );
     }
 
     public List getMovePath(int x, int y){

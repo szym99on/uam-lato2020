@@ -14,6 +14,9 @@ class DijkstraAlgo {
         java.util.List<Point> path = new ArrayList<Point>();
         int distance = getDistance(startPoint, endPoint);
 
+        for (int i = 0; i < distance; i++){
+            
+        }
 
         return path;
     }
@@ -23,26 +26,10 @@ class DijkstraAlgo {
         int x = (int) point.getX();
         int y = (int) point.getY();
 
-        if (y >= 1) {
-            Point neighbor = new Point(x, y - 1);
-            neighbors.add(neighbor);
-        }
-
-        if (y <= Board.BOARD_HIGH - 1) {
-            Point neighbor = new Point(x, y + 1);
-            neighbors.add(neighbor);
-        }
-
-        if (x >= 1) {
-            Point neighbor = new Point(x - 1, y);
-            neighbors.add(neighbor);
-        }
-
-        if (y <= Board.BOARD_WIDTH) {
-            Point neighbor = new Point(x + 1, y);
-            neighbors.add(neighbor);
-        }
-
+        if (x + 1 <= Board.BOARD_WIDTH) neighbors.add(new Point(x + 1, y));
+        if (x - 1 > 0) neighbors.add(new Point(x - 1, y));
+        if (y + 1 <= Board.BOARD_HIGH) neighbors.add(new Point(x, y + 1));
+        if (y - 1 > 0) neighbors.add(new Point(x, y - 1));
 
         return neighbors;
     }

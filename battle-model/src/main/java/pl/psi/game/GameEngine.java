@@ -57,7 +57,8 @@ public class GameEngine implements PropertyChangeListener {
     }
 
     public boolean isMoveAllowed(int x, int y){
-        return moveEngine.isMovePossible(x,y);
+//        return moveEngine.isMovePossible();
+        return false;
     }
 
     public void move(int x, int y){

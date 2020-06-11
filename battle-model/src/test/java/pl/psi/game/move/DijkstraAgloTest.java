@@ -58,8 +58,8 @@ public class DijkstraAgloTest {
 
     @Test
     void goLeftDownDistance(){
-        Point startPoint = new Point(1,1);
-        Point endPoint = new Point(5,1);
+        Point startPoint = new Point(5,5);
+        Point endPoint = new Point(1,1);
         int distance = algo.getDistance(startPoint, endPoint);
 
         assertEquals(8, distance);
