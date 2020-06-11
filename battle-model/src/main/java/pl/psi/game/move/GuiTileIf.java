@@ -7,5 +7,5 @@ public interface GuiTileIf {
     String getDisplayName();
     boolean isCreature();
     Point getPoint();
-
+    int weight();
 }

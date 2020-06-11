@@ -25,5 +25,10 @@ public class EmptyTile implements GuiTileIf{
         return point;
     }
 
+    @Override
+    public int weight() {
+        return 1;
+    }
+
 
 }

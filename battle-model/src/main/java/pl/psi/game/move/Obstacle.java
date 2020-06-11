@@ -30,4 +30,9 @@ public abstract class Obstacle implements GuiTileIf {
     public Point getPoint() {
         return point;
     }
+
+    @Override
+    public int weight() {
+        return 2;
+    }
 }
