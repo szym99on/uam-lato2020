@@ -1,5 +1,7 @@
 package pl.psi.game;
 
+import pl.psi.game.fractions.CreatureInfo;
+import pl.psi.game.fractions.CreatureStack;
 import pl.psi.game.fractions.FractionsInfoAbstractFactory;
 import pl.psi.game.hero.artifacts.ArtifactInfo;
 import pl.psi.game.hero.artifacts.ArtifactsInfoFactory;
@@ -46,6 +48,7 @@ public class EconomyEngine implements PropertyChangeListener {
         new SkillInfoFactory();
 
 
+
         this.activeHero = economyHero1;
         this.spellShop1 = new SpellShop();
         this.spellShop2 = new SpellShop();
@@ -86,10 +89,10 @@ public class EconomyEngine implements PropertyChangeListener {
     public List<ArtifactInfo> getArtifactsAvailableToBuy() {
         return this.activeHero == economyHero1 ? artifactsShop1.getArtifactsAvailableToBuy() : artifactsShop2.getArtifactsAvailableToBuy();
     }
-//    public List<CreatureStack> getCreaturesAvailableToBuy() {
-//        return this.activeHero == economyHero1 ? creaturesShop1.getCreaturesAvailableToBuy() : creaturesShop2.getCreaturesAvailableToBuy();
-//
-//    }
+    /*public List<CreatureInfo> getCreaturesAvailableToBuy() {
+        return this.activeHero == economyHero1 ? creaturesShop1.getCreaturesAvailableToBuy() : creaturesShop2.getCreaturesAvailableToBuy();
+
+    }*/
 
     public  boolean buySpell(SpellInfo spell){
         if (this.activeHero == economyHero1) {

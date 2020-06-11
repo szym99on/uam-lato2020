@@ -13,7 +13,11 @@ import java.util.*;
 
 public class CreaturesShop extends AbstractShop {
 
-    @Getter
+    public List<CreatureInfo> getCreaturesAvailableToBuy() {
+        return creaturesAvailableToBuy;
+    }
+
+    //@Getter
     private List<CreatureInfo> creaturesAvailableToBuy;
 
 
@@ -38,6 +42,7 @@ public class CreaturesShop extends AbstractShop {
             creatureStacks.add(creatureStack);
         }
         this.creaturesAvailableToBuy = creaturesAvailableToBuy;
+
     }
 
 }

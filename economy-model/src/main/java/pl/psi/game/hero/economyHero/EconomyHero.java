@@ -2,7 +2,6 @@ package pl.psi.game.hero.economyHero;
 
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Singular;
 import pl.psi.game.fractions.CreatureInfo;
 import pl.psi.game.hero.HeroInfo;
 import pl.psi.game.hero.artifacts.ArtifactInfo;
@@ -11,9 +10,7 @@ import pl.psi.game.spellbook.SpellInfo;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Getter
 public class EconomyHero {
@@ -32,6 +29,7 @@ public class EconomyHero {
         creatures = new ArrayList<>();
         artifacts = new ArrayList<>();
         spells = new ArrayList<>();
+        //skills = new ArrayList<>();
         this.heroInfo = aHeroInfo;
     }
 
@@ -40,7 +38,7 @@ public class EconomyHero {
         this.gold += gold;
     }
 
-    void decreaseGold(int gold)  {
+    void decreaseGold(int gold) {
 
         if (gold < 0) {
             String output = "You can't decrease a negative gold";
@@ -84,19 +82,30 @@ public class EconomyHero {
     }
 
 
-    public void buyArtifact(ArtifactInfo artifact) throws IllegalStateException {
+    public boolean buyArtifact(ArtifactInfo artifact) throws IllegalStateException {
+
         if (this.isSlotEmpty(artifact.getLocation().toString())) {
             String output = String.format("Location: %s is taken.", artifact.getLocation().toString());
             throw new IllegalStateException(output);
+
         }
+
         if (this.getGold() >= artifact.getCost()) {
             this.decreaseGold(artifact.getCost());
             this.artifacts.add(artifact);
+            return true;
+
         } else {
             String output = String.format("Not enough gold to buy %s", artifact.getName());
             throw new IllegalStateException(output);
+
+
         }
 
+
+    }
+    public boolean buyArt(ArtifactInfo artifact) throws IllegalStateException{
+        return true;
     }
 
     void sellArtifact(ArtifactInfo artifact) throws IllegalStateException {
@@ -113,7 +122,6 @@ public class EconomyHero {
     boolean isSlotEmpty(String location) {
         return this.artifacts.stream().anyMatch(artifact -> artifact.getLocation().toString().equals(location));
     }
-
 
 
     ArtifactInfo getArtifact(String name) {
@@ -136,12 +144,12 @@ public class EconomyHero {
         this.spells.remove(spell);
     }
 
-    public boolean buySpell(SpellInfo spell) throws IllegalStateException{
-        if(this.spells.contains(spell)){
+    public boolean buySpell(SpellInfo spell) throws IllegalStateException {
+        if (this.spells.contains(spell)) {
             String output = String.format("Hero has got this spell %s ", spell.getName());
             throw new IllegalStateException(output);
         }
-        if(getGold() >= spell.getCost()){
+        if (getGold() >= spell.getCost()) {
             this.decreaseGold(spell.getCost());
             this.spells.add(spell);
             return true;
@@ -150,23 +158,24 @@ public class EconomyHero {
     }
 
 
-
-
-    public void buySkill(SkillInfo skill) throws IllegalStateException{
-        if(this.skills.contains(skill)){
-            String output = String.format("Hero has got this spell %s ", skill.getName());
+    public boolean buySkill(SkillInfo skill) throws IllegalStateException {
+        if (this.skills.contains(skill)) {
+            String output = String.format("Hero has got this skill %s ", skill.getName());
             throw new IllegalStateException(output);
         }
-        if(getGold() >= skill.getCost()){
+        if (getGold() >= skill.getCost()) {
             this.decreaseGold(skill.getCost());
             this.skills.add(skill);
+            return true;
         }
+        return false;
     }
 
 
     public List<SpellInfo> getSpells() {
         return this.spells;
     }
+
     public List<ArtifactInfo> getArtifacts() {
         return this.artifacts;
     }
@@ -180,7 +189,6 @@ public class EconomyHero {
     }
 
 
-
     List<ArtifactInfo.Location> getArtifactsLocations() {
         return this.artifacts.stream().map(ArtifactInfo::getLocation).collect(Collectors.toList());
     }
@@ -188,16 +196,18 @@ public class EconomyHero {
     void addCreature(CreatureInfo creature) {
         this.creatures.add(creature);
     }
+
     void addArtifact(ArtifactInfo artifact) {
         this.artifacts.add(artifact);
     }
+
     void addSpell(SpellInfo spell) {
         this.spells.add(spell);
     }
+
     void addSkill(SkillInfo skill) {
         this.skills.add(skill);
     }
-
 
 
     //methods from heroInfo
@@ -206,21 +216,27 @@ public class EconomyHero {
         return heroInfo.getFraction();
     }
 
-    HeroInfo getHeroInfo() {return heroInfo;}
+    HeroInfo getHeroInfo() {
+        return heroInfo;
+    }
 
     String getName() {
         return this.heroInfo.getName();
     }
+
     public int getAttack() {
         System.out.println("I am in the getAttack");
         return this.heroInfo.getAttack();
     }
+
     public int getDefence() {
         return this.heroInfo.getDefence();
     }
+
     public int getPower() {
         return this.heroInfo.getPower();
     }
+
     public int getKnowledge() {
         return this.heroInfo.getKnowledge();
     }
