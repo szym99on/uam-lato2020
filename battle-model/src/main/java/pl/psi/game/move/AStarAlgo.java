@@ -24,7 +24,7 @@ class AStarAlgo {
             winner = 0;
 
             for (int i = 0; i < openSet.size(); i++){
-                if( openSet.get(i))
+//                if( openSet.get(i))
             }
         }
 

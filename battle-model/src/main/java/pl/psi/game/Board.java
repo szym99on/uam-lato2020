@@ -21,12 +21,12 @@ public class Board {
     public Board() {
         board = new HashMap<>();
         ObstacleFactory obstacleFactory = new ObstacleFactory();
-        putObstacle(7, 2, obstacleFactory.createObstacle("lava"));
-        putObstacle(7, 3, obstacleFactory.createObstacle("lava"));
-        putObstacle(7, 4, obstacleFactory.createObstacle("lava"));
-        putObstacle(7, 5, obstacleFactory.createObstacle("lava"));
-        putObstacle(7, 6, obstacleFactory.createObstacle("lava"));
-        putObstacle(7, 7, obstacleFactory.createObstacle("lava"));
+//        putObstacle(7, 2, obstacleFactory.createObstacle("lava"));
+//        putObstacle(7, 3, obstacleFactory.createObstacle("lava"));
+//        putObstacle(7, 4, obstacleFactory.createObstacle("lava"));
+//        putObstacle(7, 5, obstacleFactory.createObstacle("lava"));
+//        putObstacle(7, 6, obstacleFactory.createObstacle("lava"));
+//        putObstacle(7, 7, obstacleFactory.createObstacle("lava"));
 
 
     }

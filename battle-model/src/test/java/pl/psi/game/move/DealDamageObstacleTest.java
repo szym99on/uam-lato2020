@@ -2,6 +2,9 @@ package pl.psi.game.move;
 
 import org.junit.Test;
 import pl.psi.game.fractions.Creature;
+
+import java.awt.*;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -12,7 +15,7 @@ public class DealDamageObstacleTest {
 
         Creature creature = Creature.builder().aMaxHp(10).aCanFly(false).build();
         ObstacleFactory obstacleFactory = new ObstacleFactory();
-        Obstacle obstacle = obstacleFactory.createObstacle("lava");
+        Obstacle obstacle = obstacleFactory.createObstacle("lava", new Point(1, 2));
 
         int hp = creature.getCurrentHp();
         obstacle.apply(creature);
@@ -26,7 +29,7 @@ public class DealDamageObstacleTest {
 
         Creature creature = Creature.builder().aMaxHp(10).aCanFly(false).build();
         ObstacleFactory obstacleFactory = new ObstacleFactory();
-        Obstacle obstacle = obstacleFactory.createObstacle("lava");
+        Obstacle obstacle = obstacleFactory.createObstacle("lava", new Point(1,1));
 
         obstacle.apply(creature);
 
