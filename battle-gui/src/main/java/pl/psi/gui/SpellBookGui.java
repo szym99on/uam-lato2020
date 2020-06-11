@@ -1,4 +1,4 @@
-package pl.psi.gui.tiles;
+package pl.psi.gui;
 
 import pl.psi.game.hero.converter.Hero;
 import pl.psi.game.hero.converter.HeroEcoBattleConverter;
@@ -21,8 +21,8 @@ public class SpellBookGui   {
         spellBook = hero.getSpellBook();
 
         JFrame frame = new JFrame("SpellBook");
-        frame.setSize(800, 400);
-        frame.setLayout(new GridLayout(8,8));
+        frame.setSize(800, 600);
+        frame.setLayout(new GridLayout(10,6));
         for(Spell item : spellBook.getHeroSpells()){
             JButton button = new JButton(item.getSpellName());
             frame.add(button);

@@ -1,28 +1,17 @@
 package pl.psi.gui;
 
-import com.google.common.collect.Range;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
 import pl.psi.game.GameEngine;
-import pl.psi.game.fractions.Creature;
-import pl.psi.game.fractions.CreatureAbstractFactory;
-import pl.psi.game.fractions.CreatureInfo;
-import pl.psi.game.fractions.FractionsInfoAbstractFactory;
-import pl.psi.game.hero.HeroInfoFactory;
-import pl.psi.game.hero.artifacts.ArtifactsInfoFactory;
 import pl.psi.game.hero.converter.Hero;
 import pl.psi.game.hero.converter.HeroEcoBattleConverter;
-import pl.psi.game.hero.economyHero.EconomyHero;
 import pl.psi.game.move.GuiTileIf;
 import pl.psi.gui.tiles.*;
 
 import java.awt.Point;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainBattleController {
 
@@ -37,6 +26,7 @@ public class MainBattleController {
     private final Hero hero1;
     private final Hero hero2;
     private final GameEngine gameEngine;
+    private StateMap stateMap = new NormalState();
 
     public MainBattleController() {
 //        ArtifactInitializer init = new ArtifactInitializer();
@@ -57,6 +47,7 @@ public class MainBattleController {
         spellButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             SpellBookGui spellBookGui = new SpellBookGui(hero1);
 
+
         });
 
         gameEngine.addObserver((e) -> Platform.runLater(this::refreshGui));
@@ -71,25 +62,7 @@ public class MainBattleController {
     }
 
     private void createTile(int aX, int aY) {
-        AbstractTileFactory factory = new DefaultTileFactory();
 
-        GuiTileIf somethingToRender = gameEngine.getByPoint(aX, aY);
-        if (somethingToRender != null) {
-            factory = new ObjectTileFactory(factory, somethingToRender);
-        }
-
-        if (gameEngine.getActiveCreature().getKey().equals(new Point(aX, aY))) {
-            factory = new ActiveObjectTileFactoryDecorator(factory);
-        }
-
-        if (gameEngine.isAttackPossible(aX, aY)) {
-            factory = new AttackPossibleTileFactoryDecorator(factory, aX, aY, gameEngine);
-        }
-
-        if (gameEngine.isMoveAllowed(aX, aY)) {
-            factory = new MovePossibleTileFactoryDecorator(factory, aX, aY, gameEngine);
-        }
-
-        gridMap.add(factory.generateTile(), aX, aY);
+        gridMap.add(stateMap.createTile(aX, aY, gameEngine), aX, aY);
     }
 }
