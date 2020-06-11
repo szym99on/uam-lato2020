@@ -9,6 +9,9 @@ import java.beans.PropertyChangeSupport;
 import java.util.*;
 import java.util.List;
 
+import static pl.psi.game.Board.BOARD_HIGH;
+import static pl.psi.game.Board.BOARD_WIDTH;
+
 public class WalkMoveStrategy implements MoveStrategyIf {
 
     private HashMap.Entry<Point, Creature> activeCreature;
@@ -25,20 +28,7 @@ public class WalkMoveStrategy implements MoveStrategyIf {
     public void move(Point destPoint) {
         Point oldPosition = activeCreature.getKey();
 
-        int xDistance = (int) Math.abs(destPoint.getX() - oldPosition.getX());
-        int yDistance = (int) Math.abs(destPoint.getY() - oldPosition.getY());
-/*
-        //TODO Improve to A* Algoritm
-        for (int i = 0; i < Math.max(xDistance,yDistance) ; i++) {
-            if(i < xDistance ) {
-                board.move(oldPosition.x + goDirection(x, oldPosition.x), oldPosition.y, activeCreature.getValue());
-            }
 
-            if(i < yDistance ) {
-                board.move(oldPosition.x, oldPosition.y + goDirection(y, oldPosition.y), activeCreature.getValue());
-            }
-        }
-*/
         activeCreature = new AbstractMap.SimpleEntry<>(destPoint, activeCreature.getValue());
         propertyChangeSupport.firePropertyChange(GameEngine.CREATURE_MOVED, oldPosition, activeCreature.getKey());
     }
@@ -54,78 +44,46 @@ public class WalkMoveStrategy implements MoveStrategyIf {
         return false;
     }
 
-    int goDirection(int x, int oldX){
-        if(x > oldX) {
-            return 1;
+    //TODO Its not working good if path is straight work ok. Should add Step counter so migrate from List to Map <Point, Integer>.
+    public List countPath(Point point, Point endPoint,List path){
+        double initDistance = endPoint.distance(point);
+
+        Point up = new Point(point.x,point.y + 1);
+        Point down = new Point(point.x,point.y - 1);
+        Point left = new Point(point.x - 1,point.y);
+        Point right = new Point(point.x + 1,point.y);
+
+        double upDistance = endPoint.distance(up);
+        double downDistance = endPoint.distance(down);
+        double leftDistance = endPoint.distance(left);
+        double rightDistance = endPoint.distance(right);
+
+        if(upDistance + getMapCost(up) < initDistance){
+            path.add(up);
+            countPath(up,endPoint,path);
+        }
+        if(downDistance  + getMapCost(down)  < initDistance){
+            path.add(down);
+            countPath(down,endPoint,path);
+        }
+        if(leftDistance  + getMapCost(left) < initDistance){
+            path.add(left);
+            countPath(left,endPoint,path);
+        }
+        if(rightDistance  + getMapCost(right) < initDistance){
+            path.add(right);
+            countPath(right,endPoint,path);
         }
 
-        if(x < oldX) {
-            return -1;
-        }
-        return 0;
-    }
-
-    public void AStar(Point startPoint, Point endPoint){
-       List list = new LinkedList<Point>();
-        list.add(startPoint);
-        AStarStep(list,endPoint);
-
-    }
-
-    void AStarStep(List<Point> path,Point endPoint){
-        List temp = new LinkedList<Point>();
-
-        while(temp.get(temp.size()) == endPoint) {
-            Point stepUp = goUp(path.get(path.size()));
-            temp.addAll(path);
-            temp.add(stepUp);
-            AStarStep(temp, endPoint);
-            temp.clear();
-
-            Point stepDown = goDown(path.get(path.size()));
-            temp.addAll(path);
-            temp.add(stepDown);
-            AStarStep(temp, endPoint);
-            temp.clear();
-
-            Point stepLeft = goLeft(path.get(path.size()));
-            temp.addAll(path);
-            temp.add(stepLeft);
-            AStarStep(temp, endPoint);
-            temp.clear();
-
-            Point stepRight = goRight(path.get(path.size()));
-            temp.addAll(path);
-            temp.add(stepRight);
-            AStarStep(temp, endPoint);
-            temp.clear();
-        }
-    }
-
-
-
-    Point goDown(Point point){
-        return new Point(point.x, point.y - 1);
-    }
-
-    Point goUp(Point point){
-        return new Point(point.x, point.y + 1);
-    }
-
-    Point goLeft(Point point){
-        return new Point(point.x - 1, point.y);
-    }
-
-    Point goRight(Point point){
-        return new Point(point.x + 1, point.y);
+        return path;
     }
 
     Map<Point, Integer> mapCostGenerate(){
         Map<Point, GuiTileIf> copyBoard = Board.copyBoardValues();
         Map<Point, Integer> aStarBoard = new HashMap<>();
 
-        for (int i = 1; i <= Board.BOARD_WIDTH ; i++) {
-            for (int j = 0; j <= Board.BOARD_HIGH ; j++) {
+        for (int i = 0; i <= BOARD_WIDTH ; i++) {
+            for (int j = 0; j <= BOARD_HIGH ; j++) {
                 aStarBoard.put(new Point(i,j),0);
             }
         }
@@ -138,4 +96,14 @@ public class WalkMoveStrategy implements MoveStrategyIf {
 
     }
 
+    int getMapCost(Point point){
+        Map<Point,Integer> mapCost = mapCostGenerate();
+
+        if (point.x > BOARD_WIDTH || point.x < 0 || point.y > BOARD_HIGH || point.y < 0) {
+            return Integer.MAX_VALUE;
+        }
+        else {
+            return mapCost.get(point);
+        }
+    }
 }

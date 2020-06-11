@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pl.psi.game.Board;
 import pl.psi.game.fractions.Creature;
-import pl.psi.game.move.MoveEngine;
 
 import java.awt.*;
 import java.util.LinkedList;
@@ -14,17 +13,22 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MoveEngineTest {
 
-
     @Test
-    void copyBoardTest(){
+    void goYTest(){
+
         Creature creature = Creature.builder().build();
         Board board = Board.getBoard();
         MoveEngine moveEngine = new MoveEngine(board);
         moveEngine.setActiveCreature(new Point(1,1), creature);
 
         WalkMoveStrategy moveStrategyIf = new WalkMoveStrategy(board,moveEngine.getActiveCreature());
-        moveStrategyIf.AStar(new Point(1,1), new Point(2,2));
+        List <Point> paths = new LinkedList<>();
+        paths.add(new Point(1,1));
+
+        List list = moveStrategyIf.countPath(new Point(1, 1), new Point(2, 3),paths);
+        System.out.println(list);
     }
+
 
     @Test
     void moveShouldBePossible(){
