@@ -6,9 +6,9 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class DijkstraAgloTest {
+public class AStarAgloTest {
 
-    DijkstraAlgo algo = new DijkstraAlgo();
+    AStarAlgo algo = new AStarAlgo();
 
     @Test
     void goRightDistance(){

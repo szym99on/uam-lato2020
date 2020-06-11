@@ -8,15 +8,14 @@ import java.util.List;
 
 import static java.lang.Math.abs;
 
-class DijkstraAlgo {
+class AStarAlgo {
+
     List<Point> path(Point startPoint, Point endPoint, Board board){
 
         java.util.List<Point> path = new ArrayList<Point>();
         int distance = getDistance(startPoint, endPoint);
 
-        for (int i = 0; i < distance; i++){
-            
-        }
+
 
         return path;
     }
