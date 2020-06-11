@@ -1,4 +1,4 @@
-package pl.psi.gui;
+package pl.psi.gui.states;
 
 import javafx.scene.layout.GridPane;
 import pl.psi.game.GameEngine;

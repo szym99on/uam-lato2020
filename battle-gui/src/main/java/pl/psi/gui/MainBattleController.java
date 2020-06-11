@@ -8,10 +8,8 @@ import javafx.scene.layout.GridPane;
 import pl.psi.game.GameEngine;
 import pl.psi.game.hero.converter.Hero;
 import pl.psi.game.hero.converter.HeroEcoBattleConverter;
-import pl.psi.game.move.GuiTileIf;
-import pl.psi.gui.tiles.*;
-
-import java.awt.Point;
+import pl.psi.gui.states.NormalState;
+import pl.psi.gui.states.StateMap;
 
 public class MainBattleController {
 
@@ -45,8 +43,8 @@ public class MainBattleController {
             gameEngine.pass();
         });
         spellButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-            SpellBookGui spellBookGui = new SpellBookGui(hero1);
-
+            // na razie tylko jeden heroes
+            SpellBookGui spellBookGui = new SpellBookGui(hero1, stateMap);
 
         });
 
@@ -62,7 +60,6 @@ public class MainBattleController {
     }
 
     private void createTile(int aX, int aY) {
-
         gridMap.add(stateMap.createTile(aX, aY, gameEngine), aX, aY);
     }
 }

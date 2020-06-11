@@ -1,8 +1,8 @@
-package pl.psi.gui;
+package pl.psi.gui.states;
 
-import javafx.scene.layout.GridPane;
 import pl.psi.game.GameEngine;
 import pl.psi.game.move.GuiTileIf;
+import pl.psi.gui.states.StateMap;
 import pl.psi.gui.tiles.*;
 
 import java.awt.*;
@@ -17,8 +17,8 @@ public class NormalState implements StateMap {
         gameEngine = aGameEngine;
 
         AbstractTileFactory factory = new DefaultTileFactory();
-
         GuiTileIf somethingToRender = gameEngine.getByPoint(aX, aY);
+
         if (somethingToRender != null) {
             factory = new ObjectTileFactory(factory, somethingToRender);
         }
