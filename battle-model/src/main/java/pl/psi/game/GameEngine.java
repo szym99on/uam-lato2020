@@ -56,9 +56,8 @@ public class GameEngine implements PropertyChangeListener {
         propertyChangeSupport.firePropertyChange(ACTIVE_CREATURE_CHANGED, null, activeCreature);
     }
 
-    public boolean isMoveAllowed(int x, int y){
-//        return moveEngine.isMovePossible();
-        return false;
+    public boolean isMoveAllowed(Point startPoint, Point endPoint){
+        return moveEngine.isMovePossible(startPoint, endPoint);
     }
 
     public void move(int x, int y){

@@ -18,7 +18,7 @@ public class Board {
 
     private static Board INSTANCE = null;
 
-    private Board() {
+    public Board() {
         board = new HashMap<>();
         ObstacleFactory obstacleFactory = new ObstacleFactory();
         putObstacle(7, 2, obstacleFactory.createObstacle("lava"));
@@ -30,6 +30,14 @@ public class Board {
 
 
     }
+
+    public static Map<Point, GuiTileIf> copyBoardValues(){
+        Map<Point, GuiTileIf> newMap = new HashMap<>();
+        INSTANCE.board.forEach(newMap::put);
+
+        return newMap;
+    }
+
     public static Board getBoard()
     {
         if (INSTANCE == null)

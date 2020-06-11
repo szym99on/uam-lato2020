@@ -20,4 +20,6 @@ class DealDamageObstacle extends Obstacle {
         }
 
     }
+
+
 }

@@ -6,10 +6,11 @@ import pl.psi.game.fractions.Creature;
 
 import java.awt.*;
 import java.beans.PropertyChangeSupport;
-import java.util.AbstractMap;
-import java.util.HashMap;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
+
+import static pl.psi.game.Board.BOARD_HIGH;
+import static pl.psi.game.Board.BOARD_WIDTH;
 
 public class WalkMoveStrategy implements MoveStrategyIf {
 
@@ -27,48 +28,82 @@ public class WalkMoveStrategy implements MoveStrategyIf {
     public void move(Point destPoint) {
         Point oldPosition = activeCreature.getKey();
 
-        int xDistance = (int) Math.abs(destPoint.getX() - oldPosition.getX());
-        int yDistance = (int) Math.abs(destPoint.getY() - oldPosition.getY());
 
-        //TODO Improve to A* Algoritm
-//        for (int i = 0; i < Math.max(xDistance,yDistance) ; i++) {
-//            if(i < xDistance ) {
-//                board.move(oldPosition.x + goDirection(x, oldPosition.x), oldPosition.y, activeCreature.getValue());
-//            }
-//
-//            if(i < yDistance ) {
-//                board.move(oldPosition.x, oldPosition.y + goDirection(y, oldPosition.y), activeCreature.getValue());
-//            }
-//        }
-//
-//        activeCreature = new AbstractMap.SimpleEntry<>(new Point(x,y), activeCreature.getValue());
-//        propertyChangeSupport.firePropertyChange(GameEngine.CREATURE_MOVED, oldPosition, activeCreature.getKey());
+        activeCreature = new AbstractMap.SimpleEntry<>(destPoint, activeCreature.getValue());
+        propertyChangeSupport.firePropertyChange(GameEngine.CREATURE_MOVED, oldPosition, activeCreature.getKey());
     }
 
     @Override
-    public List<Point> getSteps(Point destPoint) {
+    public List<GuiTileIf> getSteps(Point destPoint) {
 
         return null;
     }
 
     @Override
-    public boolean isMovePossible(Board board, Point startPoint, Point destPoint) {
+    public boolean isMovePossible(Point startPoint, Point destPoint) {
         return false;
     }
 
-    int goDirection(int x, int oldX){
-        if(x > oldX) {
-            return 1;
+    //TODO Its not working good if path is straight work ok. Should add Step counter so migrate from List to Map <Point, Integer>.
+    public List countPath(Point point, Point endPoint,List path){
+        double initDistance = endPoint.distance(point);
+
+        Point up = new Point(point.x,point.y + 1);
+        Point down = new Point(point.x,point.y - 1);
+        Point left = new Point(point.x - 1,point.y);
+        Point right = new Point(point.x + 1,point.y);
+
+        double upDistance = endPoint.distance(up);
+        double downDistance = endPoint.distance(down);
+        double leftDistance = endPoint.distance(left);
+        double rightDistance = endPoint.distance(right);
+
+        if(upDistance + getMapCost(up) < initDistance){
+            path.add(up);
+            countPath(up,endPoint,path);
+        }
+        if(downDistance  + getMapCost(down)  < initDistance){
+            path.add(down);
+            countPath(down,endPoint,path);
+        }
+        if(leftDistance  + getMapCost(left) < initDistance){
+            path.add(left);
+            countPath(left,endPoint,path);
+        }
+        if(rightDistance  + getMapCost(right) < initDistance){
+            path.add(right);
+            countPath(right,endPoint,path);
         }
 
-        if(x < oldX) {
-            return -1;
+        return path;
+    }
+
+    Map<Point, Integer> mapCostGenerate(){
+        Map<Point, GuiTileIf> copyBoard = Board.copyBoardValues();
+        Map<Point, Integer> aStarBoard = new HashMap<>();
+
+        for (int i = 0; i <= BOARD_WIDTH ; i++) {
+            for (int j = 0; j <= BOARD_HIGH ; j++) {
+                aStarBoard.put(new Point(i,j),0);
+            }
         }
-        return 0;
+
+        for (Point key: copyBoard.keySet()
+        ) {
+                 aStarBoard.replace(key,Integer.MAX_VALUE);
+        }
+        return aStarBoard;
+
     }
 
-    private void AStar(int startX, int startY, int finishX, int finishY){
-        Board aStarBoard = Board.getBoard();
-    }
+    int getMapCost(Point point){
+        Map<Point,Integer> mapCost = mapCostGenerate();
 
+        if (point.x > BOARD_WIDTH || point.x < 0 || point.y > BOARD_HIGH || point.y < 0) {
+            return Integer.MAX_VALUE;
+        }
+        else {
+            return mapCost.get(point);
+        }
+    }
 }

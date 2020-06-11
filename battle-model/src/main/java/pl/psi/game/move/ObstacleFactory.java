@@ -3,9 +3,9 @@ package pl.psi.game.move;
 public class ObstacleFactory {
 
     public Obstacle createObstacle(String name){
-        Obstacle obstacle;
+        Obstacle obstacle = null;
 
-        if (name.equals("lava")){
+    /*    if (name.equals("lava")){
             obstacle = new DealDamageObstacle(name);
         } else if (name.equals("marsh")) {
             obstacle = new ReduceMoveRangeObstacle(name);
@@ -14,7 +14,7 @@ public class ObstacleFactory {
         } else {
             throw new IllegalArgumentException("Unknown obstacle: " + name);
         }
-
+*/
         return obstacle;
     }
 }

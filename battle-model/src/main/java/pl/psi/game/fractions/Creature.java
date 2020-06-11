@@ -7,6 +7,7 @@ import lombok.Setter;
 import pl.psi.game.hero.converter.Hero;
 import pl.psi.game.move.GuiTileIf;
 
+import java.awt.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
@@ -92,6 +93,11 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
     @Override
     public boolean isCreature() {
         return true;
+    }
+
+    @Override
+    public Point getPoint() {
+        return null;
     }
 
     @Override
