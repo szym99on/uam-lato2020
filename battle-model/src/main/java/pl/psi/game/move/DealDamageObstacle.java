@@ -1,14 +1,15 @@
 package pl.psi.game.move;
 
 import pl.psi.game.fractions.Creature;
-import pl.psi.game.move.Obstacle;
+
+import java.awt.*;
 
 class DealDamageObstacle extends Obstacle {
 
     private final int attack;
 
-    public DealDamageObstacle(String aName) {
-        super(aName);
+    public DealDamageObstacle(String aName, Point aPoint) {
+        super(aName, aPoint);
         attack = 1;
     }
 

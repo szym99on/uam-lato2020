@@ -1,12 +1,13 @@
 package pl.psi.game.move;
 
 import pl.psi.game.fractions.Creature;
-import pl.psi.game.move.Obstacle;
+
+import java.awt.*;
 
 public class ReduceMoveRangeObstacle extends Obstacle {
 
-    public ReduceMoveRangeObstacle(String aName) {
-        super(aName);
+    public ReduceMoveRangeObstacle(String aName, Point aPoint) {
+        super(aName, aPoint);
     }
 
     @Override

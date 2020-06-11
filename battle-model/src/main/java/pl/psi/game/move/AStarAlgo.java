@@ -14,7 +14,19 @@ class AStarAlgo {
 
         java.util.List<Point> path = new ArrayList<Point>();
         int distance = getDistance(startPoint, endPoint);
+        int winner;
+        java.util.List<Point> closedSet = new ArrayList<Point>();
+        java.util.List<Point> openSet = new ArrayList<Point>();
 
+        openSet.add(startPoint);
+
+        while (!openSet.isEmpty()){
+            winner = 0;
+
+            for (int i = 0; i < openSet.size(); i++){
+                if( openSet.get(i))
+            }
+        }
 
 
         return path;
