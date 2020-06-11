@@ -10,7 +10,7 @@ import pl.psi.game.fractions.Creature;
 @Getter
 public abstract class Spell {
 
-    protected final String name;
+    protected final  String name;
     private final String description;
     private final int level;
     private String duration;
@@ -28,10 +28,13 @@ public abstract class Spell {
         manaCost = aManaCost;
         type = aType;
     }
-
+    public String getSpellName(){
+        return name;
+    }
 
     abstract public void cast (int x, int y);
 
     abstract public void cast (Creature creature);
+
 
 }

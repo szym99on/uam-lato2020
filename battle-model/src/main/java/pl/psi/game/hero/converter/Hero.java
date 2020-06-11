@@ -28,7 +28,12 @@ public class Hero {
         defence = 0;
         power = 0;
         knowledge = 0;
-        //spellBook = new SpellBook(aSpells);
+
+        //PRZYKLADOWE INTY DO ROBIENIA GUI SPELLBOOK
+        spellBook = new SpellBook(50, 50, aSpells);
+    }
+    public SpellBook getSpellBook(){
+        return spellBook;
     }
 
     public List<Creature> getCreatures() {

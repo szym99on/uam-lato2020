@@ -55,7 +55,8 @@ public class MainBattleController {
             gameEngine.pass();
         });
         spellButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-            gameEngine.pass();
+            SpellBookGui spellBookGui = new SpellBookGui(hero1);
+
         });
 
         gameEngine.addObserver((e) -> Platform.runLater(this::refreshGui));
