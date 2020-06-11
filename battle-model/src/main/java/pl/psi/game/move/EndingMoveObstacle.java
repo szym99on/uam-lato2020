@@ -18,4 +18,5 @@ class EndingMoveObstacle extends Obstacle {
 
     }
 
+
 }

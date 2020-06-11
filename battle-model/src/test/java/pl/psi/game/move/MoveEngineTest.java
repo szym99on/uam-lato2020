@@ -14,6 +14,18 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MoveEngineTest {
 
+
+    @Test
+    void copyBoardTest(){
+        Creature creature = Creature.builder().build();
+        Board board = Board.getBoard();
+        MoveEngine moveEngine = new MoveEngine(board);
+        moveEngine.setActiveCreature(new Point(1,1), creature);
+
+        WalkMoveStrategy moveStrategyIf = new WalkMoveStrategy(board,moveEngine.getActiveCreature());
+        moveStrategyIf.AStar(new Point(1,1), new Point(2,2));
+    }
+
     @Test
     void moveShouldBePossible(){
         Creature c = Creature.builder().aMoveRange(1).build();
@@ -142,7 +154,7 @@ class MoveEngineTest {
 
         MoveStrategyIf moveStrategyIf = new FlyMoveStrategy(board,moveEngine.getActiveCreature());
 
-        boolean bool = moveStrategyIf.isMovePossible(board, new Point(2, 2), finalPoint);
+        boolean bool = moveStrategyIf.isMovePossible( new Point(2, 2), finalPoint);
         assertTrue(bool);
 
     }

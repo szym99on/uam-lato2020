@@ -9,5 +9,5 @@ public interface MoveStrategyIf {
 
     void move(Point desPoint);
     List<GuiTileIf> getSteps(Point destPoint);
-    boolean isMovePossible(Board board, Point startPoint, Point destPoint);
+    boolean isMovePossible(Point startPoint, Point destPoint);
 }

@@ -6,10 +6,8 @@ import pl.psi.game.fractions.Creature;
 
 import java.awt.*;
 import java.beans.PropertyChangeSupport;
-import java.util.AbstractMap;
-import java.util.HashMap;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
 
 public class WalkMoveStrategy implements MoveStrategyIf {
 
@@ -52,7 +50,7 @@ public class WalkMoveStrategy implements MoveStrategyIf {
     }
 
     @Override
-    public boolean isMovePossible(Board board, Point startPoint, Point destPoint) {
+    public boolean isMovePossible(Point startPoint, Point destPoint) {
         return false;
     }
 
@@ -67,8 +65,77 @@ public class WalkMoveStrategy implements MoveStrategyIf {
         return 0;
     }
 
-    private void AStar(int startX, int startY, int finishX, int finishY){
-        Board aStarBoard = Board.getBoard();
+    public void AStar(Point startPoint, Point endPoint){
+       List list = new LinkedList<Point>();
+        list.add(startPoint);
+        AStarStep(list,endPoint);
+
+    }
+
+    void AStarStep(List<Point> path,Point endPoint){
+        List temp = new LinkedList<Point>();
+
+        while(temp.get(temp.size()) == endPoint) {
+            Point stepUp = goUp(path.get(path.size()));
+            temp.addAll(path);
+            temp.add(stepUp);
+            AStarStep(temp, endPoint);
+            temp.clear();
+
+            Point stepDown = goDown(path.get(path.size()));
+            temp.addAll(path);
+            temp.add(stepDown);
+            AStarStep(temp, endPoint);
+            temp.clear();
+
+            Point stepLeft = goLeft(path.get(path.size()));
+            temp.addAll(path);
+            temp.add(stepLeft);
+            AStarStep(temp, endPoint);
+            temp.clear();
+
+            Point stepRight = goRight(path.get(path.size()));
+            temp.addAll(path);
+            temp.add(stepRight);
+            AStarStep(temp, endPoint);
+            temp.clear();
+        }
+    }
+
+
+
+    Point goDown(Point point){
+        return new Point(point.x, point.y - 1);
+    }
+
+    Point goUp(Point point){
+        return new Point(point.x, point.y + 1);
+    }
+
+    Point goLeft(Point point){
+        return new Point(point.x - 1, point.y);
+    }
+
+    Point goRight(Point point){
+        return new Point(point.x + 1, point.y);
+    }
+
+    Map<Point, Integer> mapCostGenerate(){
+        Map<Point, GuiTileIf> copyBoard = Board.copyBoardValues();
+        Map<Point, Integer> aStarBoard = new HashMap<>();
+
+        for (int i = 1; i <= Board.BOARD_WIDTH ; i++) {
+            for (int j = 0; j <= Board.BOARD_HIGH ; j++) {
+                aStarBoard.put(new Point(i,j),0);
+            }
+        }
+
+        for (Point key: copyBoard.keySet()
+        ) {
+                 aStarBoard.replace(key,Integer.MAX_VALUE);
+        }
+        return aStarBoard;
+
     }
 
 }

@@ -24,4 +24,6 @@ public class EmptyTile implements GuiTileIf{
     public Point getPoint(){
         return point;
     }
+
+
 }
