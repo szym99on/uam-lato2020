@@ -31,13 +31,16 @@ public class MainBattleController {
     @FXML
     private Button passButton;
 
+    @FXML
+    private Button spellButton;
+
     private final Hero hero1;
     private final Hero hero2;
     private final GameEngine gameEngine;
 
     public MainBattleController() {
-        ArtifactInitializer init = new ArtifactInitializer();
-//        SpellInitializer init = new SpellInitializer();
+//        ArtifactInitializer init = new ArtifactInitializer();
+        SpellInitializer init = new SpellInitializer();
 
         hero1 = HeroEcoBattleConverter.convert(init.getH1());
         hero2 = HeroEcoBattleConverter.convert(init.getH2());
@@ -49,6 +52,9 @@ public class MainBattleController {
     private void initialize() {
         refreshGui();
         passButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            gameEngine.pass();
+        });
+        spellButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             gameEngine.pass();
         });
 
