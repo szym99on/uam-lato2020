@@ -45,7 +45,7 @@ public class MainBattleController {
         spellButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             // na razie tylko jeden heroes
             SpellBookGui spellBookGui = new SpellBookGui(hero1, stateMap);
-            stateMap = spellBookGui.getStateMap();
+
         });
 
         gameEngine.addObserver((e) -> Platform.runLater(this::refreshGui));
