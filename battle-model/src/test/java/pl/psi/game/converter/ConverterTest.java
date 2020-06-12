@@ -12,10 +12,7 @@ import pl.psi.game.hero.artifacts.ArtifactsInfoFactory;
 import pl.psi.game.hero.converter.Hero;
 import pl.psi.game.hero.converter.HeroEcoBattleConverter;
 import pl.psi.game.hero.economyHero.EconomyHero;
-import pl.psi.game.spellbook.Spell;
-import pl.psi.game.spellbook.SpellBook;
-import pl.psi.game.spellbook.SpellBookInfoFactory;
-import pl.psi.game.spellbook.SpellInfo;
+import pl.psi.game.spellbook.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +44,7 @@ public class ConverterTest {
         Hero hero = HeroEcoBattleConverter.convert(economyHero);
         Creature creature = creatureAbstractFactory.getCreature(creatureInfo);
 
-        assertEquals(creature,hero.getCreatures());
+        assertEquals(creature,hero.getCreatures().get(0));
     }
     @Test
     @Disabled
@@ -71,14 +68,13 @@ public class ConverterTest {
         SpellInfo spellInfo = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.MAGIC_ARROW);
         economyHero.buySpell(spellInfo);
         Hero hero = HeroEcoBattleConverter.convert(economyHero);
-//        Spell spell = Spell.builder().build();
-//        //Spell spell = SpellBook.getSpellByName(SpellBookInfoFactory.MAGIC_ARROW);
-//        Spell spell = SpellFactory,createSpell(spellInfo);
-//        assertEquals(spell,hero.getSpells().get(0));
+        SpellFactory spellFactory = new SpellFactory();
+        Spell spell = spellFactory.createSpell(spellInfo);
+
+        assertEquals(spell,hero.getSpellBook().getSpells().get(0));
     }
     @Test
     @Disabled
-    //Wait GetArtifact public to change converter
     void AppliedArtifactOnHeroChangeHeroStats()
     {
         InitializeEconomyHero();
