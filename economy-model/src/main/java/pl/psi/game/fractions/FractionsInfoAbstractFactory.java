@@ -7,9 +7,15 @@ import java.util.List;
 
 public class FractionsInfoAbstractFactory {
     public enum Fractions {
-        NECROPOLIS,
+        CASTLE,
+        TOWER,
+        INFERNO,
+        FORTRESS,
         RAMPART,
+        DUNGEON,
         STRONGHOLD,
+        NECROPOLIS,
+        CONFLUX,
         ELEMENTAL;
     }
 

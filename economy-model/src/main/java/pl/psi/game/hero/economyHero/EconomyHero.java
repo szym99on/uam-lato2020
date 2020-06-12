@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Singular;
 import pl.psi.game.fractions.CreatureInfo;
+import pl.psi.game.fractions.FractionsInfoAbstractFactory;
 import pl.psi.game.hero.HeroInfo;
 import pl.psi.game.hero.artifacts.ArtifactInfo;
 import pl.psi.game.spellbook.SpellInfo;
@@ -175,7 +176,7 @@ public class EconomyHero {
 
     //methods from heroInfo
 
-    HeroInfo.Fraction getFraction() {
+    FractionsInfoAbstractFactory.Fractions getFraction() {
         return heroInfo.getFraction();
     }
 
