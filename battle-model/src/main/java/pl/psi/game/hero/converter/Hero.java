@@ -30,6 +30,7 @@ public class Hero {
         knowledge = 0;
         spellBook = SpellBook.builder().build();
     }
+
     public List<Creature> getCreatures() {
         return creatures;
     }
