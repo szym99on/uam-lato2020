@@ -12,4 +12,9 @@ public class ElementalInfoFactory extends FractionsInfoAbstractFactory {
         creatureList.add(CreatureInfo.builder().aMaxHp(35).aAttack(Range.closed(4, 6)).aName("Energy Elemental").aArmor(8).aMoveRange(8).aCanFly(true).aCost(400).build());
         creatureList.add(CreatureInfo.builder().aMaxHp(40).aAttack(Range.closed(6, 10)).aName("Magma Elemental").aArmor(11).aMoveRange(6).aCanFly(false).aCost(500).build());
     }
+
+
+    public List<CreatureInfo> getAllCreatures(){
+        return creatureList;
+    }
 }

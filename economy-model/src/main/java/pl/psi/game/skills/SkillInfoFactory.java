@@ -3,6 +3,7 @@ package pl.psi.game.skills;
 import pl.psi.game.hero.artifacts.ArtifactInfo;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class SkillInfoFactory {
@@ -73,6 +74,10 @@ public class SkillInfoFactory {
 
     public static SkillInfo getSkill(String aName){
         return skillList.stream().filter(s -> s.getName().endsWith(aName)).findAny().orElseThrow();
+    }
+
+    public static List<SkillInfo> getAll(){
+        return Collections.unmodifiableList(skillList);
     }
 
 }

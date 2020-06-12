@@ -34,7 +34,7 @@ public class EconomyHeroGoldManagementTest {
     }
 
     @Test
-    void decreaseGoldShouldRemoveGold() throws Exception {
+    void decreaseGoldShouldRemoveGold() throws IllegalStateException {
         EconomyHero hero = EconomyHero.builder().aGold(2000).build();
         int howMuch = 50;
 
@@ -47,7 +47,7 @@ public class EconomyHeroGoldManagementTest {
     void decreaseGoldShouldNotRemoveGoldWhenItsNotEnoughGold() {
 
         EconomyHero hero = EconomyHero.builder().aGold(50).build();
-        assertThrows(Exception.class, () -> {
+        assertThrows(IllegalStateException.class, () -> {
 
             int howMuch = 100;
             hero.decreaseGold(howMuch);
@@ -59,7 +59,7 @@ public class EconomyHeroGoldManagementTest {
     @Test
     void decreaseGoldShouldNotAddGoldWhenItsNegative() {
         EconomyHero hero = EconomyHero.builder().aGold(2000).build();
-        assertThrows(Exception.class, () -> {
+        assertThrows(IllegalStateException.class, () -> {
 
             int howMuch = -100;
             hero.decreaseGold(howMuch);
@@ -71,7 +71,7 @@ public class EconomyHeroGoldManagementTest {
     //buying 1 item
 
     @Test
-    void buySpellShouldTakeGoldAndAddSpell() throws Exception {
+    void buySpellShouldTakeGoldAndAddSpell() throws IllegalStateException {
         SpellInfo spell = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.MAGIC_ARROW);
         EconomyHero hero = EconomyHero.builder().aGold(3000).build();
 
@@ -84,7 +84,7 @@ public class EconomyHeroGoldManagementTest {
     }
 
     @Test
-    void buyCreatureShouldTakeGoldAndAddCreature() throws Exception {
+    void buyCreatureShouldTakeGoldAndAddCreature() throws IllegalStateException {
 
         FractionsInfoAbstractFactory necropolisFactory = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS);
         CreatureInfo creature = necropolisFactory.getCreature(NecropolisInfoFactory.SKELETON_WARRIOR);
@@ -98,7 +98,7 @@ public class EconomyHeroGoldManagementTest {
     }
 
     @Test
-    void buyArtifactShouldTakeGoldAndAddArtifact() throws Exception {
+    void buyArtifactShouldTakeGoldAndAddArtifact() throws IllegalStateException {
         ArtifactInfo artifact = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.COLLAR_OF_CONJURING);
         EconomyHero hero = EconomyHero.builder().aGold(2000).build();
 
@@ -112,7 +112,7 @@ public class EconomyHeroGoldManagementTest {
     //buy more than 1 item
 
     @Test
-    void buyFewItemsShouldTakeGoldAndAddItems() throws Exception {
+    void buyFewItemsShouldTakeGoldAndAddItems() throws IllegalStateException {
         EconomyHero hero = EconomyHero.builder().aGold(5000).build();
         ArtifactInfo artifact = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.ARMOR_OF_WONDER);
         SpellInfo spell = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.MAGIC_ARROW);
@@ -131,7 +131,7 @@ public class EconomyHeroGoldManagementTest {
         assertEquals(hero.getArtifacts().size(), 1);*/
     }
     @Test
-    void buyFewItemsShouldTakeGoldOnlyForItemsHeroCanAfford() throws Exception{
+    void buyFewItemsShouldTakeGoldOnlyForItemsHeroCanAfford() throws IllegalStateException{
         EconomyHero hero = EconomyHero.builder().aGold(6000).build();
         ArtifactInfo artifact = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.ARMOR_OF_WONDER);
         FractionsInfoAbstractFactory necropolisFactory = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS);
@@ -139,7 +139,7 @@ public class EconomyHeroGoldManagementTest {
         CreatureInfo creature2 = necropolisFactory.getCreature(NecropolisInfoFactory.POWER_LICH);
         hero.buyArtifact(artifact);
         hero.buyCreature(creature);
-        assertThrows(Exception.class, () -> {
+        assertThrows(IllegalStateException.class, () -> {
 
 
             hero.buyCreature(creature2);
@@ -152,7 +152,7 @@ public class EconomyHeroGoldManagementTest {
 
     //selling items
     @Test
-    void sellSkeletonWarriorShouldReturn75PercentOfOriginalPrice() throws Exception {
+    void sellSkeletonWarriorShouldReturn75PercentOfOriginalPrice() throws IllegalStateException {
         FractionsInfoAbstractFactory necropolisFactory =  FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS);
         CreatureInfo creature = necropolisFactory.getCreature(NecropolisInfoFactory.SKELETON_WARRIOR);
         EconomyHero hero = EconomyHero.builder().aGold(2000).build();
@@ -165,7 +165,7 @@ public class EconomyHeroGoldManagementTest {
         assertEquals(hero.getCreatures().size(), 0);
     }
     @Test
-    void sellDreadKnightShouldReturn75PercentOfOriginalPrice() throws Exception {
+    void sellDreadKnightShouldReturn75PercentOfOriginalPrice() throws IllegalStateException {
         FractionsInfoAbstractFactory necropolisFactory =  FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS);
         CreatureInfo creature = necropolisFactory.getCreature(NecropolisInfoFactory.DREAD_KNIGHT);
         EconomyHero hero = EconomyHero.builder().aGold(2000).build();
@@ -179,7 +179,7 @@ public class EconomyHeroGoldManagementTest {
 
     }
     @Test
-    void sellArtifactShouldReturn75PercentOfOriginalPriceAndRemoveArtifact() throws Exception {
+    void sellArtifactShouldReturn75PercentOfOriginalPriceAndRemoveArtifact() throws IllegalStateException {
         ArtifactInfo artifact = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.HELM_OF_THE_ALABASTER_UNICORN);
         EconomyHero hero = EconomyHero.builder().aGold(2000).build();
         hero.addArtifact(artifact);
@@ -194,7 +194,7 @@ public class EconomyHeroGoldManagementTest {
 
     }
     @Test
-    void sellSpellShouldReturn75PercentOfOriginalPriceAndRemoveSpell() throws Exception {
+    void sellSpellShouldReturn75PercentOfOriginalPriceAndRemoveSpell() throws IllegalStateException {
         SpellInfo spell = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.MAGIC_ARROW);
         EconomyHero hero = EconomyHero.builder().aGold(2000).build();
         hero.addSpell(spell);
@@ -209,7 +209,7 @@ public class EconomyHeroGoldManagementTest {
 
 
     @Test
-    void sellMoreThanOneItemShouldReturnEach75PercentOfOriginalPriceAmdRemoveItem() throws Exception{
+    void sellMoreThanOneItemShouldReturnEach75PercentOfOriginalPriceAmdRemoveItem() throws IllegalStateException{
         FractionsInfoAbstractFactory necropolisFactory =  FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS);
         CreatureInfo creature = necropolisFactory.getCreature(NecropolisInfoFactory.DREAD_KNIGHT);
         SpellInfo spell = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.MAGIC_ARROW);

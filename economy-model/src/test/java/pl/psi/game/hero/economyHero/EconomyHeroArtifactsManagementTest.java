@@ -20,7 +20,7 @@ public class EconomyHeroArtifactsManagementTest {
 
 
     @Test
-    void sellArtifactShouldReturn75PercentOfOriginalPriceAndRemoveArtifact() throws Exception {
+    void sellArtifactShouldReturn75PercentOfOriginalPriceAndRemoveArtifact() throws IllegalStateException {
 
         ArtifactInfo artifact = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.HELM_OF_THE_ALABASTER_UNICORN);
         EconomyHero hero = EconomyHero.builder().aGold(2000).build();
@@ -34,9 +34,9 @@ public class EconomyHeroArtifactsManagementTest {
     }
 
     @Test
-    void buyArtifactShouldNotAddArtifactIfSlotAlreadyTaken() throws Exception {
+    void buyArtifactShouldNotAddArtifactIfSlotAlreadyTaken() throws IllegalStateException {
 
-        assertThrows(Exception.class, () -> {
+        assertThrows(IllegalStateException.class, () -> {
             ArtifactInfo artifact = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.CAPE_OF_CONJURING);
             EconomyHero hero = EconomyHero.builder().aGold(2000).build();
 
@@ -46,7 +46,7 @@ public class EconomyHeroArtifactsManagementTest {
     }
 
     @Test
-    void  buyArtifactShouldAddArtifactIfLocationEmpty() throws Exception {
+    void  buyArtifactShouldAddArtifactIfLocationEmpty() throws IllegalStateException {
         ArtifactInfo artifact = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.COLLAR_OF_CONJURING);
         EconomyHero hero = EconomyHero.builder().aGold(2000).build();
 
@@ -59,7 +59,7 @@ public class EconomyHeroArtifactsManagementTest {
 
 
     @Test
-    void shouldReturnArtifactByLocation() throws Exception {
+    void shouldReturnArtifactByLocation() throws IllegalStateException {
         EconomyHero hero = EconomyHero.builder().aGold(3000).build();
         ArtifactInfo artifact = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.CAPE_OF_CONJURING);
         hero.buyArtifact(artifact);

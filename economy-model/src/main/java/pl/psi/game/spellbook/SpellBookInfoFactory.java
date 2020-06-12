@@ -1,6 +1,7 @@
 package pl.psi.game.spellbook;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -65,9 +66,12 @@ public class SpellBookInfoFactory {
         return spellList;
     }
 
+    public static List<SpellInfo> getAll(){return Collections.unmodifiableList(spellList);}
+
     public static List<SpellInfo> getSpellsByLevel(int aLevel){
 
         return spellList.stream().filter(spell -> spell.getLevel() == aLevel).collect(Collectors.toList());
+
     }
 
     public static List<SpellInfo> getSpellsByType(SpellInfo.Type type){

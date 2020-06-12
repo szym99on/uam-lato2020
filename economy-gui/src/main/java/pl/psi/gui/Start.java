@@ -21,6 +21,7 @@ public class Start extends Application {
     public void start(Stage primaryStage) {
         try {
             Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("main-economy.fxml"));
+
             Scene scene = new Scene(root);
 
             primaryStage.setTitle("Heroes Economy 3");
