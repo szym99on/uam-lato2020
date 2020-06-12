@@ -7,7 +7,7 @@ import pl.psi.game.fractions.Creature;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-public class BuffDebufSpell extends Spell implements PropertyChangeListener {
+public class BuffDebufSpell extends Spell {
 
     private int modificationAttack;
     private int modificationArmor;
