@@ -287,12 +287,9 @@ public class ArtifactTest {
     void artifactShouldIncreaseSpellDurationBy2(){
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(RING_OF_CONJURING);
         Artifact ringOfConjuring = ArtifactFactory.createArtifact(artifactInfo);
-        List< Spell > spells = new ArrayList<>();
         SpellInfo spellInfo = SpellBookInfoFactory.getSpell(HASTE);
-        SpellFactory spellFactory = new SpellFactory();
-        Spell haste = spellFactory.createSpell(spellInfo);
-        spells.add(haste);
-        Hero battleHero = Hero.builder().aSpells(spells).build();
+        Hero battleHero = Hero.builder().build();
+        battleHero.getSpellBook().createSpell(spellInfo);
 
         try {
             ringOfConjuring.apply(battleHero);
@@ -300,7 +297,7 @@ public class ArtifactTest {
             e.printStackTrace();
         }
 
-        assertEquals(3,battleHero.getSpells().get(0).getDuration());
+        assertEquals(3,battleHero.getSpellBook().getSpells().get(0).getDuration());
     }
 
 

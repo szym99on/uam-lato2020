@@ -80,7 +80,7 @@ public class ArtifactsRequest {
 
     @Disabled
     @Test
-    void shouldReturnHerosSpellsList() {
+    void shouldReturnHerosSpellsList() {// get spells now from spellbook
         SpellInfo info1 = SpellBookInfoFactory.getSpellsByLevel(1).get(0);
         SpellInfo info2 = SpellBookInfoFactory.getSpellsByLevel(2).get(0);
         SpellFactory factory = new SpellFactory();
@@ -90,14 +90,15 @@ public class ArtifactsRequest {
         spells.add(s1);
         spells.add(s2);
 
-        Hero hero = Hero.builder().aSpells(spells).build();
-
+        Hero hero = Hero.builder().build();
+        hero.getSpellBook().createSpell(info1);
+        hero.getSpellBook().createSpell(info2);
 
         List< Spell > expected = new ArrayList<>();
         expected.add(s1);
         expected.add(s2);
 
-        assertEquals(expected, hero.getSpells());
+        assertEquals(expected, hero.getSpellBook().getSpells());
     }
 
     @Disabled

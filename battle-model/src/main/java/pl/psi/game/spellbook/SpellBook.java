@@ -31,7 +31,7 @@ public class SpellBook {
 
     public List<Spell> getSpells()
     {
-        return new ArrayList<>(spells);
+        return spells;
     }
     public void increaseHeroPower(int amount)
     {
