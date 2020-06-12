@@ -14,7 +14,7 @@ class DealDamageObstacle extends Obstacle {
     }
 
     @Override
-    public Point apply(Creature creature, Point destPoint) {
+    public Point apply(Creature creature) {
 
         if(!creature.isCanFly()) {
             creature.dealDamageObs(attack);

@@ -30,5 +30,10 @@ public class EmptyTile implements GuiTileIf{
         return 1;
     }
 
+    @Override
+    public Obstacle getObstacle() {
+        return null;
+    }
+
 
 }

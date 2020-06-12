@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import pl.psi.game.hero.converter.Hero;
 import pl.psi.game.move.GuiTileIf;
+import pl.psi.game.move.Obstacle;
 
 import java.awt.*;
 import java.beans.PropertyChangeEvent;
@@ -103,6 +104,11 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
     @Override
     public int weight() {
         return 0;
+    }
+
+    @Override
+    public Obstacle getObstacle() {
+        return null;
     }
 
     @Override

@@ -8,7 +8,7 @@ import java.awt.*;
 import java.beans.PropertyChangeSupport;
 import java.util.*;
 import java.util.List;
-import java.util.stream.DoubleStream;
+import java.util.concurrent.atomic.AtomicReference;
 
 import static pl.psi.game.Board.BOARD_HIGH;
 import static pl.psi.game.Board.BOARD_WIDTH;
@@ -25,18 +25,19 @@ public class WalkMoveStrategy implements MoveStrategyIf {
         activeCreature = aActiveCreature;
     }
 
-    private void stepMove(Point destPoint){
+    private Point stepMove(Point destPoint){
         List<GuiTileIf> steps = getSteps(destPoint);
 
-        steps.forEach(s-> s.getObstacle().apply(activeCreature.getValue(),destPoint));
+        AtomicReference<Point> a = null;
+        steps.forEach(s -> a.set(s.getObstacle().apply(activeCreature.getValue())));
+        return a.get();
     }
 
 
     @Override
     public void move(Point destPoint) {
-
-
         stepMove(destPoint);
+
         Point oldPosition = activeCreature.getKey();
         board.move((int) destPoint.getX(), (int) destPoint.getY(),activeCreature.getValue());
         activeCreature = new AbstractMap.SimpleEntry<>(destPoint, activeCreature.getValue());
