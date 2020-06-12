@@ -2,7 +2,7 @@ package pl.psi.game.spellbook;
 
 public class SpellFactory {
 
-    protected Spell createSpell(SpellInfo spellInfo){
+    public Spell createSpell(SpellInfo spellInfo){
         switch (spellInfo.getName()){
             case SpellBookInfoFactory.MAGIC_ARROW :
             case SpellBookInfoFactory.LIGHTNING_BOLT :
