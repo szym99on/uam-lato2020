@@ -79,7 +79,7 @@ public class MainBattleController {
             factory = new AttackPossibleTileFactoryDecorator(factory, aX, aY, gameEngine);
         }
 
-        if (gameEngine.isMoveAllowed(aX, aY)) {
+        if (gameEngine.isMoveAllowed(new Point(aX, aY))) {
             factory = new MovePossibleTileFactoryDecorator(factory, aX, aY, gameEngine);
         }
 

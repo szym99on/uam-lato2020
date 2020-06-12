@@ -159,10 +159,10 @@ class MoveEngineTest {
         moveEngine.setActiveCreature(new Point(1,1),c);
 
         Point startPoint = new Point(1,1);
-        assertTrue(moveEngine.isMovePossible(startPoint,new Point(1,2)));
-        assertTrue(moveEngine.isMovePossible(startPoint,new Point(1,0)));
-        assertTrue(moveEngine.isMovePossible(startPoint,new Point(0,1)));
-        assertTrue(moveEngine.isMovePossible(startPoint,new Point(2,1)));
+        assertTrue(moveEngine.isMovePossible(new Point(1,2)));
+        assertTrue(moveEngine.isMovePossible(new Point(1,0)));
+        assertTrue(moveEngine.isMovePossible(new Point(0,1)));
+        assertTrue(moveEngine.isMovePossible(new Point(2,1)));
     }
 
     @Test
@@ -177,8 +177,8 @@ class MoveEngineTest {
         moveEngine.setActiveCreature(new Point(1,1),c);
 
         Point startPoint = new Point(1,1);
-        assertFalse(moveEngine.isMovePossible(startPoint,new Point(1,3)));
-        assertFalse(moveEngine.isMovePossible(startPoint,new Point(3,1)));
+        assertFalse(moveEngine.isMovePossible(new Point(1,3)));
+        assertFalse(moveEngine.isMovePossible(new Point(3,1)));
     }
 
 
@@ -290,10 +290,10 @@ class MoveEngineTest {
         MoveEngine moveEngine = new MoveEngine(board);
         moveEngine.setActiveCreature(board.getCreatureLocation(creature).get(),creature);
 
-        assertTrue(moveEngine.isMovePossible(moveEngine.getActiveCreature().getKey(),new Point(8,5)));
-        assertFalse(moveEngine.isMovePossible(moveEngine.getActiveCreature().getKey(),new Point(8,7)));
-        assertTrue(moveEngine.isMovePossible(moveEngine.getActiveCreature().getKey(),new Point(7,4)));
-        assertFalse(moveEngine.isMovePossible(moveEngine.getActiveCreature().getKey(),new Point(6,4)));
+        assertTrue(moveEngine.isMovePossible(new Point(8,5)));
+        assertFalse(moveEngine.isMovePossible(new Point(8,7)));
+        assertTrue(moveEngine.isMovePossible(new Point(7,4)));
+        assertFalse(moveEngine.isMovePossible(new Point(6,4)));
 
     }
 

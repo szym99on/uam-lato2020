@@ -25,8 +25,8 @@ public class MoveEngine implements PropertyChangeListener {
         propertyChangeSupport = new PropertyChangeSupport(this);
     }
 
-    public boolean isMovePossible(Point startPoint, Point endPoint) {
-        return board.isTileEmpty((int) endPoint.getX(),(int) endPoint.getY()) && endPoint.distance(startPoint) <= activeCreature.getValue().getMoveRange();
+    public boolean isMovePossible(Point endPoint) {
+        return board.isTileEmpty((int) endPoint.getX(),(int) endPoint.getY()) && endPoint.distance(activeCreature.getKey()) <= activeCreature.getValue().getMoveRange();
     }
 
     public void move(int x, int y) {
