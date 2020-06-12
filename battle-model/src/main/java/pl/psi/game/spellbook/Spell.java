@@ -13,13 +13,13 @@ public abstract class Spell {
     protected final  String name;
     private final String description;
     private final int level;
-    private String duration;
+    private int duration;
     private int cost;
     private int manaCost;
     private SpellInfo.Type type;
 
 //    @Builder
-    public Spell (String aName, String aDescription, int aCost, int aLevel, int aManaCost, SpellInfo.Type aType, String aDuration) {
+    public Spell (String aName, String aDescription, int aCost, int aLevel, int aManaCost, SpellInfo.Type aType, int aDuration) {
         name = aName;
         description = aDescription;
         level = aLevel;

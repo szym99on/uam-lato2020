@@ -28,7 +28,7 @@ public class BuffAndDebufTest {
         assertEquals(SpellInfo.Type.AIR,spell.getType());
         assertEquals(1,spell.getLevel());
         assertEquals(6,spell.getManaCost());
-        assertEquals("1 Round/Power",spell.getDuration());
+        assertEquals(1,spell.getDuration());
     }
     @Test
     void factoryShouldCreateAirShieldSpell() {
@@ -39,7 +39,7 @@ public class BuffAndDebufTest {
         assertEquals(SpellInfo.Type.AIR,spell.getType());
         assertEquals(3,spell.getLevel());
         assertEquals(12,spell.getManaCost());
-        assertEquals("1 Round/Power",spell.getDuration());
+        assertEquals(1,spell.getDuration());
     }
     @Test
     void factoryShouldCreateBloodlustSpell() {
@@ -50,7 +50,7 @@ public class BuffAndDebufTest {
         assertEquals(SpellInfo.Type.FIRE,spell.getType());
         assertEquals(1,spell.getLevel());
         assertEquals(5,spell.getManaCost());
-        assertEquals("1 Round/Power",spell.getDuration());
+        assertEquals(1,spell.getDuration());
     }
     @Test
     void factoryShouldCreateFireShieldSpell() {
@@ -61,7 +61,7 @@ public class BuffAndDebufTest {
         assertEquals(SpellInfo.Type.FIRE,spell.getType());
         assertEquals(4,spell.getLevel());
         assertEquals(16,spell.getManaCost());
-        assertEquals("1 Round/Power",spell.getDuration());
+        assertEquals(1,spell.getDuration());
     }
     @Test
     void factoryShouldCreateSlowSpell() {
@@ -72,7 +72,7 @@ public class BuffAndDebufTest {
         assertEquals(SpellInfo.Type.EARTH,spell.getType());
         assertEquals(1,spell.getLevel());
         assertEquals(6,spell.getManaCost());
-        assertEquals("1 Round/Power",spell.getDuration());
+        assertEquals(1,spell.getDuration());
     }
     @Test
     void factoryShouldCreateStoneskinSpell() {
@@ -83,7 +83,7 @@ public class BuffAndDebufTest {
         assertEquals(SpellInfo.Type.EARTH,spell.getType());
         assertEquals(1,spell.getLevel());
         assertEquals(5,spell.getManaCost());
-        assertEquals("1 Round/Power",spell.getDuration());
+        assertEquals(1,spell.getDuration());
     }
     @Test
     void factoryShouldCreateWeaknessSpell() {
@@ -94,7 +94,7 @@ public class BuffAndDebufTest {
         assertEquals(SpellInfo.Type.WATER,spell.getType());
         assertEquals(2,spell.getLevel());
         assertEquals(8,spell.getManaCost());
-        assertEquals("1 Round/Power",spell.getDuration());
+        assertEquals(1,spell.getDuration());
     }
     @Test
     void factoryShouldCreatePrayerSpell() {
@@ -105,7 +105,7 @@ public class BuffAndDebufTest {
         assertEquals(SpellInfo.Type.WATER,spell.getType());
         assertEquals(4,spell.getLevel());
         assertEquals(16,spell.getManaCost());
-        assertEquals("1 Round/Power",spell.getDuration());
+        assertEquals(1,spell.getDuration());
     }
 
     @Test
