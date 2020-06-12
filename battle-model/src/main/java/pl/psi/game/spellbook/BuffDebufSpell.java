@@ -1,6 +1,7 @@
 package pl.psi.game.spellbook;
 
 import lombok.Builder;
+import pl.psi.game.Board;
 import pl.psi.game.fractions.Creature;
 
 import java.beans.PropertyChangeEvent;
@@ -8,28 +9,32 @@ import java.beans.PropertyChangeListener;
 
 public class BuffDebufSpell extends Spell implements PropertyChangeListener {
 
-    private int expireIn;
-    private final int heroPower;
-    private int additionalDuration;
     private int modificationAttack;
     private int modificationArmor;
     private int modificationMoveRange;
     private Creature creature;
 
     @Builder
-    public BuffDebufSpell (String aName, String aDescription, int aCost, int aLevel, int aManaCost, SpellInfo.Type aType, int aDuration,int aHeroPower, int aAdditionalDuration,int aModificationAttack, int aModificationArmor,int aModificationMoveRange) {
+    public BuffDebufSpell (String aName, String aDescription, int aCost, int aLevel, int aManaCost, SpellInfo.Type aType, int aDuration,int aModificationAttack, int aModificationArmor,int aModificationMoveRange) {
         super(aName,aDescription,aCost,aLevel,aManaCost,aType,aDuration);
-        heroPower = aHeroPower;
-        additionalDuration = aAdditionalDuration;
         modificationAttack = aModificationAttack;
         modificationArmor = aModificationArmor;
         modificationMoveRange = aModificationMoveRange;
     }
 
     @Override
+    public void increaseDuration (int aAdditionalDuration){
+        if(aAdditionalDuration >= 0)
+        {
+            duration = duration + aAdditionalDuration;
+        }
+        else throw new IllegalArgumentException("You can't increase by a negative value");
+    }
+
+    @Override
     public void cast(int x, int y)
     {
-        //cast(Board.getCreature(x,y));
+        cast(Board.getBoard().getCreature(x,y));
     }
 
     @Override
@@ -37,7 +42,6 @@ public class BuffDebufSpell extends Spell implements PropertyChangeListener {
     {
         //creature.addToBuffSet(this);
         creature = aCreature;
-        expireIn = heroPower + additionalDuration;
         if(modificationAttack >= 1){
 //            creature.increaseAttack(attack);
         }
@@ -63,8 +67,8 @@ public class BuffDebufSpell extends Spell implements PropertyChangeListener {
     @Override
     public void propertyChange(PropertyChangeEvent propertyChangeEvent)
     {
-        expireIn--;
-        if(expireIn==0){
+        duration--;
+        if(duration==0){
             removeSpell();
         }
     }
@@ -88,5 +92,6 @@ public class BuffDebufSpell extends Spell implements PropertyChangeListener {
         else if (modificationMoveRange <= -1){
 //            creature.increaseMoveRange(-moveRange)
         }
+//        creature.removeFromBuffSet(this);
     }
 }

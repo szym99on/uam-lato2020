@@ -13,7 +13,7 @@ public abstract class Spell {
     protected final  String name;
     private final String description;
     private final int level;
-    private int duration;
+    protected int duration;
     private int cost;
     private int manaCost;
     private SpellInfo.Type type;
@@ -35,6 +35,11 @@ public abstract class Spell {
     abstract public void cast (int x, int y);
 
     abstract public void cast (Creature creature);
+
+    public void increaseDuration(int aAdditionalDuration)
+    {
+
+    }
 
 
 }

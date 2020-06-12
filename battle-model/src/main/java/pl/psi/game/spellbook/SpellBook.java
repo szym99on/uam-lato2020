@@ -15,18 +15,6 @@ public class SpellBook {
         spellList = aHeroSpells;
     }
 
-    public void increaseSpellDuration (int aAdditionalDuration){
-        if(aAdditionalDuration >= 0)
-        {
-            additionalDuration = additionalDuration + aAdditionalDuration;
-        }
-        else throw new IllegalArgumentException("You can't increase by a negative value");
-    }
-
-    public Spell createSpell (SpellInfo spellInfo)
-    {
-        return factory.createSpell(spellInfo,heroPower,additionalDuration);
-    }
 
     public List<Spell> getHeroSpells() {
         return spellList;

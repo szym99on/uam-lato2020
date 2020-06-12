@@ -14,13 +14,13 @@ public class SpellFactory {
             case SpellBookInfoFactory.FIRE_BALL :
                 return null; //Wait for damageSpell implementation
             case SpellBookInfoFactory.WEAKNESS :
-                return BuffDebufSpell.builder().aModificationAttack(-3).aModificationArmor(0).aModificationMoveRange(0).aHeroPower(power).aAdditionalDuration(additionalDuration).aName(spellInfo.getName()).aCost(spellInfo.getCost()).aDescription(spellInfo.getDescription()).aDuration(spellInfo.getDuration()).aManaCost(spellInfo.getManaCost()).aLevel(spellInfo.getLevel()).aType(spellInfo.getType()).build();
+                return BuffDebufSpell.builder().aModificationAttack(-3).aModificationArmor(0).aModificationMoveRange(0).aName(spellInfo.getName()).aCost(spellInfo.getCost()).aDescription(spellInfo.getDescription()).aDuration(spellInfo.getDuration()).aManaCost(spellInfo.getManaCost()).aLevel(spellInfo.getLevel()).aType(spellInfo.getType()).build();
             case SpellBookInfoFactory.HASTE :
-                return BuffDebufSpell.builder().aModificationAttack(0).aModificationArmor(0).aModificationMoveRange(3).aHeroPower(power).aAdditionalDuration(additionalDuration).aName(spellInfo.getName()).aCost(spellInfo.getCost()).aDescription(spellInfo.getDescription()).aDuration(spellInfo.getDuration()).aManaCost(spellInfo.getManaCost()).aLevel(spellInfo.getLevel()).aType(spellInfo.getType()).build();
+                return BuffDebufSpell.builder().aModificationAttack(0).aModificationArmor(0).aModificationMoveRange(3).aName(spellInfo.getName()).aCost(spellInfo.getCost()).aDescription(spellInfo.getDescription()).aDuration(spellInfo.getDuration()).aManaCost(spellInfo.getManaCost()).aLevel(spellInfo.getLevel()).aType(spellInfo.getType()).build();
             case SpellBookInfoFactory.STONESKIN :
-                return BuffDebufSpell.builder().aModificationAttack(0).aModificationArmor(3).aModificationMoveRange(0).aHeroPower(power).aAdditionalDuration(additionalDuration).aName(spellInfo.getName()).aCost(spellInfo.getCost()).aDescription(spellInfo.getDescription()).aDuration(spellInfo.getDuration()).aManaCost(spellInfo.getManaCost()).aLevel(spellInfo.getLevel()).aType(spellInfo.getType()).build();
+                return BuffDebufSpell.builder().aModificationAttack(0).aModificationArmor(3).aModificationMoveRange(0).aName(spellInfo.getName()).aCost(spellInfo.getCost()).aDescription(spellInfo.getDescription()).aDuration(spellInfo.getDuration()).aManaCost(spellInfo.getManaCost()).aLevel(spellInfo.getLevel()).aType(spellInfo.getType()).build();
             case SpellBookInfoFactory.PRAYER :
-                return BuffDebufSpell.builder().aModificationAttack(2).aModificationArmor(2).aModificationMoveRange(2).aHeroPower(power).aAdditionalDuration(additionalDuration).aName(spellInfo.getName()).aCost(spellInfo.getCost()).aDescription(spellInfo.getDescription()).aDuration(spellInfo.getDuration()).aManaCost(spellInfo.getManaCost()).aLevel(spellInfo.getLevel()).aType(spellInfo.getType()).build();
+                return BuffDebufSpell.builder().aModificationAttack(2).aModificationArmor(2).aModificationMoveRange(2).aName(spellInfo.getName()).aCost(spellInfo.getCost()).aDescription(spellInfo.getDescription()).aDuration(spellInfo.getDuration()).aManaCost(spellInfo.getManaCost()).aLevel(spellInfo.getLevel()).aType(spellInfo.getType()).build();
             case SpellBookInfoFactory.AIR_SHIELD :
             case SpellBookInfoFactory.BLOODLUST :
             case SpellBookInfoFactory.FIRE_SHIELD :
