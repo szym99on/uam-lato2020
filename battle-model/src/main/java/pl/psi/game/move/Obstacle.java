@@ -24,7 +24,7 @@ public abstract class Obstacle implements GuiTileIf {
         return false;
     }
 
-    public abstract void apply(Creature aCreature);
+    public abstract Point apply(Creature aCreature, Point destPoint);
 
     @Override
     public Point getPoint() {

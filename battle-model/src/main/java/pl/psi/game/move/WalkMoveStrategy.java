@@ -25,11 +25,20 @@ public class WalkMoveStrategy implements MoveStrategyIf {
         activeCreature = aActiveCreature;
     }
 
+    private void stepMove(Point destPoint){
+        List<GuiTileIf> steps = getSteps(destPoint);
+
+        steps.forEach(s-> s.getObstacle().apply(activeCreature.getValue(),destPoint));
+    }
+
+
     @Override
     public void move(Point destPoint) {
+
+
+        stepMove(destPoint);
         Point oldPosition = activeCreature.getKey();
-
-
+        board.move((int) destPoint.getX(), (int) destPoint.getY(),activeCreature.getValue());
         activeCreature = new AbstractMap.SimpleEntry<>(destPoint, activeCreature.getValue());
         propertyChangeSupport.firePropertyChange(GameEngine.CREATURE_MOVED, oldPosition, activeCreature.getKey());
     }
@@ -51,23 +60,38 @@ public class WalkMoveStrategy implements MoveStrategyIf {
 
     @Override
     public boolean isMovePossible(Point startPoint, Point destPoint) {
-        return false;
+
+        List<Point> path = new LinkedList();
+        path = countPath(startPoint, destPoint, path);
+
+        if( path.size() - 1 > activeCreature.getValue().getMoveRange() ){
+            return false;
+        }
+        if ( !path.get(path.size() - 1).equals(destPoint)){
+            return false;
+        }
+        return true;
+
+
+
     }
 
     public List countPath(Point point, Point endPoint,List path){
+
         Point up = new Point(point.x,point.y + 1);
         Point down = new Point(point.x,point.y - 1);
         Point left = new Point(point.x - 1,point.y);
         Point right = new Point(point.x + 1,point.y);
 
-        double upDistance = endPoint.distance(up)  + getMapCost(up);
-        double downDistance = endPoint.distance(down) + getMapCost(down);
-        double leftDistance = endPoint.distance(left) + getMapCost(left);
-        double rightDistance = endPoint.distance(right) + getMapCost(right);
+        double upDistance = endPoint.distance(up)  + getMapCost(up) + pointInPath(path,up);
+        double downDistance = endPoint.distance(down) + getMapCost(down) + pointInPath(path,down);
+        double leftDistance = endPoint.distance(left) + getMapCost(left) + pointInPath(path,left);
+        double rightDistance = endPoint.distance(right) + getMapCost(right) + pointInPath(path,right);
 
+        //TODO this is ugly, but works. Now I don't now how do it better
         if(point.equals(endPoint)){
             return path;
-        }
+        } else
 
             if (upDistance <= downDistance && upDistance <= leftDistance && upDistance <= rightDistance) {
                 path.add(up);
@@ -89,6 +113,17 @@ public class WalkMoveStrategy implements MoveStrategyIf {
         return path;
     }
 
+
+    int pointInPath(List path, Point point){
+       if( path.contains(point))
+       {
+           return Integer.MAX_VALUE;
+       }
+       else {
+           return 0;
+       }
+    }
+
     Map<Point, Integer> mapCostGenerate(){
         Map<Point, GuiTileIf> copyBoard = Board.copyBoardValues();
         Map<Point, Integer> aStarBoard = new HashMap<>();
@@ -101,7 +136,11 @@ public class WalkMoveStrategy implements MoveStrategyIf {
 
         for (Point key: copyBoard.keySet()
         ) {
+                if(Board.getBoard().getTile(key.x, key.y).isCreature()){
                  aStarBoard.replace(key,Integer.MAX_VALUE);
+                } else {
+                    aStarBoard.replace(key,200);
+                }
         }
         return aStarBoard;
 
@@ -118,7 +157,4 @@ public class WalkMoveStrategy implements MoveStrategyIf {
         }
     }
 
-    OptionalDouble min(double... vals) {
-        return DoubleStream.of(vals).min();
-    }
 }
