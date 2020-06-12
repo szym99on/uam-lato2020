@@ -4,8 +4,15 @@ import com.google.common.collect.Range;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import pl.psi.game.Board;
+import pl.psi.game.GameEngine;
 import pl.psi.game.fractions.Creature;
+import pl.psi.game.fractions.DealDamageCounterWithHealStrategy;
 import pl.psi.game.fractions.ShootingCreature;
+import pl.psi.game.hero.converter.Hero;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -109,7 +116,7 @@ public class BuffAndDebufTest {
     }
 
     @Test
-    @Disabled
+//    @Disabled
     void shouldIncreasedCreatureMoveRange() {
         Creature creature = Creature.builder().aMoveRange(3).build();
         SpellFactory factory = new SpellFactory();
@@ -122,7 +129,7 @@ public class BuffAndDebufTest {
 
     @Test
     @Disabled
-        void shouldDecreaseDamageFromRangedAttacks(){
+    void shouldDecreaseDamageFromRangedAttacks(){
         Creature defender1 = Creature.builder().aArmor(0).aMaxHp(10).build();
         Creature defender2 = Creature.builder().aArmor(0).aMaxHp(10).build();
         Creature attacker1 = ShootingCreature.builder().aAttack(Range.closed(8,8)).aMaxHp(NOT_IMPORTANT_HP).build();
@@ -182,7 +189,7 @@ public class BuffAndDebufTest {
     }
 
     @Test
-    @Disabled
+//    @Disabled
     void shouldIncreaseArmor(){
         Creature c = Creature.builder().aArmor(5).build();
         SpellFactory factory = new SpellFactory();
@@ -190,7 +197,7 @@ public class BuffAndDebufTest {
 
         spell.cast(c);
 
-        assertEquals(15,c.getArmor());
+        assertEquals(8,c.getArmor());
     }
 
     @Test
@@ -207,11 +214,11 @@ public class BuffAndDebufTest {
         attacker.attack(defender2);
 
         assertEquals(1,defender1.getCurrentHp());
-        assertEquals(7,defender2.getCurrentHp());
+        assertEquals(4,defender2.getCurrentHp());
     }
 
     @Test
-    @Disabled
+//    @Disabled
     void shouldIncreaseAttackArmorMoveRange(){
         Creature creature = Creature.builder().aAttack(Range.closed(5,5)).aArmor(5).aMoveRange(5).build();
         SpellFactory factory = new SpellFactory();
@@ -219,9 +226,35 @@ public class BuffAndDebufTest {
 
         spell.cast(creature);
 
-        assertEquals(Range.closed(10,10),creature.getAttack());
-        assertEquals(10,creature.getArmor());
-        assertEquals(10,creature.getMoveRange());
+        assertEquals(Range.closed(7,7),creature.getAttack());
+        assertEquals(7,creature.getArmor());
+        assertEquals(7,creature.getMoveRange());
+    }
+
+    @Test
+    @Disabled
+    void buffShouldLastOneRound(){
+//        Board board = Board.getBoard();
+//        board.clearBoard();
+//        List<Creature> creatures = new ArrayList<>();
+//        Creature c1 = Creature.builder().aMoveRange(5).build();
+//        creatures.add(c1);
+//        List<Creature> creatures2 = new ArrayList<>();
+//        Creature c2_1 = Creature.builder().aMoveRange(11).build();
+//        creatures2.add(c2_1);
+//        Hero hero1 = Hero.builder().aCreatures(creatures).build();
+//        Hero hero2 = Hero.builder().aCreatures(creatures2).build();
+//
+//        GameEngine gameEngine = new GameEngine(hero1, hero2);
+//
+//        SpellFactory factory = new SpellFactory();
+//        Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.HASTE));
+//
+//        gameEngine.castSpell(c1,spell);
+//        assertEquals(8,c1.getMoveRange());
+//        gameEngine.pass();
+//        gameEngine.pass();
+//        assertEquals(5,c1.getMoveRange());
     }
 
     //PW looks really nice, you get testing idea correctly :).

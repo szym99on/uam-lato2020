@@ -43,22 +43,22 @@ public class BuffDebufSpell extends Spell {
         //creature.addToBuffSet(this);
         creature = aCreature;
         if(modificationAttack >= 1){
-//            creature.increaseAttack(attack);
+            creature.increaseAttack(modificationAttack);
         }
         else if (modificationAttack <= -1){
-//            creature.decreaseAttack(-attack);
+            creature.decreaseAttack(-modificationAttack);
         }
         if(modificationArmor >= 1){
-//            creature.increaseArmor(armor);
+            creature.increaseArmor(modificationArmor);
         }
         else if (modificationArmor <= -1){
-//            creature.decreaseArmor(-armor);
+            creature.decreaseArmor(-modificationArmor);
         }
         if(modificationMoveRange >= 1){
-//            creature.increaseMoveRange(moveRange);
+            creature.increaseMoveRange(modificationMoveRange);
         }
         else if(modificationMoveRange <= -1){
-//            creature.decreaseMoveRange(-moveRange);
+            creature.decreaseMoveRange(-modificationMoveRange);
         }
 
     }
@@ -75,22 +75,22 @@ public class BuffDebufSpell extends Spell {
 
     public void removeSpell(){
         if(modificationAttack >= 1){
-//            creature.decreaseAttack(attack);
+            creature.decreaseAttack(modificationAttack);
         }
         else if (modificationAttack <= -1){
-//            creature.increaseAttack(-attack);
+            creature.increaseAttack(-modificationAttack);
         }
         if(modificationArmor >= 1){
-//            creature.decreaseArmor(armor);
+            creature.decreaseArmor(modificationArmor);
         }
         else if (modificationArmor <= -1){
-//            creature.increaseArmor(-armor);
+            creature.increaseArmor(-modificationArmor);
         }
         if(modificationMoveRange >= 1){
-//            creature.decreaseMoveRange(moveRange);
+            creature.decreaseMoveRange(modificationMoveRange);
         }
         else if (modificationMoveRange <= -1){
-//            creature.increaseMoveRange(-moveRange)
+            creature.increaseMoveRange(-modificationMoveRange);
         }
 //        creature.removeFromBuffSet(this);
     }
