@@ -16,8 +16,11 @@ import pl.psi.game.spellbook.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static pl.psi.game.hero.artifacts.ArtifactsInfoFactory.CAPE_OF_VELOCITY;
+import static pl.psi.game.hero.artifacts.ArtifactsInfoFactory.RING_OF_LIFE;
 
 public class ConverterTest {
 

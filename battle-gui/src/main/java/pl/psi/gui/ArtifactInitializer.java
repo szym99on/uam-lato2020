@@ -15,7 +15,10 @@ public class ArtifactInitializer extends AbstractInitializer {
 //    units with long names mess up the whole grid
 //    the only artifacts that work and can currently be presented are those that manipulate creature's statistics
 //    welp, we have to wait ¯\_(ツ)_/¯
-
+    ArtifactInitializer()
+    {
+        ArtifactsInfoFactory artifactsInfoFactory = new ArtifactsInfoFactory();
+    }
 
     EconomyHero getH1() {
         EconomyHero h1 = EconomyHero.builder().aGold(100000000).aHeroInfo(HeroInfoFactory.getHeroInfoByName(HeroInfoFactory.EDRIC)).build();

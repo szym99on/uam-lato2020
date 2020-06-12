@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import org.junit.jupiter.api.Test;
 import pl.psi.game.GameEngine;
 import pl.psi.game.fractions.Creature;
 import pl.psi.game.fractions.CreatureAbstractFactory;
@@ -24,6 +25,8 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class MainBattleController {
 
     @FXML
@@ -36,6 +39,7 @@ public class MainBattleController {
     private final GameEngine gameEngine;
 
     public MainBattleController() {
+
         ArtifactInitializer init = new ArtifactInitializer();
 //        SpellInitializer init = new SpellInitializer();
 
