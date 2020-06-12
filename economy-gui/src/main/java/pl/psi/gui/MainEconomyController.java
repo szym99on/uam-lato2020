@@ -90,11 +90,13 @@ public class MainEconomyController {
 
     private final EconomyHero economyHero1;
     private final EconomyHero economyHero2;
+    private EconomyHero activeHero;
     private final EconomyEngine economyEngine;
 
     public MainEconomyController() {
         economyHero1 = EconomyHero.builder().aGold(3000).build();
         economyHero2 = EconomyHero.builder().aGold(3000).build();
+        activeHero = economyHero1;
         economyEngine = new EconomyEngine(economyHero1, economyHero2);
     }
 
@@ -140,7 +142,7 @@ public class MainEconomyController {
     @FXML
     private void initialize() {
 
-        gold.setText(Integer.toString(economyHero1.getGold()));
+        gold.setText(Integer.toString(activeHero.getGold()));
         int spellvar = 0;
         List<SpellInfo> spells = economyEngine.getSpellsAvailableToBuy();
         for (SpellInfo spell : spells) {
@@ -220,7 +222,7 @@ public class MainEconomyController {
         heroSpellsInside.getChildren().clear();
         heroSpellsInside2.getChildren().clear();
         int spellvarhero = 0;
-        List<SpellInfo> herospells = economyHero1.getSpells();
+        List<SpellInfo> herospells = activeHero.getSpells();
         for (SpellInfo spell : herospells) {
             if (spellvarhero < 5) {
                 HBox hbox = new HBox();
@@ -238,7 +240,7 @@ public class MainEconomyController {
 
         }
         int artvarhero = 0;
-        List<ArtifactInfo> heroartifacts = economyHero1.getArtifacts();
+        List<ArtifactInfo> heroartifacts = activeHero.getArtifacts();
         for (ArtifactInfo artifact : heroartifacts) {
             if (artvarhero < 5) {
                 HBox hbox = new HBox();
@@ -277,7 +279,7 @@ public class MainEconomyController {
 
         }*/
         int creaturevarhero = 0;
-        List<CreatureInfo> herocreatures = economyHero1.getCreatures();
+        List<CreatureInfo> herocreatures = activeHero.getCreatures();
         for (CreatureInfo creature : herocreatures) {
             if (creaturevarhero < 5) {
                 HBox hbox = new HBox();
@@ -305,16 +307,16 @@ public class MainEconomyController {
         System.out.println("Spell is:");
         System.out.println(spell.getName());
 
-        if (economyHero1.buySpell(spell)) {
+        if (activeHero.buySpell(spell)) {
 
             System.out.println("Spell bought");
             //gold.setText(String.valueOf(Integer.parseInt(gold.getText()) - spell.getCost()));
             spellShopInside.getChildren().remove(buySpellButton);
             spellShopInside2.getChildren().remove(buySpellButton);
-            System.out.println(economyHero1.getGold());
-            System.out.println(economyHero1.getSpells());
+            System.out.println(activeHero.getGold());
+            System.out.println(activeHero.getSpells());
             initializeEq();
-            gold.setText(Integer.toString(economyHero1.getGold()));
+            gold.setText(Integer.toString(activeHero.getGold()));
         } else {
             System.out.println("Couldn't buy spell");
 
