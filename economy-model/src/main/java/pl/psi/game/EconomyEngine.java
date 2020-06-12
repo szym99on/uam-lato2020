@@ -48,7 +48,8 @@ public class EconomyEngine implements PropertyChangeListener {
         new SkillInfoFactory();
 
 
-
+        this.economyHero1 = economyHero1;
+        this.economyHero2 = economyHero2;
         this.activeHero = economyHero1;
         this.spellShop1 = new SpellShop();
         this.spellShop2 = new SpellShop();
@@ -94,14 +95,15 @@ public class EconomyEngine implements PropertyChangeListener {
 
     }*/
 
-    public  boolean buySpell(SpellInfo spell){
-        if (this.activeHero == economyHero1) {
-            return economyHero1.buySpell(spell);
-            //should remove spell from the shop
-        } else {
-            return economyHero2.buySpell(spell);
-            //should remove spell from the shop
-        }
+    public void changeHero(){
+        if(activeHero == economyHero1)
+            activeHero = economyHero2;
+        else
+            activeHero = economyHero1;
     }
+
+
+
+
 
 }

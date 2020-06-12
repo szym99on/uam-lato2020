@@ -29,7 +29,7 @@ public class EconomyHero {
         creatures = new ArrayList<>();
         artifacts = new ArrayList<>();
         spells = new ArrayList<>();
-        //skills = new ArrayList<>();
+        skills = new ArrayList<>();
         this.heroInfo = aHeroInfo;
     }
 
