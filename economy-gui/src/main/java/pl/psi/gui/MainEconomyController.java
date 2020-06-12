@@ -10,6 +10,8 @@ import javafx.scene.text.Text;
 import pl.psi.game.EconomyEngine;
 import pl.psi.game.fractions.CreatureInfo;
 import pl.psi.game.fractions.FractionsInfoAbstractFactory;
+import pl.psi.game.hero.HeroInfo;
+import pl.psi.game.hero.HeroInfoFactory;
 import pl.psi.game.hero.artifacts.ArtifactInfo;
 import pl.psi.game.hero.artifacts.ArtifactsInfoFactory;
 import pl.psi.game.hero.economyHero.EconomyHero;
@@ -94,8 +96,11 @@ public class MainEconomyController {
     private final EconomyEngine economyEngine;
 
     public MainEconomyController() {
-        economyHero1 = EconomyHero.builder().aGold(3000).build();
-        economyHero2 = EconomyHero.builder().aGold(3000).build();
+        new HeroInfoFactory();
+        HeroInfo heroInfo1 = HeroInfoFactory.getHeroInfoByName(HeroInfoFactory.EDRIC);
+        economyHero1 = EconomyHero.builder().aGold(3000).aHeroInfo(heroInfo1).build();
+        HeroInfo heroInfo2 = HeroInfoFactory.getHeroInfoByName(HeroInfoFactory.ADELA);
+        economyHero2 = EconomyHero.builder().aGold(3000).aHeroInfo(heroInfo2).build();
         economyEngine = new EconomyEngine(economyHero1, economyHero2);
     }
 

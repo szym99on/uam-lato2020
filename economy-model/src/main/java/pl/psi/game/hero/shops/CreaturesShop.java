@@ -30,8 +30,8 @@ public class CreaturesShop extends AbstractShop {
     @Override
     public void generateItemsAvailableToBuy() {
         EconomyHero hero = EconomyHero.builder().build();
-        FractionsInfoAbstractFactory.Fractions fraction = hero.getFraction();
-        FractionsInfoAbstractFactory creaturesFactory = FractionsInfoAbstractFactory.getFactory(fraction);
+//        FractionsInfoAbstractFactory.Fraction fraction = hero.getFraction();
+//        FractionsInfoAbstractFactory creaturesFactory = FractionsInfoAbstractFactory.getFactory(fraction);
         List<CreatureInfo> creaturesAvailableToBuy = new ArrayList<>();
         List<CreatureStack> creatureStacks = new ArrayList<>();
 
