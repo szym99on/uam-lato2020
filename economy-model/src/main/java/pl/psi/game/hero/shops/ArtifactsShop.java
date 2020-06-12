@@ -30,6 +30,8 @@ public class ArtifactsShop extends AbstractShop {
 
         Random ran = new Random();
         int artifactCount = ran.nextInt(10);
+        if (artifactCount < 2)
+            artifactCount = 2;
         for (int i = 0; i < artifactCount; i++) {
             int randomIndex = ran.nextInt(artifacts.size());
             ArtifactInfo randomArtifact = artifacts.get(randomIndex);
