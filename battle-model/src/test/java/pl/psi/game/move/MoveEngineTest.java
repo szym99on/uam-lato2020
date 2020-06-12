@@ -8,13 +8,28 @@ import pl.psi.game.fractions.Creature;
 import java.awt.*;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.OptionalDouble;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class MoveEngineTest {
 
     @Test
-    void goYTest(){
+    void minMethodReturnsMinValue(){
+        Creature creature = Creature.builder().build();
+        Board board = Board.getBoard();
+        MoveEngine moveEngine = new MoveEngine(board);
+        moveEngine.setActiveCreature(new Point(1,1), creature);
+
+        WalkMoveStrategy moveStrategyIf = new WalkMoveStrategy(board,moveEngine.getActiveCreature());
+
+        OptionalDouble min = moveStrategyIf.min(1.2, 13.4, 987, 0.999999);
+        assertEquals(0.999999,min.getAsDouble());
+    }
+
+
+    @Test
+    void walkingMoveTest(){
 
         Creature creature = Creature.builder().build();
         Board board = Board.getBoard();
@@ -26,8 +41,56 @@ class MoveEngineTest {
         paths.add(new Point(1,1));
 
         List list = moveStrategyIf.countPath(new Point(1, 1), new Point(2, 3),paths);
-        System.out.println(list);
+        List expected = new LinkedList();
+        expected.add(new Point(1,1));
+        expected.add(new Point(1,2));
+        expected.add(new Point(1,3));
+        expected.add(new Point(2,3));
+        assertEquals(expected,list);
     }
+
+
+
+    @Test
+    void walkingMoveWithSomeObstacleOnBestPathTest(){
+
+        Creature creature = Creature.builder().build();
+        Board board = Board.getBoard();
+        MoveEngine moveEngine = new MoveEngine(board);
+        moveEngine.setActiveCreature(new Point(1,1), creature);
+
+        WalkMoveStrategy moveStrategyIf = new WalkMoveStrategy(board,moveEngine.getActiveCreature());
+        List <Point> paths = new LinkedList<>();
+        paths.add(new Point(1,1));
+        ObstacleFactory obstacleFactory = new ObstacleFactory();
+        Obstacle lava1 = obstacleFactory.createObstacle("lava", new Point(1, 2));
+        Obstacle lava2 =  obstacleFactory.createObstacle("lava", new Point(1, 2));
+
+        board.putObstacle(1,2,lava1);
+        board.putObstacle(2,1,lava2);
+
+        List list = moveStrategyIf.countPath(new Point(1, 1), new Point(2, 3),paths);
+        List expected = new LinkedList();
+        expected.add(new Point(1,1));
+        expected.add(new Point(0,1));
+        expected.add(new Point(0,2));
+        expected.add(new Point(0,3));
+        expected.add(new Point(1,3));
+        expected.add(new Point(2,3));
+
+        assertEquals(expected,list);
+
+/*
+        List list = moveStrategyIf.countPath(new Point(1, 1), new Point(2, 3),paths);
+        List expected = new LinkedList();
+        expected.add(new Point(1,1));
+        expected.add(new Point(2,1));
+        expected.add(new Point(2,2));
+        expected.add(new Point(2,3));
+        assertEquals(expected,list);
+*/
+    }
+
 
 
     @Test
@@ -164,6 +227,7 @@ class MoveEngineTest {
     }
 
     @Test
+    @Disabled
     void walkingCreatureShouldCanMove(){
         Board board = Board.getBoard();
         Creature creature = Creature.builder().aMoveRange(2).build();

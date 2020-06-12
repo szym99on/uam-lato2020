@@ -101,6 +101,11 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
     }
 
     @Override
+    public int weight() {
+        return 0;
+    }
+
+    @Override
     public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
         canCounterAttacked = true;
     }

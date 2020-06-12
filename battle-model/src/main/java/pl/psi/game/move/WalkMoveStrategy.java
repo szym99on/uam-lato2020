@@ -8,6 +8,7 @@ import java.awt.*;
 import java.beans.PropertyChangeSupport;
 import java.util.*;
 import java.util.List;
+import java.util.stream.DoubleStream;
 
 import static pl.psi.game.Board.BOARD_HIGH;
 import static pl.psi.game.Board.BOARD_WIDTH;
@@ -35,8 +36,17 @@ public class WalkMoveStrategy implements MoveStrategyIf {
 
     @Override
     public List<GuiTileIf> getSteps(Point destPoint) {
+        Point oldPosition = activeCreature.getKey().getLocation();
 
-        return null;
+        List<Point> path = new LinkedList();
+        path = countPath(oldPosition,destPoint,path);
+
+
+        List returnPath = new LinkedList();
+
+        path.forEach(p->returnPath.add(new EmptyTile(p)));
+
+        return returnPath;
     }
 
     @Override
@@ -44,36 +54,37 @@ public class WalkMoveStrategy implements MoveStrategyIf {
         return false;
     }
 
-    //TODO Its not working good if path is straight work ok. Should add Step counter so migrate from List to Map <Point, Integer>.
     public List countPath(Point point, Point endPoint,List path){
-        double initDistance = endPoint.distance(point);
-
         Point up = new Point(point.x,point.y + 1);
         Point down = new Point(point.x,point.y - 1);
         Point left = new Point(point.x - 1,point.y);
         Point right = new Point(point.x + 1,point.y);
 
-        double upDistance = endPoint.distance(up);
-        double downDistance = endPoint.distance(down);
-        double leftDistance = endPoint.distance(left);
-        double rightDistance = endPoint.distance(right);
+        double upDistance = endPoint.distance(up)  + getMapCost(up);
+        double downDistance = endPoint.distance(down) + getMapCost(down);
+        double leftDistance = endPoint.distance(left) + getMapCost(left);
+        double rightDistance = endPoint.distance(right) + getMapCost(right);
 
-        if(upDistance + getMapCost(up) < initDistance){
-            path.add(up);
-            countPath(up,endPoint,path);
+        if(point.equals(endPoint)){
+            return path;
         }
-        if(downDistance  + getMapCost(down)  < initDistance){
-            path.add(down);
-            countPath(down,endPoint,path);
-        }
-        if(leftDistance  + getMapCost(left) < initDistance){
-            path.add(left);
-            countPath(left,endPoint,path);
-        }
-        if(rightDistance  + getMapCost(right) < initDistance){
-            path.add(right);
-            countPath(right,endPoint,path);
-        }
+
+            if (upDistance <= downDistance && upDistance <= leftDistance && upDistance <= rightDistance) {
+                path.add(up);
+                countPath(up, endPoint, path);
+            }
+            if (downDistance < upDistance && downDistance < leftDistance && downDistance < rightDistance) {
+                path.add(down);
+                countPath(down, endPoint, path);
+            }
+            if (leftDistance < upDistance && leftDistance < downDistance && leftDistance < rightDistance) {
+                path.add(left);
+                countPath(left, endPoint, path);
+            }
+            if (rightDistance < upDistance && rightDistance < downDistance && rightDistance < leftDistance) {
+                path.add(right);
+                countPath(right, endPoint, path);
+            }
 
         return path;
     }
@@ -105,5 +116,9 @@ public class WalkMoveStrategy implements MoveStrategyIf {
         else {
             return mapCost.get(point);
         }
+    }
+
+    OptionalDouble min(double... vals) {
+        return DoubleStream.of(vals).min();
     }
 }
