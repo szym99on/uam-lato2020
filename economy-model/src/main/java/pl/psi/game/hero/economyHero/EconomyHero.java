@@ -213,7 +213,7 @@ public class EconomyHero {
 
     //methods from heroInfo
 
-    FractionsInfoAbstractFactory.Fractions getFraction() {
+    public FractionsInfoAbstractFactory.Fractions getFraction() {
         return heroInfo.getFraction();
     }
 
