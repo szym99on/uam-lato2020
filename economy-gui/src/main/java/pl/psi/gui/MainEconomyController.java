@@ -59,11 +59,11 @@ public class MainEconomyController {
     @FXML
     public VBox artifactsShopInside;
     @FXML
+    public VBox artifactsShopInside2;
+    @FXML
     public VBox creatureShopInside;
     @FXML
     public VBox creatureShopInside2;
-    @FXML
-    VBox artifactsShopInside2;
     @FXML
     private URL location;
 
@@ -367,6 +367,33 @@ public class MainEconomyController {
     public void handlePassTurn(ActionEvent actionEvent) {
         System.out.println("Clicked pass turn  button;");
         passTurnButton.setText("Pass turn  button clicked");
+        if(activeHero == economyHero1)
+            activeHero = economyHero2;
+        else
+            activeHero = economyHero1;
+        clearAll();
+        initialize();
+        initializeEq();
+    }
+
+    public void clearAll(){
+        heroSpellsInside.getChildren().clear();
+        heroSpellsInside2.getChildren().clear();
+        heroSkillInside.getChildren().clear();
+        heroSkillInside2.getChildren().clear();
+        heroArtifactsInside.getChildren().clear();
+        heroArtifactsInside2.getChildren().clear();
+        heroCreaturesInside.getChildren().clear();
+        heroCreaturesInside2.getChildren().clear();
+        spellShopInside.getChildren().clear();
+        spellShopInside2.getChildren().clear();
+        skillShopInside.getChildren().clear();
+        skillShopInside2.getChildren().clear();
+        artifactsShopInside.getChildren().clear();
+        artifactsShopInside2.getChildren().clear();
+//        creatureShopInside.getChildren().clear();
+//        creatureShopInside2.getChildren().clear();
+
     }
 
     public void handleBuySpecialSkill(ActionEvent actionEvent) {
