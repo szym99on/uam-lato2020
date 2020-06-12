@@ -1,15 +1,13 @@
 package pl.psi.game.move;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import pl.psi.game.fractions.Creature;
-
+import static org.junit.jupiter.api.Assertions.*;
 import java.awt.*;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 
 public class DealDamageObstacleTest {
-//TODO weź popraw te testy, żeby nie używać getCurrentHp będą wtedy bardziej czytelne
     @Test
     void walkingCreatureDealDamage(){
 
@@ -17,10 +15,9 @@ public class DealDamageObstacleTest {
         ObstacleFactory obstacleFactory = new ObstacleFactory();
         Obstacle obstacle = obstacleFactory.createObstacle("lava", new Point(1, 2));
 
-        int hp = creature.getCurrentHp();
         obstacle.apply(creature);
 
-        assertEquals(hp - 1, creature.getCurrentHp());
+        assertEquals(9, creature.getCurrentHp());
 
     }
 
@@ -33,7 +30,7 @@ public class DealDamageObstacleTest {
 
         obstacle.apply(creature);
 
-        assertEquals(creature.getMaxHp(), creature.getCurrentHp());
+        assertEquals(creature.getMaxHp(), 10);
 
     }
 }
