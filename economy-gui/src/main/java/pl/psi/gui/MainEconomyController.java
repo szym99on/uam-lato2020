@@ -9,6 +9,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import pl.psi.game.EconomyEngine;
 import pl.psi.game.fractions.CreatureInfo;
+import pl.psi.game.fractions.FractionsInfoAbstractFactory;
 import pl.psi.game.hero.artifacts.ArtifactInfo;
 import pl.psi.game.hero.artifacts.ArtifactsInfoFactory;
 import pl.psi.game.hero.economyHero.EconomyHero;
@@ -99,12 +100,6 @@ public class MainEconomyController {
     }
 
 
-    @FXML
-    private void handleBuyCreature(ActionEvent event) {
-        System.out.println("Clicked buy creature button;");
-        buyCreatureButton.setText("Buy creature button clicked");
-    }
-
     public void addItemToShop(String itemName, int cost, HBox hbox, String type) {
         String buying = "handleBuy" + type;
         Button btn = new Button();
@@ -194,22 +189,23 @@ public class MainEconomyController {
                 addItemToShop(artifact.getName(), artifact.getCost(), hbox, "Artifact");
             }
         }
-        /*int creaturevar = 0;
+
+        int creaturevar = 0;
         List<CreatureInfo> creatures = economyEngine.getCreaturesAvailableToBuy();
         for (CreatureInfo creature : creatures) {
             if (creaturevar < 5) {
                 HBox hbox = new HBox();
                 hbox.setSpacing(10);
                 creatureShopInside.getChildren().add(hbox);
-                addItemToShop(creature.getName(), creature.getCost(), hbox);
+                addItemToShop(creature.getName(), creature.getCost(), hbox, "Creature");
                 creaturevar++;
             } else {
                 HBox hbox = new HBox();
                 hbox.setSpacing(10);
                 creatureShopInside2.getChildren().add(hbox);
-                addItemToShop(creature.getName(), creature.getCost(), hbox);
+                addItemToShop(creature.getName(), creature.getCost(), hbox, "Creature");
             }
-        }*/
+        }
         initializeEq();
 
 
@@ -277,6 +273,8 @@ public class MainEconomyController {
             }
 
         }
+        heroCreaturesInside.getChildren().clear();
+        heroCreaturesInside.getChildren().clear();
         int creaturevarhero = 0;
         List<CreatureInfo> herocreatures = economyEngine.activeHero.getCreatures();
         for (CreatureInfo creature : herocreatures) {
@@ -360,6 +358,30 @@ public class MainEconomyController {
 
         }
     }
+
+    private void handleBuyCreature(ActionEvent actionEvent) {
+//        System.out.println("Clicked buy creature button;");
+//        System.out.println("ID is: ");
+//        System.out.println(((Button) actionEvent.getSource()).getId());
+//        String creatureName = ((Button) actionEvent.getSource()).getId();
+//        CreatureInfo creature = FractionsInfoAbstractFactory.getCreature(creatureName);
+//        System.out.println("Artifact is:");
+//        System.out.println(creature.getName());
+//
+//        if (economyEngine.activeHero.buyCreature(creature)) {
+//
+//            System.out.println("Creature bought");
+//            //gold.setText(String.valueOf(Integer.parseInt(gold.getText()) - spell.getCost()));
+//            artifactsShopInside.getChildren().remove(buyArtifactButton);
+//            artifactsShopInside2.getChildren().remove(buyArtifactButton);
+//            initializeEq();
+//            gold.setText(Integer.toString(economyEngine.activeHero.getGold()));
+//        } else {
+//            System.out.println("Couldn't buy artifact");
+//
+//        }
+    }
+
 
     public void handlePassTurn(ActionEvent actionEvent) {
         economyEngine.changeHero();

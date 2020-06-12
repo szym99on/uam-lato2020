@@ -37,7 +37,6 @@ public class EconomyEngine implements PropertyChangeListener {
     public SpecialSkillsShop specialSkillsShop2;
     public CreaturesShop creaturesShop1;
     public CreaturesShop creaturesShop2;
-
     private PropertyChangeSupport propertyChangeSupport;
 
     public EconomyEngine(EconomyHero economyHero1, EconomyHero economyHero2) {
@@ -69,8 +68,8 @@ public class EconomyEngine implements PropertyChangeListener {
         specialSkillsShop1.generateItemsAvailableToBuy();
         specialSkillsShop2.generateItemsAvailableToBuy();
 
-//        creaturesShop1.generateCreaturesAvailableToBuy();
-//        creaturesShop2.generateCreaturesAvailableToBuy();
+        creaturesShop1.generateItemsAvailableToBuy();
+        creaturesShop2.generateItemsAvailableToBuy();
     }
 
     @Override
@@ -90,10 +89,10 @@ public class EconomyEngine implements PropertyChangeListener {
     public List<ArtifactInfo> getArtifactsAvailableToBuy() {
         return this.activeHero == economyHero1 ? artifactsShop1.getArtifactsAvailableToBuy() : artifactsShop2.getArtifactsAvailableToBuy();
     }
-    /*public List<CreatureInfo> getCreaturesAvailableToBuy() {
+    public List<CreatureInfo> getCreaturesAvailableToBuy() {
         return this.activeHero == economyHero1 ? creaturesShop1.getCreaturesAvailableToBuy() : creaturesShop2.getCreaturesAvailableToBuy();
 
-    }*/
+    }
 
     public void changeHero(){
         if(activeHero == economyHero1)

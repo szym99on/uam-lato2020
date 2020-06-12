@@ -55,12 +55,12 @@ public class EconomyHero {
 
     }
 
-    public void buyCreature(CreatureInfo creature) throws IllegalStateException {
+    public boolean buyCreature(CreatureInfo creature) throws IllegalStateException {
         if (this.getGold() >= creature.getCost()) {
 
             this.decreaseGold(creature.getCost());
             this.creatures.add(creature);
-
+            return true;
         } else {
             String output = String.format("Not enough gold to buy creature: %s", creature.getName());
             throw new IllegalStateException(output);
