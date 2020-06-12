@@ -163,13 +163,12 @@ class CreatureTest {
     
     @Test
     void creatureShouldHealAfterAttack() {
-        Creature defender = new Creature(10, NOT_IMPORTANT_RANGE, NOT_IMPORTANT_0, "", 0, NOT_IMPORTANT_FALSE);
+        Creature defender = new Creature(100, Range.closed(5, 5), NOT_IMPORTANT_0, "", 0, NOT_IMPORTANT_FALSE);
         Creature attacker = new Creature(10, Range.closed(2, 2), NOT_IMPORTANT_0, "", 0, NOT_IMPORTANT_FALSE);
         attacker.setDealDamageCounterStrategy(new DealDamageCounterWithHealStrategy());
-        attacker.setCurrentHp(5);
         defender.setCanCounterAttacked(false);
 
-        attacker.attack(defender);
+        defender.attack(attacker);
 
         assertEquals(7, attacker.getCurrentHp());
     }

@@ -1,14 +1,16 @@
 package pl.psi.game.fractions;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
+
 import com.google.common.collect.Range;
+
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import pl.psi.game.hero.converter.Hero;
 import pl.psi.game.move.GuiTileIf;
-
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 
 @Getter
 public class Creature implements GuiTileIf, PropertyChangeListener {
@@ -19,7 +21,7 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
     private int basicArmor;
     private int armor;
     private final String name;
-    @Setter private int currentHp;
+    private int currentHp;
     @Setter private boolean canCounterAttacked;
     private int moveRange;
     private boolean canFly;
@@ -42,7 +44,7 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
         canFly = aCanFly;
         amount = 10;
         dealDamageCounterStrategy = new DefaultDamageCounterStrategy();
-        magicResistance = new MagicResistance(0, MagicResistance.ImmunityType.NONE);
+        magicResistance = new MagicResistance(0, MagicResistance.ImmunityType.NONE, new ArrayList<>());
         attackStrategyIf = new DefaultAttackStrategy(this);
     }
 
@@ -57,7 +59,7 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
         name = "";
         moveRange = 0;
         canFly = false;
-        magicResistance = new MagicResistance(0, MagicResistance.ImmunityType.NONE);
+        magicResistance = new MagicResistance(0, MagicResistance.ImmunityType.NONE, new ArrayList<>());
         attackStrategyIf = new DefaultAttackStrategy(this);
     }
 
@@ -120,7 +122,13 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
 
     public void decreaseAttack(int substractiveAttack) {
         Integer newMin = basicAttack.lowerEndpoint() - substractiveAttack;
+        if (newMin < 0) {
+        	newMin = 0;
+        }
         Integer newMax = basicAttack.upperEndpoint() - substractiveAttack;
+        if (newMax < 0) {
+        	newMax = 0;
+        }
         attack = Range.closed(newMin, newMax);
     }
 
@@ -129,7 +137,9 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
     }
 
     public void decreaseArmor(int substractiveArmor) {
-        armor = basicArmor - substractiveArmor;
+    	if (basicArmor - substractiveArmor < 0) {
+    		armor = 0;
+    	} else armor = basicArmor - substractiveArmor;
     }
 
     public void increaseMoveRange(int additionalMoveRange) {
@@ -137,7 +147,9 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
     }
 
     public void decreaseMoveRange(int substractiveMoveRange) {
-        moveRange -= substractiveMoveRange;
+    	if (moveRange - substractiveMoveRange < 0) {
+    		moveRange = 0;
+    	} else moveRange -= substractiveMoveRange;
     }
 
     public void apply(Hero hero) {
