@@ -29,61 +29,44 @@ public class SpellBookRequest {
     Nie mam obecnie pomysłu jak można by to rozwiązać ...
 */
     @Test
-    @Disabled
     void creatureShouldIncreaseMoveRange(){
         Creature creature = Creature.builder().aMoveRange(3).build();
-
-//        creature.increaseMoveRange(3);
-
+        creature.increaseMoveRange(3);
         assertEquals(6,creature.getMoveRange());
     }
 
     @Test
-    @Disabled
     void creatureShouldDecreaseMoveRange(){
         Creature creature = Creature.builder().aMoveRange(6).build();
-
-//        creature.decreaseMoveRange(3);
-
+        creature.decreaseMoveRange(3);
         assertEquals(3,creature.getMoveRange());
     }
 
     @Test
-    @Disabled
     void creatureShouldIncreaseArmor(){
         Creature creature = Creature.builder().aArmor(3).build();
-
-//        creature.increaseArmor(3);
-
+        creature.increaseArmor(3);
         assertEquals(6,creature.getArmor());
     }
 
     @Test
-    @Disabled
     void creatureShouldDecreaseArmor(){
         Creature creature = Creature.builder().aArmor(6).build();
-
-//        creature.decreaseArmor(3);
-
+        creature.decreaseArmor(3);
         assertEquals(3,creature.getArmor());
     }
     @Test
     @Disabled
     void creatureShouldIncreaseAttack(){
         Creature creature = Creature.builder().aAttack(Range.closed(3,3)).build();
-
-//        creature.increaseAttack(3);
-
+        creature.increaseAttack(3);
         assertEquals(Range.closed(6,6),creature.getAttack());
     }
 
     @Test
-    @Disabled
     void creatureShouldDecreaseAttack(){
         Creature creature = Creature.builder().aAttack(Range.closed(6,6)).build();
-
-//        creature.increaseMoveRange(3);
-
+        creature.decreaseAttack(3);
         assertEquals(Range.closed(3,3),creature.getAttack());
     }
 

@@ -10,13 +10,15 @@ import static pl.psi.game.hero.artifacts.ArtifactsInfoFactory.*;
 import static pl.psi.game.spellbook.SpellBookInfoFactory.*;
 
 public class ArtifactInitializer extends AbstractInitializer {
-//    gui is not refreshing, something is wrong and after some rounds the whole thing looks like a mess
-//    movement needs to fix their stuff
-//    air units can move but stuff above makes it impossible to check anything
-//    units can't move directly to their right or left nor can they move directly above or underneath their position
-//    the only artifacts that work and can be presented are those that manipulate creature's statistics
+//    ground units can only move 1 tile at a time
+//    air units can't move directly to their right or left nor can they move directly above or underneath their position
+//    units with long names mess up the whole grid
+//    the only artifacts that work and can currently be presented are those that manipulate creature's statistics
 //    welp, we have to wait ¯\_(ツ)_/¯
-
+    ArtifactInitializer()
+    {
+        ArtifactsInfoFactory artifactsInfoFactory = new ArtifactsInfoFactory();
+    }
 
     EconomyHero getH1() {
         EconomyHero h1 = EconomyHero.builder().aGold(100000000).aHeroInfo(HeroInfoFactory.getHeroInfoByName(HeroInfoFactory.EDRIC)).build();
@@ -24,7 +26,7 @@ public class ArtifactInitializer extends AbstractInitializer {
 //            ################################################################
 //            SCENARIO 1 - no artifacts equipped by hero
 //            ################################################################
-            h1.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(3));
+            h1.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(1));
 
 //            ################################################################
 //            SCENARIO 2 - hero has MAGIC_ARROW spell
@@ -51,7 +53,7 @@ public class ArtifactInitializer extends AbstractInitializer {
 //            ################################################################
 //            SCENARIO 1 - CreatureSpeedArtifact, CreatureHealthArtifact, HeroStatisticArtifact
 //            ################################################################
-            h2.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(3));
+            h2.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(7));
             h2.buyArtifact(ArtifactsInfoFactory.getArtifact(CAPE_OF_VELOCITY)); // +2 moveRange
             h2.buyArtifact(ArtifactsInfoFactory.getArtifact(RING_OF_LIFE)); // +2 Health
 //            h2.buyArtifact(ArtifactsInfoFactory.getArtifact(OGRES_CLUB_OF_HAVOC)); (waiting for implemention of heroAttack -> creatureAttack)

@@ -20,7 +20,7 @@ public class SummonUnits extends Spell {
     private String name;
 
     @Builder
-    public SummonUnits(String aName, String aDescription, int aCost, int aLevel, int aManaCost, SpellInfo.Type aType, String aDuration) {
+    public SummonUnits(String aName, String aDescription, int aCost, int aLevel, int aManaCost, SpellInfo.Type aType, int aDuration) {
         super(aName, aDescription, aCost, aLevel, aManaCost, aType, aDuration);
         name = aName;
     }

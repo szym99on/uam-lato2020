@@ -16,4 +16,9 @@ public class StrongholdInfoFactory extends FractionsInfoAbstractFactory {
         creatureList.add(CreatureInfo.builder().aMaxHp(70).aAttack(Range.closed(16, 20)).aName("Cyclops King").aArmor(13).aMoveRange(8).aCanFly(false).aCost(1100).build());
         creatureList.add(CreatureInfo.builder().aMaxHp(300).aAttack(Range.closed(30, 50)).aName("Ancient Behemoth").aArmor(19).aMoveRange(9).aCanFly(false).aCost(3000).build());
     }
+
+
+    public List<CreatureInfo> getAllCreatures(){
+        return creatureList;
+    }
 }

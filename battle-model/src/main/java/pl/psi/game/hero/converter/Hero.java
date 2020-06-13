@@ -20,23 +20,22 @@ public class Hero {
     private int knowledge;
 
     @Builder
-    public Hero(List<Creature> aCreatures,Skill aSkill,List<Spell> aSpells) {
+    public Hero(List<Creature> aCreatures,Skill aSkill) {
 
         creatures = aCreatures;
         skill = aSkill;
-        spellBook = new SpellBook(power,knowledge*10,aSpells);
         attack = 0;
         defence = 0;
         power = 0;
         knowledge = 0;
+        spellBook = SpellBook.builder().build();
     }
 
     public List<Creature> getCreatures() {
-        return new ArrayList<>(creatures);
+        return creatures;
     }
-    public List<Spell> getSpells() {
-        //return new spellBook.getSpells();
-        return new ArrayList<Spell>();
+    public SpellBook getSpellBook() {
+        return spellBook;
     }
 
     public void increaseAttack(int aAmount) {
@@ -62,6 +61,7 @@ public class Hero {
         else{
             power += aAmount;
         }
+        //spellBook.increasePower(aAmount);
     }
     public void increaseKnowledge(int aAmount) {
         if (knowledge + aAmount < 0){
@@ -70,6 +70,7 @@ public class Hero {
         else{
             knowledge += aAmount;
         }
+        //spellBook.increaseMana(aAmount*10);
     }
 
     public Integer getAttack() {

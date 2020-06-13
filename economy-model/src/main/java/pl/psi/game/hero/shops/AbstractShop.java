@@ -3,8 +3,10 @@ package pl.psi.game.hero.shops;
 
 import lombok.Getter;
 
+import java.util.List;
+
 @Getter
-public class AbstractShop {
+public abstract class AbstractShop {
 
     private String name;
     private String description;
@@ -21,7 +23,6 @@ public class AbstractShop {
 
     }
 
-
-
+     public abstract  void generateItemsAvailableToBuy();
 
 }

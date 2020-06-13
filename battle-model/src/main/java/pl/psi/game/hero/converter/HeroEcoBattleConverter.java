@@ -19,17 +19,20 @@ public class HeroEcoBattleConverter {
         //apply attack and defense on creatures
         //initialize factories
         CreatureAbstractFactory creatureFactory = new CreatureAbstractFactory();
-        SpellFactory spellFactory = new SpellFactory();
+
         List<Creature> convertedCreatures = aEconomyHero.getCreatures().stream().map(creatureFactory::getCreature).collect(Collectors.toList());
-        List<Spell> convertedSpells = aEconomyHero.getSpells().stream().map(spellFactory::createSpell).collect(Collectors.toList());
-        Hero hero = Hero.builder().aCreatures(convertedCreatures).aSpells(convertedSpells).build();
+        List<Artifact> convertedArtifacts = aEconomyHero.getArtifacts().stream().map(ArtifactFactory::createArtifact).collect(Collectors.toList());
+
+        Hero hero = Hero.builder().aCreatures(convertedCreatures).build();
         hero.increaseAttack(aEconomyHero.getAttack());
         hero.increaseDefence(aEconomyHero.getDefence());
         hero.increasePower(aEconomyHero.getPower());
         hero.increaseKnowledge(aEconomyHero.getKnowledge());
-        List<Artifact> convertedArtifacts = aEconomyHero.getArtifacts().stream().map(ArtifactFactory::createArtifact).collect(Collectors.toList());
+        hero.getSpellBook().increaseHeroPower(hero.getPower());
+
+        aEconomyHero.getSpells().forEach(s -> hero.getSpellBook().createSpell(s));
         convertedArtifacts.forEach(a -> a.apply(hero));
-        //hero.getCreatures().forEach(c -> c.apply(hero));
+        hero.getCreatures().forEach(c -> c.apply(hero));
         return hero;
     }
 

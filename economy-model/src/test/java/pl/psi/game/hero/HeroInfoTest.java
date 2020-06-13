@@ -28,7 +28,7 @@ public class HeroInfoTest {
     void CheckGetFractionMethod()
     {
         List<HeroInfo> heroInfoList;
-        heroInfoList=HeroInfoFactory.getHeroInfoListByFraction(HeroInfo.Fraction.TOWER);
+        heroInfoList=HeroInfoFactory.getHeroInfoListByFraction(FractionsInfoAbstractFactory.Fractions.TOWER);
         assertEquals(HeroInfoFactory.FAFNER,heroInfoList.get(0).getName());
     }
     @Test
