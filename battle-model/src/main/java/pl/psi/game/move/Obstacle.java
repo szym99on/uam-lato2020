@@ -1,34 +1,22 @@
 package pl.psi.game.move;
 
-import lombok.Builder;
 import pl.psi.game.fractions.Creature;
 
 import java.awt.*;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 
-public class Obstacle implements GuiTileIf, PropertyChangeListener {
+public abstract class Obstacle implements GuiTileIf {
 
-    private final String type;
-    private final int attack;
-    private final int reduceMoveRange;
-    private final boolean isEndingMove;
-    private PropertyChangeSupport propertyChangeSupport;
+    private final String name;
+    private final Point point;
 
-
-    @Builder
-    public Obstacle(String aType, int aAttack, int aReduceMoveRange, boolean aIsEndingMove){
-        type = aType;
-        attack = aAttack;
-        reduceMoveRange = aReduceMoveRange;
-        isEndingMove = aIsEndingMove;
+    public Obstacle(String aName, Point aPoint){
+        name = aName;
+        point = aPoint;
     }
-
 
     @Override
     public String getDisplayName() {
-        return type;
+        return name;
     }
 
     @Override
@@ -36,22 +24,15 @@ public class Obstacle implements GuiTileIf, PropertyChangeListener {
         return false;
     }
 
+    public abstract Point apply(Creature aCreature);
 
     @Override
-    public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
-
+    public Point getPoint() {
+        return point;
     }
 
-    public void attack(Creature creature){
-
+    @Override
+    public int weight() {
+        return 2;
     }
-
-    public void reduceMoveRange(Creature creature){
-
-    }
-
-    public void endMove(Creature creature){
-
-    }
-
 }

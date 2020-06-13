@@ -1,17 +1,19 @@
 package pl.psi.game.move;
 
 import pl.psi.game.Board;
-import pl.psi.game.GameEngine;
 import pl.psi.game.fractions.Creature;
 
 import java.awt.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.util.AbstractMap;
-import java.util.HashMap;
+import java.util.*;
+import java.util.List;
+import java.util.stream.Collectors;
+
 
 public class MoveEngine implements PropertyChangeListener {
+
 
     private HashMap.Entry<Point, Creature> activeCreature;
     private final Board board;
@@ -23,20 +25,37 @@ public class MoveEngine implements PropertyChangeListener {
         propertyChangeSupport = new PropertyChangeSupport(this);
     }
 
-    public boolean isMovePossible(int x, int y) {
-        return board.isTileEmpty(x,y) && new Point(x,y).distance(activeCreature.getKey()) <= activeCreature.getValue().getMoveRange();
+    public boolean isMovePossible(Point endPoint) {
+        return board.isTileEmpty((int) endPoint.getX(),(int) endPoint.getY()) && endPoint.distance(activeCreature.getKey()) <= activeCreature.getValue().getMoveRange();
     }
 
     public void move(int x, int y) {
         if(activeCreature.getValue().isCanFly()) {
-            moveStrategyIf = new MoveStrategyFly(board, activeCreature);
+            //activeCreature.getValue().getMoveStrategy().move(x,y);
+            moveStrategyIf = new FlyMoveStrategy(board, activeCreature);
         } else {
-            moveStrategyIf = new MoveStrategyWalk(board, activeCreature);
+            moveStrategyIf = new WalkMoveStrategy(board, activeCreature);
         }
-        moveStrategyIf.move(x,y);
+
+        List<GuiTileIf> path = getMovePath(x, y);
+        List<Obstacle> pathObs = path.stream().filter(t -> t instanceof Obstacle).map(o -> (Obstacle)o).collect(Collectors.toList());
+        pathObs.forEach(o -> o.apply(activeCreature.getValue()));
+
+        moveStrategyIf.move(new Point(x,y));
     }
 
+    public List<GuiTileIf> getMovePath(int x, int y){
+        if(activeCreature.getValue().isCanFly()) {
+            moveStrategyIf = new FlyMoveStrategy(board, activeCreature);
+        } else {
+            moveStrategyIf = new WalkMoveStrategy(board, activeCreature);
+        }
+        return moveStrategyIf.getSteps(new Point(x, y));
+    }
 
+    public HashMap.Entry<Point, Creature> getActiveCreature() {
+        return activeCreature;
+    }
 
 
 

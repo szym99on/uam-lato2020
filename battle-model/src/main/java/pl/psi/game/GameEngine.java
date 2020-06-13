@@ -58,13 +58,14 @@ public class GameEngine implements PropertyChangeListener {
         propertyChangeSupport.firePropertyChange(ACTIVE_CREATURE_CHANGED, null, activeCreature);
     }
 
-    public boolean isMoveAllowed(int x, int y){
-        return moveEngine.isMovePossible(x,y);
+    public boolean isMoveAllowed(Point point){
+        return moveEngine.isMovePossible(point);
     }
 
     public void move(int x, int y){
         moveEngine.move(x,y);
     }
+
     @Override
     public void propertyChange(PropertyChangeEvent aPropertyChangeEvent) {
         activeCreature = new AbstractMap.SimpleEntry<>( (Point)aPropertyChangeEvent.getNewValue(), activeCreature.getValue());
