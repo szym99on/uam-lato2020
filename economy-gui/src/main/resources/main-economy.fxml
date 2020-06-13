@@ -16,14 +16,29 @@
             <Font name="Arial" size="22.0"/>
         </font>
     </Button>
-    <VBox fx:id="creatureShop" layoutX="547.0" layoutY="59.0" prefHeight="620.0" prefWidth="516.0" style="-fx-border-style: solid;">
+    <VBox fx:id="shops" layoutX="547.0" layoutY="59.0" prefHeight="620.0" prefWidth="516.0" style="-fx-border-style: solid;">
         <VBox prefHeight="200.0" prefWidth="502.0" style="-fx-border-style: solid;">
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Creature Shop">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Shop">
                 <font>
                     <Font size="18.0"/>
                 </font>
             </Text>
         </VBox>
+    <VBox fx:id="creaturesShop"  prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Creatures Shop">
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </Text>
+        <HBox fx:id="creaturesShopLayout" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+            <VBox fx:id="creaturesShopInside" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+
+            </VBox>
+            <VBox fx:id="creaturesShopInside2" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+
+            </VBox>
+        </HBox>
+    </VBox>
         <VBox fx:id="spellShop" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Spell Shop">
                 <font>

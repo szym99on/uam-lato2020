@@ -89,7 +89,7 @@ public class EconomyEngine implements PropertyChangeListener {
     public List<ArtifactInfo> getArtifactsAvailableToBuy() {
         return this.activeHero == economyHero1 ? artifactsShop1.getArtifactsAvailableToBuy() : artifactsShop2.getArtifactsAvailableToBuy();
     }
-    public List<CreatureInfo> getCreaturesAvailableToBuy() {
+    public List<CreatureStack> getCreaturesAvailableToBuy() {
         return this.activeHero == economyHero1 ? creaturesShop1.getCreaturesAvailableToBuy() : creaturesShop2.getCreaturesAvailableToBuy();
 
     }
