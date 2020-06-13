@@ -53,8 +53,8 @@ class MoveEngineTest {
         Obstacle lava1 = obstacleFactory.createObstacle("lava", new Point(1, 2));
         Obstacle lava2 =  obstacleFactory.createObstacle("lava", new Point(2,1));
 
-        board.putObstacle(1,2,lava1);
-        board.putObstacle(2,1,lava2);
+        board.putObstacle(lava1);
+        board.putObstacle(lava2);
 
         List list = moveStrategyIf.countPath(new Point(1, 1), new Point(2, 3),paths);
         List expected = new LinkedList();
@@ -91,12 +91,12 @@ class MoveEngineTest {
         Obstacle lava6 =  obstacleFactory.createObstacle("lava", new Point(5,4));
 
 
-        board.putObstacle(5,7,lava1);
-        board.putObstacle(4,6,lava2);
-        board.putObstacle(4,5,lava3);
-        board.putObstacle(6,6,lava4);
-        board.putObstacle(6,5,lava5);
-        board.putObstacle(5,4,lava6);
+        board.putObstacle(lava1);
+        board.putObstacle(lava2);
+        board.putObstacle(lava3);
+        board.putObstacle(lava4);
+        board.putObstacle(lava5);
+        board.putObstacle(lava6);
 
 
         List list = moveStrategyIf.countPath(new Point(5, 5), new Point(5, 9),paths);
@@ -133,13 +133,14 @@ class MoveEngineTest {
         Obstacle lava5 = obstacleFactory.createObstacle("lava", new Point(6,5));
         Obstacle lava6 =  obstacleFactory.createObstacle("lava", new Point(5,4));
 
+        board.clearBoard();
 
-        board.putObstacle(5,7,lava1);
-        board.putObstacle(4,6,lava2);
-        board.putObstacle(4,5,lava3);
-        board.putObstacle(6,6,lava4);
-        board.putObstacle(6,5,lava5);
-        board.putObstacle(5,4,lava6);
+        board.putObstacle(lava1);
+        board.putObstacle(lava2);
+        board.putObstacle(lava3);
+        board.putObstacle(lava4);
+        board.putObstacle(lava5);
+        board.putObstacle(lava6);
 
 
         assertTrue(moveStrategyIf.isMovePossible(new Point(5,5),new Point(9,9)));
@@ -185,7 +186,6 @@ class MoveEngineTest {
 
 
     @Test
-    @Disabled
     void moveCreature(){
         Creature c = Creature.builder().aMoveRange(1).aCanFly(true).build();
         Board board = Board.getBoard();
@@ -281,7 +281,6 @@ class MoveEngineTest {
     }
 
     @Test
-    @Disabled
     void walkingCreatureShouldCanMove(){
         Board board = Board.getBoard();
         Creature creature = Creature.builder().aMoveRange(2).build();
@@ -293,7 +292,7 @@ class MoveEngineTest {
         assertTrue(moveEngine.isMovePossible(new Point(8,5)));
         assertFalse(moveEngine.isMovePossible(new Point(8,7)));
         assertTrue(moveEngine.isMovePossible(new Point(7,4)));
-        assertFalse(moveEngine.isMovePossible(new Point(6,4)));
+        assertFalse(moveEngine.isMovePossible(new Point(5,4)));
 
     }
 

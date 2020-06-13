@@ -21,12 +21,12 @@ public class Board {
     public Board() {
         board = new HashMap<>();
         ObstacleFactory obstacleFactory = new ObstacleFactory();
-//        putObstacle(7, 2, obstacleFactory.createObstacle("lava"));
-//        putObstacle(7, 3, obstacleFactory.createObstacle("lava"));
-//        putObstacle(7, 4, obstacleFactory.createObstacle("lava"));
-//        putObstacle(7, 5, obstacleFactory.createObstacle("lava"));
-//        putObstacle(7, 6, obstacleFactory.createObstacle("lava"));
-//        putObstacle(7, 7, obstacleFactory.createObstacle("lava"));
+        putObstacle(obstacleFactory.createObstacle("lava", new Point(7, 2)));
+        putObstacle(obstacleFactory.createObstacle("lava", new Point(7, 3)));
+        putObstacle(obstacleFactory.createObstacle("lava", new Point(7, 4)));
+        putObstacle(obstacleFactory.createObstacle("lava", new Point(7, 5)));
+        putObstacle(obstacleFactory.createObstacle("lava", new Point(7, 6)));
+        putObstacle(obstacleFactory.createObstacle("lava", new Point(7, 7)));
 
 
     }
@@ -62,7 +62,10 @@ public class Board {
         board.put(new Point(x, y), aCreature);
     }
 
-    public void putObstacle(int x, int y, Obstacle aObstacle) {
+    public void putObstacle(Obstacle aObstacle) {
+        Point point = aObstacle.getPoint();
+        int x = (int) point.getX();
+        int y = (int) point.getY();
         if (x > BOARD_WIDTH || x < 0 || y > BOARD_HIGH || y < 0) {
             throw new IllegalArgumentException("You tried put obstacle outside the board");
         }
