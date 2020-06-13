@@ -416,8 +416,8 @@ public class MainEconomyController {
         skillShopInside2.getChildren().clear();
         artifactsShopInside.getChildren().clear();
         artifactsShopInside2.getChildren().clear();
-//        creatureShopInside.getChildren().clear();
-//        creatureShopInside2.getChildren().clear();
+        creaturesShopInside.getChildren().clear();
+        creaturesShopInside2.getChildren().clear();
 
     }
 
