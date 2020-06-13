@@ -17,7 +17,7 @@ class DealDamageObstacle extends Obstacle {
     public Point apply(Creature creature) {
 
         if(!creature.isCanFly()) {
-            creature.dealDamageObs(attack);
+            creature.dealDamageObstacle(attack);
         }
         return null;
     }
