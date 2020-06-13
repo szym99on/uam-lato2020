@@ -5,9 +5,6 @@ import pl.psi.game.hero.artifacts.ArtifactInfo;
 import static pl.psi.game.hero.artifacts.ArtifactsInfoFactory.*;
 
 public class ArtifactFactory {
-    //PW you should return concrete class not Artifact. For example:
-    // SKULL_HELMET should return Artifact for heroes (more specific HeroAttributesArtifact)
-    // BOOTS_OF_POLARITY should return Artifact for creature ( more specific CreatureMagicResistanceArtifact)
     public static Artifact createArtifact(ArtifactInfo artifactInfo){
         if (artifactInfo.getName().equals(HELM_OF_THE_ALABASTER_UNICORN)){
             return new HeroStatisticArtifact(0,0,0,1);
