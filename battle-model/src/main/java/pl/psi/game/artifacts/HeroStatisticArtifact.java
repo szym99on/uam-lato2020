@@ -49,4 +49,7 @@ class HeroStatisticArtifact extends Artifact {
 
     @Override
     public int getDuration() { return 0; }
+
+    @Override
+    public String getSpellImmunityName() { return "NONE"; }
 }

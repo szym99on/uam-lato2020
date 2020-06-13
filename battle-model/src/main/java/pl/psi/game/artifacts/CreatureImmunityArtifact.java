@@ -1,6 +1,7 @@
 package pl.psi.game.artifacts;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import pl.psi.game.fractions.Creature;
 import pl.psi.game.fractions.MagicResistance;
@@ -8,13 +9,15 @@ import pl.psi.game.fractions.MagicResistance.ImmunityType;
 
 
 class CreatureImmunityArtifact extends CreatureBuffArtifact {
-    private final ImmunityType immunityType;
+    private final String spellName;
 
-    CreatureImmunityArtifact(ImmunityType aImmunityType) { immunityType = aImmunityType; }
+    CreatureImmunityArtifact(String aSpellName) { spellName = aSpellName; }
 
     @Override
     void buffCreature(Creature c) {
-        MagicResistance magicResistance = new MagicResistance(0, immunityType, new ArrayList<>());
+        List<String> spells = new ArrayList<>();
+        spells.add(spellName);
+        MagicResistance magicResistance = new MagicResistance(0, ImmunityType.NONE, spells);
         c.setMagicResistance(magicResistance);
     }
 
@@ -26,4 +29,9 @@ class CreatureImmunityArtifact extends CreatureBuffArtifact {
 
     @Override
     public int getMagicResistance() { return 0; }
+
+    @Override
+    public String getSpellImmunityName() {
+        return spellName;
+    }
 }

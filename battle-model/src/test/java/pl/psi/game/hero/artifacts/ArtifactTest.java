@@ -41,13 +41,12 @@ public class ArtifactTest {
         assertEquals(2, ringOfLife.getHealth());
     }
 
-    @Disabled // waiting for immunity implementation by fractions/spells
     @Test
     void factoryShouldCreateCreatureImmunityArtifact(){
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(PENDANT_OF_LIFE);
         Artifact pendantOfLife = ArtifactFactory.createArtifact(artifactInfo);
 
-        // could be assertEquals(DEATH_RIPPLE, pendantOfLife.getSpell()); -depends on implementation of immunity
+        assertEquals(LIGHTNING_BOLT, pendantOfLife.getSpellImmunityName());
     }
 
     @Test

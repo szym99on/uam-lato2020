@@ -3,6 +3,8 @@ package pl.psi.game.artifacts;
 import pl.psi.game.hero.artifacts.ArtifactInfo;
 
 import static pl.psi.game.hero.artifacts.ArtifactsInfoFactory.*;
+import static pl.psi.game.spellbook.SpellBookInfoFactory.LIGHTNING_BOLT;
+import static pl.psi.game.spellbook.SpellBookInfoFactory.MAGIC_ARROW;
 
 public class ArtifactFactory {
     public static Artifact createArtifact(ArtifactInfo artifactInfo){
@@ -30,12 +32,12 @@ public class ArtifactFactory {
         else if (artifactInfo.getName().equals(COLLAR_OF_CONJURING)){
             return new SpellDurationArtifact(1);
         }
-//        else if (artifactInfo.getName().equals(PENDANT_OF_DISPASSION)){
-//            return new CreatureImmunityArtifact();
-//        }
-//        else if (artifactInfo.getName().equals(PENDANT_OF_LIFE)){
-//            return new CreatureImmunityArtifact();
-//        }
+        else if (artifactInfo.getName().equals(PENDANT_OF_DISPASSION)){
+            return new CreatureImmunityArtifact(MAGIC_ARROW);
+        }
+        else if (artifactInfo.getName().equals(PENDANT_OF_LIFE)){
+            return new CreatureImmunityArtifact(LIGHTNING_BOLT);
+        }
         else if (artifactInfo.getName().equals(BREASTPLATE_OF_PETRIFIED_WOOD)){
             return new HeroStatisticArtifact(0,0,1,0);
         }

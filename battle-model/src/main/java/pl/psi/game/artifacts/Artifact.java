@@ -14,4 +14,5 @@ public abstract class Artifact{
     public abstract int getHealth();
     public abstract int getMagicResistance();
     public abstract int getDuration();
+    public abstract String getSpellImmunityName();
 }
