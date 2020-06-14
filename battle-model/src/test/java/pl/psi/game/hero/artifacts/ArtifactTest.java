@@ -112,7 +112,7 @@ public class ArtifactTest {
 
         assertFalse(spellBuffArtifact.affectsHeroStats());
     }
-    
+
     @Test
     void heroStatisticArtifactShouldReturnTrue(){
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(ARMOR_OF_WONDER);
