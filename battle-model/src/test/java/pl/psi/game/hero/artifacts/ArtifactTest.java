@@ -95,6 +95,33 @@ public class ArtifactTest {
 
 
 
+//    AffectsHeroStats test
+
+    @Test
+    void creatureBuffArtifactShouldReturnFalse(){
+        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(RING_OF_LIFE);
+        Artifact creatureBuffArtifact = ArtifactFactory.createArtifact(artifactInfo);
+
+        assertFalse(creatureBuffArtifact.affectsHeroStats());
+    }
+
+    @Test
+    void spellBuffArtifactShouldReturnFalse(){
+        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(RING_OF_CONJURING);
+        Artifact spellBuffArtifact = ArtifactFactory.createArtifact(artifactInfo);
+
+        assertFalse(spellBuffArtifact.affectsHeroStats());
+    }
+    
+    @Test
+    void heroStatisticArtifactShouldReturnTrue(){
+        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(ARMOR_OF_WONDER);
+        Artifact heroStatisticArtifact = ArtifactFactory.createArtifact(artifactInfo);
+
+        assertTrue(heroStatisticArtifact.affectsHeroStats());
+    }
+
+
 //    CreatureHealthArtifact test
 
     @Test
