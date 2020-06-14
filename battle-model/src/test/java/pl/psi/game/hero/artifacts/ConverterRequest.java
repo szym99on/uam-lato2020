@@ -23,4 +23,15 @@ public class ConverterRequest {
         artifact.apply(hero);
         assertEquals(hero.getKnowledge(),1);
     }
+    /*@Test
+    void ArtifactCanChangeHeroStats() {
+        Artifact artifact = ArtifactFactory.createArtifact(ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.HELM_OF_THE_ALABASTER_UNICORN));
+        assertEquals(artifact.changeHeroStats(),true);
+    }*/
+    /*
+    @Test
+    void ArtifactCantChangeHeroStats() {
+        Artifact artifact = ArtifactFactory.createArtifact(ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.BREASTPLATE_OF_PETRIFIED_WOOD));
+        assertEquals(artifact.changeHeroStats(),false);
+    }*/
 }
