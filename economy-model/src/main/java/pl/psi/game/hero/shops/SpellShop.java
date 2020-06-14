@@ -7,44 +7,36 @@ import pl.psi.game.spellbook.SpellInfo;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
 
 public class SpellShop extends AbstractShop{
 
-//    List<SpellInfo> random( int aTier){
-//        return Arrays.asList(SpellInfo.SpellInfoEnum.values()).stream().filter(s -> s.getTier==aTier).collect(Collectors.toList());
-//    }
-
+    @Getter
     private List<SpellInfo> spellsAvailableToBuy;
 
+    public SpellShop(){
 
-    void generateSpellsAvailableToBuy() {
-        int highestTier = SpellBookInfoFactory.getHighestTier();
-        List<SpellInfo> spellsAvailableToBuy = new ArrayList<>();
-
-
-        for(int i=1; i<= highestTier; i++){
-
-            List<SpellInfo> tierSpells = SpellBookInfoFactory.getSpellsByLevel(i);
-            Collections.shuffle(tierSpells);
-            spellsAvailableToBuy.addAll(tierSpells.subList(0,2));
-
-        }
-
-       this.spellsAvailableToBuy = spellsAvailableToBuy;
-    }
-
-
-    public List<SpellInfo> getSpellsAvailableToBuy() {
-        return spellsAvailableToBuy;
-    }
-
-    public SpellShop(){};
+    };
 
     public SpellShop(String name, String description, List<SpellInfo> spellsAvailableToBuy) {
         super(name, description);
         this.spellsAvailableToBuy = spellsAvailableToBuy;
     }
 
+    @Override
+    public void generateItemsAvailableToBuy() {
 
 
+        List<SpellInfo> spellsAvailableToBuy = new ArrayList<>();
+        int highestTier = SpellBookInfoFactory.getHighestTier();
+
+        for (int i = 1; i <= highestTier; i++) {
+            List<SpellInfo> spellsByTier = SpellBookInfoFactory.getSpellsByLevel(i);
+            Collections.shuffle(spellsByTier);
+            spellsAvailableToBuy.addAll(spellsByTier.subList(0,2));
+        }
+
+        this.spellsAvailableToBuy = spellsAvailableToBuy;
+    }
 }

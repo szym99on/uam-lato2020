@@ -6,9 +6,11 @@ import pl.psi.game.spellbook.Spell;
 abstract class SpellBuffArtifact extends Artifact{
     @Override
     public void apply(Hero aHero) {
-        aHero.getSpells().forEach(s -> buffSpell(s) );
+        aHero.getSpellBook().getSpells().forEach(s -> buffSpell(s) );
     }
 
+    @Override
+    public boolean affectsHeroStats(){ return false; }
 
     abstract void buffSpell(Spell s);
 

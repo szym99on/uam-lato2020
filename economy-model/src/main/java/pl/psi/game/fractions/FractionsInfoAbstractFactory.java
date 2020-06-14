@@ -7,9 +7,15 @@ import java.util.List;
 
 public class FractionsInfoAbstractFactory {
     public enum Fractions {
-        NECROPOLIS,
+        CASTLE,
+        TOWER,
+        INFERNO,
+        FORTRESS,
         RAMPART,
+        DUNGEON,
         STRONGHOLD,
+        NECROPOLIS,
+        CONFLUX,
         ELEMENTAL;
     }
 
@@ -37,4 +43,9 @@ public class FractionsInfoAbstractFactory {
         Preconditions.checkArgument(aTier >= 1 && aTier <= 7, "We support tiers 1-7");
         return creatureList.get(aTier - 1);
     }
+
+    public List<CreatureInfo> getAllCreatures(){
+        return creatureList;
+    }
+
 }

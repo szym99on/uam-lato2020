@@ -1,29 +1,44 @@
 package pl.psi.game.hero.shops;
 
+import lombok.Getter;
+import pl.psi.game.hero.economyHero.EconomyHero;
 import pl.psi.game.skills.SkillInfo;
+import pl.psi.game.skills.SkillInfoFactory;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import java.util.Random;
+import java.util.stream.Collectors;
 
 public class SpecialSkillsShop  extends  AbstractShop{
 
-//    List<SkillInfo> random(int aTier){
-//        return Arrays.asList(SkillInfo.SkillIInfoEnum.values()).stream().filter(s -> s.getTier==aTier).collect(Collectors.toList());
-//    }
 
-    private List<SkillInfo> skillsAvailableToBuy;
-
-
-     List<SkillInfo> generateSkillsAvailableToBuy() {
-        return null;
-    }
+    @Getter
+    private List<SkillInfo> specialSkillsAvailableToBuy;
 
     public SpecialSkillsShop(){}
 
     public SpecialSkillsShop(String name, String description, List<SkillInfo> skillsAvailableToBuy) {
         super(name, description);
-        this.skillsAvailableToBuy = skillsAvailableToBuy;
+        this.specialSkillsAvailableToBuy = skillsAvailableToBuy;
     }
+
+     @Override
+     public void generateItemsAvailableToBuy(){
+
+         List<SkillInfo> skills = new ArrayList<>(SkillInfoFactory.getAll());
+         List<SkillInfo> specialSkillAvailableToBuy = new ArrayList<>();
+
+         Random ran = new Random();
+         int skillCount = ran.nextInt(10) + 2;
+         for (int i = 0; i < skillCount; i++) {
+             int randomIndex = ran.nextInt(skills.size());
+             SkillInfo randomSkill = skills.get(randomIndex);
+             skills.remove(randomIndex);
+             specialSkillAvailableToBuy.add(randomSkill);
+         }
+
+         this.specialSkillsAvailableToBuy = specialSkillAvailableToBuy;
+    }
+
 }

@@ -17,12 +17,12 @@ public class SpellInfo extends AbstractItemInfo {
     private final Type type;
     private final int level;
     private final int manaCost;
-    private String duration;
+    private int duration;
 
 
 
     @Builder
-     SpellInfo(String aName, String aDescription, int aCost, int aLevel, int aManaCost, Type aType, String aDuration) {
+     SpellInfo(String aName, String aDescription, int aCost, int aLevel, int aManaCost, Type aType, int aDuration) {
         super(aName,aDescription,aCost);
         level = aLevel;
         manaCost = aManaCost;

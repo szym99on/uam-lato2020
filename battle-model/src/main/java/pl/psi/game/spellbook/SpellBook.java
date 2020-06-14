@@ -1,5 +1,7 @@
 package pl.psi.game.spellbook;
 
+import lombok.Builder;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,23 +9,27 @@ public class SpellBook {
     private int heroPower;
     private int additionalDuration=0;
     private SpellFactory factory;
+    private List<Spell> spells;
 
+    @Builder
     public SpellBook (int aHeroPower, int aHeroMana, List<Spell> aHeroSpells){
-        heroPower = aHeroPower;
+        heroPower = 0;
         factory = new SpellFactory();
+        spells = aHeroSpells;
     }
 
-    public void increaseSpellDuration (int aAdditionalDuration){
-        if(aAdditionalDuration >= 0)
-        {
-            additionalDuration = additionalDuration + aAdditionalDuration;
-        }
-        else throw new IllegalArgumentException("You can't increase by a negative value");
+
+    public List<Spell> getSpells() {
+        return spells;
     }
 
-    public Spell createSpell (SpellInfo spellInfo)
+    public void increaseHeroPower(int amount)
     {
-        return factory.createSpell(spellInfo,heroPower,additionalDuration);
+        heroPower+=amount;
     }
 
+    public void createSpell(SpellInfo s)
+    {
+        spells.add(factory.createSpell(s));
+    }
 }

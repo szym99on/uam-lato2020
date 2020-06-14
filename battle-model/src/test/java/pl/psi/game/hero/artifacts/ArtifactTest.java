@@ -95,6 +95,33 @@ public class ArtifactTest {
 
 
 
+//    AffectsHeroStats test
+
+    @Test
+    void creatureBuffArtifactShouldReturnFalse(){
+        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(RING_OF_LIFE);
+        Artifact creatureBuffArtifact = ArtifactFactory.createArtifact(artifactInfo);
+
+        assertFalse(creatureBuffArtifact.affectsHeroStats());
+    }
+
+    @Test
+    void spellBuffArtifactShouldReturnFalse(){
+        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(RING_OF_CONJURING);
+        Artifact spellBuffArtifact = ArtifactFactory.createArtifact(artifactInfo);
+
+        assertFalse(spellBuffArtifact.affectsHeroStats());
+    }
+
+    @Test
+    void heroStatisticArtifactShouldReturnTrue(){
+        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(ARMOR_OF_WONDER);
+        Artifact heroStatisticArtifact = ArtifactFactory.createArtifact(artifactInfo);
+
+        assertTrue(heroStatisticArtifact.affectsHeroStats());
+    }
+
+
 //    CreatureHealthArtifact test
 
     @Test
@@ -287,12 +314,9 @@ public class ArtifactTest {
     void artifactShouldIncreaseSpellDurationBy2(){
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(RING_OF_CONJURING);
         Artifact ringOfConjuring = ArtifactFactory.createArtifact(artifactInfo);
-        List< Spell > spells = new ArrayList<>();
         SpellInfo spellInfo = SpellBookInfoFactory.getSpell(HASTE);
-        SpellFactory spellFactory = new SpellFactory();
-        Spell haste = spellFactory.createSpell(spellInfo);
-        spells.add(haste);
-        Hero battleHero = Hero.builder().aSpells(spells).build();
+        Hero battleHero = Hero.builder().build();
+        battleHero.getSpellBook().createSpell(spellInfo);
 
         try {
             ringOfConjuring.apply(battleHero);
@@ -300,7 +324,7 @@ public class ArtifactTest {
             e.printStackTrace();
         }
 
-        assertEquals(3,battleHero.getSpells().get(0).getDuration());
+        assertEquals(3,battleHero.getSpellBook().getSpells().get(0).getDuration());
     }
 
 
