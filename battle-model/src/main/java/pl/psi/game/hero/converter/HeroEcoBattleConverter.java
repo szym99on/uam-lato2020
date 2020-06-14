@@ -17,7 +17,6 @@ import java.util.stream.Collectors;
 public class HeroEcoBattleConverter {
 
     public static Hero convert(EconomyHero aEconomyHero) {
-        //apply attack and defense on creatures
         //initialize factories
         CreatureAbstractFactory creatureFactory = new CreatureAbstractFactory();
         SpellFactory spellFactory = new SpellFactory();
@@ -32,8 +31,8 @@ public class HeroEcoBattleConverter {
         hero.increaseKnowledge(aEconomyHero.getKnowledge());
 
         //convertedArtifacts.stream().filter(a -> a.changeHeroStats()).forEach(a -> a.apply(hero));
-        hero.increaseSpellPower();
         hero.addSpells(convertedSpells);
+        hero.increaseSpellPower();
         hero.getCreatures().forEach(c -> c.apply(hero));
         //convertedArtifacts.stream().filter(a -> !a.changeHeroStats()).forEach(a -> a.apply(hero));
         return hero;

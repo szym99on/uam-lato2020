@@ -37,7 +37,7 @@ public class Hero {
     public SpellBook getSpellBook() {
         return spellBook;
     }
-    public void setMana(int aAmount) {
+    public void setMana() {
         //spellBook.setMana(knowledge*10);
     }
     public void increaseDuration(int aAmount){
