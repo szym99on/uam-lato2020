@@ -5,6 +5,8 @@ import pl.psi.game.artifacts.Artifact;
 import pl.psi.game.artifacts.ArtifactFactory;
 import pl.psi.game.hero.converter.Hero;
 
+import java.util.stream.Collectors;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ConverterRequest {
@@ -14,7 +16,7 @@ public class ConverterRequest {
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.HELM_OF_THE_ALABASTER_UNICORN);
     }
     @Test
-    void applyArtifactOnHero() {
+    void ApplyArtifactOnHero() {
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.HELM_OF_THE_ALABASTER_UNICORN);
         Hero hero = Hero.builder().build();
         Artifact artifact = ArtifactFactory.createArtifact(artifactInfo);
