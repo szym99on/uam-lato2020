@@ -24,15 +24,14 @@ public abstract class Obstacle implements GuiTileIf {
         return false;
     }
 
-    public abstract Point apply(Creature aCreature);
+    public abstract void apply(Creature aCreature);
 
-    @Override
     public Point getPoint() {
         return point;
     }
 
     @Override
-    public int weight() {
-        return 2;
+    public GuiTileIf getTile() {
+        return this;
     }
 }

@@ -95,22 +95,7 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
     public boolean isCreature() {
         return true;
     }
-
-    @Override
-    public Point getPoint() {
-        return null;
-    }
-
-    @Override
-    public int weight() {
-        return 0;
-    }
-
-    @Override
-    public Obstacle getObstacle() {
-        return null;
-    }
-
+    
     @Override
     public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
         canCounterAttacked = true;

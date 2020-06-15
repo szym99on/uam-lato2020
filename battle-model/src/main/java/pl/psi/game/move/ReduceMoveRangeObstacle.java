@@ -11,13 +11,7 @@ public class ReduceMoveRangeObstacle extends Obstacle {
     }
 
     @Override
-    public Point apply(Creature aCreature) {
+    public void apply(Creature aCreature) {
 
-        return null;
-    }
-
-    @Override
-    public Obstacle getObstacle() {
-        return null;
     }
 }
