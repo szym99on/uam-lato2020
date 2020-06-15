@@ -6,14 +6,21 @@ import java.awt.*;
 
 class EndingMoveObstacle extends Obstacle {
 
+    private Point point;
+
     public EndingMoveObstacle(String aName, Point aPoint) {
         super(aName, aPoint);
+        point = aPoint;
     }
 
     @Override
-    public void apply(Creature aCreature) {
-
+    public Point apply(Creature aCreature) {
+        return point;
     }
 
 
+    @Override
+    public Obstacle getObstacle() {
+        return null;
+    }
 }
