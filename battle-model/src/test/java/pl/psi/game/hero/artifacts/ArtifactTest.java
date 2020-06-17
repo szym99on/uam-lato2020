@@ -34,7 +34,7 @@ public class ArtifactTest {
 //    ArtifactFactory tests
 
     @Test
-    void factoryShouldCreateCreatureHealthArtifact(){
+    void factoryShouldCreateCreatureHealthArtifact() {
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(RING_OF_LIFE);
         Artifact ringOfLife = ArtifactFactory.createArtifact(artifactInfo);
 
@@ -42,7 +42,7 @@ public class ArtifactTest {
     }
 
     @Test
-    void factoryShouldCreateCreatureImmunityArtifact(){
+    void factoryShouldCreateCreatureImmunityArtifact() {
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(PENDANT_OF_LIFE);
         Artifact pendantOfLife = ArtifactFactory.createArtifact(artifactInfo);
 
@@ -50,7 +50,7 @@ public class ArtifactTest {
     }
 
     @Test
-    void factoryShouldCreateCreatureMagicResistanceArtifact(){
+    void factoryShouldCreateCreatureMagicResistanceArtifact() {
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(BOOTS_OF_POLARITY);
         Artifact bootsOfPolarity = ArtifactFactory.createArtifact(artifactInfo);
 
@@ -77,7 +77,7 @@ public class ArtifactTest {
     }
 
     @Test
-    void factoryShouldCreateSpellDurationArtifact(){
+    void factoryShouldCreateSpellDurationArtifact() {
         ArtifactInfo artifactsInfo = ArtifactsInfoFactory.getArtifact(COLLAR_OF_CONJURING);
         Artifact collarOfConjuring = ArtifactFactory.createArtifact(artifactsInfo);
 
@@ -86,18 +86,17 @@ public class ArtifactTest {
 
     @Disabled // waiting for implementation of cast prevention by spells
     @Test
-    void factoryShouldCreateSpellPreventCastingArtifact(){
+    void factoryShouldCreateSpellPreventCastingArtifact() {
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(RECANTERS_CLOAK);
         Artifact recantersCloak = ArtifactFactory.createArtifact(artifactInfo);
 
     }
 
 
-
 //    AffectsHeroStats test
 
     @Test
-    void creatureBuffArtifactShouldReturnFalse(){
+    void creatureBuffArtifactShouldReturnFalse() {
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(RING_OF_LIFE);
         Artifact creatureBuffArtifact = ArtifactFactory.createArtifact(artifactInfo);
 
@@ -105,7 +104,7 @@ public class ArtifactTest {
     }
 
     @Test
-    void spellBuffArtifactShouldReturnFalse(){
+    void spellBuffArtifactShouldReturnFalse() {
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(RING_OF_CONJURING);
         Artifact spellBuffArtifact = ArtifactFactory.createArtifact(artifactInfo);
 
@@ -113,7 +112,7 @@ public class ArtifactTest {
     }
 
     @Test
-    void heroStatisticArtifactShouldReturnTrue(){
+    void heroStatisticArtifactShouldReturnTrue() {
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(ARMOR_OF_WONDER);
         Artifact heroStatisticArtifact = ArtifactFactory.createArtifact(artifactInfo);
 
@@ -124,7 +123,7 @@ public class ArtifactTest {
 //    CreatureHealthArtifact test
 
     @Test
-    void artifactShouldIncreaseHealthBy2Points(){
+    void artifactShouldIncreaseHealthBy2Points() {
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(RING_OF_LIFE);
         Artifact ringOfLife = ArtifactFactory.createArtifact(artifactInfo);
         List<Creature> creatures = new ArrayList<>();
@@ -132,7 +131,7 @@ public class ArtifactTest {
         creatures.add(creature);
         Hero battleHero = Hero.builder().aCreatures(creatures).build();
 
-        try{
+        try {
             ringOfLife.apply(battleHero);
         } catch (Exception e) {
             e.printStackTrace();
@@ -143,12 +142,11 @@ public class ArtifactTest {
     }
 
 
-
 //    CreatureImmunityArtifact test
 
-    @Disabled // waiting for immunity implementation by fractions/spells
+    @Disabled // waiting for dealing spell damage
     @Test
-    void artifactShouldGrantImmunityToCreature(){
+    void artifactShouldGrantImmunityToCreature() {
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(PENDANT_OF_DISPASSION);
         Artifact pendantOfDispassion = ArtifactFactory.createArtifact(artifactInfo);
         List<Creature> creatures = new ArrayList<>();
@@ -156,7 +154,7 @@ public class ArtifactTest {
         creatures.add(creature);
         Hero battleHero = Hero.builder().aCreatures(creatures).build();
 
-        try{
+        try {
             pendantOfDispassion.apply(battleHero);
         } catch (Exception e) {
             e.printStackTrace();
@@ -167,11 +165,10 @@ public class ArtifactTest {
     }
 
 
-
 //    CreatureMagicResistanceArtifact tests
 
     @Test
-    void artifactShouldIncreaseMagicResistanceBy15Percent(){
+    void artifactShouldIncreaseMagicResistanceBy15Percent() {
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(BOOTS_OF_POLARITY);
         Artifact bootsOfPolarity = ArtifactFactory.createArtifact(artifactInfo);
         List<Creature> creatures = new ArrayList<>();
@@ -189,11 +186,10 @@ public class ArtifactTest {
     }
 
 
-
 //    CreatureSpeedArtifact tests
 
     @Test
-    void artifactShouldIncreaseMoveRangeBy2Points(){
+    void artifactShouldIncreaseMoveRangeBy2Points() {
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(CAPE_OF_VELOCITY);
         Artifact capeOfVelocity = ArtifactFactory.createArtifact(artifactInfo);
         List<Creature> creatures = new ArrayList<>();
@@ -209,7 +205,6 @@ public class ArtifactTest {
 
         assertEquals(4, battleHero.getCreatures().get(0).getMoveRange());
     }
-
 
 
 //    HeroStatisticArtifact tests
@@ -233,12 +228,12 @@ public class ArtifactTest {
     }
 
     @Test
-    void artifactShouldIncreaseAttackBy2Points(){
+    void artifactShouldIncreaseAttackBy2Points() {
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(CENTAURS_AX);
         Artifact centaursAx = ArtifactFactory.createArtifact(artifactInfo);
         Hero battleHero = Hero.builder().build();// default hero stats = 0
 
-        try{
+        try {
             centaursAx.apply(battleHero);
         } catch (Exception e) {
             e.printStackTrace();
@@ -251,12 +246,12 @@ public class ArtifactTest {
     }
 
     @Test
-    void artifactShouldIncreaseDefenceBy2Points(){
+    void artifactShouldIncreaseDefenceBy2Points() {
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(SHIELD_OF_THE_DWARVEN_LORDS);
         Artifact shieldOfTheDwarvenLords = ArtifactFactory.createArtifact(artifactInfo);
         Hero battleHero = Hero.builder().build();// default hero stats = 0
 
-        try{
+        try {
             shieldOfTheDwarvenLords.apply(battleHero);
         } catch (Exception e) {
             e.printStackTrace();
@@ -274,7 +269,7 @@ public class ArtifactTest {
         Artifact magistersSandals = ArtifactFactory.createArtifact(artifactInfo);
         Hero battleHero = Hero.builder().build();// default hero stats = 0
 
-        try{
+        try {
             magistersSandals.apply(battleHero);
         } catch (Exception e) {
             e.printStackTrace();
@@ -305,12 +300,11 @@ public class ArtifactTest {
     }
 
 
-
 //    SpellDurationArtifact tests
 
     @Disabled // waiting for increaseDuration implementation by spells
     @Test
-    void artifactShouldIncreaseSpellDurationBy2(){
+    void artifactShouldIncreaseSpellDurationBy2() {
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(RING_OF_CONJURING);
         Artifact ringOfConjuring = ArtifactFactory.createArtifact(artifactInfo);
         SpellInfo spellInfo = SpellBookInfoFactory.getSpell(HASTE);
@@ -323,27 +317,7 @@ public class ArtifactTest {
             e.printStackTrace();
         }
 
-        assertEquals(3,battleHero.getSpellBook().getSpells().get(0).getDuration());
+        assertEquals(3, battleHero.getSpellBook().getSpells().get(0).getDuration());
     }
 
-
-
-//    SpellPreventCastingArtifact tests
-
-    @Disabled // waiting for implementation of cast prevention by spells
-    @Test
-    void artifactShouldPreventCastingOfSpellsOfAndAboveLevel3(){
-//        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(RECANTERS_CLOAK);
-//        Artifact recantersCloak = ArtifactFactory.createArtifact(artifactInfo);
-//
-//        create battleHero with multiple spells of different levels
-//
-//        try {
-//            recantersCloak.apply(battleHero);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        assert spells of level 3 and above are uncastable
-    }
 }
