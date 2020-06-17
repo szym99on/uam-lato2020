@@ -62,9 +62,9 @@ public class ArtifactFactory {
         else if (artifactInfo.getName().equals(SURCOAT_OF_COUNTERPOISE)){
             return new CreatureMagicResistanceArtifact(10);
         }
-//        else if (artifactInfo.getName().equals(RECANTERS_CLOAK)){
-//            return new SpellPreventCastingArtifact(0);
-//        }
+        else if (artifactInfo.getName().equals(RECANTERS_CLOAK)){
+            return new CreatureMagicResistanceArtifact(20);
+        }
         else if (artifactInfo.getName().equals(CAPE_OF_VELOCITY)){
             return new CreatureSpeedArtifact(2);
         }
