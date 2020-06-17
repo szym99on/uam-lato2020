@@ -82,20 +82,37 @@ public class ConverterTest {
     {
         InitializeEconomyHero();
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.HELM_OF_THE_ALABASTER_UNICORN);
-
+        economyHero.buyArtifact(artifactInfo);
         Hero hero = HeroEcoBattleConverter.convert(economyHero);
-
         assertEquals(hero.getKnowledge(),2);
+    }
+    @Test
+    @Disabled
+    void AppliedArtifactOnHeroChangeSpell()
+    {
+        InitializeEconomyHero();
+        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.CAPE_OF_CONJURING);// +3 spell duration
+        SpellInfo spellInfo = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.HASTE);// 1 spell duration
+        economyHero.buyArtifact(artifactInfo);
+        economyHero.buySpell(spellInfo);
+        Hero hero = HeroEcoBattleConverter.convert(economyHero);
+        assertEquals(hero.getSpellBook().getSpells().get(0).getDuration(),4);
     }
     @Test
     @Disabled
     void AppliedArtifactOnHeroChangeCreatureStats()
     {
-        //change later
+        InitializeEconomyHero();
+        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.CAPE_OF_CONJURING);// +2 move range
+        CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(1);// 5 move range
+        economyHero.buyArtifact(artifactInfo);
+        economyHero.buyCreature(creatureInfo);
+        Hero hero = HeroEcoBattleConverter.convert(economyHero);
+        assertEquals(hero.getCreatures().get(0).getMoveRange(),7);
     }
     @Test
     @Disabled
-    void AppliedArtifactOnHeroChangeSpell()
+    void AppliedArtifactOnHeroChangeSkill()
     {
         //later if exist
     }

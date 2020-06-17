@@ -37,6 +37,18 @@ public class Hero {
     public SpellBook getSpellBook() {
         return spellBook;
     }
+    public void setMana() {
+        //spellBook.setMana(knowledge*10);
+    }
+    public void increaseDuration(int aAmount){
+        //spellBook.increaseDuration(aAmount);
+    }
+    public void increaseSpellPower() {
+        spellBook.increaseHeroPower(power);
+    }
+    public void addSpells(List<Spell> aSpells) {
+        //spellBook.addSpells(aSpells);
+    }
 
     public void increaseAttack(int aAmount) {
         if (attack + aAmount < 0){
@@ -85,4 +97,6 @@ public class Hero {
     public Integer getKnowledge() {
         return knowledge;
     }
+
+
 }

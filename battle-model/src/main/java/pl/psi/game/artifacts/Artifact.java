@@ -15,4 +15,6 @@ public abstract class Artifact{
     public abstract int getMagicResistance();
     public abstract int getDuration();
     public abstract String getSpellImmunityName();
+    public abstract boolean affectsHeroStats();
+
 }
