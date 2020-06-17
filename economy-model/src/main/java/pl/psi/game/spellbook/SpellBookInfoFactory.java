@@ -8,10 +8,11 @@ import java.util.stream.Collectors;
 public class SpellBookInfoFactory {
 
     public final static String MAGIC_ARROW = "Magic arrow";
-
     public final static String LIGHTNING_BOLT = "Lightning bolt";
     public final static String DESTROY_UNDEAD = "Destroy undead";
     public final static String FIRE_BALL = "Fire ball";
+    public final static String METEOR_SHOWER = "Meteor shower";
+    public final static String IMPLOSION = "Implosion";
 
     public final static String HASTE = "Haste";
     public final static String AIR_SHIELD = "Air shield";
@@ -29,18 +30,18 @@ public class SpellBookInfoFactory {
 
     private final static List<SpellInfo> spellList = new ArrayList<>();
     {
-            spellList.add(SpellInfo.builder().aCost(1).aDescription("Target, enemy troop receives ((Power x 10) + 10) damage.").aDuration(0).aManaCost(5).aName(MAGIC_ARROW).aLevel(1).aType(SpellInfo.Type.AIR).build());
-        spellList.add(SpellInfo.builder().aCost(1).aDescription("Target, enemy troop receives ((Power x 10) + 20) damage.").aDuration(0).aManaCost(5).aName(MAGIC_ARROW).aLevel(2).aType(SpellInfo.Type.AIR).build());
-        spellList.add(SpellInfo.builder().aCost(1).aDescription("Target, enemy troop receives ((Power x 10) + 30) damage.").aDuration(0).aManaCost(5).aName(MAGIC_ARROW).aLevel(3).aType(SpellInfo.Type.AIR).build());
-        spellList.add(SpellInfo.builder().aCost(1).aDescription("Target, enemy creature receives ((Power x 25) + 10) damage.").aDuration(0).aManaCost(10).aName(LIGHTNING_BOLT).aLevel(1).aType(SpellInfo.Type.AIR).build());
-        spellList.add(SpellInfo.builder().aCost(1).aDescription("Target, enemy creature receives ((Power x 25) + 20) damage.").aDuration(0).aManaCost(10).aName(LIGHTNING_BOLT).aLevel(2).aType(SpellInfo.Type.AIR).build());
-        spellList.add(SpellInfo.builder().aCost(1).aDescription("Target, enemy creature receives ((Power x 25) + 50) damage.").aDuration(0).aManaCost(10).aName(LIGHTNING_BOLT).aLevel(3).aType(SpellInfo.Type.AIR).build());
-        spellList.add(SpellInfo.builder().aCost(1).aDescription("All undead creature troops receive ((Power x 10) +10) damage.").aDuration(0).aManaCost(15).aName(DESTROY_UNDEAD).aLevel(1).aType(SpellInfo.Type.AIR).build());
-        spellList.add(SpellInfo.builder().aCost(1).aDescription("All undead creature troops receive ((Power x 10) +20) damage.").aDuration(0).aManaCost(15).aName(DESTROY_UNDEAD).aLevel(1).aType(SpellInfo.Type.AIR).build());
-        spellList.add(SpellInfo.builder().aCost(1).aDescription("All undead creature troops receive ((Power x 10) +50) damage.").aDuration(0).aManaCost(15).aName(DESTROY_UNDEAD).aLevel(1).aType(SpellInfo.Type.AIR).build());
+        //1-2
+        spellList.add(SpellInfo.builder().aCost(1).aDescription("Target, enemy troop receives ((Power x 10) + 10) damage.").aDuration(0).aManaCost(5).aName(MAGIC_ARROW).aLevel(1).aType(SpellInfo.Type.AIR).build());
         spellList.add(SpellInfo.builder().aCost(1).aDescription("Target, enemy troop receives ((Power x 10) + 10) damage.").aDuration(0).aManaCost(5).aName(MAGIC_ARROW).aLevel(1).aType(SpellInfo.Type.FIRE).build());
-        spellList.add(SpellInfo.builder().aCost(1).aDescription("Target, enemy troop receives ((Power x 10) + 20) damage.").aDuration(0).aManaCost(5).aName(MAGIC_ARROW).aLevel(2).aType(SpellInfo.Type.FIRE).build());
-        spellList.add(SpellInfo.builder().aCost(1).aDescription("Target, enemy troop receives ((Power x 10) + 30) damage.").aDuration(0).aManaCost(5).aName(MAGIC_ARROW).aLevel(3).aType(SpellInfo.Type.FIRE).build());
+        spellList.add(SpellInfo.builder().aCost(1).aDescription("Target, enemy troop receives ((Power x 10) + 10) damage.").aDuration(0).aManaCost(5).aName(MAGIC_ARROW).aLevel(1).aType(SpellInfo.Type.WATER).build());
+        spellList.add(SpellInfo.builder().aCost(1).aDescription("Target, enemy troop receives ((Power x 10) + 10) damage.").aDuration(0).aManaCost(5).aName(MAGIC_ARROW).aLevel(1).aType(SpellInfo.Type.EARTH).build());
+        spellList.add(SpellInfo.builder().aCost(1).aDescription("Target, enemy troop receives ((Power x 25) + 10) damage.").aDuration(0).aManaCost(10).aName(LIGHTNING_BOLT).aLevel(2).aType(SpellInfo.Type.AIR).build());
+        //3-4
+        spellList.add(SpellInfo.builder().aCost(1).aDescription("All undead creature troops receive ((Power x 10) +10) damage.").aDuration(0).aManaCost(15).aName(DESTROY_UNDEAD).aLevel(3).aType(SpellInfo.Type.AIR).build());
+        spellList.add(SpellInfo.builder().aCost(1).aDescription("Troops in target hex and its surrounding hexes take ((Power x 10) + 15) damage.").aDuration(0).aManaCost(15).aName(FIRE_BALL).aLevel(3).aType(SpellInfo.Type.FIRE).build());
+        spellList.add(SpellInfo.builder().aCost(1).aDescription("All undead creature troops receive ((Power x 10) +10) damage.").aDuration(0).aManaCost(16).aName(METEOR_SHOWER).aLevel(4).aType(SpellInfo.Type.EARTH).build());
+        //5
+        spellList.add(SpellInfo.builder().aCost(1).aDescription("Target, enemy troop receives ((Power x 75) + 100) damage.").aDuration(0).aManaCost(30).aName(IMPLOSION).aLevel(5).aType(SpellInfo.Type.EARTH).build());
 
 
         spellList.add(SpellInfo.builder().aCost(1).aDescription("Increases the speed of the selected unit.").aDuration(1).aManaCost(6).aName(HASTE).aLevel(1).aType(SpellInfo.Type.AIR).build());
