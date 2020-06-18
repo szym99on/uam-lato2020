@@ -1,8 +1,10 @@
 package pl.psi.game.artifacts;
 
+import java.util.ArrayList;
+
 import pl.psi.game.fractions.Creature;
 import pl.psi.game.fractions.MagicResistance;
-import pl.psi.game.fractions.MagicResistance.*;
+import pl.psi.game.fractions.MagicResistance.ImmunityType;
 
 
 class CreatureImmunityArtifact extends CreatureBuffArtifact {
@@ -12,7 +14,7 @@ class CreatureImmunityArtifact extends CreatureBuffArtifact {
 
     @Override
     void buffCreature(Creature c) {
-        MagicResistance magicResistance = new MagicResistance(0, immunityType);
+        MagicResistance magicResistance = new MagicResistance(0, immunityType, new ArrayList<>());
         c.setMagicResistance(magicResistance);
     }
 

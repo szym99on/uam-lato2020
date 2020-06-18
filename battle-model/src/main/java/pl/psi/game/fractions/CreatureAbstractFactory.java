@@ -1,5 +1,7 @@
 package pl.psi.game.fractions;
 
+import java.util.ArrayList;
+
 public class CreatureAbstractFactory {
 	
 	public Creature getCreature(CreatureInfo creatureInfo) {
@@ -12,22 +14,22 @@ public class CreatureAbstractFactory {
 	private void addMagicResistance(Creature creature) {
 		switch (creature.getName()) {
 			case "Battle Dwarf":
-				creature.setMagicResistance(new MagicResistance(40, MagicResistance.ImmunityType.NONE));
+				creature.setMagicResistance(new MagicResistance(40, MagicResistance.ImmunityType.NONE, new ArrayList<>()));
 				break;
 			case "Gold Dragon":
-				creature.setMagicResistance(new MagicResistance(0, MagicResistance.ImmunityType.FOURTH_TIER_AND_BELOW));
+				creature.setMagicResistance(new MagicResistance(0, MagicResistance.ImmunityType.FOURTH_TIER_AND_BELOW, new ArrayList<>()));
 				break;
 			case "Storm Elemental":
-				creature.setMagicResistance(new MagicResistance(0, MagicResistance.ImmunityType.EARTH_SPELLS));
+				creature.setMagicResistance(new MagicResistance(0, MagicResistance.ImmunityType.EARTH_SPELLS, new ArrayList<>()));
 				break;
 			case "Ice Elemental":
-				creature.setMagicResistance(new MagicResistance(0, MagicResistance.ImmunityType.ICE_SPELLS));
+				creature.setMagicResistance(new MagicResistance(0, MagicResistance.ImmunityType.ICE_SPELLS, new ArrayList<>()));
 				break;
 			case "Energy Elemental":
-				creature.setMagicResistance(new MagicResistance(0, MagicResistance.ImmunityType.FIRE_SPELLS));
+				creature.setMagicResistance(new MagicResistance(0, MagicResistance.ImmunityType.FIRE_SPELLS, new ArrayList<>()));
 				break;
 			case "Magma Elemental":
-				creature.setMagicResistance(new MagicResistance(0, MagicResistance.ImmunityType.AIR_SPELLS));
+				creature.setMagicResistance(new MagicResistance(0, MagicResistance.ImmunityType.AIR_SPELLS, new ArrayList<>()));
 				break;
 		}
 	}

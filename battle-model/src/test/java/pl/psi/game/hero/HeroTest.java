@@ -23,7 +23,7 @@ public class HeroTest {
 
     }
     @Test
-    void shouldDecreaseHeroStatsTo1() {
+    void shouldDecreaseHeroStatsTo0() {
         Hero hero = Hero.builder().build();
 
         hero.increaseAttack(-4);

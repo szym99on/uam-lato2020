@@ -1,25 +1,27 @@
 package pl.psi.game.fractions;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
+
 import com.google.common.collect.Range;
+
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import pl.psi.game.hero.converter.Hero;
 import pl.psi.game.move.GuiTileIf;
-import pl.psi.game.move.Obstacle;
-
-import java.awt.*;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 
 @Getter
 public class Creature implements GuiTileIf, PropertyChangeListener {
 
     private int maxHp;
+    private Range<Integer> basicAttack;
     private Range<Integer> attack;
+    private int basicArmor;
     private int armor;
     private final String name;
-    @Setter private int currentHp;
+    private int currentHp;
     @Setter private boolean canCounterAttacked;
     private int moveRange;
     private boolean canFly;
@@ -31,8 +33,10 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
     @Builder
     public Creature(int aMaxHp, Range<Integer> aAttack, int aArmor, String aName, int aMoveRange, boolean aCanFly) {
         maxHp = aMaxHp;
+        basicAttack = aAttack;
         attack = aAttack;
         currentHp = maxHp;
+        basicArmor = aArmor;
         armor = aArmor;
         canCounterAttacked = true;
         name = aName;
@@ -40,20 +44,22 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
         canFly = aCanFly;
         amount = 10;
         dealDamageCounterStrategy = new DefaultDamageCounterStrategy();
-        magicResistance = new MagicResistance(0, MagicResistance.ImmunityType.NONE);
+        magicResistance = new MagicResistance(0, MagicResistance.ImmunityType.NONE, new ArrayList<>());
         attackStrategyIf = new DefaultAttackStrategy(this);
     }
 
     public Creature(int aMaxHp, Range<Integer> aAttack, int aArmor) {
         maxHp = aMaxHp;
+        basicAttack = aAttack;
         attack = aAttack;
         currentHp = maxHp;
+        basicArmor = aArmor;
         armor = aArmor;
         canCounterAttacked = true;
         name = "";
         moveRange = 0;
         canFly = false;
-        magicResistance = new MagicResistance(0, MagicResistance.ImmunityType.NONE);
+        magicResistance = new MagicResistance(0, MagicResistance.ImmunityType.NONE, new ArrayList<>());
         attackStrategyIf = new DefaultAttackStrategy(this);
     }
 
@@ -82,11 +88,6 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
         aDefender.currentHp = aDefender.currentHp - damageToDeal;
     }
 
-    //potrzebna do zadawania dmg przez lave ~movement
-    public void dealDamageObs(int damage) {
-        this.currentHp = this.currentHp - damage;
-    }
-
     public boolean canShoot(){
         return false;
     }
@@ -94,21 +95,6 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
     @Override
     public boolean isCreature() {
         return true;
-    }
-
-    @Override
-    public Point getPoint() {
-        return null;
-    }
-
-    @Override
-    public int weight() {
-        return 0;
-    }
-
-    @Override
-    public boolean isObstacle() {
-        return false;
     }
 
     @Override
@@ -128,14 +114,48 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
         currentHp += hp;
     }
 
+    public void increaseAttack(int additionalAttack) {
+        Integer newMin = basicAttack.lowerEndpoint() + additionalAttack;
+        Integer newMax = basicAttack.upperEndpoint() + additionalAttack;
+        attack = Range.closed(newMin, newMax);
+    }
+
+    public void decreaseAttack(int substractiveAttack) {
+        Integer newMin = basicAttack.lowerEndpoint() - substractiveAttack;
+        if (newMin < 0) {
+        	newMin = 0;
+        }
+        Integer newMax = basicAttack.upperEndpoint() - substractiveAttack;
+        if (newMax < 0) {
+        	newMax = 0;
+        }
+        attack = Range.closed(newMin, newMax);
+    }
+
+    public void increaseArmor(int additionalArmor) {
+        armor = basicArmor + additionalArmor;
+    }
+
+    public void decreaseArmor(int substractiveArmor) {
+    	if (basicArmor - substractiveArmor < 0) {
+    		armor = 0;
+    	} else armor = basicArmor - substractiveArmor;
+    }
+
     public void increaseMoveRange(int additionalMoveRange) {
         moveRange += additionalMoveRange;
     }
 
+    public void decreaseMoveRange(int substractiveMoveRange) {
+    	if (moveRange - substractiveMoveRange < 0) {
+    		moveRange = 0;
+    	} else moveRange -= substractiveMoveRange;
+    }
+
     public void apply(Hero hero) {
-        Integer newMin = attack.lowerEndpoint() + hero.getAttack();
-        Integer newMax = attack.upperEndpoint() + hero.getAttack();
+        Integer newMin = basicAttack.lowerEndpoint() + hero.getAttack();
+        Integer newMax = basicAttack.upperEndpoint() + hero.getAttack();
         attack = Range.closed(newMin, newMax);
-        armor += hero.getDefence();
+        armor = basicArmor + hero.getDefence();
     }
 }

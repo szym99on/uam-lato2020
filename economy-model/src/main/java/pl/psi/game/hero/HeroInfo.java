@@ -1,6 +1,7 @@
 package pl.psi.game.hero;
 
 import lombok.Builder;
+import pl.psi.game.fractions.FractionsInfoAbstractFactory;
 
 public class HeroInfo {
     private final int heroAttack;
@@ -8,18 +9,7 @@ public class HeroInfo {
     private final int heroPower;
     private final int heroKnowledge;
     private final String name;
-    private final Fraction fraction;
-    public enum Fraction{
-        CASTLE,
-        TOWER,
-        INFERNO,
-        FORTRESS,
-        RAMPART,
-        DUNGEON,
-        STRONGHOLD,
-        NECROPOLIS,
-        CONFLUX
-    }
+    private final FractionsInfoAbstractFactory.Fractions fraction;
     private final FractionClass fractionClass;
     public enum FractionClass{
         KNIGHT(2,2,1,1),
@@ -54,7 +44,7 @@ public class HeroInfo {
     }
 
     @Builder
-    public HeroInfo(String aName, Fraction aFraction, FractionClass aFractionClass){
+    public HeroInfo(String aName, FractionsInfoAbstractFactory.Fractions aFraction, FractionClass aFractionClass){
         heroAttack = aFractionClass.attack;
         heroDefence = aFractionClass.defence;
         heroPower = aFractionClass.power;
@@ -64,7 +54,7 @@ public class HeroInfo {
         fractionClass = aFractionClass;
     }
 
-    public Fraction getFraction() {
+    public FractionsInfoAbstractFactory.Fractions getFraction() {
         return fraction;
     }
 
