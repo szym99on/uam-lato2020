@@ -9,6 +9,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.*;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 
@@ -37,11 +38,16 @@ public class MoveEngine implements PropertyChangeListener {
             moveStrategyIf = new WalkMoveStrategy(board, activeCreature);
         }
 
+        AtomicReference<Point> endPoint = new AtomicReference<>(null);
         List<GuiTileIf> path = getMovePath(x, y);
         List<Obstacle> pathObs = path.stream().filter(t -> t instanceof Obstacle).map(o -> (Obstacle)o).collect(Collectors.toList());
-        pathObs.forEach(o -> o.apply(activeCreature.getValue()));
+        pathObs.forEach(o -> endPoint.set(o.apply(activeCreature.getValue())));
 
-        moveStrategyIf.move(new Point(x,y));
+        if(endPoint.get() == null){
+            endPoint.set(new Point(x,y));
+        }
+
+        moveStrategyIf.move(endPoint.get());
     }
 
     public List<GuiTileIf> getMovePath(int x, int y){

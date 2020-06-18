@@ -107,8 +107,8 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
     }
 
     @Override
-    public Obstacle getObstacle() {
-        return null;
+    public boolean isObstacle() {
+        return false;
     }
 
     @Override

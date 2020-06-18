@@ -18,9 +18,8 @@ class EndingMoveObstacle extends Obstacle {
         return point;
     }
 
-
     @Override
-    public Obstacle getObstacle() {
-        return null;
+    public boolean isObstacle() {
+        return true;
     }
 }

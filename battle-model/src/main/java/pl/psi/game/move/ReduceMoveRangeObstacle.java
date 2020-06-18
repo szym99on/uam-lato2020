@@ -17,7 +17,7 @@ public class ReduceMoveRangeObstacle extends Obstacle {
     }
 
     @Override
-    public Obstacle getObstacle() {
-        return null;
+    public boolean isObstacle() {
+        return true;
     }
 }

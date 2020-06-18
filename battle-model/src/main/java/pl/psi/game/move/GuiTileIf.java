@@ -8,6 +8,5 @@ public interface GuiTileIf {
     boolean isCreature();
     Point getPoint();
     int weight();
-    Obstacle getObstacle();
-
+    boolean isObstacle();
 }

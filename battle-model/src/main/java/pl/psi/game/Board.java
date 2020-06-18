@@ -1,11 +1,13 @@
 package pl.psi.game;
 
 import pl.psi.game.fractions.Creature;
+import pl.psi.game.move.EmptyTile;
 import pl.psi.game.move.GuiTileIf;
 import pl.psi.game.move.Obstacle;
 import pl.psi.game.move.ObstacleFactory;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -13,6 +15,7 @@ import java.util.Optional;
 public class Board {
 
     private final Map<Point, GuiTileIf> board;
+    private Map<Point, Obstacle> obstacleInactive = new HashMap<>();
     public final static int BOARD_WIDTH = 14;
     public final static int BOARD_HIGH = 9;
 
@@ -21,14 +24,12 @@ public class Board {
     public Board() {
         board = new HashMap<>();
         ObstacleFactory obstacleFactory = new ObstacleFactory();
-        putObstacle(obstacleFactory.createObstacle("lava", new Point(7, 2)));
-        putObstacle(obstacleFactory.createObstacle("lava", new Point(7, 3)));
-        putObstacle(obstacleFactory.createObstacle("lava", new Point(7, 4)));
-        putObstacle(obstacleFactory.createObstacle("lava", new Point(7, 5)));
-        putObstacle(obstacleFactory.createObstacle("lava", new Point(7, 6)));
-        putObstacle(obstacleFactory.createObstacle("lava", new Point(7, 7)));
-
-
+        putObstacle(obstacleFactory.createObstacle("river", new Point(7, 2)));
+        putObstacle(obstacleFactory.createObstacle("river", new Point(7, 3)));
+        putObstacle(obstacleFactory.createObstacle("river", new Point(7, 4)));
+        putObstacle(obstacleFactory.createObstacle("river", new Point(7, 5)));
+        putObstacle(obstacleFactory.createObstacle("river", new Point(7, 6)));
+        putObstacle(obstacleFactory.createObstacle("river", new Point(7, 7)));
     }
 
     public static Map<Point, GuiTileIf> copyBoardValues(){
@@ -90,6 +91,25 @@ public class Board {
         return null;
     }
 
+    public Obstacle getObstacle(int x, int y) {
+        if (board.get(new Point(x, y)) != null) {
+            if (board.get(new Point(x, y)).isObstacle()) {
+                return (Obstacle) board.get(new Point(x, y));
+            }
+        }
+        return null;
+    }
+
+    public GuiTileIf getObject(int x, int y){
+        if (board.get(new Point(x, y)) != null) {
+            if (board.get(new Point(x, y)).isObstacle()) {
+                return board.get(new Point(x, y));
+            }
+        }
+        return null;
+
+    }
+
     public GuiTileIf getTile(int x, int y) {
         return board.get(new Point(x, y));
     }
@@ -100,11 +120,23 @@ public class Board {
 
     public void move(int x, int y, Creature activeCreature) {
         Point oldPosition = getCreatureLocation(activeCreature).get();
+        Obstacle obstacle = this.getObstacle(x, y);
         try {
             board.remove(oldPosition);
+            if(this.getObstacle(x, y) != null){
+                obstacleInactive.put(obstacle.getPoint(),obstacle);
+                board.remove(obstacle.getPoint());
+            }
             putCreature(x, y, activeCreature);
+
+            if(obstacleInactive.containsKey(new Point(oldPosition.x, oldPosition.y))){
+                this.putObstacle(obstacleInactive.get(new Point(oldPosition.x, oldPosition.y)));
+                obstacleInactive.remove(new Point(oldPosition.x, oldPosition.y));
+            }
         } catch (Exception e) {
             putCreature(oldPosition.x, oldPosition.y, activeCreature);
         }
     }
+
+    private void doNothing(){}
 }

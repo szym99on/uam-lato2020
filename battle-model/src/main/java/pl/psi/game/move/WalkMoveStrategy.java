@@ -24,20 +24,20 @@ public class WalkMoveStrategy implements MoveStrategyIf {
         propertyChangeSupport = new PropertyChangeSupport(this);
         activeCreature = aActiveCreature;
     }
-
+/*
     private Point stepMove(Point destPoint){
         List<GuiTileIf> steps = getSteps(destPoint);
 
+        Obstacle step = (Obstacle) steps.get(0);
         AtomicReference<Point> a = null;
-        steps.forEach(s -> a.set(s.getObstacle().apply(activeCreature.getValue())));
+        steps.forEach((Obstacle) s -> a.set(s.isObstacle() ? (Obstacle) s.apply(activeCreature.getValue())));
         return a.get();
     }
-
+*/
 
     @Override
     public void move(Point destPoint) {
-        stepMove(destPoint);
-
+       // stepMove(destPoint);
         Point oldPosition = activeCreature.getKey();
         board.move((int) destPoint.getX(), (int) destPoint.getY(),activeCreature.getValue());
         activeCreature = new AbstractMap.SimpleEntry<>(destPoint, activeCreature.getValue());
@@ -53,8 +53,7 @@ public class WalkMoveStrategy implements MoveStrategyIf {
 
 
         List returnPath = new LinkedList();
-
-        path.forEach(p->returnPath.add(new EmptyTile(p)));
+        path.forEach(p->returnPath.add(board.getObject(p.x,p.y)));
 
         return returnPath;
     }
