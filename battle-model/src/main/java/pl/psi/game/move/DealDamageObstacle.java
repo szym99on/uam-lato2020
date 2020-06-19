@@ -19,8 +19,4 @@ class DealDamageObstacle extends Obstacle {
         return null;
     }
 
-    @Override
-    public boolean isObstacle() {
-        return true;
-    }
 }
