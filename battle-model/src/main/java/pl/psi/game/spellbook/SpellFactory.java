@@ -5,10 +5,17 @@ public class SpellFactory {
     public Spell createSpell(SpellInfo spellInfo){
         switch (spellInfo.getName()){
             case SpellBookInfoFactory.MAGIC_ARROW :
+                return DamageSpell.builder().aName(spellInfo.getName()).build();
             case SpellBookInfoFactory.LIGHTNING_BOLT :
+                return DamageSpell.builder().aName(spellInfo.getName()).build();
             case SpellBookInfoFactory.DESTROY_UNDEAD :
+                return DamageSpell.builder().aName(spellInfo.getName()).build();
             case SpellBookInfoFactory.FIRE_BALL :
-                return null; //Wait for damageSpell implementation
+                return DamageSpell.builder().aName(spellInfo.getName()).build();
+            case SpellBookInfoFactory.METEOR_SHOWER :
+                return DamageSpell.builder().aName(spellInfo.getName()).build();
+            case SpellBookInfoFactory.IMPLOSION :
+                return DamageSpell.builder().aName(spellInfo.getName()).build();
             case SpellBookInfoFactory.WEAKNESS :
                 return BuffDebufSpell.builder().aModificationAttack(-3).aModificationArmor(0).aModificationMoveRange(0).aName(spellInfo.getName()).aCost(spellInfo.getCost()).aDescription(spellInfo.getDescription()).aDuration(spellInfo.getDuration()).aManaCost(spellInfo.getManaCost()).aLevel(spellInfo.getLevel()).aType(spellInfo.getType()).build();
             case SpellBookInfoFactory.HASTE :
@@ -30,7 +37,6 @@ public class SpellFactory {
                 return SummonUnits.builder().aName(spellInfo.getName()).build();
             case SpellBookInfoFactory.MAGMA_ELEMENTAL :
                 return SummonUnits.builder().aName(spellInfo.getName()).build();
-
             default:
                 throw new IllegalArgumentException("This spell doesn't exist");
         }
