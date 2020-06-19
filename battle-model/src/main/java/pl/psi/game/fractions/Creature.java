@@ -110,10 +110,7 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
         return false;
     }
 
-    @Override
-    public Point getPoint() {
-        return null;
-    }
+
 
     @Override
     public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
