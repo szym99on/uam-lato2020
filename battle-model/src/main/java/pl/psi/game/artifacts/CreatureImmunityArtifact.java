@@ -4,17 +4,17 @@ import java.util.ArrayList;
 
 import pl.psi.game.fractions.Creature;
 import pl.psi.game.fractions.MagicResistance;
-import pl.psi.game.fractions.MagicResistance.ImmunityType;
+import pl.psi.game.fractions.MagicResistance.GroupImmunityType;
 
 
 class CreatureImmunityArtifact extends CreatureBuffArtifact {
-    private final ImmunityType immunityType;
+    private final GroupImmunityType groupImmunityType;
 
-    CreatureImmunityArtifact(ImmunityType aImmunityType) { immunityType = aImmunityType; }
+    CreatureImmunityArtifact(GroupImmunityType aGroupImmunityType) { groupImmunityType = aGroupImmunityType; }
 
     @Override
     void buffCreature(Creature c) {
-        MagicResistance magicResistance = new MagicResistance(0, immunityType, new ArrayList<>());
+        MagicResistance magicResistance = new MagicResistance(0, groupImmunityType, new ArrayList<>());
         c.setMagicResistance(magicResistance);
     }
 

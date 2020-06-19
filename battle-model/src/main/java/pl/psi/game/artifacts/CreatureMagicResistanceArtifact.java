@@ -1,6 +1,6 @@
 package pl.psi.game.artifacts;
 
-import static pl.psi.game.fractions.MagicResistance.ImmunityType.NONE;
+import static pl.psi.game.fractions.MagicResistance.GroupImmunityType.NONE;
 
 import java.util.ArrayList;
 
