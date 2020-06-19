@@ -16,9 +16,4 @@ public class RampartInfoFactory extends FractionsInfoAbstractFactory {
         creatureList.add(CreatureInfo.builder().aMaxHp(110).aAttack(Range.closed(18, 22)).aName("War Unicorn").aArmor(14).aMoveRange(9).aCanFly(false).aCost(950).build());
         creatureList.add(CreatureInfo.builder().aMaxHp(250).aAttack(Range.closed(40, 50)).aName("Gold Dragon").aArmor(27).aMoveRange(16).aCanFly(true).aCost(4000).build());
     }
-
-
-    public List<CreatureInfo> getAllCreatures(){
-        return creatureList;
-    }
 }
