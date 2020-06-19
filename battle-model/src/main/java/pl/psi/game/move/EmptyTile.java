@@ -26,11 +26,6 @@ public class EmptyTile implements GuiTileIf{
     }
 
     @Override
-    public int weight() {
-        return 1;
-    }
-
-    @Override
     public boolean isObstacle() {
         return false;
     }
