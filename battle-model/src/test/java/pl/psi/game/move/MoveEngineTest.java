@@ -214,18 +214,9 @@ class MoveEngineTest {
         MoveEngine moveEngine = new MoveEngine(board);
         moveEngine.setActiveCreature(new Point(2,2), creature);
 
-
-        Point finalPoint = new Point(5,4);
-
-        MoveStrategyIf moveStrategyIf = new FlyMoveStrategy(board,moveEngine.getActiveCreature());
-
-        List<GuiTileIf> path = moveStrategyIf.getSteps(finalPoint);
-        //PATH
-        assertEquals(path.get(0).getPoint(),new Point(3,2));
-        assertEquals(path.get(1).getPoint(),new Point(3,3));
-        assertEquals(path.get(2).getPoint(),new Point(4,3));
-        assertEquals(path.get(3).getPoint(),new Point(4,4));
-        assertEquals(path.get(4).getPoint(),new Point(5,4));
+        moveEngine.move(5,4);
+        assertEquals(creature, board.getCreature(5,4));
+        assertNull(board.getCreature(2,2));
 
     }
 
@@ -242,20 +233,9 @@ class MoveEngineTest {
         MoveEngine moveEngine = new MoveEngine(board);
         moveEngine.setActiveCreature(new Point(5,4), creature);
 
-
-        Point finalPoint = new Point(1,2);
-
-        MoveStrategyIf moveStrategyIf = new FlyMoveStrategy(board,moveEngine.getActiveCreature());
-
-        List<GuiTileIf> path = moveStrategyIf.getSteps(finalPoint);
-        //PATH
-        assertEquals(path.get(0).getPoint(),new Point(4,4));
-        assertEquals(path.get(1).getPoint(),new Point(4,3));
-        assertEquals(path.get(2).getPoint(),new Point(3,3));
-        assertEquals(path.get(3).getPoint(),new Point(3,2));
-        assertEquals(path.get(4).getPoint(),new Point(2,2));
-        assertEquals(path.get(5).getPoint(),new Point(1,2));
-
+        moveEngine.move(1,2);
+        assertEquals(creature, board.getCreature(1,2));
+        assertNull(board.getCreature(5,4));
     }
 
 

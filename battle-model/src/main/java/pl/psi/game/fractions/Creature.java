@@ -1,5 +1,6 @@
 package pl.psi.game.fractions;
 
+import java.awt.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
@@ -88,6 +89,13 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
         aDefender.currentHp = aDefender.currentHp - damageToDeal;
     }
 
+    //potrzebna do zadawania dmg przez lave ~movement
+    public void dealDamageObs(int damage) {
+        this.currentHp = this.currentHp - damage;
+    }
+
+
+
     public boolean canShoot(){
         return false;
     }
@@ -95,6 +103,21 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
     @Override
     public boolean isCreature() {
         return true;
+    }
+
+    @Override
+    public Point getPoint() {
+        return null;
+    }
+
+    @Override
+    public int weight() {
+        return 0;
+    }
+
+    @Override
+    public boolean isObstacle() {
+        return false;
     }
 
     @Override

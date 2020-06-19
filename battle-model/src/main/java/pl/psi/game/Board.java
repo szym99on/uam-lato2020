@@ -1,7 +1,6 @@
 package pl.psi.game;
 
 import pl.psi.game.fractions.Creature;
-import pl.psi.game.move.EmptyTile;
 import pl.psi.game.move.GuiTileIf;
 import pl.psi.game.move.Obstacle;
 import pl.psi.game.move.ObstacleFactory;

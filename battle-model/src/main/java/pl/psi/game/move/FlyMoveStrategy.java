@@ -30,44 +30,11 @@ public class FlyMoveStrategy implements MoveStrategyIf {
             propertyChangeSupport.firePropertyChange(GameEngine.CREATURE_MOVED, oldPosition, activeCreature.getKey());
 
     }
-
-    private int goDirection(int x, int oldX){
-        if(x > oldX) {
-            return 1;
-        }
-
-        if(x < oldX) {
-            return -1;
-        }
-        return 0;
-    }
-
     @Override
     public List<GuiTileIf> getSteps(Point destPoint) {
+        LinkedList<GuiTileIf> fakeMoveSteps = new LinkedList();
 
-        Point oldPosition = activeCreature.getKey().getLocation();
-
-        int oldX = oldPosition.x;
-        int oldY = oldPosition.y;
-        int finalX = (int) destPoint.getX();
-        int finalY = (int) destPoint.getY();
-
-        double xDistance = Math.abs(finalX - oldPosition.getX());
-        double yDistance = Math.abs(finalY - oldPosition.getY());
-
-        for (int i = 0; i < Math.max(xDistance,yDistance) ; i++) {
-
-            if(i < xDistance ) {
-                oldX += goDirection(finalX, oldX);
-                moveSteps.add(new EmptyTile(new Point(oldX, oldY)));
-            }
-
-            if(i < yDistance ) {
-                oldY += goDirection(finalY, oldY);
-                moveSteps.add(new EmptyTile(new Point(oldX, oldY)));
-            }
-        }
-        return moveSteps;
+        return fakeMoveSteps;
     }
 
     @Override

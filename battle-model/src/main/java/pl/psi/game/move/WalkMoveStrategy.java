@@ -71,9 +71,6 @@ public class WalkMoveStrategy implements MoveStrategyIf {
             return false;
         }
         return true;
-
-
-
     }
 
     public List countPath(Point point, Point endPoint,List path){

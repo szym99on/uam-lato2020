@@ -12,7 +12,7 @@ public class ReduceMoveRangeObstacle extends Obstacle {
 
     @Override
     public Point apply(Creature aCreature) {
-
+        aCreature.decreaseMoveRange(-3);
         return null;
     }
 
