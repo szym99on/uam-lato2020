@@ -21,7 +21,7 @@ public abstract class Spell implements PropertyChangeListener {
     private int manaCost;
     private SpellInfo.Type type;
 
-//    @Builder
+    //@Builder
     public Spell (String aName, String aDescription, int aCost, int aLevel, int aManaCost, SpellInfo.Type aType, int aDuration) {
         name = aName;
         description = aDescription;
