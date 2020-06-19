@@ -18,8 +18,9 @@ class MoveEngineTest {
     @Test
     void walkingMoveTest(){
 
-        Creature creature = Creature.builder().build();
+        Creature creature = Creature.builder().aCanFly(false).build();
         Board board = Board.getBoard();
+        board.clearBoard();
         MoveEngine moveEngine = new MoveEngine(board);
         moveEngine.setActiveCreature(new Point(1,1), creature);
 
@@ -43,6 +44,7 @@ class MoveEngineTest {
 
         Creature creature = Creature.builder().build();
         Board board = Board.getBoard();
+        board.clearBoard();
         MoveEngine moveEngine = new MoveEngine(board);
         moveEngine.setActiveCreature(new Point(1,1), creature);
 
@@ -76,6 +78,7 @@ class MoveEngineTest {
         //In this case creature is surrounded  by lava and can move only form 5,5 to 5,6
         Creature creature = Creature.builder().build();
         Board board = Board.getBoard();
+        board.clearBoard();
         MoveEngine moveEngine = new MoveEngine(board);
         moveEngine.setActiveCreature(new Point(5,5), creature);
 
@@ -107,9 +110,7 @@ class MoveEngineTest {
             expected.add(new Point(5,8));
             expected.add(new Point(5,9));
 
-
             assertEquals(expected,list);
-
     }
 
 
@@ -119,6 +120,7 @@ class MoveEngineTest {
         //In this case creature is surrounded  by lava and can move only form 5,5 to 5,6
         Creature creature = Creature.builder().aMoveRange(99).build();
         Board board = Board.getBoard();
+        board.clearBoard();
         MoveEngine moveEngine = new MoveEngine(board);
         moveEngine.setActiveCreature(new Point(5,5), creature);
 
@@ -133,7 +135,6 @@ class MoveEngineTest {
         Obstacle lava5 = obstacleFactory.createObstacle("lava", new Point(6,5));
         Obstacle lava6 =  obstacleFactory.createObstacle("lava", new Point(5,4));
 
-        board.clearBoard();
 
         board.putObstacle(lava1);
         board.putObstacle(lava2);
@@ -153,7 +154,7 @@ class MoveEngineTest {
         Creature c = Creature.builder().aMoveRange(1).build();
         Board board = Board.getBoard();
         board.clearBoard();
-        Board.getBoard();
+        //Board.getBoard();
         board.putCreature(1,1, c);
 
         MoveEngine moveEngine = new MoveEngine(board);
@@ -171,13 +172,12 @@ class MoveEngineTest {
         Creature c = Creature.builder().aMoveRange(1).build();
         Board board = Board.getBoard();
         board.clearBoard();
-        Board.getBoard();
+        //Board.getBoard();
         board.putCreature(1,1, c);
 
         MoveEngine moveEngine = new MoveEngine(board);
         moveEngine.setActiveCreature(new Point(1,1),c);
 
-        Point startPoint = new Point(1,1);
         assertFalse(moveEngine.isMovePossible(new Point(1,3)));
         assertFalse(moveEngine.isMovePossible(new Point(3,1)));
     }
@@ -190,7 +190,7 @@ class MoveEngineTest {
         Creature c = Creature.builder().aMoveRange(1).aCanFly(true).build();
         Board board = Board.getBoard();
         board.clearBoard();
-        Board.getBoard();
+        //Board.getBoard();
         board.putCreature(1,1, c);
 
         MoveEngine moveEngine = new MoveEngine(board);
@@ -208,7 +208,7 @@ class MoveEngineTest {
 
         Board board = Board.getBoard();
         board.clearBoard();
-        Board.getBoard();
+        //Board.getBoard();
         board.putCreature(2,2, creature);
 
         MoveEngine moveEngine = new MoveEngine(board);
@@ -227,7 +227,7 @@ class MoveEngineTest {
 
         Board board = Board.getBoard();
         board.clearBoard();
-        Board.getBoard();
+        //Board.getBoard();
         board.putCreature(5,4, creature);
 
         MoveEngine moveEngine = new MoveEngine(board);
@@ -245,7 +245,7 @@ class MoveEngineTest {
 
         Board board = Board.getBoard();
         board.clearBoard();
-        Board.getBoard();
+        //Board.getBoard();
         board.putCreature(2,2, creature);
 
         MoveEngine moveEngine = new MoveEngine(board);
@@ -263,6 +263,7 @@ class MoveEngineTest {
     @Test
     void walkingCreatureShouldCanMove(){
         Board board = Board.getBoard();
+        board.clearBoard();
         Creature creature = Creature.builder().aMoveRange(2).build();
         board.putCreature(8,4, creature);
 
