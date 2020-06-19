@@ -15,27 +15,21 @@ public class SpellBook {
     public SpellBook (int aHeroPower, int aHeroMana, List<Spell> aHeroSpells){
         heroPower = 0;
         factory = new SpellFactory();
-    }
-    public void increaseSpellDuration (int aAdditionalDuration){
-        if(aAdditionalDuration >= 0)
-        {
-            additionalDuration = additionalDuration + aAdditionalDuration;
-        }
-        else throw new IllegalArgumentException("You can't increase by a negative value");
+        spells = aHeroSpells;
     }
 
-    public void createSpell (SpellInfo spellInfo)
-    {
-        spells.add(factory.createSpell(spellInfo,heroPower,additionalDuration));
-    }
 
-    public List<Spell> getSpells()
-    {
+    public List<Spell> getSpells() {
         return spells;
     }
+
     public void increaseHeroPower(int amount)
     {
         heroPower+=amount;
     }
 
+    public void createSpell(SpellInfo s)
+    {
+        spells.add(factory.createSpell(s));
+    }
 }

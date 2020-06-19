@@ -1,6 +1,155 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<?import javafx.scene.layout.BorderPane?>
-<BorderPane fx:controller="pl.psi.gui.MainEconomyController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700" prefWidth="1024" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
-</BorderPane>
+
+<?import javafx.scene.layout.HBox?>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="775.0"
+      prefWidth="1071.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.psi.gui.MainEconomyController">
+    <Button fx:id="passTurnButton" onAction="#handlePassTurn" layoutX="31.0" layoutY="689.0" mnemonicParsing="false" prefHeight="72.0" prefWidth="1032.0" text=" READY">
+        <font>
+            <Font name="Arial" size="22.0"/>
+        </font>
+    </Button>
+    <VBox fx:id="creatureShop" layoutX="547.0" layoutY="59.0" prefHeight="620.0" prefWidth="516.0" style="-fx-border-style: solid;">
+        <VBox prefHeight="200.0" prefWidth="502.0" style="-fx-border-style: solid;">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Creature Shop">
+                <font>
+                    <Font size="18.0"/>
+                </font>
+            </Text>
+        </VBox>
+        <VBox fx:id="spellShop" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Spell Shop">
+                <font>
+                    <Font size="18.0"/>
+                </font>
+            </Text>
+            <HBox fx:id="spellShopLayout" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+                <VBox fx:id="spellShopInside" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+
+                </VBox>
+                <VBox fx:id="spellShopInside2" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+
+                </VBox>
+            </HBox>
+
+        </VBox>
+        <VBox fx:id="skillShop" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Special Skill Shop">
+                <font>
+                    <Font size="18.0"/>
+                </font>
+            </Text>
+            <HBox fx:id="skillShopLayout" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+                <VBox fx:id="skillShopInside" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+
+                </VBox>
+                <VBox fx:id="skillShopInside2" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+
+                </VBox>
+            </HBox>
+        </VBox>
+        <VBox fx:id="artifactsShop"  prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Atifacts Shop">
+                <font>
+                    <Font size="18.0"/>
+                </font>
+            </Text>
+            <HBox fx:id="artifactShopLayout" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+                <VBox fx:id="artifactsShopInside" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+
+                </VBox>
+                <VBox fx:id="artifactsShopInside2" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+
+                </VBox>
+            </HBox>
+        </VBox>
+    </VBox>
+    <Text layoutX="454.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SHOPS" textAlignment="CENTER"
+          wrappingWidth="186.375">
+        <font>
+            <Font name="System Bold" size="30.0"/>
+        </font>
+    </Text>
+    <VBox layoutX="31.0" layoutY="59.0" prefHeight="620.0" prefWidth="516.0" style="-fx-border-style: solid;">
+        <VBox fx:id="heroCreatures" prefHeight="200.0" prefWidth="502.0" style="-fx-border-style: solid;">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Creatures">
+                <font>
+                    <Font size="18.0"/>
+                </font>
+            </Text>
+            <HBox fx:id="heroCreaturesLayout" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+                <VBox fx:id="heroCreaturesInside" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+
+                </VBox>
+                <VBox fx:id="heroCreaturesInside2" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+
+                </VBox>
+            </HBox>
+        </VBox>
+        <VBox fx:id="heroSpells" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Spells">
+                <font>
+                    <Font size="18.0"/>
+                </font>
+            </Text>
+            <HBox fx:id="heroSpellsLayout" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+                <VBox fx:id="heroSpellsInside" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+
+                </VBox>
+                <VBox fx:id="heroSpellsInside2" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+
+                </VBox>
+            </HBox>
+        </VBox>
+        <VBox fx:id="heroSkills" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Special Skills">
+                <font>
+                    <Font size="18.0"/>
+                </font>
+            </Text>
+            <HBox fx:id="heroSkillLayout" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+                <VBox fx:id="heroSkillInside" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+
+                </VBox>
+                <VBox fx:id="heroSkillInside2" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+
+                </VBox>
+            </HBox>
+        </VBox>
+        <VBox fx:id="heroArtifacts" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Artifacts">
+                <font>
+                    <Font size="18.0"/>
+                </font>
+            </Text>
+            <HBox fx:id="heroArtifactsLayout" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+                <VBox fx:id="heroArtifactsInside" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+
+                </VBox>
+                <VBox fx:id="heroArtifactsInside2" prefHeight="200.0" prefWidth="100.0" style="-fx-border-style: solid;">
+
+                </VBox>
+            </HBox>
+        </VBox>
+    </VBox>
+    <ToolBar layoutX="772.0" layoutY="14.0" prefHeight="40.0" prefWidth="259.0" style="-fx-background-color: black;">
+        <Text fx:id="gold" fill="#ffe602" strokeType="OUTSIDE" strokeWidth="0.0" text="GOLD: " textAlignment="CENTER">
+            <font>
+                <Font name="System Bold" size="15.0"/>
+            </font>
+        </Text>
+        <Text fill="#ffe602" strokeType="OUTSIDE" strokeWidth="0.0">
+            <font>
+                <Font name="System Bold" size="15.0"/>
+            </font>
+        </Text>
+    </ToolBar>
+</Pane>
+
