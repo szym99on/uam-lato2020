@@ -94,7 +94,10 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
         this.currentHp = this.currentHp - damage;
     }
 
-
+    @Override
+    public Point getPoint() {
+        return null;
+    }
 
     public boolean canShoot(){
         return false;
