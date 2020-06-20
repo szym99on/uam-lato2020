@@ -23,7 +23,5 @@ class CreatureImmunityArtifact extends CreatureBuffArtifact {
     public int getMagicResistance() { return 0; }
 
     @Override
-    public String getSpellImmunityName() {
-        return null;
-    }
+    public String getSpellImmunityName() { return spellName; }
 }
