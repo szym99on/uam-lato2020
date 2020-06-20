@@ -80,15 +80,6 @@ public class ArtifactTest {
         assertEquals(1, collarOfConjuring.getDuration());
     }
 
-    @Disabled // waiting for implementation of cast prevention by spells
-    @Test
-    void factoryShouldCreateSpellPreventCastingArtifact() {
-        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(RECANTERS_CLOAK);
-        Artifact recantersCloak = ArtifactFactory.createArtifact(artifactInfo);
-
-    }
-
-
 //    AffectsHeroStats test
 
     @Test
