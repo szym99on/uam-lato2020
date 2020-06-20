@@ -30,11 +30,11 @@ public class HeroEcoBattleConverter {
         hero.increasePower(aEconomyHero.getPower());
         hero.increaseKnowledge(aEconomyHero.getKnowledge());
 
-        //convertedArtifacts.stream().filter(a -> a.changeHeroStats()).forEach(a -> a.apply(hero));
+        convertedArtifacts.stream().filter(a -> a.affectsHeroStats()).forEach(a -> a.apply(hero));
         hero.addSpells(convertedSpells);
         hero.increaseSpellPower();
         hero.getCreatures().forEach(c -> c.apply(hero));
-        //convertedArtifacts.stream().filter(a -> !a.changeHeroStats()).forEach(a -> a.apply(hero));
+        convertedArtifacts.stream().filter(a -> !a.affectsHeroStats()).forEach(a -> a.apply(hero));
         return hero;
     }
 
