@@ -43,9 +43,6 @@ public class Hero {
     public void increaseDuration(int aAmount){
         //spellBook.increaseDuration(aAmount);
     }
-    public void increaseSpellPower() {
-        spellBook.increaseHeroPower(power);
-    }
     public void addSpells(List<Spell> aSpells) {
         //spellBook.addSpells(aSpells);
     }

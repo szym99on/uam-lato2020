@@ -22,7 +22,6 @@ public class HeroEcoBattleConverter {
         SpellFactory spellFactory = new SpellFactory();
         List<Creature> convertedCreatures = aEconomyHero.getCreatures().stream().map(creatureFactory::getCreature).collect(Collectors.toList());
         List<Artifact> convertedArtifacts = aEconomyHero.getArtifacts().stream().map(ArtifactFactory::createArtifact).collect(Collectors.toList());
-        List<Spell> convertedSpells = aEconomyHero.getSpells().stream().map(spellFactory::createSpell).collect(Collectors.toList());
 
         Hero hero = Hero.builder().aCreatures(convertedCreatures).build();
         hero.increaseAttack(aEconomyHero.getAttack());
@@ -31,8 +30,10 @@ public class HeroEcoBattleConverter {
         hero.increaseKnowledge(aEconomyHero.getKnowledge());
 
         convertedArtifacts.stream().filter(a -> a.affectsHeroStats()).forEach(a -> a.apply(hero));
-        hero.addSpells(convertedSpells);
-        hero.increaseSpellPower();
+
+        //List<Spell> convertedSpells = aEconomyHero.getSpells().stream().map(spellFactory::createSpell).collect(Collectors.toList());
+        //hero.addSpells(convertedSpells);
+
         hero.getCreatures().forEach(c -> c.apply(hero));
         convertedArtifacts.stream().filter(a -> !a.affectsHeroStats()).forEach(a -> a.apply(hero));
         return hero;
