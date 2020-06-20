@@ -257,6 +257,22 @@ public class BuffAndDebufTest {
 //        assertEquals(5,c1.getMoveRange());
     }
 
+    @Test
+    void shouldCloneSpell(){
+        SpellFactory spellFactory = new SpellFactory();
+        Spell spell = spellFactory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.HASTE),1);
+        Spell spell1 = (Spell) spell.clone();
+
+        spell1.increaseDuration(1);
+
+        assertEquals(1, spell.getDuration());
+        assertEquals(2, spell1.getDuration());
+
+        Creature creature = Creature.builder().aMoveRange(3).build();
+        spell1.cast(creature);
+        assertEquals(6,creature.getMoveRange());
+    }
+
     //PW looks really nice, you get testing idea correctly :).
     // You should test each spell :)
 }

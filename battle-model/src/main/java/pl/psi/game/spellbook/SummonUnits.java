@@ -25,6 +25,12 @@ public class SummonUnits extends Spell {
         name = aName;
     }
 
+    @Override
+    public Object clone()
+    {
+        return new SummonUnits(this.getName(),this.getDescription(),this.getCost(),this.getLevel(),this.getManaCost(),this.getType(),this.getDuration());
+    }
+
 
     @Override
     public void cast(int x, int y) {
