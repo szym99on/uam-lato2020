@@ -1,6 +1,5 @@
 package pl.psi.game.move;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pl.psi.game.Board;
 import pl.psi.game.fractions.Creature;
@@ -8,7 +7,6 @@ import pl.psi.game.fractions.Creature;
 import java.awt.*;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.OptionalDouble;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,26 +15,36 @@ class MoveEngineTest {
 
     @Test
     void walkingMoveTest(){
+        //given
+        WalkMoveStrategy moveStrategyIf = prepareBoardAndReturnMovingStrategy();
+        // o o o o
+        // o 1 o o
+        // o 2 o o
+        // o 3 4 o
+        List expected = new LinkedList();
+        expected.add(new Point(1,1));
+        expected.add(new Point(1,2));
+        expected.add(new Point(1,3));
+        expected.add(new Point(2,3));
 
+        //when
+        List <Point> paths = new LinkedList<>();
+        paths.add(new Point(1,1));
+        List list = moveStrategyIf.countPath(new Point(1, 1), new Point(2, 3), paths);
+
+        //then
+        assertEquals(expected,list);
+    }
+
+    private WalkMoveStrategy prepareBoardAndReturnMovingStrategy() {
         Creature creature = Creature.builder().aCanFly(false).build();
         Board board = Board.getBoard();
         board.clearBoard();
         MoveEngine moveEngine = new MoveEngine(board);
         moveEngine.setActiveCreature(new Point(1,1), creature);
 
-        WalkMoveStrategy moveStrategyIf = new WalkMoveStrategy(board,moveEngine.getActiveCreature());
-        List <Point> paths = new LinkedList<>();
-        paths.add(new Point(1,1));
-
-        List list = moveStrategyIf.countPath(new Point(1, 1), new Point(2, 3),paths);
-        List expected = new LinkedList();
-        expected.add(new Point(1,1));
-        expected.add(new Point(1,2));
-        expected.add(new Point(1,3));
-        expected.add(new Point(2,3));
-        assertEquals(expected,list);
+        return new WalkMoveStrategy(board,moveEngine.getActiveCreature());
     }
-
 
 
     @Test
@@ -49,6 +57,8 @@ class MoveEngineTest {
         moveEngine.setActiveCreature(new Point(1,1), creature);
 
         WalkMoveStrategy moveStrategyIf = new WalkMoveStrategy(board,moveEngine.getActiveCreature());
+
+
         List <Point> paths = new LinkedList<>();
         paths.add(new Point(1,1));
         ObstacleFactory obstacleFactory = new ObstacleFactory();

@@ -38,8 +38,6 @@ class EndingMoveObstacleTest {
         Board.getBoard();
         board.putCreature(5,5, creature);
 
-        java.util.List<Point> paths = new LinkedList<>();
-        paths.add(new Point(5,5));
         ObstacleFactory obstacleFactory = new ObstacleFactory();
         Obstacle river1 = obstacleFactory.createObstacle("river", new Point(5,7));
         Obstacle river2 =  obstacleFactory.createObstacle("river", new Point(4,6));

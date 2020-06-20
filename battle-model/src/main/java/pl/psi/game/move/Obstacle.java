@@ -36,4 +36,6 @@ public abstract class Obstacle implements GuiTileIf {
 
     public abstract Point apply(Creature aCreature);
 
+    public abstract Point apply(int aCreature);
+
 }
