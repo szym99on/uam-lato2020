@@ -7,23 +7,22 @@ import pl.psi.game.hero.converter.Hero;
 
 public class DamageSpell extends Spell{
 
-    private int damageToDeal;
+    private int spellDamage;
     private Creature creature;
     private Hero hero;
-    private String name;
-
+//    private String name;
 
     @Builder
-    public DamageSpell(String aName, String aDescription, int aCost, int aLevel, int aManaCost, SpellInfo.Type aType, int aDuration, int aDamageToDeal) {
+    public DamageSpell(String aName, String aDescription, int aCost, int aLevel, int aManaCost, SpellInfo.Type aType, int aDuration, int aSpellDamage) {
         super(aName, aDescription, aCost, aLevel, aManaCost, aType, aDuration);
-        //damageToDeal = aDamageToDeal;
-        name = aName;
+        spellDamage = aSpellDamage;
+        //name = aName;
     }
 
     @Override
     public Object clone()
     {
-        return new DamageSpell(this.getName(),this.getDescription(),this.getCost(),this.getLevel(),this.getManaCost(),this.getType(),this.getDuration(),this.damageToDeal);
+        return new DamageSpell(this.getName(),this.getDescription(),this.getCost(),this.getLevel(),this.getManaCost(),this.getType(),this.getDuration(),this.spellDamage);
     }
 
     @Override
@@ -34,7 +33,7 @@ public class DamageSpell extends Spell{
 
         creature = aCreature;
         if(name.equals(SpellBookInfoFactory.MAGIC_ARROW)){
-            //damageToDeal;
+            //aCreature.attack(aCreature);
         }
         if(name.equals(SpellBookInfoFactory.LIGHTNING_BOLT)){ }
         if(name.equals(SpellBookInfoFactory.DESTROY_UNDEAD)){ }
