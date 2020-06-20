@@ -27,8 +27,8 @@ public class ArtifactInfoTest {
         artifactList.add(ArtifactInfo.builder().aCost(6000).aDescription("+3 spell power, +3 knowledge").aName(NECKLACE_OF_DRAGONTEETH).aLocation(ArtifactInfo.Location.NECK).build());
         artifactList.add(ArtifactInfo.builder().aCost(12000).aDescription("+3 to all 4 primary skills").aName(CELESTIAL_NECKLACE_OF_BLISS).aLocation(ArtifactInfo.Location.NECK).build());
         artifactList.add(ArtifactInfo.builder().aCost(500).aDescription("+1 spells duration").aName(COLLAR_OF_CONJURING).aLocation(ArtifactInfo.Location.NECK).build());
-        artifactList.add(ArtifactInfo.builder().aCost(1000).aDescription("Renders your units immune to the berserk spell (4 level in the School of fire magic)").aName(PENDANT_OF_DISPASSION).aLocation(ArtifactInfo.Location.NECK).build());
-        artifactList.add(ArtifactInfo.builder().aCost(2500).aDescription("Renders your units immune to the death ripple spell (2nd level spell in the School of Earth Magic)\n").aName(PENDANT_OF_LIFE).aLocation(ArtifactInfo.Location.NECK).build());
+        artifactList.add(ArtifactInfo.builder().aCost(1000).aDescription("Renders your units immune to the magic arrow spell").aName(PENDANT_OF_DISPASSION).aLocation(ArtifactInfo.Location.NECK).build());
+        artifactList.add(ArtifactInfo.builder().aCost(2500).aDescription("Renders your units immune to the lightning bolt spell").aName(PENDANT_OF_LIFE).aLocation(ArtifactInfo.Location.NECK).build());
         artifactList.add(ArtifactInfo.builder().aCost(1000).aDescription("+1 spell power").aName(BREASTPLATE_OF_PETRIFIED_WOOD).aLocation(ArtifactInfo.Location.TORSO).build());
         artifactList.add(ArtifactInfo.builder().aCost(3000).aDescription("+2 spell power").aName(RIB_CAGE).aLocation(ArtifactInfo.Location.TORSO).build());
         artifactList.add(ArtifactInfo.builder().aCost(8000).aDescription("+4 to attack, +4 defence ").aName(DRAGON_SCALE_ARMOR).aLocation(ArtifactInfo.Location.TORSO).build());
@@ -37,7 +37,7 @@ public class ArtifactInfoTest {
         artifactList.add(ArtifactInfo.builder().aCost(1500).aDescription("+3 spells duration").aName(CAPE_OF_CONJURING).aLocation(ArtifactInfo.Location.SHOULDERS).build());
         artifactList.add(ArtifactInfo.builder().aCost(4000).aDescription("+2 spell power, +2 knowledge ").aName(DRAGON_WING_TABARD).aLocation(ArtifactInfo.Location.SHOULDERS).build());
         artifactList.add(ArtifactInfo.builder().aCost(4000).aDescription("+10% to magic resistance").aName(SURCOAT_OF_COUNTERPOISE).aLocation(ArtifactInfo.Location.SHOULDERS).build());
-        artifactList.add(ArtifactInfo.builder().aCost(8000).aDescription("Prevents casting spells of level 3 and higher in combat").aName(RECANTERS_CLOAK).aLocation(ArtifactInfo.Location.SHOULDERS).build());
+        artifactList.add(ArtifactInfo.builder().aCost(8000).aDescription("+20% to magic resistance").aName(RECANTERS_CLOAK).aLocation(ArtifactInfo.Location.SHOULDERS).build());
         artifactList.add(ArtifactInfo.builder().aCost(10000).aDescription("+2 units speed").aName(CAPE_OF_VELOCITY).aLocation(ArtifactInfo.Location.SHOULDERS).build());
         artifactList.add(ArtifactInfo.builder().aCost(2000).aDescription("+2 attack skill").aName(CENTAURS_AX).aLocation(ArtifactInfo.Location.RIGHT_HAND).build());
         artifactList.add(ArtifactInfo.builder().aCost(3000).aDescription("+3 attack skill").aName(BLACKSHARD_OF_THE_DEAD_KNIGHT).aLocation(ArtifactInfo.Location.RIGHT_HAND).build());

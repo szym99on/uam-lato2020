@@ -1,11 +1,11 @@
 package pl.psi.game.artifacts;
 
-import static pl.psi.game.fractions.MagicResistance.GroupImmunityType.NONE;
+import pl.psi.game.fractions.Creature;
+import pl.psi.game.fractions.MagicResistance;
 
 import java.util.ArrayList;
 
-import pl.psi.game.fractions.Creature;
-import pl.psi.game.fractions.MagicResistance;
+import static pl.psi.game.fractions.MagicResistance.GroupImmunityType.NONE;
 
 class CreatureMagicResistanceArtifact extends CreatureBuffArtifact {
     private final int magicResistance;
@@ -28,4 +28,7 @@ class CreatureMagicResistanceArtifact extends CreatureBuffArtifact {
 
     @Override
     public int getSpeed() { return 0; }
+
+    @Override
+    public String getSpellImmunityName() { return "NONE"; }
 }
