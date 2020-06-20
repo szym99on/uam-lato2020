@@ -28,7 +28,7 @@ public class Hero {
         defence = 0;
         power = 0;
         knowledge = 0;
-        spellBook = SpellBook.builder().build();
+        spellBook = SpellBook.builder().aHeroMana(0).build();
     }
 
     public List<Creature> getCreatures() {
@@ -37,14 +37,14 @@ public class Hero {
     public SpellBook getSpellBook() {
         return spellBook;
     }
-    public void setMana() {
-        //spellBook.setMana(knowledge*10);
+    public void increaseMana(int aAmount) {
+        spellBook.increaseMana(aAmount*10);
     }
-    public void increaseDuration(int aAmount){
-        //spellBook.increaseDuration(aAmount);
+    public void increaseSpellsDuration(int aAmount){
+        spellBook.increaseAllSpellsDuration(aAmount);
     }
     public void addSpells(List<Spell> aSpells) {
-        spellBook.addSpells(aSpells);
+        //spellBook.addSpells(aSpells);
     }
 
     public void increaseAttack(int aAmount) {
@@ -78,8 +78,8 @@ public class Hero {
         }
         else{
             knowledge += aAmount;
+            increaseMana(aAmount);
         }
-        //spellBook.increaseMana(aAmount*10);
     }
 
     public Integer getAttack() {
