@@ -36,8 +36,8 @@ private static final Logger LOG = LogManager.getLogger(MainBattleController.clas
         LOG.warn("We've just greeted the user!");
         LOG.error("We've just greeted the user!");
         LOG.fatal("We've just greeted the user!");
-        ArtifactInitializer init = new ArtifactInitializer();
-//        SpellInitializer init = new SpellInitializer();
+//        ArtifactInitializer init = new ArtifactInitializer();
+        SpellInitializer init = new SpellInitializer();
 
         hero1 = HeroEcoBattleConverter.convert(init.getH1());
         hero2 = HeroEcoBattleConverter.convert(init.getH2());

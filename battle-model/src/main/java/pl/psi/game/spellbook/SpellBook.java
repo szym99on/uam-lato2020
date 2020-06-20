@@ -7,15 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SpellBook {
-    private int mana;
+    private int mana = 0;
     private SpellFactory factory;
     private List<Spell> spells;
 
     @Builder
-    public SpellBook (int aHeroMana, List<Spell> aHeroSpells){
-        mana = aHeroMana;
+    public SpellBook (){
         factory = new SpellFactory();
-        spells = aHeroSpells;
+        spells = new ArrayList<Spell>();
     }
 
 
