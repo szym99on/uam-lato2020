@@ -41,13 +41,12 @@ public abstract class Spell implements PropertyChangeListener {
 
     public void increaseDuration(int aAdditionalDuration)
     {
-
+//        Implementation only in Buff and Debuf sells
     }
-
 
     @Override
     public void propertyChange(PropertyChangeEvent propertyChangeEvent)
     {
-
+//        Implementation only in Buff and Debuf sells
     }
 }
