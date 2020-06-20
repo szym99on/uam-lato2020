@@ -21,6 +21,12 @@ public class DamageSpell extends Spell{
     }
 
     @Override
+    public Object clone()
+    {
+        return new DamageSpell(this.getName(),this.getDescription(),this.getCost(),this.getLevel(),this.getManaCost(),this.getType(),this.getDuration(),this.damageToDeal);
+    }
+
+    @Override
     public void cast(int x, int y) { cast(Board.getBoard().getCreature(x,y)); }
 
     @Override

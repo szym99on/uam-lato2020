@@ -11,7 +11,7 @@ import java.beans.PropertyChangeListener;
 //cast point against creature will be better (easier to implement integration with board and make some splash damage)
 
 @Getter
-public abstract class Spell implements PropertyChangeListener {
+public abstract class Spell implements PropertyChangeListener, Cloneable {
 
     protected final  String name;
     private final String description;
@@ -31,6 +31,9 @@ public abstract class Spell implements PropertyChangeListener {
         manaCost = aManaCost;
         type = aType;
     }
+
+    abstract public Object clone();
+
     public String getSpellName(){
         return name;
     }

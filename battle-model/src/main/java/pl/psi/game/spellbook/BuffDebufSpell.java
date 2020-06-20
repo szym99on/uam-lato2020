@@ -32,6 +32,12 @@ public class BuffDebufSpell extends Spell {
     }
 
     @Override
+    public Object clone()
+    {
+        return new BuffDebufSpell(this.getName(),this.getDescription(),this.getCost(),this.getLevel(),this.getManaCost(),this.getType(),this.getDuration(),this.modificationAttack,this.modificationArmor,this.modificationMoveRange);
+    }
+
+    @Override
     public void cast(int x, int y)
     {
         cast(Board.getBoard().getCreature(x,y));
