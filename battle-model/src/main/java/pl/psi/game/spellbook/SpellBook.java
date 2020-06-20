@@ -7,16 +7,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SpellBook {
-    private int mana = 0;
+    private int mana;
     private SpellFactory factory;
     private List<Spell> spells;
 
     @Builder
-    public SpellBook (){
+    public SpellBook (int aHeroMana){
+        mana = aHeroMana;
         factory = new SpellFactory();
         spells = new ArrayList<Spell>();
     }
-
 
     public List<Spell> getSpells() {
         return spells;

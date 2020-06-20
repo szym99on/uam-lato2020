@@ -35,10 +35,13 @@ public class SpellBookGui   {
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent actionEvent) {
-                   spell = item;
-                    if(spell instanceof SummonUnits){
-                        stateMap = new SummonUnitsState();
-                    }
+                    JFrame frame2 = new JFrame("SpellBook");
+                    frame2.setSize(800, 600);
+                    frame2.setLocation(50, 50);
+                    JLabel l = new JLabel("OOPs Spells not implemented");
+                    frame2.add(l);
+                    frame2.setVisible(true);
+                    frame2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 }
             });
 
