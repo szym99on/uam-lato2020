@@ -1,41 +1,41 @@
 package pl.psi.gui;
 
-import com.google.common.collect.Range;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import pl.psi.game.GameEngine;
-import pl.psi.game.fractions.Creature;
-import pl.psi.game.fractions.CreatureAbstractFactory;
-import pl.psi.game.fractions.CreatureInfo;
-import pl.psi.game.fractions.FractionsInfoAbstractFactory;
-import pl.psi.game.hero.HeroInfoFactory;
-import pl.psi.game.hero.artifacts.ArtifactsInfoFactory;
 import pl.psi.game.hero.converter.Hero;
 import pl.psi.game.hero.converter.HeroEcoBattleConverter;
-import pl.psi.game.hero.economyHero.EconomyHero;
-import pl.psi.game.move.GuiTileIf;
-import pl.psi.gui.tiles.*;
-
-import java.awt.Point;
-import java.util.ArrayList;
-import java.util.List;
+import pl.psi.gui.states.NormalState;
+import pl.psi.gui.states.StateMap;
 
 public class MainBattleController {
-
+private static final Logger LOG = LogManager.getLogger(MainBattleController.class);
     @FXML
     private GridPane gridMap;
     @FXML
     private Button passButton;
 
+    @FXML
+    private Button spellButton;
+
     private final Hero hero1;
     private final Hero hero2;
     private final GameEngine gameEngine;
+    private StateMap stateMap = new NormalState();
 
     public MainBattleController() {
+        System.out.println( "Hello, user!" );
+        LOG.trace("We've just greeted the user!");
+        LOG.debug("We've just greeted the user!");
+        LOG.info("We've just greeted the user!");
+        LOG.warn("We've just greeted the user!");
+        LOG.error("We've just greeted the user!");
+        LOG.fatal("We've just greeted the user!");
         ArtifactInitializer init = new ArtifactInitializer();
 //        SpellInitializer init = new SpellInitializer();
 
@@ -51,6 +51,11 @@ public class MainBattleController {
         passButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             gameEngine.pass();
         });
+        spellButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            // na razie tylko jeden heroes
+            SpellBookGui spellBookGui = new SpellBookGui(hero1, stateMap);
+
+        });
 
         gameEngine.addObserver((e) -> Platform.runLater(this::refreshGui));
     }
@@ -64,25 +69,6 @@ public class MainBattleController {
     }
 
     private void createTile(int aX, int aY) {
-        AbstractTileFactory factory = new DefaultTileFactory();
-
-        GuiTileIf somethingToRender = gameEngine.getByPoint(aX, aY);
-        if (somethingToRender != null) {
-            factory = new ObjectTileFactory(factory, somethingToRender);
-        }
-
-        if (gameEngine.getActiveCreature().getKey().equals(new Point(aX, aY))) {
-            factory = new ActiveObjectTileFactoryDecorator(factory);
-        }
-
-        if (gameEngine.isAttackPossible(aX, aY)) {
-            factory = new AttackPossibleTileFactoryDecorator(factory, aX, aY, gameEngine);
-        }
-
-        if (gameEngine.isMoveAllowed(new Point(aX, aY))) {
-            factory = new MovePossibleTileFactoryDecorator(factory, aX, aY, gameEngine);
-        }
-
-        gridMap.add(factory.generateTile(), aX, aY);
+        gridMap.add(stateMap.createTile(aX, aY, gameEngine), aX, aY);
     }
 }

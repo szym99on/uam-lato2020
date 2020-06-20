@@ -24,4 +24,7 @@ class CreatureSpeedArtifact extends CreatureBuffArtifact{
 
     @Override
     public int getMagicResistance() { return 0; }
+
+    @Override
+    public String getSpellImmunityName() { return "NONE"; }
 }

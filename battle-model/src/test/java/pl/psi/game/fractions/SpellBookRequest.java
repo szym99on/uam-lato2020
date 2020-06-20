@@ -70,5 +70,72 @@ public class SpellBookRequest {
         assertEquals(Range.closed(3,3),creature.getAttack());
     }
 
+    @Test
+    @Disabled
+    void creatureShouldReceiveLessDamageFromRangedAttacks(){
+        Creature attacker = ShootingCreature.builder().aAttack(Range.closed(8,8)).build();
+        Creature defender1 = Creature.builder().aArmor(0).aMaxHp(20).build();
+        Creature defender2 = Creature.builder().aArmor(0).aMaxHp(20).build();
+
+      //  defender1.reduceRangedDamageByPercentage(25);
+
+
+        attacker.attack(defender1);
+        attacker.attack(defender2);
+
+        assertEquals(14,defender1.getCurrentHp());
+        assertEquals(12,defender2.getCurrentHp());
+
+//        defender1.removeThisEffect();
+        attacker.attack(defender1);
+
+        assertEquals(6,defender1.getCurrentHp());
+    }
+
+    @Test
+    @Disabled
+    void creatureShouldIncreaseCloseRangedAttackDamage(){
+        Creature attacker = Creature.builder().aAttack(Range.closed(8,8)).build();
+        Creature defender1 = Creature.builder().aArmor(0).aMaxHp(20).build();
+        Creature defender2 = Creature.builder().aArmor(0).aMaxHp(20).build();
+
+//        attacker.increaseCloseRangedDamage(3);
+        attacker.attack(defender1);
+
+//        attacker.removeThisEffect()
+        attacker.attack(defender2);
+
+        assertEquals(9,defender1.getCurrentHp());
+        assertEquals(12,defender2.getCurrentHp());
+
+    }
+
+    @Test
+    @Disabled
+    void defenderShouldGiveBackPercentageCloseRangedDamage(){
+        Creature attacker = Creature.builder().aAttack(Range.closed(10,10)).aArmor(0).aMaxHp(20).build();
+        Creature defender1 = Creature.builder().aAttack(Range.closed(0,0)).aArmor(0).aMaxHp(20).build();
+
+//        FireShield
+//        defender1.returnPercentageDamageDealt(20)
+        attacker.attack(defender1);
+//        defender.removeThisEffect()
+
+        assertEquals(18,attacker.getCurrentHp());
+    }
+
+    @Test
+    @Disabled
+    void creatureShouldBeResistantToLevelSpells (){
+        Creature creature = Creature.builder().build();
+
+//        creature.setLevelMagicResistant(1);
+//        creature.setLevelMagicResistant(2);
+//        creature.setLevelMagicResistant(3);
+
+//        creature.removeLevelMagicResistant(1);
+//        creature.removeLevelMagicResistant(2);
+//        creature.removeLevelMagicResistant(3);
+    }
 
 }

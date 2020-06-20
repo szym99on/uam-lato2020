@@ -15,13 +15,13 @@ public class ConverterRequest {
         Hero hero = Hero.builder().build();
         hero.increaseKnowledge(1);
         hero.setMana();
-        //in hero --- spellBook.setMana(knowledge*10);
+        //in hero --- spellBook.increaseMana(knowledge*10);
     }*/
     /*@Test
     void SpellBookNeedIncreaseDurationMethod() {
         Hero hero = Hero.builder().build();
         hero.increaseDuration(1);
-        //in hero --- spellBook.increaseDuration(aAmount);
+        //in hero --- spellBook.increaseAllSpellDuration(aAmount);
     }*/
     /*@Test
     void SpellBookNeedAddSpellsMethod() {
