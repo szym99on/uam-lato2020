@@ -1,21 +1,16 @@
 package pl.psi.game.artifacts;
 
-import java.util.ArrayList;
-
 import pl.psi.game.fractions.Creature;
-import pl.psi.game.fractions.MagicResistance;
-import pl.psi.game.fractions.MagicResistance.GroupImmunityType;
 
 
 class CreatureImmunityArtifact extends CreatureBuffArtifact {
-    private final GroupImmunityType groupImmunityType;
+    private final String spellName;
 
-    CreatureImmunityArtifact(GroupImmunityType aGroupImmunityType) { groupImmunityType = aGroupImmunityType; }
+    CreatureImmunityArtifact(String aSpellName) { spellName = aSpellName; }
 
     @Override
     void buffCreature(Creature c) {
-        MagicResistance magicResistance = new MagicResistance(0, groupImmunityType, new ArrayList<>());
-        c.setMagicResistance(magicResistance);
+        c.getMagicResistance().addImmunitySpell(spellName);
     }
 
     @Override
