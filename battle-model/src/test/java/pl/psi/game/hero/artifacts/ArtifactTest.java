@@ -140,7 +140,7 @@ public class ArtifactTest {
 
 //    CreatureImmunityArtifact test
 
-    @Disabled // waiting for dealing spell damage
+     // waiting for dealing spell damage
     @Test
     void artifactShouldGrantImmunityToCreature() {
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(PENDANT_OF_DISPASSION);
@@ -156,7 +156,7 @@ public class ArtifactTest {
             e.printStackTrace();
         }
 
-//        assert creature has immunity
+        assertEquals(true, creature.getMagicResistance().isImmuneToSpell(MAGIC_ARROW));
 
     }
 
