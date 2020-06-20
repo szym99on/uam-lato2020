@@ -44,7 +44,7 @@ public class Hero {
         //spellBook.increaseDuration(aAmount);
     }
     public void addSpells(List<Spell> aSpells) {
-        //spellBook.addSpells(aSpells);
+        spellBook.addSpells(aSpells);
     }
 
     public void increaseAttack(int aAmount) {
