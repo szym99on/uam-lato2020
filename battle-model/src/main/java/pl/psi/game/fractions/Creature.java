@@ -69,7 +69,7 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
     @Override
     public String getDisplayName() {
         StringBuilder sb = new StringBuilder();
-        sb.append(name);
+        sb.append(name.replaceAll(" ", System.lineSeparator()));
         sb.append(System.lineSeparator());
         sb.append(currentHp);
         sb.append("/");
