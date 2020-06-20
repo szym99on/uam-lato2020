@@ -1,6 +1,5 @@
 package pl.psi.game.hero.artifacts;
 
-import com.google.common.collect.Range;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -8,8 +7,6 @@ import pl.psi.game.artifacts.Artifact;
 import pl.psi.game.artifacts.ArtifactFactory;
 import pl.psi.game.fractions.Creature;
 import pl.psi.game.hero.converter.Hero;
-import pl.psi.game.hero.converter.HeroEcoBattleConverter;
-import pl.psi.game.spellbook.Spell;
 import pl.psi.game.spellbook.SpellBookInfoFactory;
 import pl.psi.game.spellbook.SpellFactory;
 import pl.psi.game.spellbook.SpellInfo;
@@ -18,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static pl.psi.game.fractions.MagicResistance.ImmunityType.NONE;
 import static pl.psi.game.hero.artifacts.ArtifactsInfoFactory.*;
 import static pl.psi.game.spellbook.SpellBookInfoFactory.*;
 
@@ -84,15 +80,6 @@ public class ArtifactTest {
         assertEquals(1, collarOfConjuring.getDuration());
     }
 
-    @Disabled // waiting for implementation of cast prevention by spells
-    @Test
-    void factoryShouldCreateSpellPreventCastingArtifact() {
-        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(RECANTERS_CLOAK);
-        Artifact recantersCloak = ArtifactFactory.createArtifact(artifactInfo);
-
-    }
-
-
 //    AffectsHeroStats test
 
     @Test
@@ -144,7 +131,7 @@ public class ArtifactTest {
 
 //    CreatureImmunityArtifact test
 
-    @Disabled // waiting for dealing spell damage
+     // waiting for dealing spell damage
     @Test
     void artifactShouldGrantImmunityToCreature() {
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(PENDANT_OF_DISPASSION);
@@ -160,7 +147,7 @@ public class ArtifactTest {
             e.printStackTrace();
         }
 
-//        assert creature has immunity
+        assertEquals(true, creature.getMagicResistance().isImmuneToSpell(MAGIC_ARROW));
 
     }
 

@@ -2,7 +2,6 @@ package pl.psi.game.fractions;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.ArrayList;
 
 import com.google.common.collect.Range;
 
@@ -44,7 +43,7 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
         canFly = aCanFly;
         amount = 10;
         dealDamageCounterStrategy = new DefaultDamageCounterStrategy();
-        magicResistance = new MagicResistance(0, MagicResistance.ImmunityType.NONE, new ArrayList<>());
+        magicResistance = new MagicResistance(0, MagicResistance.GroupImmunityType.NONE);
         attackStrategyIf = new DefaultAttackStrategy(this);
     }
 
@@ -59,7 +58,7 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
         name = "";
         moveRange = 0;
         canFly = false;
-        magicResistance = new MagicResistance(0, MagicResistance.ImmunityType.NONE, new ArrayList<>());
+        magicResistance = new MagicResistance(0, MagicResistance.GroupImmunityType.NONE);
         attackStrategyIf = new DefaultAttackStrategy(this);
     }
 
@@ -70,7 +69,7 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
     @Override
     public String getDisplayName() {
         StringBuilder sb = new StringBuilder();
-        sb.append(name);
+        sb.append(name.replaceAll(" ", System.lineSeparator()));
         sb.append(System.lineSeparator());
         sb.append(currentHp);
         sb.append("/");
