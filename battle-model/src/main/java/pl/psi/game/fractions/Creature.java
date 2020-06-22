@@ -1,9 +1,7 @@
 package pl.psi.game.fractions;
 
-import java.awt.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.ArrayList;
 
 import com.google.common.collect.Range;
 
@@ -12,6 +10,8 @@ import lombok.Getter;
 import lombok.Setter;
 import pl.psi.game.hero.converter.Hero;
 import pl.psi.game.move.GuiTileIf;
+import pl.psi.game.move.Obstacle;
+import pl.psi.game.spellbook.Spell;
 
 @Getter
 public class Creature implements GuiTileIf, PropertyChangeListener {
@@ -45,7 +45,7 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
         canFly = aCanFly;
         amount = 10;
         dealDamageCounterStrategy = new DefaultDamageCounterStrategy();
-        magicResistance = new MagicResistance(0, MagicResistance.ImmunityType.NONE, new ArrayList<>());
+        magicResistance = new MagicResistance(0, MagicResistance.GroupImmunityType.NONE);
         attackStrategyIf = new DefaultAttackStrategy(this);
     }
 
@@ -60,7 +60,7 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
         name = "";
         moveRange = 0;
         canFly = false;
-        magicResistance = new MagicResistance(0, MagicResistance.ImmunityType.NONE, new ArrayList<>());
+        magicResistance = new MagicResistance(0, MagicResistance.GroupImmunityType.NONE);
         attackStrategyIf = new DefaultAttackStrategy(this);
     }
 
@@ -71,7 +71,7 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
     @Override
     public String getDisplayName() {
         StringBuilder sb = new StringBuilder();
-        sb.append(name);
+        sb.append(name.replaceAll(" ", System.lineSeparator()));
         sb.append(System.lineSeparator());
         sb.append(currentHp);
         sb.append("/");
@@ -86,20 +86,22 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
 
     void dealDamage(Creature aDefender) {
         int damageToDeal = dealDamageCounterStrategy.countDamageToDeal(this, aDefender);
-        aDefender.currentHp = aDefender.currentHp - damageToDeal;
+        aDefender.takePureDamage(damageToDeal);
     }
 
-    //potrzebna do zadawania dmg przez lave ~movement
-    public void dealDamageObs(int damage) {
-        this.currentHp = this.currentHp - damage;
+    public void takePureDamage(int damage) {
+        currentHp = currentHp - damage;
+        if (currentHp < 0) {
+            currentHp = 0;
+        }
     }
 
-    @Override
-    public Point getPoint() {
-        return null;
+    public void takeDamage(Spell spell) {
+        int damageToTake = magicResistance.countDamage(spell);
+        takePureDamage(damageToTake);
     }
 
-    public boolean canShoot(){
+    public boolean canShoot() {
         return false;
     }
 
@@ -107,13 +109,6 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
     public boolean isCreature() {
         return true;
     }
-
-    @Override
-    public boolean isObstacle() {
-        return false;
-    }
-
-
 
     @Override
     public void propertyChange(PropertyChangeEvent propertyChangeEvent) {

@@ -26,5 +26,4 @@ public class NecropolisInfoFactory extends FractionsInfoAbstractFactory {
             creatureList.add(CreatureInfo.builder().aMaxHp(120).aAttack(Range.closed(15, 30)).aName("Dread Knight").aArmor(18).aMoveRange(9).aCanFly(false).aCost(1500).build());
             creatureList.add(CreatureInfo.builder().aMaxHp(200).aAttack(Range.closed(25, 50)).aName("Ghost Dragon").aArmor(17).aMoveRange(14).aCanFly(true).aCost(3000).build());
     }
-
 }

@@ -7,6 +7,7 @@ import pl.psi.game.fractions.CreatureAbstractFactory;
 import pl.psi.game.fractions.FractionsInfoAbstractFactory;
 import pl.psi.game.hero.economyHero.EconomyHero;
 import pl.psi.game.spellbook.Spell;
+import pl.psi.game.spellbook.SpellBookInfoFactory;
 import pl.psi.game.spellbook.SpellFactory;
 
 import java.util.ArrayList;
@@ -16,10 +17,9 @@ import java.util.stream.Collectors;
 public class HeroEcoBattleConverter {
 
     public static Hero convert(EconomyHero aEconomyHero) {
-        //apply attack and defense on creatures
         //initialize factories
         CreatureAbstractFactory creatureFactory = new CreatureAbstractFactory();
-
+        SpellFactory spellFactory = new SpellFactory();
         List<Creature> convertedCreatures = aEconomyHero.getCreatures().stream().map(creatureFactory::getCreature).collect(Collectors.toList());
         List<Artifact> convertedArtifacts = aEconomyHero.getArtifacts().stream().map(ArtifactFactory::createArtifact).collect(Collectors.toList());
 
@@ -28,11 +28,14 @@ public class HeroEcoBattleConverter {
         hero.increaseDefence(aEconomyHero.getDefence());
         hero.increasePower(aEconomyHero.getPower());
         hero.increaseKnowledge(aEconomyHero.getKnowledge());
-        hero.getSpellBook().increaseHeroPower(hero.getPower());
 
-        aEconomyHero.getSpells().forEach(s -> hero.getSpellBook().createSpell(s));
-        convertedArtifacts.forEach(a -> a.apply(hero));
+        convertedArtifacts.stream().filter(a -> a.affectsHeroStats()).forEach(a -> a.apply(hero));
+
+        List<Spell> convertedSpells = aEconomyHero.getSpells().stream().map(s -> spellFactory.createSpell(s,hero.getPower())).collect(Collectors.toList());
+        hero.addSpells(convertedSpells);
+
         hero.getCreatures().forEach(c -> c.apply(hero));
+        convertedArtifacts.stream().filter(a -> !a.affectsHeroStats()).forEach(a -> a.apply(hero));
         return hero;
     }
 

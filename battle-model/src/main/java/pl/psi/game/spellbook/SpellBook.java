@@ -1,41 +1,42 @@
 package pl.psi.game.spellbook;
 
 import lombok.Builder;
+import org.checkerframework.framework.qual.DefaultQualifierInHierarchyInUncheckedCode;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SpellBook {
-    private int heroPower;
-    private int additionalDuration=0;
+    private int mana;
     private SpellFactory factory;
     private List<Spell> spells;
 
     @Builder
-    public SpellBook (int aHeroPower, int aHeroMana, List<Spell> aHeroSpells){
-        heroPower = 0;
+    public SpellBook (int aHeroMana){
+        mana = aHeroMana;
         factory = new SpellFactory();
-    }
-    public void increaseSpellDuration (int aAdditionalDuration){
-        if(aAdditionalDuration >= 0)
-        {
-            additionalDuration = additionalDuration + aAdditionalDuration;
-        }
-        else throw new IllegalArgumentException("You can't increase by a negative value");
+        spells = new ArrayList<Spell>();
     }
 
-    public void createSpell (SpellInfo spellInfo)
-    {
-        spells.add(factory.createSpell(spellInfo,heroPower,additionalDuration));
-    }
-
-    public List<Spell> getSpells()
-    {
+    public List<Spell> getSpells() {
         return spells;
     }
-    public void increaseHeroPower(int amount)
-    {
-        heroPower+=amount;
+
+    public void increaseMana(int aAmount){
+        mana += aAmount;
     }
 
+    public void increaseAllSpellsDuration(int additionalDuration){
+        spells.forEach(s -> s.increaseDuration(additionalDuration));
+    }
+
+    public void addSpells(List<Spell> aSpells){
+        aSpells.forEach(s -> spells.add(s));
+    }
+
+    @Deprecated
+    public void createSpell(SpellInfo s)
+    {
+        spells.add(factory.createSpell(s));
+    }
 }

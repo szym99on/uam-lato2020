@@ -3,11 +3,10 @@ package pl.psi.game.artifacts;
 import pl.psi.game.hero.artifacts.ArtifactInfo;
 
 import static pl.psi.game.hero.artifacts.ArtifactsInfoFactory.*;
+import static pl.psi.game.spellbook.SpellBookInfoFactory.LIGHTNING_BOLT;
+import static pl.psi.game.spellbook.SpellBookInfoFactory.MAGIC_ARROW;
 
 public class ArtifactFactory {
-    //PW you should return concrete class not Artifact. For example:
-    // SKULL_HELMET should return Artifact for heroes (more specific HeroAttributesArtifact)
-    // BOOTS_OF_POLARITY should return Artifact for creature ( more specific CreatureMagicResistanceArtifact)
     public static Artifact createArtifact(ArtifactInfo artifactInfo){
         if (artifactInfo.getName().equals(HELM_OF_THE_ALABASTER_UNICORN)){
             return new HeroStatisticArtifact(0,0,0,1);
@@ -33,12 +32,12 @@ public class ArtifactFactory {
         else if (artifactInfo.getName().equals(COLLAR_OF_CONJURING)){
             return new SpellDurationArtifact(1);
         }
-//        else if (artifactInfo.getName().equals(PENDANT_OF_DISPASSION)){
-//            return new CreatureImmunityArtifact();
-//        }
-//        else if (artifactInfo.getName().equals(PENDANT_OF_LIFE)){
-//            return new CreatureImmunityArtifact();
-//        }
+        else if (artifactInfo.getName().equals(PENDANT_OF_DISPASSION)){
+            return new CreatureImmunityArtifact(MAGIC_ARROW);
+        }
+        else if (artifactInfo.getName().equals(PENDANT_OF_LIFE)){
+            return new CreatureImmunityArtifact(LIGHTNING_BOLT);
+        }
         else if (artifactInfo.getName().equals(BREASTPLATE_OF_PETRIFIED_WOOD)){
             return new HeroStatisticArtifact(0,0,1,0);
         }
@@ -63,9 +62,9 @@ public class ArtifactFactory {
         else if (artifactInfo.getName().equals(SURCOAT_OF_COUNTERPOISE)){
             return new CreatureMagicResistanceArtifact(10);
         }
-//        else if (artifactInfo.getName().equals(RECANTERS_CLOAK)){
-//            return new SpellPreventCastingArtifact(0);
-//        }
+        else if (artifactInfo.getName().equals(RECANTERS_CLOAK)){
+            return new CreatureMagicResistanceArtifact(20);
+        }
         else if (artifactInfo.getName().equals(CAPE_OF_VELOCITY)){
             return new CreatureSpeedArtifact(2);
         }

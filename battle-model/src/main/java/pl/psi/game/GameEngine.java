@@ -4,6 +4,7 @@ import pl.psi.game.fractions.Creature;
 import pl.psi.game.hero.converter.Hero;
 import pl.psi.game.move.GuiTileIf;
 import pl.psi.game.move.MoveEngine;
+import pl.psi.game.spellbook.Spell;
 
 import java.awt.*;
 import java.beans.PropertyChangeEvent;
@@ -27,6 +28,7 @@ public class GameEngine implements PropertyChangeListener {
     private final Queue<Creature> creaturesQueue;
     private List<Creature> creatureMovedOnThisTurn;
     private PropertyChangeSupport propertyChangeSupport;
+    private Spell selectedSpell;
 
     public GameEngine(Hero aHero1, Hero aHero2) {
         this.board = Board.getBoard();
@@ -82,6 +84,11 @@ public class GameEngine implements PropertyChangeListener {
         activeCreature.getValue().attack(board.getCreature(x,y));
         propertyChangeSupport.firePropertyChange(CREATURE_ATTACKED,null,null);
         pass();
+    }
+    public void castSpell(int aX, int aY, Spell selectedSpell){
+
+        selectedSpell.cast(aX, aY);
+
     }
 
     public boolean isAttackPossible(int x, int y){

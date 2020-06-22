@@ -43,4 +43,9 @@ public class FractionsInfoAbstractFactory {
         Preconditions.checkArgument(aTier >= 1 && aTier <= 7, "We support tiers 1-7");
         return creatureList.get(aTier - 1);
     }
+
+    public List<CreatureInfo> getAllCreatures(){
+        return creatureList;
+    }
+
 }

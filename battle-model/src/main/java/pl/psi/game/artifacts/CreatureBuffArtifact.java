@@ -12,6 +12,9 @@ abstract class CreatureBuffArtifact extends Artifact {
 
     abstract void buffCreature(Creature c);
 
+    @Override
+    public boolean affectsHeroStats(){ return false; }
+
     //For tests
     @Override
     public int getAttack() { return 0; }

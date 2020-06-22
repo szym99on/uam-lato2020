@@ -4,14 +4,16 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pl.psi.game.fractions.FractionsInfoAbstractFactory;
+import pl.psi.game.hero.artifacts.ArtifactInfo;
 import pl.psi.game.hero.artifacts.ArtifactsInfoFactory;
 import pl.psi.game.spellbook.SpellBookInfoFactory;
 import pl.psi.game.spellbook.SpellInfo;
 
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class shopsManagementTest {
 
@@ -24,15 +26,12 @@ public class shopsManagementTest {
         new SpellBookInfoFactory();
     }
 
-    //initial sketch test generateShops()
 
     @Test
-    //PW what with name? o.0 should add 8 spells and equals 10? o.0
-    // btw requirement was not 2 for each tier but some pyramid
-    void generateSpellsAvailableToBuyShouldAdd8Spells() {
+    void generateItemsAvailableToBuyShouldAdd10SpellsToShop() {
 
-        SpellShop spellShop = new SpellShop();
-        spellShop.generateSpellsAvailableToBuy();
+        SpellShop spellShop  = new SpellShop();
+        spellShop.generateItemsAvailableToBuy();
         List<SpellInfo> spellsAvailableToBuy = spellShop.getSpellsAvailableToBuy();
 
         assertEquals(10, spellsAvailableToBuy.size());
@@ -40,26 +39,36 @@ public class shopsManagementTest {
     }
 
     @Test
-    //PW what with tier 5?
     void generateSpellsAvailableToBuyShouldAdd2SpellsOfEachTier() {
 
         SpellShop spellShop = new SpellShop();
-        spellShop.generateSpellsAvailableToBuy();
+        spellShop.generateItemsAvailableToBuy();
         List<SpellInfo> spellsAvailableToBuy = spellShop.getSpellsAvailableToBuy();
 
         long firstTierSpellsCount = spellsAvailableToBuy.stream().filter(spell -> spell.getLevel() == 1).count();
         long secondTierSpellsCount = spellsAvailableToBuy.stream().filter(spell -> spell.getLevel() == 2).count();
         long thirdTierSpellsCount = spellsAvailableToBuy.stream().filter(spell -> spell.getLevel() == 3).count();
         long fourthTierSpellsCount = spellsAvailableToBuy.stream().filter(spell -> spell.getLevel() == 4).count();
+        long fifthTierSpellCount = spellsAvailableToBuy.stream().filter(spell -> spell.getLevel() == 5).count();
 
 
         assertEquals(firstTierSpellsCount, 2);
         assertEquals(secondTierSpellsCount, 2);
         assertEquals(thirdTierSpellsCount, 2);
         assertEquals(fourthTierSpellsCount, 2);
+        assertEquals(fifthTierSpellCount, 2);
 
     }
 
+
+    @Test
+    void generateItemsAvailableToBuyShouldGenerateArtifactsInRange2To12(){
+
+        ArtifactsShop artifactsShop = new ArtifactsShop();
+        artifactsShop.generateItemsAvailableToBuy();
+        List<ArtifactInfo> artifactsAvailableToBuy = artifactsShop.getArtifactsAvailableToBuy();
+        assertTrue(2<=artifactsAvailableToBuy.size() && artifactsAvailableToBuy.size()<=12);
+    }
 
 
     @Test
