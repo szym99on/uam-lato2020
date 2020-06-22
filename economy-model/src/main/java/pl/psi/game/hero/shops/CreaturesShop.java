@@ -1,48 +1,50 @@
 package pl.psi.game.hero.shops;
 
 import lombok.Getter;
-import org.checkerframework.checker.units.qual.C;
 import pl.psi.game.fractions.CreatureInfo;
 import pl.psi.game.fractions.CreatureStack;
 import pl.psi.game.fractions.FractionsInfoAbstractFactory;
 import pl.psi.game.hero.HeroInfo;
 import pl.psi.game.hero.economyHero.EconomyHero;
-import pl.psi.game.skills.SkillInfo;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class CreaturesShop extends AbstractShop {
 
-    public List<CreatureInfo> getCreaturesAvailableToBuy() {
-        return creaturesAvailableToBuy;
+    @Getter
+    private List<CreatureStack> creaturesAvailableToBuy;
+
+
+    public CreaturesShop() {
     }
 
-    //@Getter
-    private List<CreatureInfo> creaturesAvailableToBuy;
-
-
-    public CreaturesShop(){}
-
-    public CreaturesShop(String name, String description, List<CreatureInfo> creaturesAvailableToBuy) {
+    public CreaturesShop(String name, String description, List<CreatureStack> creaturesAvailableToBuy) {
         super(name, description);
         this.creaturesAvailableToBuy = creaturesAvailableToBuy;
     }
+
     @Override
     public void generateItemsAvailableToBuy() {
-        EconomyHero hero = EconomyHero.builder().build();
-//        FractionsInfoAbstractFactory.Fraction fraction = hero.getFraction();
-//        FractionsInfoAbstractFactory creaturesFactory = FractionsInfoAbstractFactory.getFactory(fraction);
-        List<CreatureInfo> creaturesAvailableToBuy = new ArrayList<>();
-        List<CreatureStack> creatureStacks = new ArrayList<>();
+        FractionsInfoAbstractFactory creaturesFactory = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS);
+//        HeroInfo heroInfo = new HeroInfo("name", creaturesFactory
+//                , HeroInfo.FractionClass.ALCHEMIST);
+//        EconomyHero hero = EconomyHero.builder().build();
+        //FractionsInfoAbstractFactory.Fractions fraction = hero.getFraction();
 
-        for (CreatureInfo creature:creaturesAvailableToBuy) {
+        List<CreatureInfo> creatures = creaturesFactory.getAllCreatures();
+        List<CreatureStack> creaturesAvailableToBuy = new ArrayList<>();
+
+        for (CreatureInfo creature : creatures) {
             Random ran = new Random();
             int creaturesCount = ran.nextInt(3) + 2;
-            CreatureStack creatureStack = new CreatureStack(creature,creaturesCount);
-            creatureStacks.add(creatureStack);
+            CreatureStack creatureStack = new CreatureStack(creature, creaturesCount);
+            creaturesAvailableToBuy.add(creatureStack);
         }
         this.creaturesAvailableToBuy = creaturesAvailableToBuy;
 
     }
+
 
 }

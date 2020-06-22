@@ -9,7 +9,7 @@ public class HeroInfo {
     private final int heroPower;
     private final int heroKnowledge;
     private final String name;
-    private final FractionsInfoAbstractFactory.Fractions fraction;
+    private final FractionsInfoAbstractFactory fraction;
     private final FractionClass fractionClass;
     public enum FractionClass{
         KNIGHT(2,2,1,1),
@@ -44,7 +44,7 @@ public class HeroInfo {
     }
 
     @Builder
-    public HeroInfo(String aName, FractionsInfoAbstractFactory.Fractions aFraction, FractionClass aFractionClass){
+    public HeroInfo(String aName, FractionsInfoAbstractFactory aFraction, FractionClass aFractionClass){
         heroAttack = aFractionClass.attack;
         heroDefence = aFractionClass.defence;
         heroPower = aFractionClass.power;
@@ -54,9 +54,9 @@ public class HeroInfo {
         fractionClass = aFractionClass;
     }
 
-    public FractionsInfoAbstractFactory.Fractions getFraction() {
-        return fraction;
-    }
+//    public FractionsInfoAbstractFactory.Fractions getFraction() {
+//        return fraction;
+//    }
 
     public String getName() {
         return name;
