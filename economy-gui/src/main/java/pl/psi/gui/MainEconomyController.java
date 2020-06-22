@@ -4,6 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -112,7 +114,6 @@ public class MainEconomyController {
 
 
     public void addItemToShop(String itemName, int cost, HBox hbox, String type) {
-        String buying = "handleBuy" + type;
         Button btn = new Button();
         btn.setId(itemName);
         btn.setText(itemName);
@@ -120,13 +121,18 @@ public class MainEconomyController {
         switch (type) {
             case "Spell":
                 btn.setOnAction(this::handleBuySpell);
+                if(economyEngine.activeHero.getSpells().contains(SpellBookInfoFactory.getSpell(itemName)))
+                    btn.setDisable(true);
                 break;
             case "Artifact":
                 btn.setOnAction(this::handleBuyArtifact);
+                if(economyEngine.activeHero.getArtifacts().contains(ArtifactsInfoFactory.getArtifact(itemName)))
+                    btn.setDisable(true);
                 break;
             case "Skill":
                 btn.setOnAction(this::handleBuySpecialSkill);
-
+                if(economyEngine.activeHero.getSkills().contains(SkillInfoFactory.getSkill(itemName)))
+                    btn.setDisable(true);
                 break;
             case "Creature":
                 btn.setOnAction(this::handleBuyCreature);
@@ -145,81 +151,60 @@ public class MainEconomyController {
 
     @FXML
     private void initialize() {
-
         gold.setText(Integer.toString(economyEngine.activeHero.getGold()));
+
         int spellvar = 0;
-        List<SpellInfo> spells = economyEngine.getSpellsAvailableToBuy();
-        for (SpellInfo spell : spells) {
-
-            if (spellvar < 5) {
-                HBox hbox = new HBox();
-                hbox.setSpacing(10);
+        for (SpellInfo spell : economyEngine.getSpellsAvailableToBuy()) {
+            HBox hbox = new HBox();
+            hbox.setSpacing(10);
+            if (spellvar < 5)
                 spellShopInside.getChildren().add(hbox);
-                addItemToShop(spell.getName(), spell.getCost(), hbox, "Spell");
-                spellvar++;
-
-            } else {
-                HBox hbox = new HBox();
-                hbox.setSpacing(10);
+            else
                 spellShopInside2.getChildren().add(hbox);
-                addItemToShop(spell.getName(), spell.getCost(), hbox, "Spell");
-            }
 
+            addItemToShop(spell.getName(), spell.getCost(), hbox, "Spell");
+            spellvar++;
         }
+
         int skillvar = 0;
-        List<SkillInfo> skills = economyEngine.getSkillsAvailableToBuy();
-        for (SkillInfo skill : skills) {
-            if (skillvar < 5) {
-                HBox hbox = new HBox();
-                hbox.setSpacing(10);
+        for (SkillInfo skill : economyEngine.getSkillsAvailableToBuy()) {
+            HBox hbox = new HBox();
+            hbox.setSpacing(10);
+            if (skillvar < 5)
                 skillShopInside.getChildren().add(hbox);
-                addItemToShop(skill.getName(), skill.getCost(), hbox, "Skill");
-                skillvar++;
-            } else {
-                HBox hbox = new HBox();
-                hbox.setSpacing(10);
+            else
                 skillShopInside2.getChildren().add(hbox);
-                addItemToShop(skill.getName(), skill.getCost(), hbox, "Skill");
-            }
 
-
+            addItemToShop(skill.getName(), skill.getCost(), hbox, "Skill");
+            skillvar++;
         }
+
         int artvar = 0;
-        List<ArtifactInfo> artifacts = economyEngine.getArtifactsAvailableToBuy();
-        for (ArtifactInfo artifact : artifacts) {
-            if (artvar < 5) {
-                HBox hbox = new HBox();
-                hbox.setSpacing(10);
+        for (ArtifactInfo artifact : economyEngine.getArtifactsAvailableToBuy()) {
+            HBox hbox = new HBox();
+            hbox.setSpacing(10);
+            if (artvar < 5)
                 artifactsShopInside.getChildren().add(hbox);
-                addItemToShop(artifact.getName(), artifact.getCost(), hbox, "Artifact");
-                artvar++;
-            } else {
-                HBox hbox = new HBox();
-                hbox.setSpacing(10);
+            else
                 artifactsShopInside2.getChildren().add(hbox);
-                addItemToShop(artifact.getName(), artifact.getCost(), hbox, "Artifact");
-            }
+
+            addItemToShop(artifact.getName(), artifact.getCost(), hbox, "Artifact");
+            artvar++;
         }
 
         int creaturevar = 0;
-        List<CreatureStack> creatures = economyEngine.getCreaturesAvailableToBuy();
-        for (CreatureStack creature : creatures) {
-            if (creaturevar < 5) {
-                HBox hbox = new HBox();
-                hbox.setSpacing(10);
+        for (CreatureStack creature : economyEngine.getCreaturesAvailableToBuy()) {
+            HBox hbox = new HBox();
+            hbox.setSpacing(10);
+            if (creaturevar < 5)
                 creaturesShopInside.getChildren().add(hbox);
-                addItemToShop(creature.getName(), creature.getCost(), hbox, "Creature");
-                creaturevar++;
-            } else {
-                HBox hbox = new HBox();
-                hbox.setSpacing(10);
+            else
                 creaturesShopInside2.getChildren().add(hbox);
-                addItemToShop(creature.getName(), creature.getCost(), hbox, "Creature");
-            }
+
+            addItemToShop(creature.getName(), creature.getCost(), hbox, "Creature");
+            creaturevar++;
         }
         initializeEq();
-
-
     }
 
 
@@ -227,61 +212,45 @@ public class MainEconomyController {
         heroSpellsInside.getChildren().clear();
         heroSpellsInside2.getChildren().clear();
         int spellvarhero = 0;
-        List<SpellInfo> herospells = economyEngine.activeHero.getSpells();
-        for (SpellInfo spell : herospells) {
-            if (spellvarhero < 5) {
-                HBox hbox = new HBox();
-                hbox.setSpacing(10);
+        for (SpellInfo spell : economyEngine.activeHero.getSpells()) {
+            HBox hbox = new HBox();
+            hbox.setSpacing(10);
+            if (spellvarhero < 5)
                 heroSpellsInside.getChildren().add(hbox);
-                addItemToEq(spell.getName(), spell.getCost(), hbox);
-                spellvarhero++;
-
-            } else {
-                HBox hbox = new HBox();
-                hbox.setSpacing(10);
+            else
                 heroSpellsInside2.getChildren().add(hbox);
-                addItemToEq(spell.getName(), spell.getCost(), hbox);
-            }
-
+            addItemToEq(spell.getName(), spell.getCost(), hbox);
+            spellvarhero++;
         }
+
         heroArtifactsInside.getChildren().clear();
         heroArtifactsInside2.getChildren().clear();
         int artvarhero = 0;
-        List<ArtifactInfo> heroartifacts = economyEngine.activeHero.getArtifacts();
-        for (ArtifactInfo artifact : heroartifacts) {
-            if (artvarhero < 5) {
-                HBox hbox = new HBox();
-                hbox.setSpacing(10);
+        for (ArtifactInfo artifact : economyEngine.activeHero.getArtifacts()) {
+            HBox hbox = new HBox();
+            hbox.setSpacing(10);
+            if (artvarhero < 5)
                 heroArtifactsInside.getChildren().add(hbox);
-                addItemToEq(artifact.getName(), artifact.getCost(), hbox);
-                artvarhero++;
-
-            } else {
-                HBox hbox = new HBox();
-                hbox.setSpacing(10);
+            else
                 heroArtifactsInside2.getChildren().add(hbox);
-                addItemToEq(artifact.getName(), artifact.getCost(), hbox);
-            }
 
+            addItemToEq(artifact.getName(), artifact.getCost(), hbox);
+            artvarhero++;
         }
+
         heroSkillInside.getChildren().clear();
         heroSkillInside2.getChildren().clear();
         int skillvarhero = 0;
-        List<SkillInfo> heroskills= economyEngine.activeHero.getSkills();
-        for (SkillInfo skill : heroskills) {
-            if (skillvarhero < 5) {
-                HBox hbox = new HBox();
-                hbox.setSpacing(10);
+        for (SkillInfo skill : economyEngine.activeHero.getSkills()) {
+            HBox hbox = new HBox();
+            hbox.setSpacing(10);
+            if (skillvarhero < 5)
                 heroSkillInside.getChildren().add(hbox);
-                addItemToEq(skill.getName(), skill.getCost(),hbox);
-                skillvarhero++;
-
-            } else {
-                HBox hbox = new HBox();
-                hbox.setSpacing(10);
+            else
                 heroSkillInside2.getChildren().add(hbox);
-                addItemToEq(skill.getName(), skill.getCost(),hbox);
-            }
+
+            addItemToEq(skill.getName(), skill.getCost(),hbox);
+            skillvarhero++;
 
         }
 //        heroCreaturesInside.getChildren().clear();
@@ -306,32 +275,6 @@ public class MainEconomyController {
 //        }
     }
 
-    public void handleBuySpell(ActionEvent actionEvent) {
-        System.out.println("Clicked buy spell button;");
-        System.out.println("ID is: ");
-        System.out.println(((Button) actionEvent.getSource()).getId());
-        String spellName = ((Button) actionEvent.getSource()).getId();
-        SpellInfo spell = SpellBookInfoFactory.getSpell(spellName);
-        System.out.println("Spell is:");
-        System.out.println(spell.getName());
-
-        if (economyEngine.activeHero.buySpell(spell)) {
-
-            System.out.println("Spell bought");
-            //gold.setText(String.valueOf(Integer.parseInt(gold.getText()) - spell.getCost()));
-            spellShopInside.getChildren().remove(buySpellButton);
-            spellShopInside2.getChildren().remove(buySpellButton);
-            System.out.println(economyEngine.activeHero.getGold());
-            System.out.println(economyEngine.activeHero.getSpells());
-            initializeEq();
-            gold.setText(Integer.toString(economyEngine.activeHero.getGold()));
-        } else {
-            System.out.println("Couldn't buy spell");
-
-        }
-
-    }
-
     public void addItemToEq(String name, int cost, HBox hbox) {
         Button btn = new Button();
         btn.setId(name);
@@ -345,54 +288,6 @@ public class MainEconomyController {
         text.setId(name);
         hbox.getChildren().add(text);
     }
-
-
-    public void handleBuyArtifact(ActionEvent actionEvent) {
-        System.out.println("Clicked buy artifact button;");
-        System.out.println("ID is: ");
-        System.out.println(((Button) actionEvent.getSource()).getId());
-        String artifactName = ((Button) actionEvent.getSource()).getId();
-        ArtifactInfo artifact = ArtifactsInfoFactory.getArtifact(artifactName);
-        System.out.println("Artifact is:");
-        System.out.println(artifact.getName());
-
-        if (economyEngine.activeHero.buyArtifact(artifact)) {
-
-            System.out.println("Artifact bought");
-            //gold.setText(String.valueOf(Integer.parseInt(gold.getText()) - spell.getCost()));
-            artifactsShopInside.getChildren().remove(buyArtifactButton);
-            artifactsShopInside2.getChildren().remove(buyArtifactButton);
-            initializeEq();
-            gold.setText(Integer.toString(economyEngine.activeHero.getGold()));
-        } else {
-            System.out.println("Couldn't buy artifact");
-
-        }
-    }
-
-    private void handleBuyCreature(ActionEvent actionEvent) {
-//        System.out.println("Clicked buy creature button;");
-//        System.out.println("ID is: ");
-//        System.out.println(((Button) actionEvent.getSource()).getId());
-//        String creatureName = ((Button) actionEvent.getSource()).getId();
-//        CreatureInfo creature = FractionsInfoAbstractFactory.getCreature(creatureName);
-//        System.out.println("Artifact is:");
-//        System.out.println(creature.getName());
-//
-//        if (economyEngine.activeHero.buyCreature(creature)) {
-//
-//            System.out.println("Creature bought");
-//            //gold.setText(String.valueOf(Integer.parseInt(gold.getText()) - spell.getCost()));
-//            artifactsShopInside.getChildren().remove(buyArtifactButton);
-//            artifactsShopInside2.getChildren().remove(buyArtifactButton);
-//            initializeEq();
-//            gold.setText(Integer.toString(economyEngine.activeHero.getGold()));
-//        } else {
-//            System.out.println("Couldn't buy artifact");
-//
-//        }
-    }
-
 
     public void handlePassTurn(ActionEvent actionEvent) {
         economyEngine.changeHero();
@@ -421,31 +316,83 @@ public class MainEconomyController {
 
     }
 
-    public void handleBuySpecialSkill(ActionEvent actionEvent) {
 
+    public void hendleBuy(ActionEvent actionEvent, String type){
 
-        System.out.println("Clicked buy skill button;");
-        System.out.println("ID is: ");
-        System.out.println(((Button) actionEvent.getSource()).getId());
-        String skillName = ((Button) actionEvent.getSource()).getId();
-        SkillInfo skill = SkillInfoFactory.getSkill(skillName);
-        System.out.println("Skill is:");
-        System.out.println(skill.getName());
+        switch(type) {
+            case "Spell":
+                String spellName = ((Button) actionEvent.getSource()).getId();
+                SpellInfo spell = SpellBookInfoFactory.getSpell(spellName);
 
-        if (economyEngine.activeHero.buySkill(skill)) {
+                if (economyEngine.activeHero.buySpell(spell)) {
+                    ((Button) actionEvent.getSource()).setDisable(true);
+                } else {
+                    System.out.println("Couldn't buy spell");
+                }
+                break;
 
-            System.out.println("skill bought");
-            //gold.setText(String.valueOf(Integer.parseInt(gold.getText()) - spell.getCost()));
-            skillShopInside.getChildren().remove(buySpecialSkillButton);
-            skillShopInside2.getChildren().remove(buySpecialSkillButton);
-            //System.out.println(economyHero1.getGold());
-            //System.out.println(economyHero1.getSpells());
-            initializeEq();
-            gold.setText(Integer.toString(economyEngine.activeHero.getGold()));
-        } else {
-            System.out.println("Couldn't buy spell");
+            case "Artifact":
+                String artifactName = ((Button) actionEvent.getSource()).getId();
+                ArtifactInfo artifact = ArtifactsInfoFactory.getArtifact(artifactName);
 
+                if (economyEngine.activeHero.buyArtifact(artifact)) {
+                    ((Button) actionEvent.getSource()).setDisable(true);
+                } else {
+                    System.out.println("Couldn't buy artifact");
+                }
+                break;
+            case "Skill":
+                String skillName = ((Button) actionEvent.getSource()).getId();
+                SkillInfo skill = SkillInfoFactory.getSkill(skillName);
+
+                if (economyEngine.activeHero.buySkill(skill)) {
+                    ((Button) actionEvent.getSource()).setDisable(true);
+                } else {
+                    System.out.println("Couldn't buy spell");
+                }
+                break;
         }
+
+        initializeEq();
+        gold.setText(Integer.toString(economyEngine.activeHero.getGold()));
+    }
+
+
+    public void handleBuySpell(ActionEvent actionEvent) {
+        hendleBuy(actionEvent, "Spell");
+    }
+
+
+    public void handleBuyArtifact(ActionEvent actionEvent) {
+        hendleBuy(actionEvent, "Artifact");
+    }
+
+
+    public void handleBuySpecialSkill(ActionEvent actionEvent) {
+        hendleBuy(actionEvent, "Skill");
+    }
+
+    private void handleBuyCreature(ActionEvent actionEvent) {
+//        System.out.println("Clicked buy creature button;");
+//        System.out.println("ID is: ");
+//        System.out.println(((Button) actionEvent.getSource()).getId());
+//        String creatureName = ((Button) actionEvent.getSource()).getId();
+//        CreatureInfo creature = FractionsInfoAbstractFactory.getCreature(creatureName);
+//        System.out.println("Artifact is:");
+//        System.out.println(creature.getName());
+//
+//        if (economyEngine.activeHero.buyCreature(creature)) {
+//
+//            System.out.println("Creature bought");
+//            //gold.setText(String.valueOf(Integer.parseInt(gold.getText()) - spell.getCost()));
+//            artifactsShopInside.getChildren().remove(buyArtifactButton);
+//            artifactsShopInside2.getChildren().remove(buyArtifactButton);
+//            initializeEq();
+//            gold.setText(Integer.toString(economyEngine.activeHero.getGold()));
+//        } else {
+//            System.out.println("Couldn't buy artifact");
+//
+//        }
     }
 
 }
