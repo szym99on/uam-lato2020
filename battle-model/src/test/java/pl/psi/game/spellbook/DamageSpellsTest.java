@@ -4,71 +4,28 @@ package pl.psi.game.spellbook;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import pl.psi.game.Board;
 import pl.psi.game.fractions.Creature;
-import pl.psi.game.hero.converter.Hero;
-
+import pl.psi.game.fractions.FractionsInfoAbstractFactory;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DamageSpellsTest {
 
 
     @BeforeAll
-    static void initializeFactories(){
-        new SpellBookInfoFactory();
+    static void initializeSpellBookInfoFactory(){ new SpellBookInfoFactory(); }
+
+    @BeforeAll
+    static void initializeFractionsInfoAbstractFactory(){
+        new FractionsInfoAbstractFactory();
     }
 
-    @Disabled
-    @Test
-    void factoryShouldCreateAirMagicArrowSpell(){
-        SpellFactory factory = new SpellFactory();
-        Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.MAGIC_ARROW));
+    private Board board = Board.getBoard();
+    private SpellFactory factory = new SpellFactory();
 
-        assertEquals("Magic arrow",spell.getName());
-        assertEquals(SpellInfo.Type.AIR,spell.getType());
-        assertEquals(1,spell.getLevel());
-        assertEquals(5,spell.getManaCost());
-        assertEquals(0,spell.getDuration());
-    }
-    @Disabled
-    @Test
-    void factoryShouldCreateEarthMagicArrowSpell(){
-        SpellFactory factory = new SpellFactory();
-        Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.MAGIC_ARROW));
-
-        assertEquals("Magic arrow",spell.getName());
-        assertEquals(SpellInfo.Type.EARTH,spell.getType());
-        assertEquals(1,spell.getLevel());
-        assertEquals(5,spell.getManaCost());
-        assertEquals(0,spell.getDuration());
-    }
-    @Disabled
-    @Test
-    void factoryShouldCreateFireMagicArrowSpell(){
-        SpellFactory factory = new SpellFactory();
-        Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.MAGIC_ARROW));
-
-        assertEquals("Magic arrow",spell.getName());
-        assertEquals(SpellInfo.Type.FIRE,spell.getType());
-        assertEquals(1,spell.getLevel());
-        assertEquals(5,spell.getManaCost());
-        assertEquals(0,spell.getDuration());
-    }
-    @Disabled
-    @Test
-    void factoryShouldCreateWaterMagicArrowSpell(){
-        SpellFactory factory = new SpellFactory();
-        Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.MAGIC_ARROW));
-
-        assertEquals("Magic arrow",spell.getName());
-        assertEquals(SpellInfo.Type.WATER,spell.getType());
-        assertEquals(1,spell.getLevel());
-        assertEquals(5,spell.getManaCost());
-        assertEquals(0,spell.getDuration());
-    }
 
     @Test
     void factoryShouldCreateMagicArrowSpell(){
-        SpellFactory factory = new SpellFactory();
         Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.MAGIC_ARROW));
 
         assertEquals("Magic arrow",spell.getName());
@@ -79,7 +36,6 @@ public class DamageSpellsTest {
     }
     @Test
     void factoryShouldCreateLightningBoltSpell(){
-        SpellFactory factory = new SpellFactory();
         Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.LIGHTNING_BOLT));
 
         assertEquals("Lightning bolt",spell.getName());
@@ -90,7 +46,6 @@ public class DamageSpellsTest {
     }
     @Test
     void factoryShouldCreateDestroyUndeadSpell(){
-        SpellFactory factory = new SpellFactory();
         Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.DESTROY_UNDEAD));
 
         assertEquals("Destroy undead",spell.getName());
@@ -101,7 +56,6 @@ public class DamageSpellsTest {
     }
     @Test
     void factoryShouldCreateFireBallSpell(){
-        SpellFactory factory = new SpellFactory();
         Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.FIRE_BALL));
 
         assertEquals("Fire ball",spell.getName());
@@ -112,7 +66,6 @@ public class DamageSpellsTest {
     }
     @Test
     void factoryShouldCreateMeteorShowerSpell(){
-        SpellFactory factory = new SpellFactory();
         Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.METEOR_SHOWER));
 
         assertEquals("Meteor shower",spell.getName());
@@ -123,7 +76,6 @@ public class DamageSpellsTest {
     }
     @Test
     void factoryShouldCreateImplosionSpell(){
-        SpellFactory factory = new SpellFactory();
         Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.IMPLOSION));
 
         assertEquals("Implosion",spell.getName());
@@ -134,10 +86,20 @@ public class DamageSpellsTest {
     }
 
     @Test
+    void spellCastedOnBoardShouldDealDamageToCreatureOnThisSquare() {
+        Creature creature = Creature.builder().aMaxHp(100).build();
+        board.putCreature(1,1,creature);
+
+        Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.MAGIC_ARROW));
+        spell.cast(1,1);
+
+        assertEquals(80, creature.getCurrentHp());
+    }
+
+    @Test
     void magicArrowShouldDealDamageToCreature() {
         Creature creature = Creature.builder().aMaxHp(100).build();
 
-        SpellFactory factory = new SpellFactory();
         Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.MAGIC_ARROW));
         spell.cast(creature);
 
@@ -147,7 +109,6 @@ public class DamageSpellsTest {
     void magicArrownShouldDealDeadlyDamageToCreature() {
         Creature creature = Creature.builder().aMaxHp(19).build();
 
-        SpellFactory factory = new SpellFactory();
         Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.MAGIC_ARROW));
         spell.cast(creature);
 
@@ -157,7 +118,6 @@ public class DamageSpellsTest {
     void lightningBoltShouldDealDamageToCreature() {
         Creature creature = Creature.builder().aMaxHp(100).build();
 
-        SpellFactory factory = new SpellFactory();
         Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.LIGHTNING_BOLT));
         spell.cast(creature);
 
@@ -167,7 +127,6 @@ public class DamageSpellsTest {
     void lightningBoltShouldDealDeadlyDamageToCreature() {
         Creature creature = Creature.builder().aMaxHp(34).build();
 
-        SpellFactory factory = new SpellFactory();
         Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.LIGHTNING_BOLT));
         spell.cast(creature);
 
@@ -177,86 +136,148 @@ public class DamageSpellsTest {
     void implosionShouldDealDamageToCreature() {
         Creature creature = Creature.builder().aMaxHp(1000).build();
 
-        SpellFactory factory = new SpellFactory();
         Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.IMPLOSION));
         spell.cast(creature);
 
         assertEquals(825, creature.getCurrentHp());
     }
-
-
     @Test
     void implosionShouldDealDeadlyDamageToCreature() {
         Creature creature = Creature.builder().aMaxHp(100).build();
 
-        SpellFactory factory = new SpellFactory();
         Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.IMPLOSION));
         spell.cast(creature);
 
         assertEquals(0, creature.getCurrentHp());
+    }
+    @Test
+    void fireBallShouldDealDamageToTargetedCreatureAndAdjacentCreatures() {
+        board.clearBoard();
+
+        Creature c1 = Creature.builder().aMaxHp(100).build();
+        Creature c2 = Creature.builder().aMaxHp(100).build();
+        Creature c3 = Creature.builder().aMaxHp(100).build();
+        Creature c4 = Creature.builder().aMaxHp(100).build();
+        Creature c5 = Creature.builder().aMaxHp(100).build();
+
+        board.putCreature(2,2,c1);
+        board.putCreature(2,1,c2);
+        board.putCreature(2,3,c3);
+        board.putCreature(3,2,c4);
+        board.putCreature(1,2,c5);
+
+
+        Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.FIRE_BALL));
+        spell.cast(2,2);
+
+
+        assertEquals(75, c1.getCurrentHp());
+        assertEquals(75, c2.getCurrentHp());
+        assertEquals(75, c3.getCurrentHp());
+        assertEquals(75, c4.getCurrentHp());
+        assertEquals(75, c5.getCurrentHp());
+    }
+    @Test
+    void fireBallShouldDealDeadlyDamageToTargetedCreatureAndAdjacentCreatures() {
+        board.clearBoard();
+
+        Creature c1 = Creature.builder().aMaxHp(24).build();
+        Creature c2 = Creature.builder().aMaxHp(24).build();
+        Creature c3 = Creature.builder().aMaxHp(24).build();
+        Creature c4 = Creature.builder().aMaxHp(24).build();
+        Creature c5 = Creature.builder().aMaxHp(24).build();
+
+        board.putCreature(2,2,c1);
+        board.putCreature(2,1,c2);
+        board.putCreature(2,3,c3);
+        board.putCreature(3,2,c4);
+        board.putCreature(1,2,c5);
+
+
+        Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.FIRE_BALL));
+        spell.cast(2,2);
+
+
+        assertEquals(0, c1.getCurrentHp());
+        assertEquals(0, c2.getCurrentHp());
+        assertEquals(0, c3.getCurrentHp());
+        assertEquals(0, c4.getCurrentHp());
+        assertEquals(0, c5.getCurrentHp());
+    }
+    @Test
+    void meteorShowerShouldDealDamageToTargetedCreatureAndAdjacentCreatures() {
+        board.clearBoard();
+
+        Creature c1 = Creature.builder().aMaxHp(100).build();
+        Creature c2 = Creature.builder().aMaxHp(100).build();
+        Creature c3 = Creature.builder().aMaxHp(100).build();
+        Creature c4 = Creature.builder().aMaxHp(100).build();
+        Creature c5 = Creature.builder().aMaxHp(100).build();
+
+        board.putCreature(2,2,c1);
+        board.putCreature(2,1,c2);
+        board.putCreature(2,3,c3);
+        board.putCreature(3,2,c4);
+        board.putCreature(1,2,c5);
+
+
+        Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.METEOR_SHOWER));
+        spell.cast(2,2);
+
+
+        assertEquals(50, c1.getCurrentHp());
+        assertEquals(50, c2.getCurrentHp());
+        assertEquals(50, c3.getCurrentHp());
+        assertEquals(50, c4.getCurrentHp());
+        assertEquals(50, c5.getCurrentHp());
+    }
+    @Test
+    void meteorShowerShouldDealDeadlyDamageToTargetedCreatureAndAdjacentCreatures() {
+        board.clearBoard();
+
+        Creature c1 = Creature.builder().aMaxHp(49).build();
+        Creature c2 = Creature.builder().aMaxHp(49).build();
+        Creature c3 = Creature.builder().aMaxHp(49).build();
+        Creature c4 = Creature.builder().aMaxHp(49).build();
+        Creature c5 = Creature.builder().aMaxHp(49).build();
+
+        board.putCreature(2,2,c1);
+        board.putCreature(2,1,c2);
+        board.putCreature(2,3,c3);
+        board.putCreature(3,2,c4);
+        board.putCreature(1,2,c5);
+
+
+        Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.METEOR_SHOWER));
+        spell.cast(2,2);
+
+
+        assertEquals(0, c1.getCurrentHp());
+        assertEquals(0, c2.getCurrentHp());
+        assertEquals(0, c3.getCurrentHp());
+        assertEquals(0, c4.getCurrentHp());
+        assertEquals(0, c5.getCurrentHp());
     }
 
     @Test
     void destroyUndeadShouldDealDamageOnyToUndeadCreature() {
         Creature creature = Creature.builder().aMaxHp(100).build();
 
-        SpellFactory factory = new SpellFactory();
         Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.DESTROY_UNDEAD));
         spell.cast(creature);
 
         assertEquals(80, creature.getCurrentHp());
     }
+
     @Test
     @Disabled
     void destroyUndeadShouldNotDealAnyDamageNotToUndeadCreature() {
         Creature creature = Creature.builder().aMaxHp(100).build();
 
-        SpellFactory factory = new SpellFactory();
         Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.DESTROY_UNDEAD));
         spell.cast(creature);
 
         assertEquals(100, creature.getCurrentHp());
-    }
-
-    @Test
-    void fireBallShouldDealDamageToTargetedCreatureAndAdjacentCreatures() {
-        Creature creature = Creature.builder().aMaxHp(100).build();
-
-        SpellFactory factory = new SpellFactory();
-        Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.FIRE_BALL));
-        spell.cast(creature);
-
-        assertEquals(75, creature.getCurrentHp());
-    }
-    @Test
-    void fireBallShouldDealDeadlyDamageToTargetedCreatureAndAdjacentCreatures() {
-        Creature creature = Creature.builder().aMaxHp(24).build();
-
-        SpellFactory factory = new SpellFactory();
-        Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.IMPLOSION));
-        spell.cast(creature);
-
-        assertEquals(0, creature.getCurrentHp());
-    }
-    @Test
-    void meteorShowerShouldDealDamageToTargetedCreatureAndAdjacentCreatures() {
-        Creature creature = Creature.builder().aMaxHp(100).build();
-
-        SpellFactory factory = new SpellFactory();
-        Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.METEOR_SHOWER));
-        spell.cast(creature);
-
-        assertEquals(50, creature.getCurrentHp());
-    }
-    @Test
-    void meteorShowerShouldDealDeadlyDamageToTargetedCreatureAndAdjacentCreatures() {
-        Creature creature = Creature.builder().aMaxHp(59).build();
-
-        SpellFactory factory = new SpellFactory();
-        Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.IMPLOSION));
-        spell.cast(creature);
-
-        assertEquals(0, creature.getCurrentHp());
     }
 
 
