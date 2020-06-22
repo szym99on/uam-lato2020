@@ -4,7 +4,7 @@ import pl.psi.game.fractions.Creature;
 
 import java.awt.*;
 
-class DealDamageObstacle extends Obstacle {
+class DealDamageObstacle extends ImpactCreatureObstacle {
 
     private final int attack;
 
@@ -14,9 +14,8 @@ class DealDamageObstacle extends Obstacle {
     }
 
     @Override
-    public Point apply(Creature creature) {
-        creature.dealDamageObs(attack);
-        return null;
+    public void apply(Creature creature) {
+        creature.takePureDamage(attack);
     }
 
 }

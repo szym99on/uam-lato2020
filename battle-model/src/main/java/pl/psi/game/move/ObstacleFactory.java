@@ -11,7 +11,7 @@ public class ObstacleFactory {
             obstacle = new DealDamageObstacle(name, point);
         } else if (name.equals("marsh")) {
             obstacle = new ReduceMoveRangeObstacle(name, point);
-        } else if (name.equals("river")){
+        } else if (name.equals("rock")){
             obstacle = new EndingMoveObstacle(name, point);
         } else {
             throw new IllegalArgumentException("Unknown obstacle: " + name);

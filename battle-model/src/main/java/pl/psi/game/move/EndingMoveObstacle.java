@@ -4,22 +4,15 @@ import pl.psi.game.fractions.Creature;
 
 import java.awt.*;
 
-class EndingMoveObstacle extends Obstacle {
+class EndingMoveObstacle extends ImpactMoveObstacle {
 
-    private Point point;
 
     public EndingMoveObstacle(String aName, Point aPoint) {
         super(aName, aPoint);
-        point = aPoint;
     }
 
     @Override
-    public Point apply(Creature aCreature) {
-        return point;
-    }
-
-    @Override
-    public boolean isObstacle() {
+    boolean isMovePossible() {
         return true;
     }
 }
