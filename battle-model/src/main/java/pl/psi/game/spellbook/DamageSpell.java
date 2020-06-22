@@ -9,7 +9,6 @@ public class DamageSpell extends Spell{
 
     private int spellDamage;
     private Creature creature;
-    private Hero hero;
 
     @Builder
     public DamageSpell(String aName, String aDescription, int aCost, int aLevel, int aManaCost, SpellInfo.Type aType, int aDuration, int aSpellDamage) {
@@ -26,27 +25,32 @@ public class DamageSpell extends Spell{
     @Override
     public void cast(int x, int y) { cast(Board.getBoard().getCreature(x,y)); }
 
+
     @Override
     public void cast(Creature aCreature) {
 
         creature = aCreature;
         if(name.equals(SpellBookInfoFactory.MAGIC_ARROW)){
-            //aCreature.attack(aCreature);
+            creature.dealSpealDamage(spellDamage);
         }
         if(name.equals(SpellBookInfoFactory.LIGHTNING_BOLT)){
-            //damage
+            creature.dealSpealDamage(spellDamage);
         }
         if(name.equals(SpellBookInfoFactory.DESTROY_UNDEAD)){
-            //damage
+
+            creature.dealSpealDamage(spellDamage);
         }
         if(name.equals(SpellBookInfoFactory.FIRE_BALL)){
-            //damage
+
+            creature.dealSpealDamage(spellDamage);
+            // + dmg dla okolicznych jednostek
         }
         if(name.equals(SpellBookInfoFactory.METEOR_SHOWER)){
-            //damage
+            creature.dealSpealDamage(spellDamage);
+            // + dmg dla okolicznych jednostek
         }
         if(name.equals(SpellBookInfoFactory.IMPLOSION)){
-            //damage
+            creature.dealSpealDamage(spellDamage);
         }
     }
 }
