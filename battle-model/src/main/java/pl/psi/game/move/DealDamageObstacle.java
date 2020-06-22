@@ -15,7 +15,9 @@ class DealDamageObstacle extends ImpactCreatureObstacle {
 
     @Override
     public void apply(Creature creature) {
-        creature.takePureDamage(attack);
+        if (!creature.isCanFly()) {
+            creature.takePureDamage(attack);
+        }
     }
 
 }

@@ -2,7 +2,7 @@ package pl.psi.game.move;
 
 import java.awt.*;
 
-public abstract class ImpactMoveObstacle implements Obstacle{
+public abstract class ImpactMoveObstacle implements ObstacleIf{
 
     String name;
     Point point;

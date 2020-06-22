@@ -10,7 +10,6 @@ import lombok.Getter;
 import lombok.Setter;
 import pl.psi.game.hero.converter.Hero;
 import pl.psi.game.move.GuiTileIf;
-import pl.psi.game.move.Obstacle;
 import pl.psi.game.spellbook.Spell;
 
 @Getter
@@ -108,6 +107,11 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
     @Override
     public boolean isCreature() {
         return true;
+    }
+
+    @Override
+    public boolean isObstacle() {
+        return false;
     }
 
     @Override

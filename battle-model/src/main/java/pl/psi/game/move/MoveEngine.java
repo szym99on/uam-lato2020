@@ -40,8 +40,8 @@ public class MoveEngine implements PropertyChangeListener {
 
         AtomicReference<Point> endPoint = new AtomicReference<>(null);
         List<GuiTileIf> path = getMovePath(x, y);
-        List<Obstacle> pathObs = path.stream().filter(t -> t instanceof Obstacle).map(o -> (Obstacle)o).collect(Collectors.toList());
-        pathObs.forEach(o -> endPoint.set(o.apply(activeCreature.getValue())));
+        List<ObstacleIf> pathObs = path.stream().filter(t -> t instanceof ObstacleIf).map(o -> (ObstacleIf)o).collect(Collectors.toList());
+        // pathObs.forEach(o -> endPoint.set(o.apply(activeCreature.getValue())));
 
         if(endPoint.get() == null){
             endPoint.set(new Point(x,y));

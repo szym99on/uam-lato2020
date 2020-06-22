@@ -2,7 +2,7 @@ package pl.psi.game.move;
 
 import java.awt.*;
 
-public interface Obstacle extends GuiTileIf {
+public interface ObstacleIf extends GuiTileIf {
 
     Point getPoint();
 

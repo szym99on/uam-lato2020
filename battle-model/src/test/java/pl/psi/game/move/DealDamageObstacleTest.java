@@ -13,7 +13,7 @@ public class DealDamageObstacleTest {
 
         Creature creature = Creature.builder().aMaxHp(10).aCanFly(false).build();
         ObstacleFactory obstacleFactory = new ObstacleFactory();
-        Obstacle obstacle = obstacleFactory.createObstacle("lava", new Point(1, 2));
+        ImpactCreatureObstacle obstacle = obstacleFactory.createImpactCreatureObstacle("lava", new Point(1, 2));
 
         obstacle.apply(creature);
 
@@ -24,13 +24,13 @@ public class DealDamageObstacleTest {
     @Test
     void flyingCreature(){
 
-        Creature creature = Creature.builder().aMaxHp(10).aCanFly(false).build();
+        Creature creature = Creature.builder().aMaxHp(10).aCanFly(true).build();
         ObstacleFactory obstacleFactory = new ObstacleFactory();
-        Obstacle obstacle = obstacleFactory.createObstacle("lava", new Point(1,1));
+        ImpactCreatureObstacle obstacle = obstacleFactory.createImpactCreatureObstacle("lava", new Point(1, 2));
 
         obstacle.apply(creature);
 
-        assertEquals(creature.getMaxHp(), 10);
+        assertEquals(creature.getMaxHp(), creature.getCurrentHp());
 
     }
 }

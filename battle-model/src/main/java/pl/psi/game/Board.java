@@ -2,8 +2,8 @@ package pl.psi.game;
 
 import pl.psi.game.fractions.Creature;
 import pl.psi.game.move.GuiTileIf;
-import pl.psi.game.move.Obstacle;
 import pl.psi.game.move.ObstacleFactory;
+import pl.psi.game.move.ObstacleIf;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ import java.util.Optional;
 public class Board {
 
     private final Map<Point, GuiTileIf> board;
-    private Map<Point, Obstacle> obstacleInactive = new HashMap<>();
+    private Map<Point, ObstacleIf> obstacleInactive = new HashMap<>();
     public final static int BOARD_WIDTH = 14;
     public final static int BOARD_HIGH = 9;
 
@@ -23,12 +23,12 @@ public class Board {
     public Board() {
         board = new HashMap<>();
         ObstacleFactory obstacleFactory = new ObstacleFactory();
-        putObstacle(obstacleFactory.createObstacle("river", new Point(7, 2)));
-        putObstacle(obstacleFactory.createObstacle("river", new Point(7, 3)));
-        putObstacle(obstacleFactory.createObstacle("river", new Point(7, 4)));
-        putObstacle(obstacleFactory.createObstacle("river", new Point(7, 5)));
-        putObstacle(obstacleFactory.createObstacle("river", new Point(7, 6)));
-        putObstacle(obstacleFactory.createObstacle("river", new Point(7, 7)));
+        putObstacle(obstacleFactory.createImpactMoveObstacle("rock", new Point(7, 2)));
+        putObstacle(obstacleFactory.createImpactMoveObstacle("rock", new Point(7, 3)));
+        putObstacle(obstacleFactory.createImpactMoveObstacle("rock", new Point(7, 4)));
+        putObstacle(obstacleFactory.createImpactMoveObstacle("rock", new Point(7, 5)));
+        putObstacle(obstacleFactory.createImpactMoveObstacle("rock", new Point(7, 6)));
+        putObstacle(obstacleFactory.createImpactMoveObstacle("rock", new Point(7, 7)));
     }
 
     public static Map<Point, GuiTileIf> copyBoardValues(){
@@ -62,7 +62,7 @@ public class Board {
         board.put(new Point(x, y), aCreature);
     }
 
-    public void putObstacle(Obstacle aObstacle) {
+    public void putObstacle(ObstacleIf aObstacle) {
         Point point = aObstacle.getPoint();
         int x = (int) point.getX();
         int y = (int) point.getY();
@@ -90,10 +90,10 @@ public class Board {
         return null;
     }
 
-    public Obstacle getObstacle(int x, int y) {
+    public ObstacleIf getObstacle(int x, int y) {
         if (board.get(new Point(x, y)) != null) {
             if (board.get(new Point(x, y)).isObstacle()) {
-                return (Obstacle) board.get(new Point(x, y));
+                return (ObstacleIf) board.get(new Point(x, y));
             }
         }
         return null;
@@ -119,7 +119,7 @@ public class Board {
 
     public void move(int x, int y, Creature activeCreature) {
         Point oldPosition = getCreatureLocation(activeCreature).get();
-        Obstacle obstacle = this.getObstacle(x, y);
+        ObstacleIf obstacle = this.getObstacle(x, y);
         try {
             board.remove(oldPosition);
             if(this.getObstacle(x, y) != null){

@@ -27,7 +27,7 @@ public class WalkMoveStrategy implements MoveStrategyIf {
 //    private Point stepMove(Point destPoint){
 //        List<GuiTileIf> steps = getSteps(destPoint);
 //
-//        Obstacle step = (Obstacle) steps.get(0);
+//        ObstacleIf step = (ObstacleIf) steps.get(0);
 //        AtomicReference<Point> a = null;
 //        steps.forEach( s -> a.set(s.isObstacle() ? (Obstacle) s.apply(activeCreature.getValue())));
 //        return a.get();

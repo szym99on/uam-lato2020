@@ -4,7 +4,7 @@ import pl.psi.game.fractions.Creature;
 
 import java.awt.*;
 
-public abstract class ImpactCreatureObstacle implements Obstacle {
+public abstract class ImpactCreatureObstacle implements ObstacleIf {
 
     String name;
     Point point;
