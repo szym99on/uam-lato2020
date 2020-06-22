@@ -5,6 +5,7 @@ import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import pl.psi.game.spellbook.Spell;
 
 @AllArgsConstructor
 public class MagicResistance {
@@ -18,7 +19,12 @@ public class MagicResistance {
         groupImmunityType = aGroupImmunityType;
         immunitySpells = new ArrayList<>();
     }
-    
+
+    public int countDamage(Spell spell) {
+        //TODO
+        return 0;
+    }
+
     public enum GroupImmunityType {NONE, FOURTH_TIER_AND_BELOW, EARTH_SPELLS, ICE_SPELLS, FIRE_SPELLS, AIR_SPELLS}
     
     public void addImmunitySpell(String spellName) {

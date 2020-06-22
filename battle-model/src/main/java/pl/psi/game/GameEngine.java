@@ -85,8 +85,10 @@ public class GameEngine implements PropertyChangeListener {
         propertyChangeSupport.firePropertyChange(CREATURE_ATTACKED,null,null);
         pass();
     }
-    public void castSpell(int aX, int aY, Spell aSpell){
+    public void castSpell(int aX, int aY, Spell selectedSpell){
+
         selectedSpell.cast(aX, aY);
+
     }
 
     public boolean isAttackPossible(int x, int y){

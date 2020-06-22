@@ -11,7 +11,8 @@ public class SpellInfo extends AbstractItemInfo {
         FIRE,
         WATER,
         AIR,
-        EARTH;
+        EARTH,
+        ALL;
     }
 
     private final Type type;

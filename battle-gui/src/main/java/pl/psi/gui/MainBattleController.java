@@ -12,6 +12,7 @@ import pl.psi.game.hero.converter.Hero;
 import pl.psi.game.hero.converter.HeroEcoBattleConverter;
 import pl.psi.gui.states.NormalState;
 import pl.psi.gui.states.StateMap;
+import pl.psi.gui.states.SummonUnitsState;
 
 public class MainBattleController {
 private static final Logger LOG = LogManager.getLogger(MainBattleController.class);
@@ -36,8 +37,8 @@ private static final Logger LOG = LogManager.getLogger(MainBattleController.clas
         LOG.warn("We've just greeted the user!");
         LOG.error("We've just greeted the user!");
         LOG.fatal("We've just greeted the user!");
-        ArtifactInitializer init = new ArtifactInitializer();
-//        SpellInitializer init = new SpellInitializer();
+//        ArtifactInitializer init = new ArtifactInitializer();
+        SpellInitializer init = new SpellInitializer();
 
         hero1 = HeroEcoBattleConverter.convert(init.getH1());
         hero2 = HeroEcoBattleConverter.convert(init.getH2());
@@ -50,10 +51,18 @@ private static final Logger LOG = LogManager.getLogger(MainBattleController.clas
         refreshGui();
         passButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             gameEngine.pass();
+            stateMap = new NormalState();
         });
         spellButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+
             // na razie tylko jeden heroes
             SpellBookGui spellBookGui = new SpellBookGui(hero1, stateMap);
+
+            //zrobione na szybko do pokazania innym developerom
+            //trzeba zrobic stateMap zaleznie od typu spella JESZCZE NIE ZAIMPLEMENTOWANE!!
+            // coś w stylu instance of :( biedne jednorożce
+            stateMap = new SummonUnitsState();
+            refreshGui();
 
         });
 

@@ -31,8 +31,8 @@ public class HeroEcoBattleConverter {
 
         convertedArtifacts.stream().filter(a -> a.affectsHeroStats()).forEach(a -> a.apply(hero));
 
-        //List<Spell> convertedSpells = aEconomyHero.getSpells().stream().map(spellFactory::createSpell).collect(Collectors.toList());
-        //hero.addSpells(convertedSpells);
+        List<Spell> convertedSpells = aEconomyHero.getSpells().stream().map(s -> spellFactory.createSpell(s,hero.getPower())).collect(Collectors.toList());
+        hero.addSpells(convertedSpells);
 
         hero.getCreatures().forEach(c -> c.apply(hero));
         convertedArtifacts.stream().filter(a -> !a.affectsHeroStats()).forEach(a -> a.apply(hero));
