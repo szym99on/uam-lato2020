@@ -101,7 +101,7 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
         takePureDamage(damageToTake);
     }
 
-    public boolean canShoot() {
+    public boolean canShoot(){
         return false;
     }
 
