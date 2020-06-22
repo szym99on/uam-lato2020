@@ -31,26 +31,26 @@ public class DamageSpell extends Spell{
 
         creature = aCreature;
         if(name.equals(SpellBookInfoFactory.MAGIC_ARROW)){
-            creature.dealSpealDamage(spellDamage);
+            creature.takePureDamage(spellDamage);
         }
         if(name.equals(SpellBookInfoFactory.LIGHTNING_BOLT)){
-            creature.dealSpealDamage(spellDamage);
+            creature.takePureDamage(spellDamage);
         }
         if(name.equals(SpellBookInfoFactory.DESTROY_UNDEAD)){
 
-            creature.dealSpealDamage(spellDamage);
+            creature.takePureDamage(spellDamage);
         }
         if(name.equals(SpellBookInfoFactory.FIRE_BALL)){
 
-            creature.dealSpealDamage(spellDamage);
+            creature.takePureDamage(spellDamage);
             // + dmg dla okolicznych jednostek
         }
         if(name.equals(SpellBookInfoFactory.METEOR_SHOWER)){
-            creature.dealSpealDamage(spellDamage);
+            creature.takePureDamage(spellDamage);
             // + dmg dla okolicznych jednostek
         }
         if(name.equals(SpellBookInfoFactory.IMPLOSION)){
-            creature.dealSpealDamage(spellDamage);
+            creature.takePureDamage(spellDamage);
         }
     }
 }

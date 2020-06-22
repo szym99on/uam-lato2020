@@ -101,16 +101,6 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
         takePureDamage(damageToTake);
     }
 
-    //
-    // Myślę że tymczasowa metoda od spellbooka
-    //
-//    public void dealSpealDamage(int spellDamage){
-//        if ((currentHp-spellDamage)>0){
-//            currentHp-=spellDamage;
-//        }
-//        else currentHp=0;
-//    }
-
     public boolean canShoot(){
         return false;
     }
