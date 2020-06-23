@@ -6,7 +6,7 @@ import java.awt.*;
 
 public class ReduceMoveRangeObstacle extends ImpactMoveObstacle {
 
-    final int moveReduce;
+    private final int moveReduce;
 
     public ReduceMoveRangeObstacle(String aName, Point aPoint){
         super(aName, aPoint);
@@ -16,6 +16,10 @@ public class ReduceMoveRangeObstacle extends ImpactMoveObstacle {
 
     @Override
     boolean isMovePossible() {
-        return false;
+        return true;
+    }
+
+    int getMoveReduce(){
+        return moveReduce;
     }
 }

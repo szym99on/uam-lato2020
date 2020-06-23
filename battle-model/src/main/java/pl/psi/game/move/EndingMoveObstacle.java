@@ -13,6 +13,6 @@ class EndingMoveObstacle extends ImpactMoveObstacle {
 
     @Override
     boolean isMovePossible() {
-        return true;
+        return false;
     }
 }
