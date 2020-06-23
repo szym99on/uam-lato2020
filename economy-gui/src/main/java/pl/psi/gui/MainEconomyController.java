@@ -348,7 +348,7 @@ public class MainEconomyController {
                 if (economyEngine.activeHero.buySkill(skill)) {
                     ((Button) actionEvent.getSource()).setDisable(true);
                 } else {
-                    System.out.println("Couldn't buy spell");
+                    System.out.println("Couldn't buy skill");
                 }
                 break;
         }

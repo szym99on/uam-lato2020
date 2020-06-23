@@ -63,8 +63,7 @@ public class EconomyHero {
             this.creatures.add(creature);
             return true;
         } else {
-            String output = String.format("Not enough gold to buy creature: %s", creature.getName());
-            throw new IllegalStateException(output);
+            return false;
         }
 
     }
@@ -86,21 +85,15 @@ public class EconomyHero {
     public boolean buyArtifact(ArtifactInfo artifact) throws IllegalStateException {
 
         if (this.isSlotEmpty(artifact.getLocation().toString())) {
-            String output = String.format("Location: %s is taken.", artifact.getLocation().toString());
-            throw new IllegalStateException(output);
-
+            return false;
         }
 
         if (this.getGold() >= artifact.getCost()) {
             this.decreaseGold(artifact.getCost());
             this.artifacts.add(artifact);
             return true;
-
         } else {
-            String output = String.format("Not enough gold to buy %s", artifact.getName());
-            throw new IllegalStateException(output);
-
-
+            return false;
         }
 
 
@@ -147,8 +140,7 @@ public class EconomyHero {
 
     public boolean buySpell(SpellInfo spell) throws IllegalStateException {
         if (this.spells.contains(spell)) {
-            String output = String.format("Hero has got this spell %s ", spell.getName());
-            throw new IllegalStateException(output);
+            return false;
         }
         if (getGold() >= spell.getCost()) {
             this.decreaseGold(spell.getCost());
@@ -161,8 +153,7 @@ public class EconomyHero {
 
     public boolean buySkill(SkillInfo skill) throws IllegalStateException {
         if (this.skills.contains(skill)) {
-            String output = String.format("Hero has got this skill %s ", skill.getName());
-            throw new IllegalStateException(output);
+            return false;
         }
         if (getGold() >= skill.getCost()) {
             this.decreaseGold(skill.getCost());
