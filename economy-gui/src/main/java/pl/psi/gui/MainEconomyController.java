@@ -2,6 +2,7 @@ package pl.psi.gui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Background;
@@ -316,6 +317,11 @@ public class MainEconomyController {
 
     }
 
+    public void showAlert(){
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setHeaderText("You don't have enough money!");
+        alert.show();
+    }
 
     public void hendleBuy(ActionEvent actionEvent, String type){
 
@@ -327,7 +333,7 @@ public class MainEconomyController {
                 if (economyEngine.activeHero.buySpell(spell)) {
                     ((Button) actionEvent.getSource()).setDisable(true);
                 } else {
-                    System.out.println("Couldn't buy spell");
+                    showAlert();
                 }
                 break;
 
@@ -338,7 +344,7 @@ public class MainEconomyController {
                 if (economyEngine.activeHero.buyArtifact(artifact)) {
                     ((Button) actionEvent.getSource()).setDisable(true);
                 } else {
-                    System.out.println("Couldn't buy artifact");
+                    showAlert();
                 }
                 break;
             case "Skill":
@@ -348,7 +354,7 @@ public class MainEconomyController {
                 if (economyEngine.activeHero.buySkill(skill)) {
                     ((Button) actionEvent.getSource()).setDisable(true);
                 } else {
-                    System.out.println("Couldn't buy skill");
+                    showAlert();
                 }
                 break;
         }
