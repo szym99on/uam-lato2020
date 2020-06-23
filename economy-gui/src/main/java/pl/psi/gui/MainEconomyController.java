@@ -107,7 +107,7 @@ public class MainEconomyController {
     public MainEconomyController() {
         new HeroInfoFactory();
         HeroInfo heroInfo1 = HeroInfoFactory.getHeroInfoByName(HeroInfoFactory.EDRIC);
-        economyHero1 = EconomyHero.builder().aGold(3000).aHeroInfo(heroInfo1).build();
+        economyHero1 = EconomyHero.builder().aGold(30000000).aHeroInfo(heroInfo1).build();
         HeroInfo heroInfo2 = HeroInfoFactory.getHeroInfoByName(HeroInfoFactory.ADELA);
         economyHero2 = EconomyHero.builder().aGold(3000).aHeroInfo(heroInfo2).build();
         economyEngine = new EconomyEngine(economyHero1, economyHero2);
@@ -343,9 +343,8 @@ public class MainEconomyController {
 
                 if (economyEngine.activeHero.buyArtifact(artifact)) {
                     ((Button) actionEvent.getSource()).setDisable(true);
-                } else {
-                    showAlert();
                 }
+
                 break;
             case "Skill":
                 String skillName = ((Button) actionEvent.getSource()).getId();

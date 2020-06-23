@@ -1,5 +1,6 @@
 package pl.psi.game.hero.economyHero;
 
+import javafx.scene.control.Alert;
 import lombok.Builder;
 import lombok.Getter;
 import pl.psi.game.fractions.CreatureInfo;
@@ -84,15 +85,23 @@ public class EconomyHero {
 
     public boolean buyArtifact(ArtifactInfo artifact) throws IllegalStateException {
 
-        if (this.isSlotEmpty(artifact.getLocation().toString())) {
-            return false;
-        }
+
 
         if (this.getGold() >= artifact.getCost()) {
-            this.decreaseGold(artifact.getCost());
-            this.artifacts.add(artifact);
-            return true;
+            if (this.isSlotEmpty(artifact.getLocation().toString())) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setHeaderText("Slot: "+artifact.getLocation().toString()+" is not empty!");
+                alert.show();
+                return false;
+            }else{
+                this.decreaseGold(artifact.getCost());
+                this.artifacts.add(artifact);
+                return true;
+            }
         } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText("You don't have enough money!");
+            alert.show();
             return false;
         }
 
