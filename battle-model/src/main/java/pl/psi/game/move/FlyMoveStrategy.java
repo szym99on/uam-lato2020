@@ -30,17 +30,12 @@ public class FlyMoveStrategy implements MoveStrategyIf {
             propertyChangeSupport.firePropertyChange(GameEngine.CREATURE_MOVED, oldPosition, activeCreature.getKey());
 
     }
-    @Override
-    public List<GuiTileIf> getSteps(Point destPoint) {
-        LinkedList<GuiTileIf> fakeMoveSteps = new LinkedList();
-
-        return fakeMoveSteps;
-    }
 
     @Override
-    public boolean isMovePossible(Point startPoint, Point destPoint) {
+    public boolean isMovePossible(Point destPoint) {
+        Point oldPosition = activeCreature.getKey();
 
-        double distance = Math.abs(destPoint.getX() - startPoint.getX()) + Math.abs(destPoint.getY() - startPoint.getY());
+        double distance = Math.abs(destPoint.getX() - oldPosition.getX()) + Math.abs(destPoint.getY() - oldPosition.getY());
 
         return activeCreature.getValue().getMoveRange() - distance >= 0;
     }

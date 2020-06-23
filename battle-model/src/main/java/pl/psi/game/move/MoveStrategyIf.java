@@ -8,5 +8,5 @@ import java.util.List;
 public interface MoveStrategyIf {
 
     void move(Point desPoint);
-    boolean isMovePossible(Point startPoint, Point destPoint);
+    boolean isMovePossible(Point destPoint);
 }

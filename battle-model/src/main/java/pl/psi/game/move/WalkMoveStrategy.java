@@ -46,15 +46,13 @@ public class WalkMoveStrategy implements MoveStrategyIf {
 
 
     @Override
-    public boolean isMovePossible(Point startPoint, Point destPoint) {
+    public boolean isMovePossible(Point destPoint) {
+        Point oldPosition = activeCreature.getKey();
 
         List<Point> path = new LinkedList();
-        path = countPath(startPoint, destPoint, path);
+        path = countPath(oldPosition, destPoint, path);
 
         if( path.size() - 1 > activeCreature.getValue().getMoveRange() ){
-            return false;
-        }
-        if ( !path.get(path.size() - 1).equals(destPoint)){
             return false;
         }
         return true;

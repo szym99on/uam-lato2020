@@ -29,20 +29,28 @@ public class MoveEngine implements PropertyChangeListener {
     }
 
     public boolean isMovePossible(Point endPoint) {
-        return board.isTileEmpty((int) endPoint.getX(),(int) endPoint.getY()) && endPoint.distance(activeCreature.getKey()) <= activeCreature.getValue().getMoveRange();
+        return moveStrategyIf.isMovePossible(endPoint);
     }
 
+    /* We have a specific isMovePossible in fly and walk strategy
+    public boolean isMovePossible(Point endPoint) {
+        return board.isTileEmpty((int) endPoint.getX(),(int) endPoint.getY()) && endPoint.distance(activeCreature.getKey()) <= activeCreature.getValue().getMoveRange();
+    }
+     */
     public void move(int x, int y) {
+          moveStrategyIf.move(new Point(x,y));
+        }
+
+    public HashMap.Entry<Point, Creature> getActiveCreature() {
+        return activeCreature;
+    }
+
+    public void setMoveStrategy() {
         if(activeCreature.getValue().isCanFly()) {
             moveStrategyIf = new FlyMoveStrategy(board, activeCreature);
         } else {
             moveStrategyIf = new WalkMoveStrategy(board, activeCreature);
         }
-          moveStrategyIf.move(new Point(x,y));
-    }
-
-    public HashMap.Entry<Point, Creature> getActiveCreature() {
-        return activeCreature;
     }
 
     @Override
@@ -52,6 +60,7 @@ public class MoveEngine implements PropertyChangeListener {
 
     void setActiveCreature(Point aPoint, Creature aCreature) {
         activeCreature = new AbstractMap.SimpleEntry<>(aPoint, aCreature);
+        setMoveStrategy();
     }
 
     public void addObserver(String aPropertyType, PropertyChangeListener aObserver){
