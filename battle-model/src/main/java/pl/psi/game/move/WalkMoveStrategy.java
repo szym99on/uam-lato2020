@@ -9,6 +9,7 @@ import java.beans.PropertyChangeSupport;
 import java.util.*;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.Collectors;
 
 import static pl.psi.game.Board.BOARD_HIGH;
 import static pl.psi.game.Board.BOARD_WIDTH;
@@ -24,37 +25,25 @@ public class WalkMoveStrategy implements MoveStrategyIf {
         propertyChangeSupport = new PropertyChangeSupport(this);
         activeCreature = aActiveCreature;
     }
-//    private Point stepMove(Point destPoint){
-//        List<GuiTileIf> steps = getSteps(destPoint);
-//
-//        ObstacleIf step = (ObstacleIf) steps.get(0);
-//        AtomicReference<Point> a = null;
-//        steps.forEach( s -> a.set(s.isObstacle() ? (Obstacle) s.apply(activeCreature.getValue())));
-//        return a.get();
-//    }
 
     @Override
     public void move(Point destPoint) {
-       // stepMove(destPoint);
+
+        AtomicReference<Point> endPoint = new AtomicReference<>(null);
+        List<GuiTileIf> path = getSteps(destPoint);
+        List<ObstacleIf> pathObs = path.stream().filter(t -> t instanceof ObstacleIf).map(o -> (ObstacleIf)o).collect(Collectors.toList());
+        // pathObs.forEach(o -> endPoint.set(o.apply(activeCreature.getValue())));
+
+        if(endPoint.get() == null){
+            endPoint.set(destPoint);
+        }
+
         Point oldPosition = activeCreature.getKey();
         board.move((int) destPoint.getX(), (int) destPoint.getY(),activeCreature.getValue());
         activeCreature = new AbstractMap.SimpleEntry<>(destPoint, activeCreature.getValue());
         propertyChangeSupport.firePropertyChange(GameEngine.CREATURE_MOVED, oldPosition, activeCreature.getKey());
     }
 
-    @Override
-    public List<GuiTileIf> getSteps(Point destPoint) {
-        Point oldPosition = activeCreature.getKey().getLocation();
-
-        List<Point> path = new LinkedList();
-        path = countPath(oldPosition,destPoint,path);
-
-
-        List returnPath = new LinkedList();
-        path.forEach(p->returnPath.add(board.getObject(p.x,p.y)));
-
-        return returnPath;
-    }
 
     @Override
     public boolean isMovePossible(Point startPoint, Point destPoint) {
@@ -71,7 +60,20 @@ public class WalkMoveStrategy implements MoveStrategyIf {
         return true;
     }
 
-    public List countPath(Point point, Point endPoint,List path){
+    private List<GuiTileIf> getSteps(Point destPoint) {
+        Point oldPosition = activeCreature.getKey().getLocation();
+
+        List<Point> path = new LinkedList();
+        path = countPath(oldPosition,destPoint,path);
+
+
+        List returnPath = new LinkedList();
+        path.forEach(p->returnPath.add(board.getObject(p.x,p.y)));
+
+        return returnPath;
+    }
+
+    private List countPath(Point point, Point endPoint,List path){
 
         Point up = new Point(point.x,point.y + 1);
         Point down = new Point(point.x,point.y - 1);
@@ -109,7 +111,7 @@ public class WalkMoveStrategy implements MoveStrategyIf {
     }
 
 
-    int pointInPath(List path, Point point){
+    private int pointInPath(List path, Point point){
        if( path.contains(point))
        {
            return Integer.MAX_VALUE;
@@ -119,7 +121,7 @@ public class WalkMoveStrategy implements MoveStrategyIf {
        }
     }
 
-    Map<Point, Integer> mapCostGenerate(){
+    private Map<Point, Integer> mapCostGenerate(){
         Map<Point, GuiTileIf> copyBoard = Board.copyBoardValues();
         Map<Point, Integer> aStarBoard = new HashMap<>();
 
@@ -141,7 +143,7 @@ public class WalkMoveStrategy implements MoveStrategyIf {
 
     }
 
-    int getMapCost(Point point){
+  private int getMapCost(Point point){
         Map<Point,Integer> mapCost = mapCostGenerate();
 
         if (point.x > BOARD_WIDTH || point.x < 0 || point.y > BOARD_HIGH || point.y < 0) {
