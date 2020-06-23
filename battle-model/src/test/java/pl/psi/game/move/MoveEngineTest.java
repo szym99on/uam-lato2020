@@ -12,40 +12,163 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MoveEngineTest {
 
+    @Test
+    void moveShouldBePossible(){
+        Creature c = Creature.builder().aMoveRange(1).build();
+        Board board = Board.getBoard();
+        board.clearBoard();
+        board.putCreature(1,1, c);
+
+        MoveEngine moveEngine = new MoveEngine(board);
+        moveEngine.setActiveCreature(new Point(1,1),c);
+
+        assertTrue(moveEngine.isMovePossible(new Point(1,2)));
+        assertTrue(moveEngine.isMovePossible(new Point(1,0)));
+        assertTrue(moveEngine.isMovePossible(new Point(0,1)));
+        assertTrue(moveEngine.isMovePossible(new Point(2,1)));
+    }
+
+    @Test
+    void moveRangeTooSmall(){
+        Creature c = Creature.builder().aMoveRange(1).aCanFly(true).build();
+        Board board = Board.getBoard();
+        board.clearBoard();
+        board.putCreature(1,1, c);
+
+        MoveEngine moveEngine = new MoveEngine(board);
+        moveEngine.setActiveCreature(new Point(1,1),c);
+
+        assertFalse(moveEngine.isMovePossible(new Point(1,3)));
+        assertFalse(moveEngine.isMovePossible(new Point(3,1)));
+        assertFalse(moveEngine.isMovePossible(new Point(-1,1)));
+        assertFalse(moveEngine.isMovePossible(new Point(-1,1)));
+    }
+
+    @Test
+    void moveCreature(){
+        Creature c = Creature.builder().aMoveRange(1).aCanFly(true).build();
+        Board board = Board.getBoard();
+        board.clearBoard();
+        board.putCreature(1,1, c);
+
+        MoveEngine moveEngine = new MoveEngine(board);
+        moveEngine.setActiveCreature(new Point(1,1), c);
+        moveEngine.move(1,2);
+
+        assertEquals(c, board.getCreature(1,2));
+        assertNull(board.getCreature(1,1));
+    }
+
+
+    @Test
+    void flyFrom2_2To5_4(){
+        Creature creature = Creature.builder().aMoveRange(99).aCanFly(true).build();
+
+        Board board = Board.getBoard();
+        board.clearBoard();
+        board.putCreature(2,2, creature);
+
+        MoveEngine moveEngine = new MoveEngine(board);
+        moveEngine.setActiveCreature(new Point(2,2), creature);
+
+        moveEngine.move(5,4);
+        assertEquals(creature, board.getCreature(5,4));
+        assertNull(board.getCreature(2,2));
+
+    }
+
+
+    @Test
+    void flyFrom5_4To1_2(){
+        Creature creature = Creature.builder().aMoveRange(99).aCanFly(true).build();
+
+        Board board = Board.getBoard();
+        board.clearBoard();
+        //Board.getBoard();
+        board.putCreature(5,4, creature);
+
+        MoveEngine moveEngine = new MoveEngine(board);
+        moveEngine.setActiveCreature(new Point(5,4), creature);
+
+        moveEngine.move(1,2);
+        assertEquals(creature, board.getCreature(1,2));
+        assertNull(board.getCreature(5,4));
+    }
+
+
+    @Test
+    void isMovePossibleTrueFlyingCreature(){
+        Creature creature = Creature.builder().aMoveRange(5).aCanFly(true).build();
+
+        Board board = Board.getBoard();
+        board.clearBoard();
+        board.putCreature(2,2, creature);
+
+        MoveEngine moveEngine = new MoveEngine(board);
+        moveEngine.setActiveCreature(new Point(2,2), creature);
+
+        Point finalPoint = new Point(5,4);
+
+        MoveStrategyIf moveStrategyIf = new FlyMoveStrategy(board,moveEngine.getActiveCreature());
+
+        boolean bool = moveStrategyIf.isMovePossible(finalPoint);
+        assertTrue(bool);
+
+    }
+
+    @Test
+    void isMovePossibleTrueWalkingCreature(){
+        Board board = Board.getBoard();
+        board.clearBoard();
+        Creature creature = Creature.builder().aCanFly(false).aMoveRange(2).build();
+        board.putCreature(5,5, creature);
+
+        MoveEngine moveEngine = new MoveEngine(board);
+        moveEngine.setActiveCreature(board.getCreatureLocation(creature).get(),creature);
+//              3  4  5  6  7
+//    3    //   x  x  o  x  x
+//    4    //   x  o  o  o  x
+//    5    //   o  o  c  o  o
+//    6    //   x  o  o  o  x
+//    7    //   x  x  o  x  x
+
+        assertTrue(moveEngine.isMovePossible(new Point(5,6)));
+        assertTrue(moveEngine.isMovePossible(new Point(5,4)));
+        assertTrue(moveEngine.isMovePossible(new Point(4,5)));
+        assertTrue(moveEngine.isMovePossible(new Point(6,5)));
+
+        assertTrue(moveEngine.isMovePossible(new Point(6,6)));
+        assertTrue(moveEngine.isMovePossible(new Point(4,4)));
+        assertTrue(moveEngine.isMovePossible(new Point(6,4)));
+        assertTrue(moveEngine.isMovePossible(new Point(4,6)));
+
+        assertTrue(moveEngine.isMovePossible(new Point(5,7)));
+        assertTrue(moveEngine.isMovePossible(new Point(5,3)));
+        assertTrue(moveEngine.isMovePossible(new Point(3,5)));
+        assertTrue(moveEngine.isMovePossible(new Point(7,5)));
+    }
+
+
+
+
 
     @Test
     void walkingMoveTest(){
-        //given
-        WalkMoveStrategy moveStrategyIf = prepareBoardAndReturnMovingStrategy();
-        // o o o o
-        // o 1 o o
-        // o 2 o o
-        // o 3 4 o
-        List expected = new LinkedList();
-        expected.add(new Point(1,1));
-        expected.add(new Point(1,2));
-        expected.add(new Point(1,3));
-        expected.add(new Point(2,3));
+        Creature creature = Creature.builder().aMoveRange(5).aCanFly(false).build();
 
-        //when
-        List <Point> paths = new LinkedList<>();
-        paths.add(new Point(1,1));
-        List list = moveStrategyIf.countPath(new Point(1, 1), new Point(2, 3), paths);
-
-        //then
-        assertEquals(expected,list);
-    }
-
-    private WalkMoveStrategy prepareBoardAndReturnMovingStrategy() {
-        Creature creature = Creature.builder().aCanFly(false).build();
         Board board = Board.getBoard();
         board.clearBoard();
+        board.putCreature(1,1, creature);
+
         MoveEngine moveEngine = new MoveEngine(board);
-        moveEngine.setActiveCreature(new Point(1,1), creature);
+        moveEngine.setActiveCreature(new Point(3,3), creature);
 
-        return new WalkMoveStrategy(board,moveEngine.getActiveCreature());
-    }
-
+        //when
+        moveEngine.move(3,3);
+        //then
+        assertEquals(creature, board.getCreature(3,3));
+        assertNull(board.getCreature(1,1));
+}
 
     @Test
     void walkingMoveWithSomeObstacleOnBestPathTest(){
@@ -157,137 +280,5 @@ class MoveEngineTest {
 //        assertTrue(moveStrategyIf.isMovePossible(new Point(5,5),new Point(9,9)));
 //
     }
-
-
-    @Test
-    void moveShouldBePossible(){
-        Creature c = Creature.builder().aMoveRange(1).build();
-        Board board = Board.getBoard();
-        board.clearBoard();
-        //Board.getBoard();
-        board.putCreature(1,1, c);
-
-        MoveEngine moveEngine = new MoveEngine(board);
-        moveEngine.setActiveCreature(new Point(1,1),c);
-
-        Point startPoint = new Point(1,1);
-        assertTrue(moveEngine.isMovePossible(new Point(1,2)));
-        assertTrue(moveEngine.isMovePossible(new Point(1,0)));
-        assertTrue(moveEngine.isMovePossible(new Point(0,1)));
-        assertTrue(moveEngine.isMovePossible(new Point(2,1)));
-    }
-
-    @Test
-    void moveRangeTooSmall(){
-        Creature c = Creature.builder().aMoveRange(1).build();
-        Board board = Board.getBoard();
-        board.clearBoard();
-        //Board.getBoard();
-        board.putCreature(1,1, c);
-
-        MoveEngine moveEngine = new MoveEngine(board);
-        moveEngine.setActiveCreature(new Point(1,1),c);
-
-        assertFalse(moveEngine.isMovePossible(new Point(1,3)));
-        assertFalse(moveEngine.isMovePossible(new Point(3,1)));
-    }
-
-
-
-
-    @Test
-    void moveCreature(){
-        Creature c = Creature.builder().aMoveRange(1).aCanFly(true).build();
-        Board board = Board.getBoard();
-        board.clearBoard();
-        //Board.getBoard();
-        board.putCreature(1,1, c);
-
-        MoveEngine moveEngine = new MoveEngine(board);
-        moveEngine.setActiveCreature(new Point(1,1), c);
-        moveEngine.move(1,2);
-
-        assertEquals(c, board.getCreature(1,2));
-        assertNull(board.getCreature(1,1));
-    }
-
-
-    @Test
-    void flyFrom2_2To5_4(){
-        Creature creature = Creature.builder().aMoveRange(99).aCanFly(true).build();
-
-        Board board = Board.getBoard();
-        board.clearBoard();
-        //Board.getBoard();
-        board.putCreature(2,2, creature);
-
-        MoveEngine moveEngine = new MoveEngine(board);
-        moveEngine.setActiveCreature(new Point(2,2), creature);
-
-        moveEngine.move(5,4);
-        assertEquals(creature, board.getCreature(5,4));
-        assertNull(board.getCreature(2,2));
-
-    }
-
-
-    @Test
-    void flyFrom5_4To1_2(){
-        Creature creature = Creature.builder().aMoveRange(99).aCanFly(true).build();
-
-        Board board = Board.getBoard();
-        board.clearBoard();
-        //Board.getBoard();
-        board.putCreature(5,4, creature);
-
-        MoveEngine moveEngine = new MoveEngine(board);
-        moveEngine.setActiveCreature(new Point(5,4), creature);
-
-        moveEngine.move(1,2);
-        assertEquals(creature, board.getCreature(1,2));
-        assertNull(board.getCreature(5,4));
-    }
-
-
-    @Test
-    void isMovePossibleTrueFlyingCreature(){
-        Creature creature = Creature.builder().aMoveRange(99).aCanFly(true).build();
-
-        Board board = Board.getBoard();
-        board.clearBoard();
-        //Board.getBoard();
-        board.putCreature(2,2, creature);
-
-        MoveEngine moveEngine = new MoveEngine(board);
-        moveEngine.setActiveCreature(new Point(2,2), creature);
-
-        Point finalPoint = new Point(5,4);
-
-        MoveStrategyIf moveStrategyIf = new FlyMoveStrategy(board,moveEngine.getActiveCreature());
-
-        boolean bool = moveStrategyIf.isMovePossible( new Point(2, 2), finalPoint);
-        assertTrue(bool);
-
-    }
-
-    @Test
-    void walkingCreatureShouldCanMove(){
-        Board board = Board.getBoard();
-        board.clearBoard();
-        Creature creature = Creature.builder().aMoveRange(2).build();
-        board.putCreature(8,4, creature);
-
-        MoveEngine moveEngine = new MoveEngine(board);
-        moveEngine.setActiveCreature(board.getCreatureLocation(creature).get(),creature);
-
-        assertTrue(moveEngine.isMovePossible(new Point(8,5)));
-        assertFalse(moveEngine.isMovePossible(new Point(8,7)));
-        assertTrue(moveEngine.isMovePossible(new Point(7,4)));
-        assertFalse(moveEngine.isMovePossible(new Point(5,4)));
-
-    }
-
-
-
 }
 
