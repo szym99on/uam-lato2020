@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import pl.psi.game.Board;
 import pl.psi.game.fractions.Creature;
 import pl.psi.game.fractions.FractionsInfoAbstractFactory;
+import pl.psi.game.fractions.MagicResistance;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DamageSpellsTest {
@@ -94,6 +96,29 @@ public class DamageSpellsTest {
         spell.cast(1,1);
 
         assertEquals(80, creature.getCurrentHp());
+    }
+    @Test
+    void lightningBoltShouldNotDealDamageToCreatureImmuneToAirSpells() {
+        Creature creature = Creature.builder().aMaxHp(100).build();
+
+        creature.setMagicResistance(new MagicResistance(40, MagicResistance.GroupImmunityType.AIR_SPELLS));
+
+        Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.LIGHTNING_BOLT));
+        spell.cast(creature);
+
+        assertEquals(100, creature.getCurrentHp());
+    }
+
+    @Test
+    void lightningBoltShouldNotDealDamageToCreatureImmuneToLightningBolt() {
+        Creature creature = Creature.builder().aMaxHp(100).build();
+
+        creature.getMagicResistance().addImmunitySpell(SpellBookInfoFactory.LIGHTNING_BOLT);
+
+        Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.LIGHTNING_BOLT));
+        spell.cast(creature);
+
+        assertEquals(100, creature.getCurrentHp());
     }
 
     @Test
