@@ -148,10 +148,6 @@ class MoveEngineTest {
         assertTrue(moveEngine.isMovePossible(new Point(7,5)));
     }
 
-
-
-
-
     @Test
     void walkingMoveTest(){
         Creature creature = Creature.builder().aMoveRange(5).aCanFly(false).build();
@@ -171,7 +167,7 @@ class MoveEngineTest {
 }
 
     @Test
-    void walkingMoveWithSomeObstacleOnBestPathTest(){
+    void walkingMoveCanAvoidObstacle(){
 //
 //        Creature creature = Creature.builder().build();
 //        Board board = Board.getBoard();
@@ -206,46 +202,36 @@ class MoveEngineTest {
 
 
     @Test
-    void walkingMoveWithOnlyPossibleWayThroughLava(){
+    void walkingMoveWithOnlyPossibleWayThroughRock(){
 
-//        //In this case creature is surrounded  by lava and can move only form 5,5 to 5,6
-//        Creature creature = Creature.builder().build();
-//        Board board = Board.getBoard();
-//        board.clearBoard();
-//        MoveEngine moveEngine = new MoveEngine(board);
-//        moveEngine.setActiveCreature(new Point(5,5), creature);
-//
-//        WalkMoveStrategy moveStrategyIf = new WalkMoveStrategy(board,moveEngine.getActiveCreature());
-//        List <Point> paths = new LinkedList<>();
-//        paths.add(new Point(5,5));
-//        ObstacleFactory obstacleFactory = new ObstacleFactory();
-//        Obstacle lava1 = obstacleFactory.createObstacle("lava", new Point(5,7));
-//        Obstacle lava2 =  obstacleFactory.createObstacle("lava", new Point(4,6));
-//        Obstacle lava3 = obstacleFactory.createObstacle("lava", new Point(4,5));
-//        Obstacle lava4 =  obstacleFactory.createObstacle("lava", new Point(6,6));
-//        Obstacle lava5 = obstacleFactory.createObstacle("lava", new Point(6,5));
-//        Obstacle lava6 =  obstacleFactory.createObstacle("lava", new Point(5,4));
-//
-//
-//        board.putObstacle(lava1);
-//        board.putObstacle(lava2);
-//        board.putObstacle(lava3);
-//        board.putObstacle(lava4);
-//        board.putObstacle(lava5);
-//        board.putObstacle(lava6);
-//
-//
-//        List list = moveStrategyIf.countPath(new Point(5, 5), new Point(5, 9),paths);
-//        List expected = new LinkedList();
-//            expected.add(new Point(5,5));
-//            expected.add(new Point(5,6));
-//            expected.add(new Point(5,7));
-//            expected.add(new Point(5,8));
-//            expected.add(new Point(5,9));
-//
-//            assertEquals(expected,list);
+        //In this case creature is surrounded  by lava and can move only form 5,5 to 5,6
+        Creature creature = Creature.builder().build();
+        Board board = Board.getBoard();
+        board.clearBoard();
+        board.putCreature(5,5, creature);
+        MoveEngine moveEngine = new MoveEngine(board);
+        moveEngine.setActiveCreature(new Point(5,5), creature);
+
+        ObstacleFactory obstacleFactory = new ObstacleFactory();
+        ImpactMoveObstacle lava1 = obstacleFactory.createImpactMoveObstacle("rock", new Point(5, 7));
+        ImpactMoveObstacle lava2 =  obstacleFactory.createImpactMoveObstacle("rock", new Point(4,6));
+        ImpactMoveObstacle lava3 =  obstacleFactory.createImpactMoveObstacle("rock", new Point(4,5));
+        ImpactMoveObstacle lava4 =  obstacleFactory.createImpactMoveObstacle("rock", new Point(6,6));
+        ImpactMoveObstacle lava5 =  obstacleFactory.createImpactMoveObstacle("rock", new Point(6,5));
+        ImpactMoveObstacle lava6 =  obstacleFactory.createImpactMoveObstacle("rock", new Point(5,4));
+
+        board.putObstacle(lava1);
+        board.putObstacle(lava2);
+        board.putObstacle(lava3);
+        board.putObstacle(lava4);
+        board.putObstacle(lava5);
+        board.putObstacle(lava6);
+
+        moveEngine.move(5,3);
+
+        assertEquals(creature, board.getCreature(5,4));
+        assertNull(board.getCreature(5,5));
     }
-
 
     @Test
     void walkingMoveWithNoPossibleWayIsMovePossibleLavaTest(){

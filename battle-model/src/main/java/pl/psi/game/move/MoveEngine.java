@@ -28,6 +28,10 @@ public class MoveEngine implements PropertyChangeListener {
 
     }
 
+    private boolean isTrue(){
+        return true;
+    }
+
     public boolean isMovePossible(Point endPoint) {
         return moveStrategyIf.isMovePossible(endPoint);
     }

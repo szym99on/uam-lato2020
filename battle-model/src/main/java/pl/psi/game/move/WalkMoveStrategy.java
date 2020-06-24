@@ -31,16 +31,16 @@ public class WalkMoveStrategy implements MoveStrategyIf {
 
         AtomicReference<Point> endPoint = new AtomicReference<>(null);
         List<GuiTileIf> path = getSteps(destPoint);
-        List<ObstacleIf> pathObs = path.stream().filter(t -> t instanceof ObstacleIf).map(o -> (ObstacleIf)o).collect(Collectors.toList());
-        // pathObs.forEach(o -> endPoint.set(o.apply(activeCreature.getValue())));
+        List<ImpactMoveObstacle> pathObs = path.stream().filter(t -> t instanceof ImpactMoveObstacle).map(o -> (ImpactMoveObstacle)o).collect(Collectors.toList());
+        pathObs.forEach(o -> endPoint.set(o.apply()));
 
         if(endPoint.get() == null){
             endPoint.set(destPoint);
         }
 
         Point oldPosition = activeCreature.getKey();
-        board.move((int) destPoint.getX(), (int) destPoint.getY(),activeCreature.getValue());
-        activeCreature = new AbstractMap.SimpleEntry<>(destPoint, activeCreature.getValue());
+        board.move((int) endPoint.get().getX(), (int) endPoint.get().getY(),activeCreature.getValue());
+        activeCreature = new AbstractMap.SimpleEntry<>(endPoint.get(), activeCreature.getValue());
         propertyChangeSupport.firePropertyChange(GameEngine.CREATURE_MOVED, oldPosition, activeCreature.getKey());
     }
 
@@ -78,10 +78,10 @@ public class WalkMoveStrategy implements MoveStrategyIf {
         Point left = new Point(point.x - 1,point.y);
         Point right = new Point(point.x + 1,point.y);
 
-        double upDistance = endPoint.distance(up)  + getMapCost(up) + pointInPath(path,up);
-        double downDistance = endPoint.distance(down) + getMapCost(down) + pointInPath(path,down);
-        double leftDistance = endPoint.distance(left) + getMapCost(left) + pointInPath(path,left);
-        double rightDistance = endPoint.distance(right) + getMapCost(right) + pointInPath(path,right);
+        double upDistance = endPoint.distance(up) * 1000  + getMapCost(up) + pointInPath(path,up);
+        double downDistance = endPoint.distance(down) * 1000 + getMapCost(down) + pointInPath(path,down);
+        double leftDistance = endPoint.distance(left) * 1000 + getMapCost(left) + pointInPath(path,left);
+        double rightDistance = endPoint.distance(right) * 1000 + getMapCost(right) + pointInPath(path,right);
 
         //TODO this is ugly, but works. Now I don't now how do it better
         if(point.equals(endPoint)){

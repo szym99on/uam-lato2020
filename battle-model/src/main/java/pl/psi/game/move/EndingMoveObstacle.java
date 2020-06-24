@@ -1,7 +1,5 @@
 package pl.psi.game.move;
 
-import pl.psi.game.fractions.Creature;
-
 import java.awt.*;
 
 class EndingMoveObstacle extends ImpactMoveObstacle {
@@ -14,5 +12,10 @@ class EndingMoveObstacle extends ImpactMoveObstacle {
     @Override
     boolean isMovePossible() {
         return false;
+    }
+
+    @Override
+    public Point apply() {
+        return point;
     }
 }

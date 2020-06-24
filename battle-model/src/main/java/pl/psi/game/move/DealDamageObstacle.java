@@ -15,6 +15,7 @@ class DealDamageObstacle extends ImpactCreatureObstacle {
 
     @Override
     public void apply(Creature creature) {
+        //Ten if jest nie potrzebny latające kreatury nie robią patha, więc nie mogą wywołać apply
         if (!creature.isCanFly()) {
             creature.takePureDamage(attack);
         }

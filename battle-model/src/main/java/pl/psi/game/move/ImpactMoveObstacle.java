@@ -1,5 +1,7 @@
 package pl.psi.game.move;
 
+import pl.psi.game.fractions.Creature;
+
 import java.awt.*;
 
 public abstract class ImpactMoveObstacle implements ObstacleIf{
@@ -33,5 +35,7 @@ public abstract class ImpactMoveObstacle implements ObstacleIf{
     }
 
     abstract boolean isMovePossible();
+
+    abstract Point apply();
 
 }
