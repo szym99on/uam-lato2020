@@ -2,14 +2,13 @@ package pl.psi.gui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.StageStyle;
 import pl.psi.game.EconomyEngine;
 import pl.psi.game.fractions.CreatureInfo;
 import pl.psi.game.fractions.CreatureStack;
@@ -25,6 +24,7 @@ import pl.psi.game.spellbook.SpellBookInfoFactory;
 import pl.psi.game.spellbook.SpellInfo;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -111,15 +111,33 @@ public class MainEconomyController {
     public MainEconomyController() {
         new HeroInfoFactory();
 
-        heroInfo1 = HeroInfoFactory.getHeroInfoByName(HeroInfoFactory.EDRIC);
+        heroInfo1 = showChoseDialog(1);
         economyHero1 = EconomyHero.builder().aGold(3000).aHeroInfo(heroInfo1).build();
 
-        heroInfo2 = HeroInfoFactory.getHeroInfoByName(HeroInfoFactory.ADELA);
+        heroInfo2 = showChoseDialog(2);
         economyHero2 = EconomyHero.builder().aGold(3000).aHeroInfo(heroInfo2).build();
 
         economyEngine = new EconomyEngine(economyHero1, economyHero2);
     }
 
+    public HeroInfo showChoseDialog(int i){
+        List<HeroInfo> HeroesInfo = HeroInfoFactory.getAll();
+        List<String> HeroesInfoNames = new ArrayList<>();
+        for(HeroInfo hero: HeroesInfo)
+            HeroesInfoNames.add(hero.getName());
+
+        ChoiceDialog dialog = new ChoiceDialog(HeroesInfoNames.get(0), HeroesInfoNames);
+        dialog.initStyle(StageStyle.UNDECORATED);
+        for (ButtonType b : dialog.getDialogPane().getButtonTypes()) {
+            if(b.getText().equals("Cancel"))
+                dialog.getDialogPane().lookupButton(b).setDisable(true);
+        }
+        dialog.setTitle("Hero choice");
+        dialog.setHeaderText(" Player " + i +", please choose your hero");
+        dialog.setContentText("Select hero:");
+        dialog.showAndWait();
+        return  HeroInfoFactory.getHeroInfoByName(dialog.getSelectedItem().toString());
+    }
 
     public void addItemToShop(String itemName, int cost, HBox hbox, String type) {
         Button btn = new Button();
