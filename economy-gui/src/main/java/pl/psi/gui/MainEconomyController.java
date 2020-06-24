@@ -50,6 +50,8 @@ public class MainEconomyController {
     public VBox creaturesShopInside;
     @FXML
     public VBox creaturesShopInside2;
+    @FXML
+    public Text heroName;
 
     @FXML
     private Button buyCreatureButton;
@@ -103,13 +105,18 @@ public class MainEconomyController {
     private final EconomyHero economyHero1;
     private final EconomyHero economyHero2;
     private final EconomyEngine economyEngine;
+    private final HeroInfo heroInfo1;
+    private final HeroInfo heroInfo2;
 
     public MainEconomyController() {
         new HeroInfoFactory();
-        HeroInfo heroInfo1 = HeroInfoFactory.getHeroInfoByName(HeroInfoFactory.EDRIC);
-        economyHero1 = EconomyHero.builder().aGold(30000000).aHeroInfo(heroInfo1).build();
-        HeroInfo heroInfo2 = HeroInfoFactory.getHeroInfoByName(HeroInfoFactory.ADELA);
+
+        heroInfo1 = HeroInfoFactory.getHeroInfoByName(HeroInfoFactory.EDRIC);
+        economyHero1 = EconomyHero.builder().aGold(3000).aHeroInfo(heroInfo1).build();
+
+        heroInfo2 = HeroInfoFactory.getHeroInfoByName(HeroInfoFactory.ADELA);
         economyHero2 = EconomyHero.builder().aGold(3000).aHeroInfo(heroInfo2).build();
+
         economyEngine = new EconomyEngine(economyHero1, economyHero2);
     }
 
@@ -118,7 +125,7 @@ public class MainEconomyController {
         Button btn = new Button();
         btn.setId(itemName);
         btn.setText(itemName);
-        btn.setMinSize(170, 30);
+        btn.setMinSize(170, 19);
         switch (type) {
             case "Spell":
                 btn.setOnAction(this::handleBuySpell);
@@ -145,7 +152,7 @@ public class MainEconomyController {
         TextField text = new TextField(Integer.toString(cost));
         text.setEditable(false);
         text.setMaxWidth(70);
-        text.setMinSize(50, 30);
+        text.setMinSize(50, 19);
         text.setId(itemName);
         hbox.getChildren().add(text);
     }
@@ -153,6 +160,12 @@ public class MainEconomyController {
     @FXML
     private void initialize() {
         gold.setText(Integer.toString(economyEngine.activeHero.getGold()));
+        String heroNameText;
+        if (economyEngine.activeHero.equals(economyHero1))
+            heroNameText = (heroInfo1.getName()+" equipment:").toUpperCase();
+        else
+            heroNameText = (heroInfo2.getName()+" equipment:").toUpperCase();
+        heroName.setText(heroNameText);
 
         int spellvar = 0;
         for (SpellInfo spell : economyEngine.getSpellsAvailableToBuy()) {
@@ -280,12 +293,12 @@ public class MainEconomyController {
         Button btn = new Button();
         btn.setId(name);
         btn.setText(name);
-        btn.setMinSize(170, 30);
+        btn.setMinSize(170, 19);
         hbox.getChildren().add(btn);
         TextField text = new TextField(String.valueOf(cost));
         text.setEditable(false);
         text.setMaxWidth(70);
-        text.setMinSize(50, 30);
+        text.setMinSize(50, 19);
         text.setId(name);
         hbox.getChildren().add(text);
     }
