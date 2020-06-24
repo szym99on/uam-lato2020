@@ -52,6 +52,8 @@ public class MainEconomyController {
     public VBox creaturesShopInside2;
     @FXML
     public Text heroName;
+    @FXML
+    public Text player;
 
     @FXML
     private Button buyCreatureButton;
@@ -179,10 +181,13 @@ public class MainEconomyController {
     private void initialize() {
         gold.setText(Integer.toString(economyEngine.activeHero.getGold()));
         String heroNameText;
-        if (economyEngine.activeHero.equals(economyHero1))
-            heroNameText = (heroInfo1.getName()+" equipment:").toUpperCase();
-        else
-            heroNameText = (heroInfo2.getName()+" equipment:").toUpperCase();
+        if (economyEngine.activeHero.equals(economyHero1)) {
+            player.setText("Player 1");
+            heroNameText = (heroInfo1.getName() + " equipment:").toUpperCase();
+        } else {
+            player.setText("Player 2");
+            heroNameText = (heroInfo2.getName() + " equipment:").toUpperCase();
+        }
         heroName.setText(heroNameText);
 
         int spellvar = 0;

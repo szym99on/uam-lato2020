@@ -162,9 +162,14 @@
          <Font name="System Bold" size="17.0" />
       </font>
    </Text>
-   <Text fx:id="heroName" layoutX="44.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hero" textAlignment="CENTER" wrappingWidth="489.375">
+   <Text fx:id="heroName" layoutX="104.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hero" textAlignment="CENTER" wrappingWidth="370.375">
       <font>
          <Font name="System Bold" size="30.0" />
+      </font>
+   </Text>
+   <Text fx:id="player" fill="#bc0000" layoutX="439.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player " textAlignment="CENTER" wrappingWidth="213.375">
+      <font>
+         <Font name="System Bold" size="35.0" />
       </font>
    </Text>
 </Pane>
