@@ -14,8 +14,4 @@ class EndingMoveObstacle extends ImpactMoveObstacle {
         return false;
     }
 
-    @Override
-    public Point apply() {
-        return point;
-    }
 }

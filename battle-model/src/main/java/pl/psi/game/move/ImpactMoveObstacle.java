@@ -35,7 +35,4 @@ public abstract class ImpactMoveObstacle implements ObstacleIf{
     }
 
     abstract boolean isMovePossible();
-
-    abstract Point apply();
-
 }
