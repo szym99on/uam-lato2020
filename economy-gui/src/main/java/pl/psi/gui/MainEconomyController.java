@@ -113,16 +113,16 @@ public class MainEconomyController {
     public MainEconomyController() {
         new HeroInfoFactory();
 
-        heroInfo1 = showChoseDialog(1);
+        heroInfo1 = showChoiseDialog(1);
         economyHero1 = EconomyHero.builder().aGold(3000).aHeroInfo(heroInfo1).build();
 
-        heroInfo2 = showChoseDialog(2);
+        heroInfo2 = showChoiseDialog(2);
         economyHero2 = EconomyHero.builder().aGold(3000).aHeroInfo(heroInfo2).build();
 
         economyEngine = new EconomyEngine(economyHero1, economyHero2);
     }
 
-    public HeroInfo showChoseDialog(int i){
+    public HeroInfo showChoiseDialog(int i){
         List<HeroInfo> HeroesInfo = HeroInfoFactory.getAll();
         List<String> HeroesInfoNames = new ArrayList<>();
         for(HeroInfo hero: HeroesInfo)
@@ -331,23 +331,26 @@ public class MainEconomyController {
     }
 
     public void clearAll(){
-        heroSpellsInside.getChildren().clear();
-        heroSpellsInside2.getChildren().clear();
-        heroSkillInside.getChildren().clear();
-        heroSkillInside2.getChildren().clear();
-        heroArtifactsInside.getChildren().clear();
-        heroArtifactsInside2.getChildren().clear();
-        heroCreaturesInside.getChildren().clear();
-        heroCreaturesInside2.getChildren().clear();
-        spellShopInside.getChildren().clear();
-        spellShopInside2.getChildren().clear();
-        skillShopInside.getChildren().clear();
-        skillShopInside2.getChildren().clear();
-        artifactsShopInside.getChildren().clear();
-        artifactsShopInside2.getChildren().clear();
-        creaturesShopInside.getChildren().clear();
-        creaturesShopInside2.getChildren().clear();
-
+        List<VBox> allVBoxes = new ArrayList<>();
+        allVBoxes.add(heroSpellsInside);
+        allVBoxes.add(heroSpellsInside2);
+        allVBoxes.add(heroSkillInside);
+        allVBoxes.add(heroSkillInside2);
+        allVBoxes.add(heroArtifactsInside);
+        allVBoxes.add(heroArtifactsInside2);
+        allVBoxes.add(heroCreaturesInside);
+        allVBoxes.add(heroCreaturesInside2);
+        allVBoxes.add(spellShopInside);
+        allVBoxes.add(spellShopInside2);
+        allVBoxes.add(skillShopInside);
+        allVBoxes.add(skillShopInside2);
+        allVBoxes.add(artifactsShopInside);
+        allVBoxes.add(artifactsShopInside2);
+        allVBoxes.add(creaturesShopInside);
+        allVBoxes.add(creaturesShopInside2);
+        for(VBox v: allVBoxes){
+            v.getChildren().clear();
+        }
     }
 
     public void showAlert(){
