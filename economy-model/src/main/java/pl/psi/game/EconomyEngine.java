@@ -61,17 +61,8 @@ public class EconomyEngine implements PropertyChangeListener {
         this.creaturesShop1 = new CreaturesShop();
         this.creaturesShop2 = new CreaturesShop();
 
-        spellShop1.generateItemsAvailableToBuy();
-        spellShop2.generateItemsAvailableToBuy();
-
-        artifactsShop1.generateItemsAvailableToBuy();
-        artifactsShop2.generateItemsAvailableToBuy();
-
-        specialSkillsShop1.generateItemsAvailableToBuy();
-        specialSkillsShop2.generateItemsAvailableToBuy();
-
-        creaturesShop1.generateItemsAvailableToBuy();
-        creaturesShop2.generateItemsAvailableToBuy();
+        refreshShops(1);
+        refreshShops(2);
     }
 
     @Override
@@ -94,6 +85,31 @@ public class EconomyEngine implements PropertyChangeListener {
     public List<CreatureStack> getCreaturesAvailableToBuy() {
         return this.activeHero == economyHero1 ? creaturesShop1.getCreaturesAvailableToBuy() : creaturesShop2.getCreaturesAvailableToBuy();
 
+    }
+
+    public void refreshShops(int i){
+        if(i == 1) {
+            spellShop1.generateItemsAvailableToBuy();
+            artifactsShop1.generateItemsAvailableToBuy();
+            specialSkillsShop1.generateItemsAvailableToBuy();
+            creaturesShop1.generateItemsAvailableToBuy();
+        }
+
+        if(i == 2){
+            spellShop2.generateItemsAvailableToBuy();
+            artifactsShop2.generateItemsAvailableToBuy();
+            specialSkillsShop2.generateItemsAvailableToBuy();
+            creaturesShop2.generateItemsAvailableToBuy();
+        }
+    }
+
+    public void endTurn(){
+        activeHero.increaseGold(3000);
+        if(activeHero == economyHero1)
+            refreshShops(1);
+        else
+            refreshShops(2);
+        changeHero();
     }
 
     public void changeHero(){

@@ -35,7 +35,7 @@ public class EconomyHero {
         this.heroInfo = aHeroInfo;
     }
 
-    void increaseGold(int gold) {
+    public void increaseGold(int gold) {
 
         this.gold += gold;
     }
@@ -217,7 +217,7 @@ public class EconomyHero {
 //        return heroInfo.getFraction();
 //    }
 
-    HeroInfo getHeroInfo() {
+    public HeroInfo getHeroInfo() {
         return heroInfo;
     }
 

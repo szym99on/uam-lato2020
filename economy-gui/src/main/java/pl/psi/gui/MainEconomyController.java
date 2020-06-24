@@ -180,15 +180,12 @@ public class MainEconomyController {
     @FXML
     private void initialize() {
         gold.setText(Integer.toString(economyEngine.activeHero.getGold()));
-        String heroNameText;
-        if (economyEngine.activeHero.equals(economyHero1)) {
+        if (economyEngine.activeHero.equals(economyHero1))
             player.setText("Player 1");
-            heroNameText = (heroInfo1.getName() + " equipment:").toUpperCase();
-        } else {
+        else
             player.setText("Player 2");
-            heroNameText = (heroInfo2.getName() + " equipment:").toUpperCase();
-        }
-        heroName.setText(heroNameText);
+
+        heroName.setText((economyEngine.activeHero.getHeroInfo().getName() + " equipment:").toUpperCase());
 
         int spellvar = 0;
         for (SpellInfo spell : economyEngine.getSpellsAvailableToBuy()) {
@@ -327,7 +324,7 @@ public class MainEconomyController {
     }
 
     public void handlePassTurn(ActionEvent actionEvent) {
-        economyEngine.changeHero();
+        economyEngine.endTurn();
         clearAll();
         initialize();
         initializeEq();
