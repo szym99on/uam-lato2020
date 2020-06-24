@@ -69,7 +69,7 @@ public class EconomyHero {
 
     }
 
-    void sellCreature(CreatureInfo creature) throws IllegalStateException {
+    public void sellCreature(CreatureInfo creature) throws IllegalStateException {
 
         if (!this.creatures.contains(creature)) {
             String output = String.format("Hero doesn't have creature: %s", creature.getName());
@@ -111,7 +111,7 @@ public class EconomyHero {
         return true;
     }
 
-    void sellArtifact(ArtifactInfo artifact) throws IllegalStateException {
+    public void sellArtifact(ArtifactInfo artifact) throws IllegalStateException {
         if (!this.artifacts.contains(artifact)) {
             String output = String.format("Hero doesn't have artifact: %s", artifact.getName());
             throw new IllegalStateException(output);

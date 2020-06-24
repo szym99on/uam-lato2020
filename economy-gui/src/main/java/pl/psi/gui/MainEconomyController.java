@@ -253,7 +253,7 @@ public class MainEconomyController {
                 heroSpellsInside.getChildren().add(hbox);
             else
                 heroSpellsInside2.getChildren().add(hbox);
-            addItemToEq(spell.getName(), spell.getCost(), hbox);
+            addItemToEq(spell.getName(), spell.getCost(), hbox, "Spell");
             spellvarhero++;
         }
 
@@ -268,7 +268,7 @@ public class MainEconomyController {
             else
                 heroArtifactsInside2.getChildren().add(hbox);
 
-            addItemToEq(artifact.getName(), artifact.getCost(), hbox);
+            addItemToEq(artifact.getName(), artifact.getCost(), hbox, "Artifact");
             artvarhero++;
         }
 
@@ -283,7 +283,7 @@ public class MainEconomyController {
             else
                 heroSkillInside2.getChildren().add(hbox);
 
-            addItemToEq(skill.getName(), skill.getCost(),hbox);
+            addItemToEq(skill.getName(), skill.getCost(),hbox, "Skill");
             skillvarhero++;
 
         }
@@ -309,25 +309,56 @@ public class MainEconomyController {
 //        }
     }
 
-    public void addItemToEq(String name, int cost, HBox hbox) {
+    public void addItemToEq(String name, int cost, HBox hbox, String type) {
         Button btn = new Button();
         btn.setId(name);
         btn.setText(name);
         btn.setMinSize(170, 19);
         hbox.getChildren().add(btn);
-        TextField text = new TextField(String.valueOf(cost));
+        TextField text = new TextField(String.valueOf((int) (cost * 0.75)));
         text.setEditable(false);
         text.setMaxWidth(70);
         text.setMinSize(50, 19);
         text.setId(name);
-        hbox.getChildren().add(text);
+
+
+        switch(type) {
+            case "Spell":
+                btn.setOnAction(this::handleSellSpell);
+                hbox.getChildren().add(text);
+                break;
+
+            case "Artifact":
+                btn.setOnAction(this::handleSellArtifact);
+                hbox.getChildren().add(text);
+                break;
+        }
     }
 
-    public void handlePassTurn(ActionEvent actionEvent) {
-        economyEngine.endTurn();
+
+
+    public void handleSellArtifact(ActionEvent actionEvent) {
+        handleSell(actionEvent, "Artifact");
+    }
+
+    public void handleSellSpell(ActionEvent actionEvent) {
+        handleSell(actionEvent, "Spell");
+    }
+
+    public void handleSell(ActionEvent actionEvent, String type) {
+        economyEngine.sellItem(((Button) actionEvent.getSource()).getId(), type);
+        refreshGui();
+        gold.setText(Integer.toString(economyEngine.activeHero.getGold()));
+    }
+
+    public void refreshGui(){
         clearAll();
         initialize();
         initializeEq();
+    }
+    public void handlePassTurn(ActionEvent actionEvent) {
+        economyEngine.endTurn();
+        refreshGui();
     }
 
     public void clearAll(){

@@ -119,7 +119,17 @@ public class EconomyEngine implements PropertyChangeListener {
             activeHero = economyHero1;
     }
 
+    public void sellItem(String itemName, String type){
+        switch(type) {
+            case "Spell":
+                activeHero.sellSpell(SpellBookInfoFactory.getSpell(itemName));
+                break;
 
+            case "Artifact":
+                activeHero.sellArtifact(ArtifactsInfoFactory.getArtifact(itemName));
+                break;
+        }
+    }
 
 
 
