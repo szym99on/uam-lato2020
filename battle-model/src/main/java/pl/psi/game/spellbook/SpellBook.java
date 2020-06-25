@@ -12,12 +12,11 @@ public class SpellBook {
     private List<Spell> spells;
 
     @Builder
-    public SpellBook (int aHeroMana, List<Spell> aHeroSpells){
+    public SpellBook (int aHeroMana){
         mana = aHeroMana;
         factory = new SpellFactory();
-        spells = aHeroSpells;
+        spells = new ArrayList<Spell>();
     }
-
 
     public List<Spell> getSpells() {
         return spells;

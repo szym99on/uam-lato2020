@@ -3,22 +3,25 @@ package pl.psi.gui;
 import pl.psi.game.hero.converter.Hero;
 import pl.psi.game.spellbook.Spell;
 import pl.psi.game.spellbook.SpellBook;
-import pl.psi.game.spellbook.SummonUnits;
 import pl.psi.gui.states.NormalState;
-import pl.psi.gui.states.SummonUnitsState;
 import pl.psi.gui.states.StateMap;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 
 public class SpellBookGui   {
 
     private SpellBook spellBook;
     private Hero hero;
     private StateMap stateMap = new NormalState();
-    private Spell spell;
+
+
+    //trzeba zrobic singletona
+    public static Spell selectedSpell;
+
 
     public SpellBookGui(Hero ahero, StateMap aStateMap){
         stateMap = aStateMap;
@@ -35,27 +38,16 @@ public class SpellBookGui   {
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent actionEvent) {
-                   spell = item;
-                    if(spell instanceof SummonUnits){
-                        stateMap = new SummonUnitsState();
-                    }
+                    selectedSpell = item;
+                    frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
                 }
             });
 
         }
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
     }
 
-    public Spell getSelectedSpell(Spell aSpell) {
-        spell = aSpell;
 
-        return spell;
-    }
-
-    public StateMap getStateMap(){
-        return stateMap;
-    }
 
 }

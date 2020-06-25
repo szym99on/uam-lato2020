@@ -213,9 +213,9 @@ public class EconomyHero {
 
     //methods from heroInfo
 
-    FractionsInfoAbstractFactory.Fractions getFraction() {
-        return heroInfo.getFraction();
-    }
+//    public FractionsInfoAbstractFactory.Fractions getFraction() {
+//        return heroInfo.getFraction();
+//    }
 
     HeroInfo getHeroInfo() {
         return heroInfo;

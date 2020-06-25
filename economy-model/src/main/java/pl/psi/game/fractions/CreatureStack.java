@@ -29,4 +29,11 @@ public class CreatureStack {
     public void setCreaturesCount(int creaturesCount) {
         this.creaturesCount = creaturesCount;
     }
+
+    public String getName(){
+        return this.creatureInfo.getName();
+    }
+    public int getCost(){
+        return this.creatureInfo.getCost();
+    }
 }

@@ -10,6 +10,8 @@ import lombok.Getter;
 import lombok.Setter;
 import pl.psi.game.hero.converter.Hero;
 import pl.psi.game.move.GuiTileIf;
+import pl.psi.game.move.Obstacle;
+import pl.psi.game.spellbook.Spell;
 
 @Getter
 public class Creature implements GuiTileIf, PropertyChangeListener {
@@ -84,7 +86,19 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
 
     void dealDamage(Creature aDefender) {
         int damageToDeal = dealDamageCounterStrategy.countDamageToDeal(this, aDefender);
-        aDefender.currentHp = aDefender.currentHp - damageToDeal;
+        aDefender.takePureDamage(damageToDeal);
+    }
+
+    public void takePureDamage(int damage) {
+        currentHp = currentHp - damage;
+        if (currentHp < 0) {
+            currentHp = 0;
+        }
+    }
+
+    public void takeDamage(Spell spell) {
+        int damageToTake = magicResistance.countDamage(spell);
+        takePureDamage(damageToTake);
     }
 
     public boolean canShoot(){

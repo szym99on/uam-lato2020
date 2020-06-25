@@ -1,11 +1,9 @@
 package pl.psi.game.hero;
 
 import pl.psi.game.fractions.FractionsInfoAbstractFactory;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class HeroInfoFactory {
 
@@ -67,50 +65,50 @@ public class HeroInfoFactory {
     private final static List<HeroInfo> heroList = new ArrayList<>();
     {
         //CASTLE
-        heroList.add(HeroInfo.builder().aName(EDRIC).aFraction(FractionsInfoAbstractFactory.Fractions.CASTLE).aFractionClass(HeroInfo.FractionClass.KNIGHT).build());
-        heroList.add(HeroInfo.builder().aName(SORSHA).aFraction(FractionsInfoAbstractFactory.Fractions.CASTLE).aFractionClass(HeroInfo.FractionClass.KNIGHT).build());
-        heroList.add(HeroInfo.builder().aName(INGHAM).aFraction(FractionsInfoAbstractFactory.Fractions.CASTLE).aFractionClass(HeroInfo.FractionClass.CLERIC).build());
-        heroList.add(HeroInfo.builder().aName(ADELA).aFraction(FractionsInfoAbstractFactory.Fractions.CASTLE).aFractionClass(HeroInfo.FractionClass.CLERIC).build());
+        heroList.add(HeroInfo.builder().aName(EDRIC).aFraction(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.CASTLE)).aFractionClass(HeroInfo.FractionClass.KNIGHT).build());
+        heroList.add(HeroInfo.builder().aName(SORSHA).aFraction(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.CASTLE)).aFractionClass(HeroInfo.FractionClass.KNIGHT).build());
+        heroList.add(HeroInfo.builder().aName(INGHAM).aFraction(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.CASTLE)).aFractionClass(HeroInfo.FractionClass.CLERIC).build());
+        heroList.add(HeroInfo.builder().aName(ADELA).aFraction(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.CASTLE)).aFractionClass(HeroInfo.FractionClass.CLERIC).build());
         //TOWER
-        heroList.add(HeroInfo.builder().aName(FAFNER).aFraction(FractionsInfoAbstractFactory.Fractions.TOWER).aFractionClass(HeroInfo.FractionClass.ALCHEMIST).build());
-        heroList.add(HeroInfo.builder().aName(IONA).aFraction(FractionsInfoAbstractFactory.Fractions.TOWER).aFractionClass(HeroInfo.FractionClass.ALCHEMIST).build());
-        heroList.add(HeroInfo.builder().aName(ASTRAL).aFraction(FractionsInfoAbstractFactory.Fractions.TOWER).aFractionClass(HeroInfo.FractionClass.WIZARD).build());
-        heroList.add(HeroInfo.builder().aName(AINE).aFraction(FractionsInfoAbstractFactory.Fractions.TOWER).aFractionClass(HeroInfo.FractionClass.WIZARD).build());
+        heroList.add(HeroInfo.builder().aName(FAFNER).aFraction(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.TOWER)).aFractionClass(HeroInfo.FractionClass.ALCHEMIST).build());
+        heroList.add(HeroInfo.builder().aName(IONA).aFraction(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.TOWER)).aFractionClass(HeroInfo.FractionClass.ALCHEMIST).build());
+        heroList.add(HeroInfo.builder().aName(ASTRAL).aFraction(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.TOWER)).aFractionClass(HeroInfo.FractionClass.WIZARD).build());
+        heroList.add(HeroInfo.builder().aName(AINE).aFraction(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.TOWER)).aFractionClass(HeroInfo.FractionClass.WIZARD).build());
         //INFERNO
-        heroList.add(HeroInfo.builder().aName(CALH).aFraction(FractionsInfoAbstractFactory.Fractions.INFERNO).aFractionClass(HeroInfo.FractionClass.DEMONIAC).build());
-        heroList.add(HeroInfo.builder().aName(FIONA).aFraction(FractionsInfoAbstractFactory.Fractions.INFERNO).aFractionClass(HeroInfo.FractionClass.DEMONIAC).build());
-        heroList.add(HeroInfo.builder().aName(AXSIS).aFraction(FractionsInfoAbstractFactory.Fractions.INFERNO).aFractionClass(HeroInfo.FractionClass.HERETIC).build());
-        heroList.add(HeroInfo.builder().aName(ASH).aFraction(FractionsInfoAbstractFactory.Fractions.INFERNO).aFractionClass(HeroInfo.FractionClass.HERETIC).build());
+        heroList.add(HeroInfo.builder().aName(CALH).aFraction(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.INFERNO)).aFractionClass(HeroInfo.FractionClass.DEMONIAC).build());
+        heroList.add(HeroInfo.builder().aName(FIONA).aFraction(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.INFERNO)).aFractionClass(HeroInfo.FractionClass.DEMONIAC).build());
+        heroList.add(HeroInfo.builder().aName(AXSIS).aFraction(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.INFERNO)).aFractionClass(HeroInfo.FractionClass.HERETIC).build());
+        heroList.add(HeroInfo.builder().aName(ASH).aFraction(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.INFERNO)).aFractionClass(HeroInfo.FractionClass.HERETIC).build());
         //FORTRESS
-        heroList.add(HeroInfo.builder().aName(ALKIN).aFraction(FractionsInfoAbstractFactory.Fractions.FORTRESS).aFractionClass(HeroInfo.FractionClass.BEASTMASTER).build());
-        heroList.add(HeroInfo.builder().aName(BROGHILD).aFraction(FractionsInfoAbstractFactory.Fractions.FORTRESS).aFractionClass(HeroInfo.FractionClass.BEASTMASTER).build());
-        heroList.add(HeroInfo.builder().aName(VERDISH).aFraction(FractionsInfoAbstractFactory.Fractions.FORTRESS).aFractionClass(HeroInfo.FractionClass.WITCH).build());
-        heroList.add(HeroInfo.builder().aName(VOY).aFraction(FractionsInfoAbstractFactory.Fractions.FORTRESS).aFractionClass(HeroInfo.FractionClass.WITCH).build());
+        heroList.add(HeroInfo.builder().aName(ALKIN).aFraction(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.FORTRESS)).aFractionClass(HeroInfo.FractionClass.BEASTMASTER).build());
+        heroList.add(HeroInfo.builder().aName(BROGHILD).aFraction(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.FORTRESS)).aFractionClass(HeroInfo.FractionClass.BEASTMASTER).build());
+        heroList.add(HeroInfo.builder().aName(VERDISH).aFraction(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.FORTRESS)).aFractionClass(HeroInfo.FractionClass.WITCH).build());
+        heroList.add(HeroInfo.builder().aName(VOY).aFraction(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.FORTRESS)).aFractionClass(HeroInfo.FractionClass.WITCH).build());
         //RAMPART
-        heroList.add(HeroInfo.builder().aName(IVOR).aFraction(FractionsInfoAbstractFactory.Fractions.RAMPART).aFractionClass(HeroInfo.FractionClass.RANGER).build());
-        heroList.add(HeroInfo.builder().aName(JENOVA).aFraction(FractionsInfoAbstractFactory.Fractions.RAMPART).aFractionClass(HeroInfo.FractionClass.RANGER).build());
-        heroList.add(HeroInfo.builder().aName(AERIS).aFraction(FractionsInfoAbstractFactory.Fractions.RAMPART).aFractionClass(HeroInfo.FractionClass.DRUID).build());
-        heroList.add(HeroInfo.builder().aName(GEM).aFraction(FractionsInfoAbstractFactory.Fractions.RAMPART).aFractionClass(HeroInfo.FractionClass.DRUID).build());
+        heroList.add(HeroInfo.builder().aName(IVOR).aFraction(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.RAMPART)).aFractionClass(HeroInfo.FractionClass.RANGER).build());
+        heroList.add(HeroInfo.builder().aName(JENOVA).aFraction(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.RAMPART)).aFractionClass(HeroInfo.FractionClass.RANGER).build());
+        heroList.add(HeroInfo.builder().aName(AERIS).aFraction(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.RAMPART)).aFractionClass(HeroInfo.FractionClass.DRUID).build());
+        heroList.add(HeroInfo.builder().aName(GEM).aFraction(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.RAMPART)).aFractionClass(HeroInfo.FractionClass.DRUID).build());
         //DUNGEON
-        heroList.add(HeroInfo.builder().aName(AJIT).aFraction(FractionsInfoAbstractFactory.Fractions.DUNGEON).aFractionClass(HeroInfo.FractionClass.OVERLORD).build());
-        heroList.add(HeroInfo.builder().aName(LORELEI).aFraction(FractionsInfoAbstractFactory.Fractions.DUNGEON).aFractionClass(HeroInfo.FractionClass.OVERLORD).build());
-        heroList.add(HeroInfo.builder().aName(ALAMAR).aFraction(FractionsInfoAbstractFactory.Fractions.DUNGEON).aFractionClass(HeroInfo.FractionClass.WARLOCK).build());
-        heroList.add(HeroInfo.builder().aName(SEPHINROTH).aFraction(FractionsInfoAbstractFactory.Fractions.DUNGEON).aFractionClass(HeroInfo.FractionClass.WARLOCK).build());
+        heroList.add(HeroInfo.builder().aName(AJIT).aFraction(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.DUNGEON)).aFractionClass(HeroInfo.FractionClass.OVERLORD).build());
+        heroList.add(HeroInfo.builder().aName(LORELEI).aFraction(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.DUNGEON)).aFractionClass(HeroInfo.FractionClass.OVERLORD).build());
+        heroList.add(HeroInfo.builder().aName(ALAMAR).aFraction(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.DUNGEON)).aFractionClass(HeroInfo.FractionClass.WARLOCK).build());
+        heroList.add(HeroInfo.builder().aName(SEPHINROTH).aFraction(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.DUNGEON)).aFractionClass(HeroInfo.FractionClass.WARLOCK).build());
         //STRONGHOLD
-        heroList.add(HeroInfo.builder().aName(CRAG_HACK).aFraction(FractionsInfoAbstractFactory.Fractions.STRONGHOLD).aFractionClass(HeroInfo.FractionClass.BARBARIAN).build());
-        heroList.add(HeroInfo.builder().aName(SHIVA).aFraction(FractionsInfoAbstractFactory.Fractions.STRONGHOLD).aFractionClass(HeroInfo.FractionClass.BARBARIAN).build());
-        heroList.add(HeroInfo.builder().aName(DESSA).aFraction(FractionsInfoAbstractFactory.Fractions.STRONGHOLD).aFractionClass(HeroInfo.FractionClass.BATTLE_MAGE).build());
-        heroList.add(HeroInfo.builder().aName(ORIS).aFraction(FractionsInfoAbstractFactory.Fractions.STRONGHOLD).aFractionClass(HeroInfo.FractionClass.BATTLE_MAGE).build());
+        heroList.add(HeroInfo.builder().aName(CRAG_HACK).aFraction(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.STRONGHOLD)).aFractionClass(HeroInfo.FractionClass.BARBARIAN).build());
+        heroList.add(HeroInfo.builder().aName(SHIVA).aFraction(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.STRONGHOLD)).aFractionClass(HeroInfo.FractionClass.BARBARIAN).build());
+        heroList.add(HeroInfo.builder().aName(DESSA).aFraction(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.STRONGHOLD)).aFractionClass(HeroInfo.FractionClass.BATTLE_MAGE).build());
+        heroList.add(HeroInfo.builder().aName(ORIS).aFraction(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.STRONGHOLD)).aFractionClass(HeroInfo.FractionClass.BATTLE_MAGE).build());
         //NECROPOLIS
-        heroList.add(HeroInfo.builder().aName(CLAVIUS).aFraction(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).aFractionClass(HeroInfo.FractionClass.DEATH_KNIGHT).build());
-        heroList.add(HeroInfo.builder().aName(CHARNA).aFraction(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).aFractionClass(HeroInfo.FractionClass.DEATH_KNIGHT).build());
-        heroList.add(HeroInfo.builder().aName(SANDRO).aFraction(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).aFractionClass(HeroInfo.FractionClass.NECROMANCER).build());
-        heroList.add(HeroInfo.builder().aName(SEPTIENNA).aFraction(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).aFractionClass(HeroInfo.FractionClass.NECROMANCER).build());
+        heroList.add(HeroInfo.builder().aName(CLAVIUS).aFraction(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS)).aFractionClass(HeroInfo.FractionClass.DEATH_KNIGHT).build());
+        heroList.add(HeroInfo.builder().aName(CHARNA).aFraction(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS)).aFractionClass(HeroInfo.FractionClass.DEATH_KNIGHT).build());
+        heroList.add(HeroInfo.builder().aName(SANDRO).aFraction(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS)).aFractionClass(HeroInfo.FractionClass.NECROMANCER).build());
+        heroList.add(HeroInfo.builder().aName(SEPTIENNA).aFraction(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS)).aFractionClass(HeroInfo.FractionClass.NECROMANCER).build());
         //CONFLUX
-        heroList.add(HeroInfo.builder().aName(FIUR).aFraction(FractionsInfoAbstractFactory.Fractions.CONFLUX).aFractionClass(HeroInfo.FractionClass.PLANESWALKER).build());
-        heroList.add(HeroInfo.builder().aName(IGNISSA).aFraction(FractionsInfoAbstractFactory.Fractions.CONFLUX).aFractionClass(HeroInfo.FractionClass.PLANESWALKER).build());
-        heroList.add(HeroInfo.builder().aName(AENAIN).aFraction(FractionsInfoAbstractFactory.Fractions.CONFLUX).aFractionClass(HeroInfo.FractionClass.ELEMENTALIS).build());
-        heroList.add(HeroInfo.builder().aName(BRISSA).aFraction(FractionsInfoAbstractFactory.Fractions.CONFLUX).aFractionClass(HeroInfo.FractionClass.ELEMENTALIS).build());
+        heroList.add(HeroInfo.builder().aName(FIUR).aFraction(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.CONFLUX)).aFractionClass(HeroInfo.FractionClass.PLANESWALKER).build());
+        heroList.add(HeroInfo.builder().aName(IGNISSA).aFraction(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.CONFLUX)).aFractionClass(HeroInfo.FractionClass.PLANESWALKER).build());
+        heroList.add(HeroInfo.builder().aName(AENAIN).aFraction(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.CONFLUX)).aFractionClass(HeroInfo.FractionClass.ELEMENTALIS).build());
+        heroList.add(HeroInfo.builder().aName(BRISSA).aFraction(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.CONFLUX)).aFractionClass(HeroInfo.FractionClass.ELEMENTALIS).build());
     }
 
     public static List<HeroInfo> getAll(){
@@ -119,7 +117,7 @@ public class HeroInfoFactory {
     public static HeroInfo getHeroInfoByName(String aName){
         return heroList.stream().filter(h -> h.getName().endsWith(aName)).findAny().orElseThrow();
     }
-    public static List<HeroInfo> getHeroInfoListByFraction(FractionsInfoAbstractFactory.Fractions aFraction){
-        return heroList.stream().filter(h -> h.getFraction().equals(aFraction)).collect(Collectors.toList());
-    }
+//    public static List<HeroInfo> getHeroInfoListByFraction(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions aFraction){
+//        return heroList.stream().filter(h -> h.getFraction().equals(aFraction)).collect(Collectors.toList());
+//    }
 }

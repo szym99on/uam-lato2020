@@ -17,6 +17,8 @@ public class SpellInitializer extends AbstractInitializer{
             h1.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(1));
             h1.buySpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.ICE_ELEMENTAL));
             h1.buySpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.ENERGY_ELEMENTAL));
+            h1.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(7));
+            h1.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(7));
 //            h1.buySpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.MAGIC_ARROW));
 //            h1.buySpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.BLOODLUST));
         } catch (Exception aE) {
@@ -29,6 +31,8 @@ public class SpellInitializer extends AbstractInitializer{
         EconomyHero h2 = EconomyHero.builder().aGold(100000000).aHeroInfo(HeroInfoFactory.getHeroInfoByName(HeroInfoFactory.ALAMAR)).build();
         try {
 
+            h2.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(7));
+            h2.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(7));
             h2.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(7));
             h2.buySpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.ICE_ELEMENTAL));
             h2.buySpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.ENERGY_ELEMENTAL));

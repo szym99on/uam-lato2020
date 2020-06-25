@@ -9,7 +9,10 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import pl.psi.game.EconomyEngine;
 import pl.psi.game.fractions.CreatureInfo;
+import pl.psi.game.fractions.CreatureStack;
 import pl.psi.game.fractions.FractionsInfoAbstractFactory;
+import pl.psi.game.hero.HeroInfo;
+import pl.psi.game.hero.HeroInfoFactory;
 import pl.psi.game.hero.artifacts.ArtifactInfo;
 import pl.psi.game.hero.artifacts.ArtifactsInfoFactory;
 import pl.psi.game.hero.economyHero.EconomyHero;
@@ -36,6 +39,14 @@ public class MainEconomyController {
 
     @FXML
     public Text gold;
+    @FXML
+    public VBox creaturesShop;
+    @FXML
+    public HBox creaturesShopLayout;
+    @FXML
+    public VBox creaturesShopInside;
+    @FXML
+    public VBox creaturesShopInside2;
 
     @FXML
     private Button buyCreatureButton;
@@ -61,10 +72,7 @@ public class MainEconomyController {
     public VBox artifactsShopInside;
     @FXML
     public VBox artifactsShopInside2;
-    @FXML
-    public VBox creatureShopInside;
-    @FXML
-    public VBox creatureShopInside2;
+
     @FXML
     private URL location;
 
@@ -94,8 +102,11 @@ public class MainEconomyController {
     private final EconomyEngine economyEngine;
 
     public MainEconomyController() {
-        economyHero1 = EconomyHero.builder().aGold(3000).build();
-        economyHero2 = EconomyHero.builder().aGold(3000).build();
+        new HeroInfoFactory();
+        HeroInfo heroInfo1 = HeroInfoFactory.getHeroInfoByName(HeroInfoFactory.EDRIC);
+        economyHero1 = EconomyHero.builder().aGold(3000).aHeroInfo(heroInfo1).build();
+        HeroInfo heroInfo2 = HeroInfoFactory.getHeroInfoByName(HeroInfoFactory.ADELA);
+        economyHero2 = EconomyHero.builder().aGold(3000).aHeroInfo(heroInfo2).build();
         economyEngine = new EconomyEngine(economyHero1, economyHero2);
     }
 
@@ -191,18 +202,18 @@ public class MainEconomyController {
         }
 
         int creaturevar = 0;
-        List<CreatureInfo> creatures = economyEngine.getCreaturesAvailableToBuy();
-        for (CreatureInfo creature : creatures) {
+        List<CreatureStack> creatures = economyEngine.getCreaturesAvailableToBuy();
+        for (CreatureStack creature : creatures) {
             if (creaturevar < 5) {
                 HBox hbox = new HBox();
                 hbox.setSpacing(10);
-                creatureShopInside.getChildren().add(hbox);
+                creaturesShopInside.getChildren().add(hbox);
                 addItemToShop(creature.getName(), creature.getCost(), hbox, "Creature");
                 creaturevar++;
             } else {
                 HBox hbox = new HBox();
                 hbox.setSpacing(10);
-                creatureShopInside2.getChildren().add(hbox);
+                creaturesShopInside2.getChildren().add(hbox);
                 addItemToShop(creature.getName(), creature.getCost(), hbox, "Creature");
             }
         }
@@ -273,26 +284,26 @@ public class MainEconomyController {
             }
 
         }
-        heroCreaturesInside.getChildren().clear();
-        heroCreaturesInside.getChildren().clear();
-        int creaturevarhero = 0;
-        List<CreatureInfo> herocreatures = economyEngine.activeHero.getCreatures();
-        for (CreatureInfo creature : herocreatures) {
-            if (creaturevarhero < 5) {
-                HBox hbox = new HBox();
-                hbox.setSpacing(10);
-                heroSkillInside.getChildren().add(hbox);
-                addItemToEq(creature.getName(), creature.getCost(), hbox);
-                creaturevarhero++;
-
-            } else {
-                HBox hbox = new HBox();
-                hbox.setSpacing(10);
-                heroSkillInside2.getChildren().add(hbox);
-                addItemToEq(creature.getName(), creature.getCost(), hbox);
-            }
-
-        }
+//        heroCreaturesInside.getChildren().clear();
+//        heroCreaturesInside.getChildren().clear();
+//        int creaturevarhero = 0;
+//        List<CreatureStack> herocreatures = economyEngine.activeHero.getCreatures();
+//        for (CreatureStack creature : herocreatures) {
+//            if (creaturevarhero < 5) {
+//                HBox hbox = new HBox();
+//                hbox.setSpacing(10);
+//                heroSkillInside.getChildren().add(hbox);
+//                addItemToEq(creature.getName(), creature.getCost(), hbox);
+//                creaturevarhero++;
+//
+//            } else {
+//                HBox hbox = new HBox();
+//                hbox.setSpacing(10);
+//                heroSkillInside2.getChildren().add(hbox);
+//                addItemToEq(creature.getName(), creature.getCost(), hbox);
+//            }
+//
+//        }
     }
 
     public void handleBuySpell(ActionEvent actionEvent) {
@@ -405,8 +416,8 @@ public class MainEconomyController {
         skillShopInside2.getChildren().clear();
         artifactsShopInside.getChildren().clear();
         artifactsShopInside2.getChildren().clear();
-//        creatureShopInside.getChildren().clear();
-//        creatureShopInside2.getChildren().clear();
+        creaturesShopInside.getChildren().clear();
+        creaturesShopInside2.getChildren().clear();
 
     }
 
