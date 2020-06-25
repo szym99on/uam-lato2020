@@ -327,7 +327,6 @@ public class ArtifactTest {
 
 //  SpellDurationArtifact tests
 
-    @Disabled // waiting for increaseDuration implementation by spells
     @Test
     void artifactShouldIncreaseSpellDurationBy2() {
         //given

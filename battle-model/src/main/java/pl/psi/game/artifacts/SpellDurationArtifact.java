@@ -12,7 +12,7 @@ class SpellDurationArtifact extends SpellBuffArtifact {
 
     @Override
     void buffSpell(Spell s) {
-//        s.increaseDuration(duration);
+        s.increaseDuration(duration);
     }
 
     @Override
