@@ -36,13 +36,14 @@ public class EconomyHeroArtifactsManagementTest {
     @Test
     void buyArtifactShouldNotAddArtifactIfSlotAlreadyTaken() throws IllegalStateException {
 
-        assertThrows(IllegalStateException.class, () -> {
+
             ArtifactInfo artifact = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.CAPE_OF_CONJURING);
             EconomyHero hero = EconomyHero.builder().aGold(2000).build();
 
-            hero.buyArtifact(artifact);
-            hero.buyArtifact(artifact);
-        });
+            assertTrue(hero.buyArtifact(artifact));
+            assertFalse(hero.buyArtifact(artifact));
+
+
     }
 
     @Test

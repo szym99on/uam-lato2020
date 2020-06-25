@@ -89,9 +89,11 @@ public class EconomyHero {
 
         if (this.getGold() >= artifact.getCost()) {
             if (this.isSlotEmpty(artifact.getLocation().toString())) {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setHeaderText("Slot: "+artifact.getLocation().toString()+" is not empty!");
-                alert.show();
+                try{
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setHeaderText("Slot: "+artifact.getLocation().toString()+" is not empty!");
+                    alert.show();
+                }catch (ExceptionInInitializerError e){}
                 return false;
             }else{
                 this.decreaseGold(artifact.getCost());
@@ -99,9 +101,11 @@ public class EconomyHero {
                 return true;
             }
         } else {
+            try{
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setHeaderText("You don't have enough money!");
             alert.show();
+        }catch (ExceptionInInitializerError e){}
             return false;
         }
 
