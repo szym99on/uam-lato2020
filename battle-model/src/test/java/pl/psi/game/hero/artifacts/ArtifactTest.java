@@ -7,6 +7,7 @@ import pl.psi.game.artifacts.Artifact;
 import pl.psi.game.artifacts.ArtifactFactory;
 import pl.psi.game.fractions.Creature;
 import pl.psi.game.hero.converter.Hero;
+import pl.psi.game.spellbook.Spell;
 import pl.psi.game.spellbook.SpellBookInfoFactory;
 import pl.psi.game.spellbook.SpellFactory;
 import pl.psi.game.spellbook.SpellInfo;
@@ -24,7 +25,6 @@ public class ArtifactTest {
         new ArtifactsInfoFactory();
         new ArtifactFactory();
         new SpellBookInfoFactory();
-        new SpellFactory();
     }
 
 //    ArtifactFactory tests
@@ -131,10 +131,9 @@ public class ArtifactTest {
 
 //    CreatureImmunityArtifact test
 
-     // waiting for dealing spell damage
     @Test
     void artifactShouldGrantImmunityToCreature() {
-        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(PENDANT_OF_DISPASSION);
+        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(PENDANT_OF_LIFE);
         Artifact pendantOfDispassion = ArtifactFactory.createArtifact(artifactInfo);
         List<Creature> creatures = new ArrayList<>();
         Creature creature = Creature.builder().aMaxHp(10).build();
@@ -147,8 +146,12 @@ public class ArtifactTest {
             e.printStackTrace();
         }
 
-        assertEquals(true, creature.getMagicResistance().isImmuneToSpell(MAGIC_ARROW));
+        SpellFactory factory = new SpellFactory();
+        Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.LIGHTNING_BOLT));
+        spell.cast(creature);
 
+        assertEquals(true, creature.getMagicResistance().isImmuneToSpell(LIGHTNING_BOLT));
+        assertEquals(10, creature.getCurrentHp());
     }
 
 
