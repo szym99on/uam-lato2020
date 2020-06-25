@@ -10,11 +10,7 @@ import static pl.psi.game.hero.artifacts.ArtifactsInfoFactory.*;
 import static pl.psi.game.spellbook.SpellBookInfoFactory.*;
 
 public class ArtifactInitializer extends AbstractInitializer {
-//    ground units can only move 1 tile at a time
-//    air units can't move directly to their right or left nor can they move directly above or underneath their position
-//    units with long names mess up the whole grid
-//    the only artifacts that work and can currently be presented are those that manipulate creature's statistics
-//    welp, we have to wait ¯\_(ツ)_/¯
+
     ArtifactInitializer()
     {
         ArtifactsInfoFactory artifactsInfoFactory = new ArtifactsInfoFactory();
@@ -26,21 +22,26 @@ public class ArtifactInitializer extends AbstractInitializer {
 //            ################################################################
 //            SCENARIO 1 - no artifacts equipped by hero
 //            ################################################################
-            h1.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(1));
+//            h1.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(7));
 
 //            ################################################################
 //            SCENARIO 2 - hero has MAGIC_ARROW spell
 //            ################################################################
-//            h1.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(3));
+//            h1.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.RAMPART).getCreatureByTier(7));
 //            h1.buySpell(SpellBookInfoFactory.getSpell(MAGIC_ARROW));
 
 //            ################################################################
-//            SCENARIO 3 - hero has PRAYER and MAGIC_ARROW spells
+//            SCENARIO 3 - hero has LIGHTNING_BOLT spell
 //            ################################################################
-//            h1.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(3));
-//            h1.buySpell(SpellBookInfoFactory.getSpell(MAGIC_ARROW));
-//            h1.buySpell(SpellBookInfoFactory.getSpell(PRAYER));
+//            h1.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.STRONGHOLD).getCreatureByTier(7));
+//            h1.buySpell(SpellBookInfoFactory.getSpell(LIGHTNING_BOLT));
+//            h1.buySpell(SpellBookInfoFactory.getSpell(HASTE));
 
+//            ################################################################
+//            SCENARIO 4 - hero has HASTE~~ spell
+//            ################################################################
+            h1.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.RAMPART).getCreatureByTier(3));
+            h1.buySpell(SpellBookInfoFactory.getSpell(HASTE));
         } catch (Exception aE) {
             aE.printStackTrace();
         }
@@ -48,31 +49,35 @@ public class ArtifactInitializer extends AbstractInitializer {
     }
 
     EconomyHero getH2() {
-        EconomyHero h2 = EconomyHero.builder().aGold(100000000).aHeroInfo(HeroInfoFactory.getHeroInfoByName(HeroInfoFactory.ALAMAR)).build();
+        EconomyHero h2 = EconomyHero.builder().aGold(100000000).aHeroInfo(HeroInfoFactory.getHeroInfoByName(HeroInfoFactory.EDRIC)).build();
         try {
 //            ################################################################
-//            SCENARIO 1 - CreatureSpeedArtifact, CreatureHealthArtifact, HeroStatisticArtifact
+//            SCENARIO 1 - CreatureSpeedArtifact, CreatureHealthArtifact
 //            ################################################################
-            h2.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(7));
-            h2.buyArtifact(ArtifactsInfoFactory.getArtifact(CAPE_OF_VELOCITY)); // +2 moveRange
-            h2.buyArtifact(ArtifactsInfoFactory.getArtifact(RING_OF_LIFE)); // +2 Health
-//            h2.buyArtifact(ArtifactsInfoFactory.getArtifact(OGRES_CLUB_OF_HAVOC)); (waiting for implemention of heroAttack -> creatureAttack)
+//            h2.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(7));
+//            h2.buyArtifact(ArtifactsInfoFactory.getArtifact(CAPE_OF_VELOCITY)); // +2 moveRange
+//            h2.buyArtifact(ArtifactsInfoFactory.getArtifact(RING_OF_LIFE)); // +2 Health
 
 //            ################################################################
-//            SCENARIO 2 - hero has MAGIC_ARROW spell and CreatureMagicResistanceArtifact
+//            SCENARIO 2 - hero has MAGIC_ARROW spell and CreatureMagicResistanceArtifact (20%)
 //            ################################################################
-//            h2.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(3));
-//            h2.buyArtifact(ArtifactsInfoFactory.getArtifact(SURCOAT_OF_COUNTERPOISE));
-//            h2.buySpell(SpellBookInfoFactory.getSpell(MAGIC_ARROW));
-
-//            ################################################################
-//            SCENARIO 3 - hero has SpellPreventCastingArtifact and PRAYER and MAGIC_ARROW spells
-//            ################################################################
-//            h2.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(3));
+//            h2.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.RAMPART).getCreatureByTier(7));
 //            h2.buyArtifact(ArtifactsInfoFactory.getArtifact(RECANTERS_CLOAK));
 //            h2.buySpell(SpellBookInfoFactory.getSpell(MAGIC_ARROW));
-//            h2.buySpell(SpellBookInfoFactory.getSpell(PRAYER));
 
+//            ################################################################
+//            SCENARIO 3 - hero has CreatureImmunityArtifact and LIGHTNING_BOLT spell
+//            ################################################################
+//            h2.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.STRONGHOLD).getCreatureByTier(7));
+//            h2.buyArtifact(ArtifactsInfoFactory.getArtifact(PENDANT_OF_LIFE));
+//            h2.buySpell(SpellBookInfoFactory.getSpell(LIGHTNING_BOLT));
+
+//            ################################################################
+//            SCENARIO 4 - hero has SpellDurationArtifact (+3) AND HASTE spell
+//            ################################################################
+            h2.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.RAMPART).getCreatureByTier(3));
+            h2.buyArtifact(ArtifactsInfoFactory.getArtifact(RING_OF_CONJURING));
+            h2.buySpell(SpellBookInfoFactory.getSpell(HASTE));
         } catch (Exception aE) {
         }
         return h2;
