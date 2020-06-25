@@ -32,10 +32,6 @@ public class SpellBookInfoFactory {
     {
         //1-2
         spellList.add(SpellInfo.builder().aCost(1).aDescription("Target, enemy troop receives ((Power x 10) + 10) damage.").aDuration(0).aManaCost(5).aName(MAGIC_ARROW).aLevel(1).aType(SpellInfo.Type.ALL).build());
-//        spellList.add(SpellInfo.builder().aCost(1).aDescription("Target, enemy troop receives ((Power x 10) + 10) damage.").aDuration(0).aManaCost(5).aName(MAGIC_ARROW).aLevel(1).aType(SpellInfo.Type.FIRE).build());
-//        spellList.add(SpellInfo.builder().aCost(1).aDescription("Target, enemy troop receives ((Power x 10) + 10) damage.").aDuration(0).aManaCost(5).aName(MAGIC_ARROW).aLevel(1).aType(SpellInfo.Type.AIR).build());
-//        spellList.add(SpellInfo.builder().aCost(1).aDescription("Target, enemy troop receives ((Power x 10) + 10) damage.").aDuration(0).aManaCost(5).aName(MAGIC_ARROW).aLevel(1).aType(SpellInfo.Type.WATER).build());
-//        spellList.add(SpellInfo.builder().aCost(1).aDescription("Target, enemy troop receives ((Power x 10) + 10) damage.").aDuration(0).aManaCost(5).aName(MAGIC_ARROW).aLevel(1).aType(SpellInfo.Type.EARTH).build());
         spellList.add(SpellInfo.builder().aCost(1).aDescription("Target, enemy troop receives ((Power x 25) + 10) damage.").aDuration(0).aManaCost(10).aName(LIGHTNING_BOLT).aLevel(2).aType(SpellInfo.Type.AIR).build());
         //3-4
         spellList.add(SpellInfo.builder().aCost(1).aDescription("All undead creature troops receive ((Power x 10) + 10) damage.").aDuration(0).aManaCost(15).aName(DESTROY_UNDEAD).aLevel(3).aType(SpellInfo.Type.AIR).build());

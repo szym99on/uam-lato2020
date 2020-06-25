@@ -27,8 +27,9 @@ public class DamageSpell extends Spell{
 
         try {
             cast(Board.getBoard().getCreature(x,y));
-        } catch (Exception e) {
-//            alert();
+        } catch (NullPointerException e) {
+            //e.printStackTrace();
+            //alert();
         }
 
         if(name.equals(SpellBookInfoFactory.FIRE_BALL)  || name.equals(SpellBookInfoFactory.METEOR_SHOWER)){
@@ -66,18 +67,24 @@ public class DamageSpell extends Spell{
     public void cast(Creature aCreature) {
 
         creature = aCreature;
-        if(name.equals(SpellBookInfoFactory.MAGIC_ARROW)){ creature.takePureDamage(spellDamage); }
-        if(name.equals(SpellBookInfoFactory.LIGHTNING_BOLT)){ creature.takePureDamage(spellDamage); }
-        if(name.equals(SpellBookInfoFactory.IMPLOSION)){ creature.takePureDamage(spellDamage); }
-        if(name.equals(SpellBookInfoFactory.FIRE_BALL)){ creature.takePureDamage(spellDamage); }
-        if(name.equals(SpellBookInfoFactory.METEOR_SHOWER)){ creature.takePureDamage(spellDamage); }
-
-        if(name.equals(SpellBookInfoFactory.DESTROY_UNDEAD)){
-            //TODO isUndead
-            creature.takePureDamage(spellDamage);
+//        switch (name) {
+//            case SpellBookInfoFactory.MAGIC_ARROW:
+//            case SpellBookInfoFactory.LIGHTNING_BOLT:
+//            case SpellBookInfoFactory.IMPLOSION:
+//            case SpellBookInfoFactory.FIRE_BALL:
+//            case SpellBookInfoFactory.METEOR_SHOWER:
+//                magicImmunityDamage();
+//                break;
+//            case SpellBookInfoFactory.DESTROY_UNDEAD:
+//                //TODO isUndead
+//                creature.takePureDamage(spellDamage);
+//                break;
+//        }
+        if(isNotImmuneToType(SpellBookInfoFactory.getSpell(name).getType()) && isNotImmuneToSpell(name)){
+            creature.takePureDamage((int) (spellDamage * percentageSpellImmunity()));
         }
-
     }
+
 
 //    void alert(){
 //        Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -86,4 +93,17 @@ public class DamageSpell extends Spell{
 //        alert.setContentText("You have to choose a creature to use this spell");
 //        alert.showAndWait();
 //    }
+
+    //TODO do poprawy equals(ENUMS)
+    private boolean isNotImmuneToType(Enum spellType){
+        return !creature.getMagicResistance().getGroupImmunityType().toString().startsWith(spellType.toString());
+    }
+
+    private boolean isNotImmuneToSpell(String spellName){
+        return !creature.getMagicResistance().isImmuneToSpell(spellName);
+    }
+
+    private double percentageSpellImmunity(){
+        return (1-(0.01*creature.getMagicResistance().getAllSpellsResistancePercentage()));
+    }
 }
