@@ -350,7 +350,7 @@ public class ArtifactTest {
     }
 
 //  AffectsHeroStats test
-    
+
     @Test
     void creatureBuffArtifactShouldNotAffectHeroStats() {
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(RING_OF_LIFE);
