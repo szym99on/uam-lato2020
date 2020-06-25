@@ -97,13 +97,38 @@ public class DamageSpellsTest {
 
         assertEquals(80, creature.getCurrentHp());
     }
+
     @Test
-    void lightningBoltShouldNotDealDamageToCreatureImmuneToAirSpells() {
+    void airSpellsShouldNotDealDamageToCreatureImmuneToAirSpells() {
         Creature creature = Creature.builder().aMaxHp(100).build();
 
         creature.setMagicResistance(new MagicResistance(40, MagicResistance.GroupImmunityType.AIR_SPELLS));
 
         Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.LIGHTNING_BOLT));
+        spell.cast(creature);
+
+        assertEquals(100, creature.getCurrentHp());
+    }
+    @Test
+    void fireSpellsShouldNotDealDamageToCreatureImmuneToFireSpells() {
+        Creature creature = Creature.builder().aMaxHp(100).build();
+
+        creature.setMagicResistance(new MagicResistance(40, MagicResistance.GroupImmunityType.FIRE_SPELLS));
+
+        Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.FIRE_BALL));
+        spell.cast(creature);
+
+        assertEquals(100, creature.getCurrentHp());
+    }
+    @Test
+    void earthSpellsShouldNotDealDamageToCreatureImmuneToEarthSpells() {
+        Creature creature = Creature.builder().aMaxHp(100).build();
+
+        creature.setMagicResistance(new MagicResistance(40, MagicResistance.GroupImmunityType.EARTH_SPELLS));
+
+        Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.METEOR_SHOWER));
+        spell.cast(creature);
+        Spell spell2 = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.IMPLOSION));
         spell.cast(creature);
 
         assertEquals(100, creature.getCurrentHp());
@@ -120,6 +145,39 @@ public class DamageSpellsTest {
 
         assertEquals(100, creature.getCurrentHp());
     }
+    @Test
+    void fireBallShouldNotDealDamageToCreatureImmuneToFireBall() {
+        Creature creature = Creature.builder().aMaxHp(100).build();
+
+        creature.getMagicResistance().addImmunitySpell(SpellBookInfoFactory.FIRE_BALL);
+
+        Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.FIRE_BALL));
+        spell.cast(creature);
+
+        assertEquals(100, creature.getCurrentHp());
+    }
+    @Test
+    void meteorShowerShouldNotDealDamageToCreatureImmuneToMeteorShower() {
+        Creature creature = Creature.builder().aMaxHp(100).build();
+
+        creature.getMagicResistance().addImmunitySpell(SpellBookInfoFactory.METEOR_SHOWER);
+
+        Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.METEOR_SHOWER));
+        spell.cast(creature);
+
+        assertEquals(100, creature.getCurrentHp());
+    }
+    @Test
+    void implosionShouldNotDealDamageToCreatureImmuneToImplosion() {
+        Creature creature = Creature.builder().aMaxHp(100).build();
+
+        creature.getMagicResistance().addImmunitySpell(SpellBookInfoFactory.IMPLOSION);
+
+        Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.IMPLOSION));
+        spell.cast(creature);
+
+        assertEquals(100, creature.getCurrentHp());
+    }
 
     @Test
     void magicArrowShouldDealDamageToCreature() {
@@ -131,7 +189,7 @@ public class DamageSpellsTest {
         assertEquals(80, creature.getCurrentHp());
     }
     @Test
-    void magicArrownShouldDealDeadlyDamageToCreature() {
+    void magicArrowShouldDealDeadlyDamageToCreature() {
         Creature creature = Creature.builder().aMaxHp(19).build();
 
         Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.MAGIC_ARROW));
