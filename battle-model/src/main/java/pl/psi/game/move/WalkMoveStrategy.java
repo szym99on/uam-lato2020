@@ -31,18 +31,14 @@ public class WalkMoveStrategy implements MoveStrategyIf {
     @Override
     public void move(Point destPoint) {
 
-        AtomicReference<Point> endPoint = new AtomicReference<>(null);
         List<GuiTileIf> path = getSteps(destPoint);
-        List<ImpactMoveObstacle> pathObs = path.stream().filter(t -> t instanceof ImpactMoveObstacle).map(o -> (ImpactMoveObstacle)o).collect(Collectors.toList());
-        //pathObs.forEach(o -> endPoint.set(o.apply()));
+        List<DealDamageObstacle> pathObs = path.stream().filter(t -> t instanceof DealDamageObstacle).map(o -> (DealDamageObstacle)o).collect(Collectors.toList());
+        pathObs.forEach(o -> o.apply(activeCreature.getValue()));
 
-        if(endPoint.get() == null){
-            endPoint.set(destPoint);
-        }
 
         Point oldPosition = activeCreature.getKey();
-        board.move((int) endPoint.get().getX(), (int) endPoint.get().getY(),activeCreature.getValue());
-        activeCreature = new AbstractMap.SimpleEntry<>(endPoint.get(), activeCreature.getValue());
+        board.move((int) destPoint.getX(), (int) destPoint.getY(),activeCreature.getValue());
+        activeCreature = new AbstractMap.SimpleEntry<>(destPoint, activeCreature.getValue());
         propertyChangeSupport.firePropertyChange(GameEngine.CREATURE_MOVED, oldPosition, activeCreature.getKey());
     }
 

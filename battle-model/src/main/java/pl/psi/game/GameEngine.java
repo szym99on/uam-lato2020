@@ -29,6 +29,7 @@ public class GameEngine implements PropertyChangeListener {
     private List<Creature> creatureMovedOnThisTurn;
     private PropertyChangeSupport propertyChangeSupport;
     private Spell selectedSpell;
+    private List<Point> path;
 
     public GameEngine(Hero aHero1, Hero aHero2) {
         this.board = Board.getBoard();
@@ -58,8 +59,8 @@ public class GameEngine implements PropertyChangeListener {
         propertyChangeSupport.firePropertyChange(ACTIVE_CREATURE_CHANGED, null, activeCreature);
     }
 
-    public boolean isMoveAllowed(Point point){
-        return moveEngine.isMovePossible(point);
+    public boolean isMoveAllowed(int x, int y){
+        return moveEngine.isMovePossible(new Point(x,y));
     }
 
     public void move(int x, int y){
@@ -140,4 +141,11 @@ public class GameEngine implements PropertyChangeListener {
         return activeCreature;
     }
 
+    public void getMovePath(int x, int y){
+        path = moveEngine.getMovePath(new Point(x,y));
+    }
+
+    public boolean isPointInPath(int x, int y){
+        return path.contains(new Point(x,y));
+    }
 }

@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 
 public class MoveEngine implements PropertyChangeListener {
 
-
     private HashMap.Entry<Point, Creature> activeCreature;
     private final Board board;
     private PropertyChangeSupport propertyChangeSupport;
@@ -28,24 +27,20 @@ public class MoveEngine implements PropertyChangeListener {
 
     }
 
-    private boolean isTrue(){
-        return true;
-    }
-
     public boolean isMovePossible(Point endPoint) {
         setMoveStrategy();
         return moveStrategyIf.isMovePossible(endPoint);
     }
 
-    /* We have a specific isMovePossible in fly and walk strategy
-    public boolean isMovePossible(Point endPoint) {
-        return board.isTileEmpty((int) endPoint.getX(),(int) endPoint.getY()) && endPoint.distance(activeCreature.getKey()) <= activeCreature.getValue().getMoveRange();
-    }
-     */
     public void move(int x, int y) {
           setMoveStrategy();
           moveStrategyIf.move(new Point(x,y));
         }
+
+    public List<Point> getMovePath(Point destPoint){
+        setMoveStrategy();
+        return moveStrategyIf.getMovePath(destPoint);
+    }
 
     public HashMap.Entry<Point, Creature> getActiveCreature() {
         return activeCreature;
@@ -76,4 +71,6 @@ public class MoveEngine implements PropertyChangeListener {
     public void removeObserver(PropertyChangeListener aObserver){
         propertyChangeSupport.removePropertyChangeListener(aObserver);
     }
+
+
 }
