@@ -2,14 +2,13 @@ package pl.psi.gui.states;
 
 import pl.psi.game.GameEngine;
 import pl.psi.game.move.GuiTileIf;
-import pl.psi.game.spellbook.Spell;
 import pl.psi.gui.SpellBookGui;
-import pl.psi.gui.tiles.SummonUnitsPossibleTileFactoryDecorator;
+import pl.psi.gui.tiles.SpellCastPossibleTileFactoryDecorator;
 import pl.psi.gui.tiles.*;
 
 import java.awt.*;
 
-public class SummonUnitsState implements StateMap {
+public class SpellCastState implements StateMap {
     private GameEngine gameEngine;
 
 
@@ -28,7 +27,7 @@ public class SummonUnitsState implements StateMap {
             factory = new ActiveObjectTileFactoryDecorator(factory);
         }
         if(gameEngine.spellCastPossible(aX,aY,SpellBookGui.selectedSpell))
-        factory = new SummonUnitsPossibleTileFactoryDecorator(factory, aX, aY, gameEngine);
+        factory = new SpellCastPossibleTileFactoryDecorator(factory, aX, aY, gameEngine);
 
 
         return factory.generateTile();
