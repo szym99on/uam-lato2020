@@ -47,11 +47,19 @@ public class SpellBookGui   {
                         @Override
                         public void run()
                         {
-                            Alert alert = new Alert(Alert.AlertType.NONE,"Wybrałeś spell: " +selectedSpell.getSpellName(), ButtonType.OK,ButtonType.CANCEL);
-                            alert.showAndWait();
-                            if (alert.getResult() == ButtonType.OK){
-                                mainBattleController.setStateMap(new SpellCastState());
-                                mainBattleController.refreshGui();
+                            if(spellBook.isManaEnough(selectedSpell.getManaCost()))
+                            {
+                                Alert chosenSpell = new Alert(Alert.AlertType.NONE, "You chose: " + selectedSpell.getSpellName(), ButtonType.OK, ButtonType.CANCEL);
+                                chosenSpell.showAndWait();
+                                if (chosenSpell.getResult() == ButtonType.OK)
+                                {
+                                    mainBattleController.setStateMap(new SpellCastState());
+                                    mainBattleController.refreshGui();
+                                }
+                            }
+                            else {
+                                Alert notEnoughMana = new Alert(Alert.AlertType.WARNING, "Not enough mana",ButtonType.OK);
+                                notEnoughMana.showAndWait();
                             }
                         }
                     });

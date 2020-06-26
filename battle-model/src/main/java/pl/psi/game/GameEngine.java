@@ -108,6 +108,7 @@ public class GameEngine implements PropertyChangeListener {
 
     public void castSpell(int aX, int aY, Spell selectedSpell){
         Spell spellToCast = (Spell) selectedSpell.clone();
+        getActiveHero().getSpellBook().decreaseMana(selectedSpell.getManaCost());
         addObserver(END_OF_TURN,spellToCast);
         spellToCast.cast(aX, aY);
     }
