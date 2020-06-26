@@ -35,9 +35,10 @@ public class SpellBookGui   {
         JFrame frame = new JFrame("SpellBook");
         frame.setSize(800, 600);
         frame.setLocation(50, 50);
-        frame.setLayout(new GridLayout(15,6));
+        frame.setLayout(new GridLayout(6,3));
         for(Spell item : spellBook.getSpells()){
             JButton button = new JButton(item.getSpellName());
+            button.setToolTipText(item.getDescription());
             frame.add(button);
             button.addActionListener(new ActionListener() {
                 @Override
@@ -63,6 +64,7 @@ public class SpellBookGui   {
                             }
                         }
                     });
+
                     frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
                 }
             });
