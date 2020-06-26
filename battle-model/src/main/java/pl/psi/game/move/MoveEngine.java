@@ -33,6 +33,7 @@ public class MoveEngine implements PropertyChangeListener {
     }
 
     public boolean isMovePossible(Point endPoint) {
+        setMoveStrategy();
         return moveStrategyIf.isMovePossible(endPoint);
     }
 
@@ -42,6 +43,7 @@ public class MoveEngine implements PropertyChangeListener {
     }
      */
     public void move(int x, int y) {
+          setMoveStrategy();
           moveStrategyIf.move(new Point(x,y));
         }
 

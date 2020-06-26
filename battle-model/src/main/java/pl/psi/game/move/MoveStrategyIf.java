@@ -9,4 +9,5 @@ public interface MoveStrategyIf {
 
     void move(Point desPoint);
     boolean isMovePossible(Point destPoint);
+    List getMovePath(Point destPoint);
 }

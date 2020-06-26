@@ -14,11 +14,13 @@ public class FlyMoveStrategy implements MoveStrategyIf {
     private final Board board;
     private PropertyChangeSupport propertyChangeSupport;
     private LinkedList<GuiTileIf> moveSteps = new LinkedList();
+    private PathCounter pathCounter;
 
     FlyMoveStrategy(Board aBoard, Map.Entry<Point, Creature> aActiveCreature) {
         board = aBoard;
         propertyChangeSupport = new PropertyChangeSupport(this);
         activeCreature = aActiveCreature;
+        pathCounter = new PathCounter("fly");
     }
 
     @Override
@@ -38,6 +40,16 @@ public class FlyMoveStrategy implements MoveStrategyIf {
         double distance = Math.abs(destPoint.getX() - oldPosition.getX()) + Math.abs(destPoint.getY() - oldPosition.getY());
 
         return activeCreature.getValue().getMoveRange() - distance >= 0;
+    }
+
+    @Override
+    public List getMovePath(Point destPoint) {
+        Point oldPosition = activeCreature.getKey().getLocation();
+
+        List<Point> path = new LinkedList();
+        path = pathCounter.countPath(oldPosition,destPoint,path);
+
+        return path;
     }
 
 
