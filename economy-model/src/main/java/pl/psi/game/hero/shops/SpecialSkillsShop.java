@@ -30,7 +30,7 @@ public class SpecialSkillsShop  extends  AbstractShop{
          List<SkillInfo> specialSkillAvailableToBuy = new ArrayList<>();
 
          Random ran = new Random();
-         int skillCount = ran.nextInt(10) + 2;
+         int skillCount = ran.nextInt(4) + 6;
          for (int i = 0; i < skillCount; i++) {
              int randomIndex = ran.nextInt(skills.size());
              SkillInfo randomSkill = skills.get(randomIndex);

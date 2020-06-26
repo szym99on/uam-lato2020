@@ -1,5 +1,6 @@
 package pl.psi.game.hero.economyHero;
 
+import javafx.scene.control.Alert;
 import lombok.Builder;
 import lombok.Getter;
 import pl.psi.game.fractions.CreatureInfo;
@@ -34,7 +35,7 @@ public class EconomyHero {
         this.heroInfo = aHeroInfo;
     }
 
-    void increaseGold(int gold) {
+    public void increaseGold(int gold) {
 
         this.gold += gold;
     }
@@ -63,13 +64,12 @@ public class EconomyHero {
             this.creatures.add(creature);
             return true;
         } else {
-            String output = String.format("Not enough gold to buy creature: %s", creature.getName());
-            throw new IllegalStateException(output);
+            return false;
         }
 
     }
 
-    void sellCreature(CreatureInfo creature) throws IllegalStateException {
+    public void sellCreature(CreatureInfo creature) throws IllegalStateException {
 
         if (!this.creatures.contains(creature)) {
             String output = String.format("Hero doesn't have creature: %s", creature.getName());
@@ -85,22 +85,28 @@ public class EconomyHero {
 
     public boolean buyArtifact(ArtifactInfo artifact) throws IllegalStateException {
 
-        if (this.isSlotEmpty(artifact.getLocation().toString())) {
-            String output = String.format("Location: %s is taken.", artifact.getLocation().toString());
-            throw new IllegalStateException(output);
 
-        }
 
         if (this.getGold() >= artifact.getCost()) {
-            this.decreaseGold(artifact.getCost());
-            this.artifacts.add(artifact);
-            return true;
-
+            if (this.isSlotEmpty(artifact.getLocation().toString())) {
+                try{
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setHeaderText("Slot: "+artifact.getLocation().toString()+" is not empty!");
+                    alert.show();
+                }catch (ExceptionInInitializerError e){}
+                return false;
+            }else{
+                this.decreaseGold(artifact.getCost());
+                this.artifacts.add(artifact);
+                return true;
+            }
         } else {
-            String output = String.format("Not enough gold to buy %s", artifact.getName());
-            throw new IllegalStateException(output);
-
-
+            try{
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText("You don't have enough money!");
+            alert.show();
+        }catch (ExceptionInInitializerError e){}
+            return false;
         }
 
 
@@ -109,7 +115,7 @@ public class EconomyHero {
         return true;
     }
 
-    void sellArtifact(ArtifactInfo artifact) throws IllegalStateException {
+    public void sellArtifact(ArtifactInfo artifact) throws IllegalStateException {
         if (!this.artifacts.contains(artifact)) {
             String output = String.format("Hero doesn't have artifact: %s", artifact.getName());
             throw new IllegalStateException(output);
@@ -147,8 +153,7 @@ public class EconomyHero {
 
     public boolean buySpell(SpellInfo spell) throws IllegalStateException {
         if (this.spells.contains(spell)) {
-            String output = String.format("Hero has got this spell %s ", spell.getName());
-            throw new IllegalStateException(output);
+            return false;
         }
         if (getGold() >= spell.getCost()) {
             this.decreaseGold(spell.getCost());
@@ -161,8 +166,7 @@ public class EconomyHero {
 
     public boolean buySkill(SkillInfo skill) throws IllegalStateException {
         if (this.skills.contains(skill)) {
-            String output = String.format("Hero has got this skill %s ", skill.getName());
-            throw new IllegalStateException(output);
+            return false;
         }
         if (getGold() >= skill.getCost()) {
             this.decreaseGold(skill.getCost());
@@ -217,7 +221,7 @@ public class EconomyHero {
 //        return heroInfo.getFraction();
 //    }
 
-    HeroInfo getHeroInfo() {
+    public HeroInfo getHeroInfo() {
         return heroInfo;
     }
 
