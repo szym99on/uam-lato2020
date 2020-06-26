@@ -20,15 +20,15 @@ public class SummonUnits extends Spell {
     private String name;
 
     @Builder
-    public SummonUnits(String aName, String aDescription, int aCost, int aLevel, int aManaCost, SpellInfo.Type aType, int aDuration) {
-        super(aName, aDescription, aCost, aLevel, aManaCost, aType, aDuration);
+    public SummonUnits(String aName, String aDescription, int aCost, int aLevel, int aManaCost, SpellInfo.Type aType, SpellInfo.Target aTarget, int aDuration) {
+        super(aName, aDescription, aCost, aLevel, aManaCost, aType, aDuration,aTarget);
         name = aName;
     }
 
     @Override
     public Object clone()
     {
-        return new SummonUnits(this.getName(),this.getDescription(),this.getCost(),this.getLevel(),this.getManaCost(),this.getType(),this.getDuration());
+        return new SummonUnits(this.getName(),this.getDescription(),this.getCost(),this.getLevel(),this.getManaCost(),this.getType(),this.getTarget(),this.getDuration());
     }
 
 

@@ -15,8 +15,8 @@ public class BuffDebufSpell extends Spell {
     private Creature creature;
 
     @Builder
-    public BuffDebufSpell (String aName, String aDescription, int aCost, int aLevel, int aManaCost, SpellInfo.Type aType, int aDuration,int aModificationAttack, int aModificationArmor,int aModificationMoveRange) {
-        super(aName,aDescription,aCost,aLevel,aManaCost,aType,aDuration);
+    public BuffDebufSpell (String aName, String aDescription, int aCost, int aLevel, int aManaCost, SpellInfo.Type aType, SpellInfo.Target aTarget, int aDuration, int aModificationAttack, int aModificationArmor, int aModificationMoveRange) {
+        super(aName,aDescription,aCost,aLevel,aManaCost,aType,aDuration,aTarget);
         modificationAttack = aModificationAttack;
         modificationArmor = aModificationArmor;
         modificationMoveRange = aModificationMoveRange;
@@ -34,7 +34,7 @@ public class BuffDebufSpell extends Spell {
     @Override
     public Object clone()
     {
-        return new BuffDebufSpell(this.getName(),this.getDescription(),this.getCost(),this.getLevel(),this.getManaCost(),this.getType(),this.getDuration(),this.modificationAttack,this.modificationArmor,this.modificationMoveRange);
+        return new BuffDebufSpell(this.getName(),this.getDescription(),this.getCost(),this.getLevel(),this.getManaCost(),this.getType(),this.getTarget(),this.getDuration(),this.modificationAttack,this.modificationArmor,this.modificationMoveRange);
     }
 
     @Override
