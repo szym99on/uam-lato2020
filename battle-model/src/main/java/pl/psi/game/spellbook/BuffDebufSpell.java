@@ -5,9 +5,10 @@ import pl.psi.game.Board;
 import pl.psi.game.fractions.Creature;
 
 import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 
 public class BuffDebufSpell extends Spell {
+
+    private final static int NEUTRAL_VALUE_0 = 0;
 
     private int modificationAttack;
     private int modificationArmor;
@@ -48,22 +49,22 @@ public class BuffDebufSpell extends Spell {
     {
         //creature.addToBuffSet(this);
         creature = aCreature;
-        if(modificationAttack >= 1){
+        if(modificationAttack > NEUTRAL_VALUE_0){
             creature.increaseAttack(modificationAttack);
         }
-        else if (modificationAttack <= -1){
+        else if (modificationAttack < NEUTRAL_VALUE_0){
             creature.decreaseAttack(-modificationAttack);
         }
-        if(modificationArmor >= 1){
+        if(modificationArmor > NEUTRAL_VALUE_0){
             creature.increaseArmor(modificationArmor);
         }
-        else if (modificationArmor <= -1){
+        else if (modificationArmor < NEUTRAL_VALUE_0){
             creature.decreaseArmor(-modificationArmor);
         }
-        if(modificationMoveRange >= 1){
+        if(modificationMoveRange > NEUTRAL_VALUE_0){
             creature.increaseMoveRange(modificationMoveRange);
         }
-        else if(modificationMoveRange <= -1){
+        else if(modificationMoveRange < NEUTRAL_VALUE_0){
             creature.decreaseMoveRange(-modificationMoveRange);
         }
 
@@ -80,22 +81,22 @@ public class BuffDebufSpell extends Spell {
     }
 
     public void removeSpell(){
-        if(modificationAttack >= 1){
+        if(modificationAttack > NEUTRAL_VALUE_0){
             creature.decreaseAttack(modificationAttack);
         }
-        else if (modificationAttack <= -1){
+        else if (modificationAttack < NEUTRAL_VALUE_0){
             creature.increaseAttack(-modificationAttack);
         }
-        if(modificationArmor >= 1){
+        if(modificationArmor > NEUTRAL_VALUE_0){
             creature.decreaseArmor(modificationArmor);
         }
-        else if (modificationArmor <= -1){
+        else if (modificationArmor < NEUTRAL_VALUE_0){
             creature.increaseArmor(-modificationArmor);
         }
-        if(modificationMoveRange >= 1){
+        if(modificationMoveRange > NEUTRAL_VALUE_0){
             creature.decreaseMoveRange(modificationMoveRange);
         }
-        else if (modificationMoveRange <= -1){
+        else if (modificationMoveRange < NEUTRAL_VALUE_0){
             creature.increaseMoveRange(-modificationMoveRange);
         }
 //        creature.removeFromBuffSet(this);
