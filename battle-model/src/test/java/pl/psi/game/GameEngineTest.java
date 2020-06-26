@@ -5,10 +5,12 @@ import org.junit.jupiter.api.Test;
 import pl.psi.game.fractions.Creature;
 import pl.psi.game.hero.converter.Hero;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class GameEngineTest {
 
@@ -52,6 +54,7 @@ class GameEngineTest {
         Creature c2 = Creature.builder().aMoveRange(4).build();
         creatures.add(c1);
         creatures.add(c2);
+        board.putCreature(1,1,c1);
         List<Creature> creatures2 = new ArrayList<>();
         Creature c2_1 = Creature.builder().aMoveRange(11).build();
         Creature c2_2 = Creature.builder().aMoveRange(7).build();
@@ -103,5 +106,26 @@ class GameEngineTest {
         assertEquals(97, defender.getCurrentHp());
         assertEquals(10, attacker2.getCurrentHp());
         assertEquals(8, attacker1.getCurrentHp());
+    }
+
+    @Test
+    void isPointInPath() {
+        Board board = Board.getBoard();
+        board.clearBoard();
+        Board.getBoard();
+        List<Creature> creatures = new ArrayList<>();
+        Creature attacker1 = Creature.builder().aMaxHp(10).aAttack(Range.closed(1,1)).build();
+        creatures.add(attacker1);
+        board.putCreature(1,1,attacker1);
+        List<Creature> creatures2 = new ArrayList<>();
+        Hero hero1 = Hero.builder().aCreatures(creatures).build();
+        Hero hero2 = Hero.builder().aCreatures(creatures2).build();
+        GameEngine gameEngine = new GameEngine(hero1, hero2);
+        gameEngine.getMovePath(1, 5);
+
+        assertTrue(gameEngine.isPointInPath(1,2));
+        assertTrue(gameEngine.isPointInPath(1,3));
+        assertTrue(gameEngine.isPointInPath(1,4));
+        assertTrue(gameEngine.isPointInPath(1,5));
     }
 }
