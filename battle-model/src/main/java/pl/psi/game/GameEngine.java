@@ -29,6 +29,8 @@ public class GameEngine implements PropertyChangeListener {
     private List<Creature> creatureMovedOnThisTurn;
     private PropertyChangeSupport propertyChangeSupport;
     private Spell selectedSpell;
+    private Hero hero1;
+    private Hero hero2;
 
     public GameEngine(Hero aHero1, Hero aHero2) {
         this.board = Board.getBoard();
@@ -42,10 +44,13 @@ public class GameEngine implements PropertyChangeListener {
         creatureMovedOnThisTurn = new ArrayList<>();
         putCreaturesToQueue(aHero1,aHero2);
 
+        hero1= aHero1;
+        hero2= aHero2;
     }
 
     private void putCreaturesToQueue(Hero aHero1, Hero aHero2) {
-        List<Creature> creatures = aHero1.getCreatures();
+        List<Creature> creatures = new ArrayList<>();
+        creatures.addAll(aHero1.getCreatures());
         creatures.addAll(aHero2.getCreatures());
         Collections.shuffle(creatures);
         creatures.sort(Comparator.comparingInt(Creature::getMoveRange).reversed());
@@ -145,6 +150,16 @@ public class GameEngine implements PropertyChangeListener {
 
     public HashMap.Entry<Point, Creature> getActiveCreature() {
         return activeCreature;
+    }
+
+    public Hero getActiveHero(){
+        for(Creature creature : hero1.getCreatures()){
+            if(creature==activeCreature.getValue()) return hero1;
+        }
+        for (Creature creature : hero2.getCreatures()){
+            if(creature==activeCreature.getValue()) return hero2;
+        }
+        throw new IllegalStateException("Active creature not belong to any hero.");
     }
 
 }
