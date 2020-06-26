@@ -91,6 +91,14 @@ public class GameEngine implements PropertyChangeListener {
     }
 
     public boolean isAttackPossible(int x, int y){
+        GuiTileIf somethingOnTile = getByPoint(x, y);
+        if(somethingOnTile != null)
+            return isInAttackRange(x,y) && somethingOnTile.isCreature();
+        else
+        return false;
+    }
+
+    public boolean isInAttackRange(int x, int y){
         Creature creature = activeCreature.getValue();
         if(creature.canShoot()){
             return true;
