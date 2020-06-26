@@ -55,8 +55,7 @@ private static final Logger LOG = LogManager.getLogger(MainBattleController.clas
         });
         spellButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
 
-            // na razie tylko jeden heroes
-            SpellBookGui spellBookGui = new SpellBookGui(hero1, stateMap);
+            SpellBookGui spellBookGui = new SpellBookGui(gameEngine.getActiveHero(), stateMap);
 
             //zrobione na szybko do pokazania innym developerom
             //trzeba zrobic stateMap zaleznie od typu spella JESZCZE NIE ZAIMPLEMENTOWANE!!
