@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import lombok.Setter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import pl.psi.game.GameEngine;
@@ -12,7 +13,6 @@ import pl.psi.game.hero.converter.Hero;
 import pl.psi.game.hero.converter.HeroEcoBattleConverter;
 import pl.psi.gui.states.NormalState;
 import pl.psi.gui.states.StateMap;
-import pl.psi.gui.states.SummonUnitsState;
 
 public class MainBattleController {
 private static final Logger LOG = LogManager.getLogger(MainBattleController.class);
@@ -27,6 +27,7 @@ private static final Logger LOG = LogManager.getLogger(MainBattleController.clas
     private final Hero hero1;
     private final Hero hero2;
     private final GameEngine gameEngine;
+    @Setter
     private StateMap stateMap = new NormalState();
 
     public MainBattleController() {
@@ -55,20 +56,20 @@ private static final Logger LOG = LogManager.getLogger(MainBattleController.clas
         });
         spellButton.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
 
-            SpellBookGui spellBookGui = new SpellBookGui(gameEngine.getActiveHero(), stateMap);
+            SpellBookGui spellBookGui = new SpellBookGui(gameEngine.getActiveHero(), stateMap,this);
 
             //zrobione na szybko do pokazania innym developerom
             //trzeba zrobic stateMap zaleznie od typu spella JESZCZE NIE ZAIMPLEMENTOWANE!!
             // coś w stylu instance of :( biedne jednorożce
-            stateMap = new SummonUnitsState();
-            refreshGui();
+//            stateMap = new SummonUnitsState();
+//            refreshGui();
 
         });
 
         gameEngine.addObserver((e) -> Platform.runLater(this::refreshGui));
     }
 
-    private void refreshGui() {
+    protected void refreshGui() {
         for (int i = 0; i < 15; i++) {
             for (int j = 0; j < 10; j++) {
                 createTile(i, j);
