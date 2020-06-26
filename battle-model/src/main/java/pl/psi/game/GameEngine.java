@@ -89,10 +89,28 @@ public class GameEngine implements PropertyChangeListener {
         propertyChangeSupport.firePropertyChange(CREATURE_ATTACKED,null,null);
         pass();
     }
+
+    public boolean spellCastPossible(int x,int y,Spell selectedSpell){
+        switch (selectedSpell.getTarget()){
+            case ALLY:
+                if(getByPoint(x,y)!=null)
+                return getActiveHero().haveThisCreature(getCreatureByPoint(x,y));
+                else return false;
+            case ENEMY:
+                if(getByPoint(x,y)!=null)
+                return !getActiveHero().haveThisCreature(getCreatureByPoint(x,y)) && getByPoint(x,y).isCreature();
+                else return false;
+            case EMPTY: return getByPoint(x,y) == null;
+            case ANY: return true;
+            default: throw new IllegalStateException("Spell has wrong target");
+        }
+    }
+
     public void castSpell(int aX, int aY, Spell selectedSpell){
-
-        selectedSpell.cast(aX, aY);
-
+        Spell spellToCast = (Spell) selectedSpell.clone();
+        getActiveHero().getSpellBook().decreaseMana(selectedSpell.getManaCost());
+        addObserver(END_OF_TURN,spellToCast);
+        spellToCast.cast(aX, aY);
     }
 
     public boolean isAttackPossible(int x, int y){
@@ -153,12 +171,15 @@ public class GameEngine implements PropertyChangeListener {
     }
 
     public Hero getActiveHero(){
-        for(Creature creature : hero1.getCreatures()){
-            if(creature==activeCreature.getValue()) return hero1;
-        }
-        for (Creature creature : hero2.getCreatures()){
-            if(creature==activeCreature.getValue()) return hero2;
-        }
+        if (hero1.haveThisCreature(activeCreature.getValue())) return hero1;
+        if (hero2.haveThisCreature(activeCreature.getValue())) return hero2;
+
+//        for(Creature creature : hero1.getCreatures()){
+//            if(creature==activeCreature.getValue()) return hero1;
+//        }
+//        for (Creature creature : hero2.getCreatures()){
+//            if(creature==activeCreature.getValue()) return hero2;
+//        }
         throw new IllegalStateException("Active creature not belong to any hero.");
     }
 

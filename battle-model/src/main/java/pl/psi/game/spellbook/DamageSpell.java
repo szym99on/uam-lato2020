@@ -11,15 +11,15 @@ public class DamageSpell extends Spell{
     private Creature creature;
 
     @Builder
-    public DamageSpell(String aName, String aDescription, int aCost, int aLevel, int aManaCost, SpellInfo.Type aType, int aDuration, int aSpellDamage) {
-        super(aName, aDescription, aCost, aLevel, aManaCost, aType, aDuration);
+    public DamageSpell(String aName, String aDescription, int aCost, int aLevel, int aManaCost, SpellInfo.Type aType, SpellInfo.Target aTarget, int aDuration, int aSpellDamage) {
+        super(aName, aDescription, aCost, aLevel, aManaCost, aType, aDuration,aTarget);
         spellDamage = aSpellDamage;
     }
 
     @Override
     public Object clone()
     {
-        return new DamageSpell(this.getName(),this.getDescription(),this.getCost(),this.getLevel(),this.getManaCost(),this.getType(),this.getDuration(),this.spellDamage);
+        return new DamageSpell(this.getName(),this.getDescription(),this.getCost(),this.getLevel(),this.getManaCost(),this.getType(),this.getTarget(),this.getDuration(),this.spellDamage);
     }
 
     @Override

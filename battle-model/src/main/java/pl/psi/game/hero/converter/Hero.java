@@ -95,5 +95,12 @@ public class Hero {
         return knowledge;
     }
 
+    public boolean haveThisCreature(Creature aCreature){
+        for(Creature creature: creatures){
+            if(creature==aCreature) return true;
+        }
+        return false;
+    }
+
 
 }
