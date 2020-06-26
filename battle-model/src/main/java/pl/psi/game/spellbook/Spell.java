@@ -20,9 +20,10 @@ public abstract class Spell implements PropertyChangeListener, Cloneable {
     private int cost;
     private int manaCost;
     private SpellInfo.Type type;
+    public SpellInfo.Target target;
 
     //@Builder
-    public Spell (String aName, String aDescription, int aCost, int aLevel, int aManaCost, SpellInfo.Type aType, int aDuration) {
+    public Spell (String aName, String aDescription, int aCost, int aLevel, int aManaCost, SpellInfo.Type aType, int aDuration, SpellInfo.Target aTarget) {
         name = aName;
         description = aDescription;
         level = aLevel;
@@ -30,6 +31,7 @@ public abstract class Spell implements PropertyChangeListener, Cloneable {
         cost = aCost;
         manaCost = aManaCost;
         type = aType;
+        target = aTarget;
     }
 
     abstract public Object clone();

@@ -1,10 +1,14 @@
 package pl.psi.gui;
 
+import javafx.application.Platform;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import pl.psi.game.hero.converter.Hero;
 import pl.psi.game.spellbook.Spell;
 import pl.psi.game.spellbook.SpellBook;
 import pl.psi.gui.states.NormalState;
 import pl.psi.gui.states.StateMap;
+import pl.psi.gui.states.SpellCastState;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,7 +27,7 @@ public class SpellBookGui   {
     public static Spell selectedSpell;
 
 
-    public SpellBookGui(Hero ahero, StateMap aStateMap){
+    public SpellBookGui(Hero ahero, StateMap aStateMap, MainBattleController mainBattleController){
         stateMap = aStateMap;
         hero = ahero;
         spellBook = hero.getSpellBook();
@@ -31,14 +35,36 @@ public class SpellBookGui   {
         JFrame frame = new JFrame("SpellBook");
         frame.setSize(800, 600);
         frame.setLocation(50, 50);
-        frame.setLayout(new GridLayout(15,6));
+        frame.setLayout(new GridLayout(6,3));
         for(Spell item : spellBook.getSpells()){
             JButton button = new JButton(item.getSpellName());
+            button.setToolTipText(item.getDescription());
             frame.add(button);
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent actionEvent) {
                     selectedSpell = item;
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run()
+                        {
+                            if(spellBook.isManaEnough(selectedSpell.getManaCost()))
+                            {
+                                Alert chosenSpell = new Alert(Alert.AlertType.NONE, "You chose: " + selectedSpell.getSpellName(), ButtonType.OK, ButtonType.CANCEL);
+                                chosenSpell.showAndWait();
+                                if (chosenSpell.getResult() == ButtonType.OK)
+                                {
+                                    mainBattleController.setStateMap(new SpellCastState());
+                                    mainBattleController.refreshGui();
+                                }
+                            }
+                            else {
+                                Alert notEnoughMana = new Alert(Alert.AlertType.WARNING, "Not enough mana",ButtonType.OK);
+                                notEnoughMana.showAndWait();
+                            }
+                        }
+                    });
+
                     frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
                 }
             });
