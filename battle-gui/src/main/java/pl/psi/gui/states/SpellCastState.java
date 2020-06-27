@@ -20,7 +20,7 @@ public class SpellCastState implements StateMap {
         GuiTileIf somethingToRender = gameEngine.getByPoint(aX, aY);
 
         if (somethingToRender != null) {
-            factory = new ObjectTileFactory(factory, somethingToRender);
+            factory = new ObjectTileFactory(factory, somethingToRender, gameEngine);
         }
 
         if (gameEngine.getActiveCreature().getKey().equals(new Point(aX, aY))) {

@@ -20,9 +20,8 @@ public class NormalState implements StateMap {
         AbstractTileFactory factory = new DefaultTileFactory();
         GuiTileIf somethingToRender = gameEngine.getByPoint(aX, aY);
 
-
         if (somethingToRender != null) {
-            factory = new ObjectTileFactory(factory, somethingToRender);
+            factory = new ObjectTileFactory(factory, somethingToRender, gameEngine);
         }
 
         if (gameEngine.isMoveAllowed(aX, aY)) {
@@ -33,7 +32,7 @@ public class NormalState implements StateMap {
             factory = new AttackPossibleTileFactoryDecorator(factory, aX, aY, gameEngine);
         }
 
-        if (gameEngine.isPointInPath(aX,aY)){
+        if (gameEngine.isPointInPath(aX, aY)) {
             factory = new MovePathTileFactoryDecorator(factory, aX, aY, gameEngine);
         }
 
@@ -41,6 +40,7 @@ public class NormalState implements StateMap {
             factory = new ActiveObjectTileFactoryDecorator(factory);
         }
 
-        return factory.generateTile();}
+        return factory.generateTile();
     }
+}
 
