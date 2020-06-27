@@ -11,12 +11,12 @@ public class ObstacleInfo {
     public enum Type{
         LAVA,
         MARSH,
-        RIVER
+        ROCK
     }
     public enum ObstacleClass{
         LAVA("lava", 10, 0, false),
         MARSH("marsh", 0, 3, false),
-        RIVER("river", 0, 0, true);
+        ROCK("rock", 0, 0, true);
         final String type;
         final int attack;
         final int reduceMoveRange;

@@ -8,7 +8,7 @@ public class ObstacleInfoFactory {
         {
             add(ObstacleInfo.builder().aObstacleClass(ObstacleInfo.ObstacleClass.LAVA).build());
             add(ObstacleInfo.builder().aObstacleClass(ObstacleInfo.ObstacleClass.MARSH).build());
-            add(ObstacleInfo.builder().aObstacleClass(ObstacleInfo.ObstacleClass.RIVER).build());
+            add(ObstacleInfo.builder().aObstacleClass(ObstacleInfo.ObstacleClass.ROCK).build());
         }
     };
 }
