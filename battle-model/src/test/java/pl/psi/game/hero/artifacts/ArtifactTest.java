@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static pl.psi.game.artifacts.Artifact.*;
 import static pl.psi.game.hero.artifacts.ArtifactsInfoFactory.*;
 import static pl.psi.game.spellbook.SpellBookInfoFactory.*;
 
@@ -38,7 +39,7 @@ public class ArtifactTest {
         Artifact ringOfLife = ArtifactFactory.createArtifact(artifactInfo);
 
         //then
-        assertEquals(2, ringOfLife.getHealth());
+        assertEquals(2, ringOfLife.showStatisticsBuff(CREATURE_HEALTH));
     }
 
     @Test
@@ -62,7 +63,7 @@ public class ArtifactTest {
         Artifact bootsOfPolarity = ArtifactFactory.createArtifact(artifactInfo);
 
         //then
-        assertEquals(15, bootsOfPolarity.getMagicResistance());
+        assertEquals(15, bootsOfPolarity.showStatisticsBuff(CREATURE_MAGIC_RESISTANCE));
     }
 
     @Test
@@ -72,24 +73,23 @@ public class ArtifactTest {
 
         //when
         Artifact capeOfVelocity = ArtifactFactory.createArtifact(artifactInfo);
-
         //then
-        assertEquals(2, capeOfVelocity.getSpeed());
+        assertEquals(2, capeOfVelocity.showStatisticsBuff(CREATURE_SPEED));
     }
 
     @Test
     void factoryShouldCreateHeroStatisticArtifactBasedOnInfo() {
         //given
-        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(SKULL_HELMET);
+        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(OGRES_CLUB_OF_HAVOC);
 
         //when
-        Artifact skullHelmet = ArtifactFactory.createArtifact(artifactInfo);
+        Artifact artifact = ArtifactFactory.createArtifact(artifactInfo);
 
         //then
-        assertEquals(0, skullHelmet.getAttack());
-        assertEquals(0, skullHelmet.getDefence());
-        assertEquals(2, skullHelmet.getKnowledge());
-        assertEquals(0, skullHelmet.getPower());
+        assertEquals(5, artifact.showStatisticsBuff(HERO_ATTACK));
+        assertEquals(0, artifact.showStatisticsBuff(HERO_DEFENCE));
+        assertEquals(0, artifact.showStatisticsBuff(HERO_POWER));
+        assertEquals(0, artifact.showStatisticsBuff(HERO_KNOWLEDGE));
     }
 
     @Test
@@ -101,7 +101,7 @@ public class ArtifactTest {
         Artifact collarOfConjuring = ArtifactFactory.createArtifact(artifactsInfo);
 
         //then
-        assertEquals(1, collarOfConjuring.getDuration());
+        assertEquals(1, collarOfConjuring.showStatisticsBuff(SPELL_DURATION));
     }
 
 //  CreatureHealthArtifact test
@@ -374,5 +374,19 @@ public class ArtifactTest {
         assertTrue(heroStatisticArtifact.affectsHeroStats());
     }
 
+    @Test
+    void artifactShoulNotReturnBuffStatisticsBasedOnInvalidKey() {
+        //given
+        ArtifactInfo artifactsInfo = ArtifactsInfoFactory.getArtifact(COLLAR_OF_CONJURING);
 
+        //when
+        Artifact collarOfConjuring = ArtifactFactory.createArtifact(artifactsInfo);
+
+        //then
+        try {
+            collarOfConjuring.showStatisticsBuff("duration");
+        } catch (Exception e) {
+            assertEquals(e.getMessage(), "This key is invalid");
+        }
+    }
 }

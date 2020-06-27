@@ -14,28 +14,6 @@ abstract class SpellBuffArtifact extends Artifact{
 
     abstract void buffSpell(Spell s);
 
-    //For tests
-    @Override
-    public int getAttack() { return 0; }
-
-    @Override
-    public int getDefence() { return 0; }
-
-    @Override
-    public int getPower() { return 0; }
-
-    @Override
-    public int getKnowledge() { return 0; }
-
-    @Override
-    public int getSpeed() { return 0; }
-
-    @Override
-    public int getHealth() { return 0; }
-
-    @Override
-    public int getMagicResistance() { return 0; }
-
     @Override
     public String getSpellImmunityName() { return "NONE"; }
 }
