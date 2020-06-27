@@ -20,7 +20,6 @@ public class NormalState implements StateMap {
         AbstractTileFactory factory = new DefaultTileFactory();
         GuiTileIf somethingToRender = gameEngine.getByPoint(aX, aY);
 
-
         if (somethingToRender != null) {
             factory = new ObjectTileFactory(factory, somethingToRender);
         }

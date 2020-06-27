@@ -11,10 +11,17 @@ import java.io.IOException;
 public class ObjectTileFactory extends AbstractTileFactory {
 
     private final GuiTileIf somethingToRender;
+    private boolean flipImage;
 
     public ObjectTileFactory(AbstractTileFactory aDecorated, GuiTileIf aSomethingToRender) {
         super(aDecorated);
         somethingToRender = aSomethingToRender;
+        flipImage = false;
+    }
+
+    public ObjectTileFactory(AbstractTileFactory aDecorated, GuiTileIf aSomethingToRender, boolean aFlipImage) {
+        this(aDecorated,aSomethingToRender);
+        flipImage = true;
     }
 
     @Override
@@ -22,7 +29,7 @@ public class ObjectTileFactory extends AbstractTileFactory {
         MapTile ret;
         if (somethingToRender.isCreature()){
             try {
-                ret = new MapTile(new Image(ObjectTileFactory.class.getClassLoader().getResourceAsStream( ((Creature)somethingToRender).getName()+".png" )),"asdf", false);
+                ret = new MapTile(new Image(ObjectTileFactory.class.getClassLoader().getResourceAsStream( ((Creature)somethingToRender).getName()+".png" )), String.valueOf(((Creature)somethingToRender).getAmount()), flipImage);
             } catch (Exception aE) {
                 ret = generateStringMapTile();
             }
