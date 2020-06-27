@@ -1,6 +1,7 @@
 package pl.psi.game.move;
 
 import pl.psi.game.Board;
+import pl.psi.game.GameEngine;
 import pl.psi.game.fractions.Creature;
 
 import java.awt.*;
@@ -19,6 +20,7 @@ public class MoveEngine implements PropertyChangeListener {
     private final Board board;
     private PropertyChangeSupport propertyChangeSupport;
     private MoveStrategyIf moveStrategyIf;
+    private boolean isMoveAllow = true;
 
     public MoveEngine(Board aBoard) {
 
@@ -33,11 +35,16 @@ public class MoveEngine implements PropertyChangeListener {
     }
 
     public void move(int x, int y) {
-          setMoveStrategy();
-          moveStrategyIf.move(new Point(x,y));
+        if (isMoveAllow) {
+            Point oldPosition = activeCreature.getKey();
+            setMoveStrategy();
+            moveStrategyIf.move(new Point(x, y));
+            isMoveAllow = false;
+            propertyChangeSupport.firePropertyChange(GameEngine.CREATURE_MOVED, oldPosition, new Point(x, y));
         }
+    }
 
-    public List<Point> getMovePath(Point destPoint){
+    public List<Point> getMovePath(Point destPoint) {
         setMoveStrategy();
         return moveStrategyIf.getMovePath(destPoint);
     }
@@ -47,7 +54,7 @@ public class MoveEngine implements PropertyChangeListener {
     }
 
     public void setMoveStrategy() {
-        if(activeCreature.getValue().isCanFly()) {
+        if (activeCreature.getValue().isCanFly()) {
             moveStrategyIf = new FlyMoveStrategy(board, activeCreature);
         } else {
             moveStrategyIf = new WalkMoveStrategy(board, activeCreature);
@@ -56,7 +63,8 @@ public class MoveEngine implements PropertyChangeListener {
 
     @Override
     public void propertyChange(PropertyChangeEvent aPropertyChangeEvent) {
-        activeCreature = (HashMap.Entry<Point, Creature>)aPropertyChangeEvent.getNewValue();
+        activeCreature = (HashMap.Entry<Point, Creature>) aPropertyChangeEvent.getNewValue();
+        isMoveAllow = true;
     }
 
     void setActiveCreature(Point aPoint, Creature aCreature) {
@@ -64,11 +72,11 @@ public class MoveEngine implements PropertyChangeListener {
         setMoveStrategy();
     }
 
-    public void addObserver(String aPropertyType, PropertyChangeListener aObserver){
+    public void addObserver(String aPropertyType, PropertyChangeListener aObserver) {
         propertyChangeSupport.addPropertyChangeListener(aPropertyType, aObserver);
     }
 
-    public void removeObserver(PropertyChangeListener aObserver){
+    public void removeObserver(PropertyChangeListener aObserver) {
         propertyChangeSupport.removePropertyChangeListener(aObserver);
     }
 
