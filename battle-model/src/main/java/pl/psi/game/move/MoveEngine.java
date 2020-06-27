@@ -1,15 +1,17 @@
 package pl.psi.game.move;
 
 import pl.psi.game.Board;
-import pl.psi.game.GameEngine;
 import pl.psi.game.fractions.Creature;
 
 import java.awt.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.util.AbstractMap;
-import java.util.HashMap;
+import java.util.*;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.Collectors;
+
 
 public class MoveEngine implements PropertyChangeListener {
 
@@ -19,43 +21,39 @@ public class MoveEngine implements PropertyChangeListener {
     private MoveStrategyIf moveStrategyIf;
 
     public MoveEngine(Board aBoard) {
+
         board = aBoard;
         propertyChangeSupport = new PropertyChangeSupport(this);
+
     }
 
-    public boolean isMovePossible(int x, int y) {
-        return board.isTileEmpty(x,y) && new Point(x,y).distance(activeCreature.getKey()) <= activeCreature.getValue().getMoveRange();
+    public boolean isMovePossible(Point endPoint) {
+        setMoveStrategy();
+        return moveStrategyIf.isMovePossible(endPoint);
     }
 
     public void move(int x, int y) {
-        if(activeCreature.getValue().isCanFly()) {
-            moveStrategyIf = new MoveStrategyFly(board, activeCreature);
-        } else {
-            moveStrategyIf = new MoveStrategyWalk(board, activeCreature);
+          setMoveStrategy();
+          moveStrategyIf.move(new Point(x,y));
         }
-        moveStrategyIf.move(x,y);
+
+    public List<Point> getMovePath(Point destPoint){
+        setMoveStrategy();
+        return moveStrategyIf.getMovePath(destPoint);
     }
 
-
-
-
-
-/*    public void wait(){
-    // ta metoda będzie pomijała ruch danej kreatury, przenosząc ją na koniec kolejki.
-   // Każda kreatura może wykonać tę metodę raz na turę
-
+    public HashMap.Entry<Point, Creature> getActiveCreature() {
+        return activeCreature;
     }
-  */
 
-/*    public int howManyFieldsWalked(){
-    //Metoda zwróci odległość jaką przebyła kreatura. (Dla poprawnej implementacji ataku np. kawalerzysty)
-}
- */
+    public void setMoveStrategy() {
+        if(activeCreature.getValue().isCanFly()) {
+            moveStrategyIf = new FlyMoveStrategy(board, activeCreature);
+        } else {
+            moveStrategyIf = new WalkMoveStrategy(board, activeCreature);
+        }
+    }
 
-    /* public boolean isFieldOnCreatureBack(){
-         //Metoda zwróci true jeśli pole jest za plecami kreatury. Będzie potrzebne dla obliczania bonusu ataku od tyłu
-     }
- */
     @Override
     public void propertyChange(PropertyChangeEvent aPropertyChangeEvent) {
         activeCreature = (HashMap.Entry<Point, Creature>)aPropertyChangeEvent.getNewValue();
@@ -63,6 +61,7 @@ public class MoveEngine implements PropertyChangeListener {
 
     void setActiveCreature(Point aPoint, Creature aCreature) {
         activeCreature = new AbstractMap.SimpleEntry<>(aPoint, aCreature);
+        setMoveStrategy();
     }
 
     public void addObserver(String aPropertyType, PropertyChangeListener aObserver){
@@ -72,4 +71,6 @@ public class MoveEngine implements PropertyChangeListener {
     public void removeObserver(PropertyChangeListener aObserver){
         propertyChangeSupport.removePropertyChangeListener(aObserver);
     }
+
+
 }

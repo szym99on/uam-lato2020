@@ -6,6 +6,7 @@ import pl.psi.gui.states.StateMap;
 import pl.psi.gui.tiles.*;
 
 import java.awt.*;
+import java.util.List;
 
 public class NormalState implements StateMap {
 
@@ -18,6 +19,7 @@ public class NormalState implements StateMap {
 
         AbstractTileFactory factory = new DefaultTileFactory();
         GuiTileIf somethingToRender = gameEngine.getByPoint(aX, aY);
+
 
         if (somethingToRender != null) {
             factory = new ObjectTileFactory(factory, somethingToRender);
@@ -35,6 +37,9 @@ public class NormalState implements StateMap {
             factory = new MovePossibleTileFactoryDecorator(factory, aX, aY, gameEngine);
         }
 
-        return factory.generateTile();
+        if (gameEngine.isPointInPath(aX,aY)){
+            factory = new MovePathTileFactoryDecorator(factory, aX, aY, gameEngine);
+        }
+        return factory.generateTile();}
     }
-}
+

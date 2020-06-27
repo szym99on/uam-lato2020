@@ -31,6 +31,7 @@ public class GameEngine implements PropertyChangeListener {
     private Spell selectedSpell;
     private Hero hero1;
     private Hero hero2;
+    private List<Point> path;
 
     public GameEngine(Hero aHero1, Hero aHero2) {
         this.board = Board.getBoard();
@@ -46,6 +47,7 @@ public class GameEngine implements PropertyChangeListener {
 
         hero1= aHero1;
         hero2= aHero2;
+        path = new ArrayList<>();
     }
 
     private void putCreaturesToQueue(Hero aHero1, Hero aHero2) {
@@ -64,12 +66,13 @@ public class GameEngine implements PropertyChangeListener {
     }
 
     public boolean isMoveAllowed(int x, int y){
-        return moveEngine.isMovePossible(x,y);
+        return moveEngine.isMovePossible(new Point(x,y));
     }
 
     public void move(int x, int y){
         moveEngine.move(x,y);
     }
+
     @Override
     public void propertyChange(PropertyChangeEvent aPropertyChangeEvent) {
         activeCreature = new AbstractMap.SimpleEntry<>( (Point)aPropertyChangeEvent.getNewValue(), activeCreature.getValue());
@@ -183,4 +186,11 @@ public class GameEngine implements PropertyChangeListener {
         throw new IllegalStateException("Active creature not belong to any hero.");
     }
 
+    public void getMovePath(int x, int y){
+        path = moveEngine.getMovePath(new Point(x,y));
+    }
+
+    public boolean isPointInPath(int x, int y){
+        return path.contains(new Point(x,y));
+    }
 }
