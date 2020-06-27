@@ -18,7 +18,7 @@ public class SpellCastPossibleTileFactoryDecorator extends AbstractTileFactory {
     public SpellCastPossibleTileFactoryDecorator(AbstractTileFactory aDecorated, int aX, int aY, GameEngine aEngine) {
         super(aDecorated);
         engine = aEngine;
-        location = new Point(aX,aY);
+        location = new Point(aX, aY);
 
     }
 
@@ -27,7 +27,12 @@ public class SpellCastPossibleTileFactoryDecorator extends AbstractTileFactory {
     public MapTile generateTile() {
         MapTile tile = getDecorated().generateTile();
         tile.setBackground(Color.LIGHTBLUE);
-        tile.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> engine.castSpell(location.x, location.y, SpellBookGui.selectedSpell));
+        tile.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) ->
+                {
+                    engine.castSpell(location.x, location.y, SpellBookGui.selectedSpell);
+                    engine.invokeSpellCastedEvent();
+                }
+        );
         return tile;
     }
 }
