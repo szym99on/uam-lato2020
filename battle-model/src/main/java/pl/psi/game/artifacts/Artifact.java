@@ -13,6 +13,7 @@ public abstract class Artifact{
     public final static String CREATURE_SPEED = "creatureSpeed";
     public final static String CREATURE_HEALTH = "creatureHealth";
     public final static String CREATURE_MAGIC_RESISTANCE = "creatureMagicResistance";
+    public final static String SPELL_DURATION = "spellDuration";
 
     public HashMap<String, Integer> statisticsBuffs = new HashMap<>();
 
@@ -24,13 +25,10 @@ public abstract class Artifact{
         statisticsBuffs.put(CREATURE_SPEED, DEFAULT);
         statisticsBuffs.put(CREATURE_HEALTH, DEFAULT);
         statisticsBuffs.put(CREATURE_MAGIC_RESISTANCE, DEFAULT);
+        statisticsBuffs.put(SPELL_DURATION, DEFAULT);
     }
 
     public abstract void apply(Hero aHero);
-    public abstract int getSpeed();
-    public abstract int getHealth();
-    public abstract int getMagicResistance();
-    public abstract int getDuration();
     public abstract String getSpellImmunityName();
     public abstract boolean affectsHeroStats();
 

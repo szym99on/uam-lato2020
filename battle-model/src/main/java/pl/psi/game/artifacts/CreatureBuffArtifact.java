@@ -15,6 +15,4 @@ abstract class CreatureBuffArtifact extends Artifact {
     @Override
     public boolean affectsHeroStats(){ return false; }
 
-    @Override
-    public int getDuration() { return 0; }
 }

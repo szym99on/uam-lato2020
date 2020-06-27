@@ -32,17 +32,6 @@ class HeroStatisticArtifact extends Artifact {
         aHero.increaseKnowledge(knowledge);
     }
 
-    @Override
-    public int getSpeed() { return 0; }
-
-    @Override
-    public int getHealth() { return 0; }
-
-    @Override
-    public int getMagicResistance() { return 0; }
-
-    @Override
-    public int getDuration() { return 0; }
 
     @Override
     public String getSpellImmunityName() { return "NONE"; }

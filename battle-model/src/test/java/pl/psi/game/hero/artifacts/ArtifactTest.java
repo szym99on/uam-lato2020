@@ -39,7 +39,7 @@ public class ArtifactTest {
         Artifact ringOfLife = ArtifactFactory.createArtifact(artifactInfo);
 
         //then
-        assertEquals(2, ringOfLife.getHealth());
+        assertEquals(2, ringOfLife.statisticsBuffs.get(CREATURE_HEALTH));
     }
 
     @Test
@@ -63,7 +63,7 @@ public class ArtifactTest {
         Artifact bootsOfPolarity = ArtifactFactory.createArtifact(artifactInfo);
 
         //then
-        assertEquals(15, bootsOfPolarity.getMagicResistance());
+        assertEquals(15, bootsOfPolarity.statisticsBuffs.get(CREATURE_MAGIC_RESISTANCE));
     }
 
     @Test
@@ -73,9 +73,8 @@ public class ArtifactTest {
 
         //when
         Artifact capeOfVelocity = ArtifactFactory.createArtifact(artifactInfo);
-
         //then
-        assertEquals(2, capeOfVelocity.getSpeed());
+        assertEquals(2, capeOfVelocity.statisticsBuffs.get(CREATURE_SPEED));
     }
 
     @Test
@@ -102,7 +101,7 @@ public class ArtifactTest {
         Artifact collarOfConjuring = ArtifactFactory.createArtifact(artifactsInfo);
 
         //then
-        assertEquals(1, collarOfConjuring.getDuration());
+        assertEquals(1, collarOfConjuring.statisticsBuffs.get(SPELL_DURATION));
     }
 
 //  CreatureHealthArtifact test
