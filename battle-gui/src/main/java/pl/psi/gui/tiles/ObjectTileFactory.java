@@ -22,7 +22,7 @@ public class ObjectTileFactory extends AbstractTileFactory {
         MapTile ret;
         if (somethingToRender.isCreature()){
             try {
-                ret = new MapTile(new Image(ObjectTileFactory.class.getClassLoader().getResourceAsStream( ((Creature)somethingToRender).getName()+".png" )),"asdf");
+                ret = new MapTile(new Image(ObjectTileFactory.class.getClassLoader().getResourceAsStream( ((Creature)somethingToRender).getName()+".png" )),"asdf", false);
             } catch (Exception aE) {
                 ret = generateStringMapTile();
             }

@@ -35,13 +35,16 @@ public class MapTile extends StackPane {
         return rect;
     }
 
-    MapTile(Image aImage, String aCurrentState){
+    MapTile(Image aImage, String aCurrentState, boolean aFlipImage){
         rect = prepareRectangleBackground();
 
         Image image = aImage;
         ImageView imageView = new ImageView(aImage);
         imageView.setFitHeight(TILE_HEIGHT - 10);
         imageView.setFitWidth(TILE_WIDTH);
+        if(aFlipImage){
+            imageView.setScaleX(-1);
+        }
         label = new Label(aCurrentState);
         label.setFont(new Font("Arial", 10));
 
