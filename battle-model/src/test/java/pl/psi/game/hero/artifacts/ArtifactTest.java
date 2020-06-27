@@ -80,16 +80,13 @@ public class ArtifactTest {
     @Test
     void factoryShouldCreateHeroStatisticArtifactBasedOnInfo() {
         //given
-        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(SKULL_HELMET);
+        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(OGRES_CLUB_OF_HAVOC);
 
         //when
-        Artifact skullHelmet = ArtifactFactory.createArtifact(artifactInfo);
+        Artifact artifact = ArtifactFactory.createArtifact(artifactInfo);
 
         //then
-        assertEquals(0, skullHelmet.getAttack());
-        assertEquals(0, skullHelmet.getDefence());
-        assertEquals(2, skullHelmet.getKnowledge());
-        assertEquals(0, skullHelmet.getPower());
+        assertEquals(5, artifact.statisticsBuffs.get("heroAttack"));
     }
 
     @Test
