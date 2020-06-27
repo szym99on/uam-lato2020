@@ -375,7 +375,7 @@ public class ArtifactTest {
     }
 
     @Test
-    void artifactShoulNotReturnBuffStatisticsBasedOnInvalidKey() {
+    void artifactShouldNotReturnBuffStatisticsBasedOnInvalidKey() {
         //given
         ArtifactInfo artifactsInfo = ArtifactsInfoFactory.getArtifact(COLLAR_OF_CONJURING);
 
@@ -388,5 +388,17 @@ public class ArtifactTest {
         } catch (Exception e) {
             assertEquals(e.getMessage(), "This key is invalid");
         }
+    }
+
+    @Test
+    void shouldReturnThatArtifactGrantNoImmunity() {
+        //given
+        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(BOOTS_OF_POLARITY);
+
+        //when
+        Artifact bootsOfPolarity = ArtifactFactory.createArtifact(artifactInfo);
+
+        //then
+        assertEquals(DEFAULT_IMMUNITY, bootsOfPolarity.getSpellImmunityName());
     }
 }

@@ -22,9 +22,6 @@ class HeroStatisticArtifact extends Artifact {
     }
 
     @Override
-    public boolean affectsHeroStats(){ return true; }
-
-    @Override
     public void apply(Hero aHero) {
         aHero.increaseAttack(attack);
         aHero.increaseDefence(defence);
@@ -32,7 +29,6 @@ class HeroStatisticArtifact extends Artifact {
         aHero.increaseKnowledge(knowledge);
     }
 
-
     @Override
-    public String getSpellImmunityName() { return "NONE"; }
+    public boolean affectsHeroStats(){ return true; }
 }

@@ -14,7 +14,4 @@ class CreatureMagicResistanceArtifact extends CreatureBuffArtifact {
     void buffCreature(Creature c) {
         c.getMagicResistance().addAllSpellsResistancePercentage(magicResistance);
     }
-
-    @Override
-    public String getSpellImmunityName() { return "NONE"; }
 }

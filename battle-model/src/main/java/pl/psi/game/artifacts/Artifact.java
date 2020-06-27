@@ -6,6 +6,8 @@ import java.util.HashMap;
 
 public abstract class Artifact{
     public final static int DEFAULT = 0;
+    public final static boolean DEFAULT_HERO_AFFECTION = false;
+    public final static String DEFAULT_IMMUNITY = "NONE";
     public final static String HERO_ATTACK = "heroAttack";
     public final static String HERO_DEFENCE = "heroDefence";
     public final static String HERO_POWER = "heroPower";
@@ -14,6 +16,7 @@ public abstract class Artifact{
     public final static String CREATURE_HEALTH = "creatureHealth";
     public final static String CREATURE_MAGIC_RESISTANCE = "creatureMagicResistance";
     public final static String SPELL_DURATION = "spellDuration";
+    protected static String CREATURE_IMMUNITY = "";
 
     protected HashMap<String, Integer> statisticsBuffs = new HashMap<>();
 
@@ -37,8 +40,15 @@ public abstract class Artifact{
             throw new RuntimeException("This key is invalid", e);
         }
     }
+
+    public String getSpellImmunityName() {
+        return CREATURE_IMMUNITY = DEFAULT_IMMUNITY;
+    }
+
     public abstract void apply(Hero aHero);
-    public abstract String getSpellImmunityName();
-    public abstract boolean affectsHeroStats();
+
+    public boolean affectsHeroStats() {
+        return DEFAULT_HERO_AFFECTION;
+    }
 
 }
