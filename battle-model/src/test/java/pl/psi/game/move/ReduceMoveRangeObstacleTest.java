@@ -21,23 +21,30 @@ class ReduceMoveRangeObstacleTest {
         board.putCreature(5,5, creature);
         //    3 4 5 6 7
         //  3 x x o x x
-        //  4 x o m o x
-        //  5 x r C r x
-        //  6 x x r x x
+        //  4 x o M o x
+        //  5 x R C R x
+        //  6 x x R x x
         ObstacleFactory obstacleFactory = new ObstacleFactory();
-        board.putObstacle( obstacleFactory.createImpactMoveObstacle("marsh", new Point(5,6)));
-        board.putObstacle( obstacleFactory.createImpactMoveObstacle("rock", new Point(4,5)));
-        board.putObstacle( obstacleFactory.createImpactMoveObstacle("rock", new Point(6,5)));
-        board.putObstacle( obstacleFactory.createImpactMoveObstacle("rock", new Point(5,4)));
+        board.putObstacle( obstacleFactory.createImpactMoveObstacle("marsh", new Point(5,6)) );
+        board.putObstacle( obstacleFactory.createImpactMoveObstacle("rock", new Point(4,5)) );
+        board.putObstacle( obstacleFactory.createImpactMoveObstacle("rock", new Point(6,5)) );
+        board.putObstacle( obstacleFactory.createImpactMoveObstacle("rock", new Point(5,4)) );
 
-        assertTrue(moveEngine.isMovePossible(new Point(4,5)));
+        assertTrue(moveEngine.isMovePossible(new Point(5, 3)));
         assertTrue(moveEngine.isMovePossible(new Point(4,4)));
-        assertTrue(moveEngine.isMovePossible(new Point(4,6)));
-        assertTrue(moveEngine.isMovePossible(new Point(3,5)));
+        assertTrue(moveEngine.isMovePossible(new Point(6, 4)));
+        assertTrue(moveEngine.isMovePossible(new Point(5, 4)));
 
-        assertFalse(moveEngine.isMovePossible(new Point(4, 3)));
-        assertFalse(moveEngine.isMovePossible(new Point(4, 7)));
-        assertFalse(moveEngine.isMovePossible(new Point(2, 5)));
+        assertFalse(moveEngine.isMovePossible(new Point(4, 5)));
+        assertFalse(moveEngine.isMovePossible(new Point(6, 5)));
+        assertFalse(moveEngine.isMovePossible(new Point(5, 6)));k
+        assertFalse(moveEngine.isMovePossible(new Point(3, 5)));
+        assertFalse(moveEngine.isMovePossible(new Point(7, 5)));
+        assertFalse(moveEngine.isMovePossible(new Point(4, 6)));
+        assertFalse(moveEngine.isMovePossible(new Point(6, 6)));
+
+
+
     }
 
     @Test

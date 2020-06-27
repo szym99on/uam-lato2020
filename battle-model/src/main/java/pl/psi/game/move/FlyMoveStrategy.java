@@ -38,7 +38,6 @@ public class FlyMoveStrategy implements MoveStrategyIf {
         Point oldPosition = activeCreature.getKey();
 
         double distance = Math.abs(destPoint.getX() - oldPosition.getX()) + Math.abs(destPoint.getY() - oldPosition.getY());
-
         return activeCreature.getValue().getMoveRange() - distance >= 0;
     }
 

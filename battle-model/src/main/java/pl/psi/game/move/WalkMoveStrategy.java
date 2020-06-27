@@ -50,6 +50,10 @@ public class WalkMoveStrategy implements MoveStrategyIf {
         List<Point> path = new LinkedList();
         path = pathCounter.countPath(oldPosition, destPoint, path);
 
+        if (board.getTile( (int) destPoint.getX(), (int) destPoint.getY()).isObstacle()) {
+            return board.getObstacle( (int) destPoint.getX(), (int) destPoint.getY()).isMovePossible();
+        }
+
         if( path.size() - 1 > activeCreature.getValue().getMoveRange() ){
             return false;
         }

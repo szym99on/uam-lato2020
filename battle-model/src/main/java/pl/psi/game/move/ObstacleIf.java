@@ -6,5 +6,6 @@ public interface ObstacleIf extends GuiTileIf {
 
     Point getPoint();
     int getWeight();
+    boolean isMovePossible();
 
 }
