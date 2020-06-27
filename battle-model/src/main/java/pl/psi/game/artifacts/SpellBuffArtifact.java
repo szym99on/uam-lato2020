@@ -13,20 +13,7 @@ abstract class SpellBuffArtifact extends Artifact{
     public boolean affectsHeroStats(){ return false; }
 
     abstract void buffSpell(Spell s);
-
-    //For tests
-    @Override
-    public int getAttack() { return 0; }
-
-    @Override
-    public int getDefence() { return 0; }
-
-    @Override
-    public int getPower() { return 0; }
-
-    @Override
-    public int getKnowledge() { return 0; }
-
+    
     @Override
     public int getSpeed() { return 0; }
 

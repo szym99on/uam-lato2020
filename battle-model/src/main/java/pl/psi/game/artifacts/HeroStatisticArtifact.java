@@ -15,7 +15,10 @@ class HeroStatisticArtifact extends Artifact {
         power = aPower;
         knowledge = aKnowledge;
 
-        statisticsBuffs.replace("heroAttack", attack);
+        statisticsBuffs.replace(HERO_ATTACK, attack);
+        statisticsBuffs.replace(HERO_DEFENCE, defence);
+        statisticsBuffs.replace(HERO_POWER, power);
+        statisticsBuffs.replace(HERO_KNOWLEDGE, knowledge);
     }
 
     @Override
@@ -28,20 +31,6 @@ class HeroStatisticArtifact extends Artifact {
         aHero.increasePower(power);
         aHero.increaseKnowledge(knowledge);
     }
-
-    @Override
-    public int getAttack() {
-        return attack;
-    }
-
-    @Override
-    public int getDefence() { return defence; }
-
-    @Override
-    public int getPower() { return power; }
-
-    @Override
-    public int getKnowledge() { return knowledge; }
 
     @Override
     public int getSpeed() { return 0; }

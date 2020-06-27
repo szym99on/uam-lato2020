@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static pl.psi.game.artifacts.Artifact.*;
 import static pl.psi.game.hero.artifacts.ArtifactsInfoFactory.*;
 import static pl.psi.game.spellbook.SpellBookInfoFactory.*;
 
@@ -86,7 +87,10 @@ public class ArtifactTest {
         Artifact artifact = ArtifactFactory.createArtifact(artifactInfo);
 
         //then
-        assertEquals(5, artifact.statisticsBuffs.get("heroAttack"));
+        assertEquals(5, artifact.statisticsBuffs.get(HERO_ATTACK));
+        assertEquals(0, artifact.statisticsBuffs.get(HERO_DEFENCE));
+        assertEquals(0, artifact.statisticsBuffs.get(HERO_POWER));
+        assertEquals(0, artifact.statisticsBuffs.get(HERO_KNOWLEDGE));
     }
 
     @Test
