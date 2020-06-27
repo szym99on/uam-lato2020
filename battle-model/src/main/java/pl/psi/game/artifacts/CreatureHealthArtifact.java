@@ -14,7 +14,4 @@ class CreatureHealthArtifact extends CreatureBuffArtifact{
     void buffCreature(Creature c) {
         c.increaseHP(health);
     }
-
-    @Override
-    public String getSpellImmunityName() { return "NONE"; }
 }

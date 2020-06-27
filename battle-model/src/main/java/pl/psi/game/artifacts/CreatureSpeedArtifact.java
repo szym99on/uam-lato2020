@@ -14,7 +14,4 @@ class CreatureSpeedArtifact extends CreatureBuffArtifact{
     void buffCreature(Creature c) {
         c.increaseMoveRange(speed);
     }
-
-    @Override
-    public String getSpellImmunityName() { return "NONE"; }
 }
