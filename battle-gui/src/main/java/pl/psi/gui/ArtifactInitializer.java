@@ -22,9 +22,9 @@ public class ArtifactInitializer extends AbstractInitializer {
             //            ################################################################
 //            SCENARIO 1 - HeroStatisticArtifact
 //            ################################################################
-            h1.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.RAMPART).getCreatureByTier(7));
-            h1.buyArtifact(ArtifactsInfoFactory.getArtifact(HELM_OF_THE_ALABASTER_UNICORN)); //+1 knowledge
-            h1.buySpell(SpellBookInfoFactory.getSpell(MAGIC_ARROW));
+//            h1.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.RAMPART).getCreatureByTier(7));
+//            h1.buyArtifact(ArtifactsInfoFactory.getArtifact(HELM_OF_THE_ALABASTER_UNICORN)); //+1 knowledge
+//            h1.buySpell(SpellBookInfoFactory.getSpell(MAGIC_ARROW));
 
 //            ################################################################
 //            SCENARIO 2 - CreatureBuffArtifact (CreatureSpeedArtifact, CreatureHealthArtifact)
@@ -50,9 +50,9 @@ public class ArtifactInitializer extends AbstractInitializer {
 //            ################################################################
 //            SCENARIO 5 - SpellBuffArtifact (SpellDurationArtifact) (+3)
 //            ################################################################
-//            h1.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.RAMPART).getCreatureByTier(3));
-//            h1.buyArtifact(ArtifactsInfoFactory.getArtifact(RING_OF_CONJURING)); //+3
-//            h1.buySpell(SpellBookInfoFactory.getSpell(HASTE));
+            h1.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.RAMPART).getCreatureByTier(3));
+            h1.buyArtifact(ArtifactsInfoFactory.getArtifact(RING_OF_CONJURING)); //+3
+            h1.buySpell(SpellBookInfoFactory.getSpell(HASTE));
 
 
         } catch (Exception aE) {
@@ -67,8 +67,8 @@ public class ArtifactInitializer extends AbstractInitializer {
 //            ################################################################
 //            SCENARIO 1
 //            ################################################################
-            h2.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.RAMPART).getCreatureByTier(7));
-            h2.buySpell(SpellBookInfoFactory.getSpell(MAGIC_ARROW));
+//            h2.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.RAMPART).getCreatureByTier(7));
+//            h2.buySpell(SpellBookInfoFactory.getSpell(MAGIC_ARROW));
 
 //            ################################################################
 //            SCENARIO 2
@@ -90,8 +90,8 @@ public class ArtifactInitializer extends AbstractInitializer {
 //            ################################################################
 //            SCENARIO 5
 //            ################################################################
-//            h2.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.RAMPART).getCreatureByTier(3));
-//            h2.buySpell(SpellBookInfoFactory.getSpell(HASTE));
+            h2.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.RAMPART).getCreatureByTier(3));
+            h2.buySpell(SpellBookInfoFactory.getSpell(HASTE));
         } catch (Exception aE) {
         }
         return h2;
