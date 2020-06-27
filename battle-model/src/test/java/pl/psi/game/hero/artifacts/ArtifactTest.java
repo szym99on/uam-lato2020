@@ -62,7 +62,6 @@ public class ArtifactTest {
         //when
         Artifact bootsOfPolarity = ArtifactFactory.createArtifact(artifactInfo);
 
-        int a = bootsOfPolarity.showStatisticsBuff("ASDAS");
         //then
         assertEquals(15, bootsOfPolarity.showStatisticsBuff(CREATURE_MAGIC_RESISTANCE));
     }
