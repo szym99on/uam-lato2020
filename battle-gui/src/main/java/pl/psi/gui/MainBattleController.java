@@ -67,6 +67,10 @@ private static final Logger LOG = LogManager.getLogger(MainBattleController.clas
         });
 
         gameEngine.addObserver((e) -> Platform.runLater(this::refreshGui));
+        gameEngine.addObserver(GameEngine.SPELL_CASTED,(e) ->{
+            stateMap = new NormalState();
+            refreshGui();
+        });
     }
 
     protected void refreshGui() {

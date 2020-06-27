@@ -21,6 +21,7 @@ public class GameEngine implements PropertyChangeListener {
     public static final String CREATURE_MOVED = "CREATURE_MOVED";
     public static final String CREATURE_ATTACKED = "CREATURE_ATTACKED";
     public static final String ACTIVE_CREATURE_CHANGED = "ACTIVE_CREATURE_CHANGED";
+    public static final String SPELL_CASTED = "SPELL_CASTED";
 
     private final MoveEngine moveEngine;
     private final Board board;
@@ -192,5 +193,9 @@ public class GameEngine implements PropertyChangeListener {
 
     public boolean isPointInPath(int x, int y){
         return path.contains(new Point(x,y));
+    }
+
+    public void invokeSpellCastedEvent() {
+        propertyChangeSupport.firePropertyChange(GameEngine.SPELL_CASTED,null,null);
     }
 }
