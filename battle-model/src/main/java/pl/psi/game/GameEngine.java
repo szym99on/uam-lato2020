@@ -174,6 +174,10 @@ public class GameEngine implements PropertyChangeListener {
         return activeCreature;
     }
 
+    public boolean belongsToRightHero(Creature aCreature){
+        return hero2.haveThisCreature(aCreature);
+    }
+
     public Hero getActiveHero(){
         if (hero1.haveThisCreature(activeCreature.getValue())) return hero1;
         if (hero2.haveThisCreature(activeCreature.getValue())) return hero2;

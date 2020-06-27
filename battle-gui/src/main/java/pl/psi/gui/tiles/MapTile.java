@@ -1,5 +1,7 @@
 package pl.psi.gui.tiles;
 
+import javafx.geometry.Pos;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -47,6 +49,9 @@ public class MapTile extends StackPane {
         }
         label = new Label(aCurrentState);
         label.setFont(new Font("Arial", 10));
+        label.setAlignment(Pos.CENTER);
+        label.setMaxWidth(Double.MAX_VALUE);
+        label.setContentDisplay(ContentDisplay.CENTER);
 
         VBox vbox = new VBox();
         vbox.getChildren().add(imageView);
