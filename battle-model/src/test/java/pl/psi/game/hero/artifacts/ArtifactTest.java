@@ -39,7 +39,7 @@ public class ArtifactTest {
         Artifact ringOfLife = ArtifactFactory.createArtifact(artifactInfo);
 
         //then
-        assertEquals(2, ringOfLife.statisticsBuffs.get(CREATURE_HEALTH));
+        assertEquals(2, ringOfLife.showStatisticsBuff(CREATURE_HEALTH));
     }
 
     @Test
@@ -62,8 +62,9 @@ public class ArtifactTest {
         //when
         Artifact bootsOfPolarity = ArtifactFactory.createArtifact(artifactInfo);
 
+        int a = bootsOfPolarity.showStatisticsBuff("ASDAS");
         //then
-        assertEquals(15, bootsOfPolarity.statisticsBuffs.get(CREATURE_MAGIC_RESISTANCE));
+        assertEquals(15, bootsOfPolarity.showStatisticsBuff(CREATURE_MAGIC_RESISTANCE));
     }
 
     @Test
@@ -74,7 +75,7 @@ public class ArtifactTest {
         //when
         Artifact capeOfVelocity = ArtifactFactory.createArtifact(artifactInfo);
         //then
-        assertEquals(2, capeOfVelocity.statisticsBuffs.get(CREATURE_SPEED));
+        assertEquals(2, capeOfVelocity.showStatisticsBuff(CREATURE_SPEED));
     }
 
     @Test
@@ -86,10 +87,10 @@ public class ArtifactTest {
         Artifact artifact = ArtifactFactory.createArtifact(artifactInfo);
 
         //then
-        assertEquals(5, artifact.statisticsBuffs.get(HERO_ATTACK));
-        assertEquals(0, artifact.statisticsBuffs.get(HERO_DEFENCE));
-        assertEquals(0, artifact.statisticsBuffs.get(HERO_POWER));
-        assertEquals(0, artifact.statisticsBuffs.get(HERO_KNOWLEDGE));
+        assertEquals(5, artifact.showStatisticsBuff(HERO_ATTACK));
+        assertEquals(0, artifact.showStatisticsBuff(HERO_DEFENCE));
+        assertEquals(0, artifact.showStatisticsBuff(HERO_POWER));
+        assertEquals(0, artifact.showStatisticsBuff(HERO_KNOWLEDGE));
     }
 
     @Test
@@ -101,7 +102,7 @@ public class ArtifactTest {
         Artifact collarOfConjuring = ArtifactFactory.createArtifact(artifactsInfo);
 
         //then
-        assertEquals(1, collarOfConjuring.statisticsBuffs.get(SPELL_DURATION));
+        assertEquals(1, collarOfConjuring.showStatisticsBuff(SPELL_DURATION));
     }
 
 //  CreatureHealthArtifact test
@@ -374,5 +375,19 @@ public class ArtifactTest {
         assertTrue(heroStatisticArtifact.affectsHeroStats());
     }
 
+    @Test
+    void artifactShoulNotReturnBuffStatisticsBasedOnInvalidKey() {
+        //given
+        ArtifactInfo artifactsInfo = ArtifactsInfoFactory.getArtifact(COLLAR_OF_CONJURING);
 
+        //when
+        Artifact collarOfConjuring = ArtifactFactory.createArtifact(artifactsInfo);
+
+        //then
+        try {
+            collarOfConjuring.showStatisticsBuff("duration");
+        } catch (Exception e) {
+            assertEquals(e.getMessage(), "This key is invalid");
+        }
+    }
 }

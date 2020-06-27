@@ -15,7 +15,7 @@ public abstract class Artifact{
     public final static String CREATURE_MAGIC_RESISTANCE = "creatureMagicResistance";
     public final static String SPELL_DURATION = "spellDuration";
 
-    public HashMap<String, Integer> statisticsBuffs = new HashMap<>();
+    protected HashMap<String, Integer> statisticsBuffs = new HashMap<>();
 
     public Artifact(){
         statisticsBuffs.put(HERO_ATTACK, DEFAULT);
@@ -28,6 +28,15 @@ public abstract class Artifact{
         statisticsBuffs.put(SPELL_DURATION, DEFAULT);
     }
 
+    public int showStatisticsBuff(String statisticsName)
+    {
+        try{
+            return statisticsBuffs.get(statisticsName);
+        }
+        catch(NullPointerException e){
+            throw new RuntimeException("This key is invalid", e);
+        }
+    }
     public abstract void apply(Hero aHero);
     public abstract String getSpellImmunityName();
     public abstract boolean affectsHeroStats();
