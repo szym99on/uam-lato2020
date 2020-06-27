@@ -27,7 +27,7 @@ public class ArtifactInitializer extends AbstractInitializer {
 //            h1.buySpell(SpellBookInfoFactory.getSpell(MAGIC_ARROW));
 
 //            ################################################################
-//            SCENARIO 5 - SpellBuffArtifact (SpellDurationArtifact) (+3)
+//            SCENARIO 3 - SpellBuffArtifact (SpellDurationArtifact) (+3)
 //            ################################################################
             h1.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.RAMPART).getCreatureByTier(3));
             h1.buyArtifact(ArtifactsInfoFactory.getArtifact(RING_OF_CONJURING)); //+3
@@ -51,7 +51,7 @@ public class ArtifactInitializer extends AbstractInitializer {
 //            h2.buySpell(SpellBookInfoFactory.getSpell(MAGIC_ARROW));
 
 //            ################################################################
-//            SCENARIO 5
+//            SCENARIO 3
 //            ################################################################
             h2.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.RAMPART).getCreatureByTier(3));
             h2.buySpell(SpellBookInfoFactory.getSpell(HASTE));
