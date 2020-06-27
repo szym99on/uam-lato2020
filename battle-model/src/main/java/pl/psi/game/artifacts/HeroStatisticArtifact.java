@@ -14,6 +14,8 @@ class HeroStatisticArtifact extends Artifact {
         defence = aDefence;
         power = aPower;
         knowledge = aKnowledge;
+
+        statisticsBuffs.replace("heroAttack", attack);
     }
 
     @Override
