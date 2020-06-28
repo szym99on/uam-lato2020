@@ -25,6 +25,15 @@ class CreatureTest {
 
         assertEquals(8, c1.getCurrentHp());
     }
+    @Test
+    void FourCreaturesShouldLostEightHp() {
+        Creature c1 = new Creature(10, NOT_IMPORTANT_RANGE, NOT_IMPORTANT_0, "", 0, NOT_IMPORTANT_FALSE,4);
+        Creature c2 = new Creature(NOT_IMPORTANT_0, Range.closed(2, 2), NOT_IMPORTANT_0, "", 0, NOT_IMPORTANT_FALSE,4);
+
+        c2.attack(c1);
+
+        assertEquals(2, c1.getCurrentHp());
+    }
 
     @Test
     void creatureShouldLostOneHpBecauseHasOneDefence() {
@@ -34,6 +43,15 @@ class CreatureTest {
         attacker.attack(defender);
 
         assertEquals(9, defender.getCurrentHp());
+    }
+    @Test
+    void FourCreaturesShouldLostFourHpBecauseHasOneDefence() {
+        Creature defender = new Creature(10, NOT_IMPORTANT_RANGE, 1, "", 0, NOT_IMPORTANT_FALSE,4);
+        Creature attacker = new Creature(NOT_IMPORTANT_1, Range.closed(2, 2), NOT_IMPORTANT_1, "", 0, NOT_IMPORTANT_FALSE,4);
+
+        attacker.attack(defender);
+
+        assertEquals(6, defender.getCurrentHp());
     }
 
     @Test
@@ -55,6 +73,31 @@ class CreatureTest {
 
         assertEquals(9, attacker.getCurrentHp());
     }
+    @Test
+    void FourCreatureShouldCounterAttackAfterOneWasKilled() {
+        Creature defender = Creature.builder().aMaxHp(10).aAttack(Range.closed(3, 3)).aArmor(1).aAmount(5).build();
+        Creature attacker = Creature.builder().aMaxHp(10).aAttack(Range.closed(3, 3)).aArmor(1).aAmount(5).build();
+
+        attacker.attack(defender);
+
+        assertEquals(2, attacker.getCurrentHp());
+        assertEquals(5, attacker.getAmount());
+        assertEquals(10, defender.getCurrentHp());
+        assertEquals(4, defender.getAmount());
+    }
+    @Test
+    void KilledCreatureShouldntCounter() {
+        Creature defender = Creature.builder().aMaxHp(10).aAttack(Range.closed(3, 3)).aArmor(0).aAmount(2).build();
+        Creature attacker = Creature.builder().aMaxHp(10).aAttack(Range.closed(5, 5)).aArmor(0).aAmount(5).build();
+
+        attacker.attack(defender);
+
+        assertEquals(10, attacker.getCurrentHp());
+        assertEquals(5, attacker.getAmount());
+        assertEquals(0, defender.getCurrentHp());
+        assertEquals(0, defender.getAmount());
+    }
+
 
     @Test
     void defenderCreatureShouldCounterAttackOnlyOncePerTurn() {
