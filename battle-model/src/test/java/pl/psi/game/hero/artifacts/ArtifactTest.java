@@ -17,6 +17,18 @@ public class ArtifactTest {
     }
 
     @Test
+    void creatureBuffArtifactShouldNotAffectHeroStats() {
+        //given
+        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(RING_OF_LIFE);
+
+        //when
+        Artifact creatureBuffArtifact = ArtifactFactory.createArtifact(artifactInfo);
+
+        //then
+        assertFalse(creatureBuffArtifact.affectsHeroStats());
+    }
+
+    @Test
     void spellBuffArtifactShouldNotAffectHeroStats() {
         //given
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(RING_OF_CONJURING);
