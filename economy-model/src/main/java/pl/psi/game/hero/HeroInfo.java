@@ -11,6 +11,7 @@ public class HeroInfo {
     private final String name;
     private final FractionsInfoAbstractFactory fraction;
     private final FractionClass fractionClass;
+
     public enum FractionClass{
         KNIGHT(2,2,1,1),
         CLERIC(1,0,2,2),
@@ -72,5 +73,8 @@ public class HeroInfo {
     }
     public int getKnowledge() {
         return heroKnowledge;
+    }
+    public FractionsInfoAbstractFactory getFractionFactory() {
+        return fraction;
     }
 }

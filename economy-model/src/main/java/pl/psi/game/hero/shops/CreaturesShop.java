@@ -4,8 +4,6 @@ import lombok.Getter;
 import pl.psi.game.fractions.CreatureInfo;
 import pl.psi.game.fractions.CreatureStack;
 import pl.psi.game.fractions.FractionsInfoAbstractFactory;
-import pl.psi.game.hero.HeroInfo;
-import pl.psi.game.hero.economyHero.EconomyHero;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +13,13 @@ public class CreaturesShop extends AbstractShop {
 
     @Getter
     private List<CreatureStack> creaturesAvailableToBuy;
-
+    private FractionsInfoAbstractFactory factory;
 
     public CreaturesShop() {
+    }
+
+    public CreaturesShop(FractionsInfoAbstractFactory aFraction) {
+         factory = aFraction;
     }
 
     public CreaturesShop(String name, String description, List<CreatureStack> creaturesAvailableToBuy) {
@@ -27,7 +29,7 @@ public class CreaturesShop extends AbstractShop {
 
     @Override
     public void generateItemsAvailableToBuy() {
-        FractionsInfoAbstractFactory creaturesFactory = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS);
+        FractionsInfoAbstractFactory creaturesFactory = factory;
 //        HeroInfo heroInfo = new HeroInfo("name", creaturesFactory
 //                , HeroInfo.FractionClass.ALCHEMIST);
 //        EconomyHero hero = EconomyHero.builder().build();
@@ -43,8 +45,5 @@ public class CreaturesShop extends AbstractShop {
             creaturesAvailableToBuy.add(creatureStack);
         }
         this.creaturesAvailableToBuy = creaturesAvailableToBuy;
-
     }
-
-
 }

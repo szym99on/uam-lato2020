@@ -11,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 import pl.psi.game.GameEngine;
 import pl.psi.game.hero.converter.Hero;
 import pl.psi.game.hero.converter.HeroEcoBattleConverter;
+import pl.psi.game.hero.economyHero.EconomyHero;
 import pl.psi.gui.states.NormalState;
 import pl.psi.gui.states.StateMap;
 
@@ -45,6 +46,11 @@ private static final Logger LOG = LogManager.getLogger(MainBattleController.clas
         hero2 = HeroEcoBattleConverter.convert(init.getH2());
 
         gameEngine = new GameEngine(hero1, hero2);
+    }
+
+    public MainBattleController(EconomyHero h1, EconomyHero h2){
+        hero1 = HeroEcoBattleConverter.convert(h1);
+        hero2 = HeroEcoBattleConverter.convert(h2);
     }
 
     @FXML

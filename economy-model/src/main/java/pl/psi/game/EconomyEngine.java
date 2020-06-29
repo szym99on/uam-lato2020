@@ -1,6 +1,5 @@
 package pl.psi.game;
 
-import pl.psi.game.fractions.CreatureInfo;
 import pl.psi.game.fractions.CreatureStack;
 import pl.psi.game.fractions.FractionsInfoAbstractFactory;
 import pl.psi.game.hero.HeroInfoFactory;
@@ -58,8 +57,8 @@ public class EconomyEngine implements PropertyChangeListener {
         this.artifactsShop2 = new ArtifactsShop();
         this.specialSkillsShop1 = new SpecialSkillsShop();
         this.specialSkillsShop2 = new SpecialSkillsShop();
-        this.creaturesShop1 = new CreaturesShop();
-        this.creaturesShop2 = new CreaturesShop();
+        this.creaturesShop1 = new CreaturesShop(economyHero1.getHeroInfo().getFractionFactory());
+        this.creaturesShop2 = new CreaturesShop(economyHero2.getHeroInfo().getFractionFactory());
 
         refreshShops(1);
         refreshShops(2);
