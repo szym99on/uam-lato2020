@@ -167,39 +167,99 @@ class MoveEngineTest {
 }
 
     @Test
-    void walkingMoveCanAvoidObstacle(){
-//
-//        Creature creature = Creature.builder().build();
-//        Board board = Board.getBoard();
-//        board.clearBoard();
-//        MoveEngine moveEngine = new MoveEngine(board);
-//        moveEngine.setActiveCreature(new Point(1,1), creature);
-//
-//        WalkMoveStrategy moveStrategyIf = new WalkMoveStrategy(board,moveEngine.getActiveCreature());
-//
-//
-//        List <Point> paths = new LinkedList<>();
-//        paths.add(new Point(1,1));
-//        ObstacleFactory obstacleFactory = new ObstacleFactory();
-//        Obstacle lava1 = obstacleFactory.createObstacle("lava", new Point(1, 2));
-//        Obstacle lava2 =  obstacleFactory.createObstacle("lava", new Point(2,1));
-//
-//        board.putObstacle(lava1);
-//        board.putObstacle(lava2);
-//
-//        List list = moveStrategyIf.countPath(new Point(1, 1), new Point(2, 3),paths);
-//        List expected = new LinkedList();
-//        expected.add(new Point(1,1));
-//        expected.add(new Point(0,1));
-//        expected.add(new Point(0,2));
-//        expected.add(new Point(0,3));
-//        expected.add(new Point(1,3));
-//        expected.add(new Point(2,3));
-//
-//        assertEquals(expected,list);
+    void getWalkPath(){
+        Creature creature = Creature.builder().aMoveRange(6).aCanFly(false).build();
+
+        Board board = Board.getBoard();
+        board.clearBoard();
+        board.putCreature(1,1, creature);
+
+        MoveEngine moveEngine = new MoveEngine(board);
+        moveEngine.setActiveCreature(new Point(1,1), creature);
+
+        List<Point> path = moveEngine.getMovePath(new Point(3, 3));
+
+        assertTrue(path.contains(new Point(1,2)));
+        assertTrue(path.contains(new Point(2,2)));
+        assertTrue(path.contains(new Point(2,3)));
+        assertTrue(path.contains(new Point(2,3)));
 
     }
 
+    @Test
+    void getFlyPath(){
+        Creature creature = Creature.builder().aMoveRange(6).aCanFly(true).build();
+
+        Board board = Board.getBoard();
+        board.clearBoard();
+        board.putCreature(1,1, creature);
+
+        MoveEngine moveEngine = new MoveEngine(board);
+        moveEngine.setActiveCreature(new Point(1,1), creature);
+
+        List<Point> path = moveEngine.getMovePath(new Point(3, 3));
+
+        assertTrue(path.contains(new Point(1,2)));
+        assertTrue(path.contains(new Point(2,2)));
+        assertTrue(path.contains(new Point(2,3)));
+        assertTrue(path.contains(new Point(2,3)));
+
+    }
+
+    @Test
+    void walkingMoveCanAvoidObstacle(){
+        Creature creature = Creature.builder().aMoveRange(6).aCanFly(false).build();
+        ObstacleFactory obstacleFactory = new ObstacleFactory();
+
+        EndingMoveObstacle e1 = (EndingMoveObstacle) obstacleFactory.createImpactMoveObstacle("rock", new Point(1,3));
+
+        Board board = Board.getBoard();
+        board.clearBoard();
+        board.putCreature(1,1, creature);
+        board.putObstacle(e1);
+
+        MoveEngine moveEngine = new MoveEngine(board);
+        moveEngine.setActiveCreature(new Point(1,1), creature);
+
+        List<Point> path = moveEngine.getMovePath(new Point(1, 4));
+
+        assertTrue(path.contains(new Point(1,2)));
+        assertTrue(path.contains(new Point(0,2)));
+        assertTrue(path.contains(new Point(0,3)));
+        assertTrue(path.contains(new Point(0,4)));
+        assertTrue(path.contains(new Point(1,4)));
+    }
+
+    @Test
+    void walkingMoveCanAvoidObstacle2(){
+        Creature creature = Creature.builder().aMoveRange(6).aCanFly(false).build();
+        ObstacleFactory obstacleFactory = new ObstacleFactory();
+
+        EndingMoveObstacle e1 = (EndingMoveObstacle) obstacleFactory.createImpactMoveObstacle("rock", new Point(0,2));
+        EndingMoveObstacle e2 = (EndingMoveObstacle) obstacleFactory.createImpactMoveObstacle("rock", new Point(1,1));
+//        EndingMoveObstacle e3 = (EndingMoveObstacle) obstacleFactory.createImpactMoveObstacle("rock", new Point(1,2));
+///        EndingMoveObstacle e4 = (EndingMoveObstacle) obstacleFactory.createImpactMoveObstacle("rock", new Point(1,3));
+
+        Board board = Board.getBoard();
+        board.clearBoard();
+        board.putCreature(0,0, creature);
+        board.putObstacle(e1);
+        board.putObstacle(e2);
+
+        MoveEngine moveEngine = new MoveEngine(board);
+        moveEngine.setActiveCreature(new Point(0,0), creature);
+
+        List<Point> path = moveEngine.getMovePath(new Point(0, 4));
+
+        assertTrue(path.contains(new Point(1,0)));
+        assertTrue(path.contains(new Point(2,0)));
+        assertTrue(path.contains(new Point(2,1)));
+        assertTrue(path.contains(new Point(2,2)));
+        assertTrue(path.contains(new Point(2,3)));
+        assertTrue(path.contains(new Point(1,3)));
+        assertTrue(path.contains(new Point(1,4)));
+        assertTrue(path.contains(new Point(0,4)));
+    }
 
     @Test
     void walkingMoveWithOnlyPossibleWayThroughRock(){

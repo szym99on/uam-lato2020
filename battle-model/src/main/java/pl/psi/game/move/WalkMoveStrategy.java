@@ -8,11 +8,7 @@ import java.awt.*;
 import java.beans.PropertyChangeSupport;
 import java.util.*;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
-
-import static pl.psi.game.Board.BOARD_HIGH;
-import static pl.psi.game.Board.BOARD_WIDTH;
 
 public class WalkMoveStrategy implements MoveStrategyIf {
 
@@ -31,7 +27,7 @@ public class WalkMoveStrategy implements MoveStrategyIf {
     @Override
     public void move(Point destPoint) {
 
-        List<GuiTileIf> path = getSteps(destPoint);
+        List<GuiTileIf> path = getObstaclesFromPath(destPoint);
         List<DealDamageObstacle> pathObs = path.stream().filter(t -> t instanceof DealDamageObstacle).map(o -> (DealDamageObstacle)o).collect(Collectors.toList());
         pathObs.forEach(o -> o.apply(activeCreature.getValue()));
 
@@ -45,10 +41,7 @@ public class WalkMoveStrategy implements MoveStrategyIf {
 
     @Override
     public boolean isMovePossible(Point destPoint) {
-        Point oldPosition = activeCreature.getKey();
-
-        List<Point> path = new LinkedList();
-        path = pathCounter.countPath(oldPosition, destPoint, path);
+        List<Point> path = getMovePath(destPoint);
 
         if( path.size() - 1 > activeCreature.getValue().getMoveRange() ){
             return false;
@@ -61,12 +54,13 @@ public class WalkMoveStrategy implements MoveStrategyIf {
         Point oldPosition = activeCreature.getKey().getLocation();
 
         List<Point> path = new LinkedList();
+        path.add(oldPosition);
         path = pathCounter.countPath(oldPosition,destPoint,path);
 
-        return path;
+        return pathCounter.removeBadPaths(path, oldPosition, destPoint);
     }
 
-    private List<GuiTileIf> getSteps(Point destPoint) {
+    private List<GuiTileIf> getObstaclesFromPath(Point destPoint) {
         List<Point> path = getMovePath(destPoint);
 
         List<GuiTileIf> returnPath = new LinkedList();

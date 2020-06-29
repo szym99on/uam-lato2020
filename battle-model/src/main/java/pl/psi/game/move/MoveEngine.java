@@ -53,7 +53,7 @@ public class MoveEngine implements PropertyChangeListener {
         return activeCreature;
     }
 
-    public void setMoveStrategy() {
+    private void setMoveStrategy() {
         if (activeCreature.getValue().isCanFly()) {
             moveStrategyIf = new FlyMoveStrategy(board, activeCreature);
         } else {
