@@ -13,24 +13,23 @@ class ReduceMoveRangeObstacleTest {
 
 
     @Test
-    @Disabled
     void reduceMoveRangeWalkingCreature(){
         Creature creature = Creature.builder().aCanFly(false).aMoveRange(5).build();
         Board board = Board.getBoard();
-        MoveEngine moveEngine = new MoveEngine(board);
-        moveEngine.setActiveCreature(new Point(5,5), creature);
         board.clearBoard();
+        MoveEngine moveEngine = new MoveEngine(board);
         board.putCreature(5,5, creature);
+        moveEngine.setActiveCreature(new Point(5,5), creature);
         //    3 4 5 6 7
         //  3 x x o x x
         //  4 x o M o x
         //  5 x R C R x
         //  6 x x R x x
         ObstacleFactory obstacleFactory = new ObstacleFactory();
-        board.putObstacle( obstacleFactory.createImpactMoveObstacle("marsh", new Point(5,6)) );
+        board.putObstacle( obstacleFactory.createImpactMoveObstacle("marsh", new Point(5,4)) );
         board.putObstacle( obstacleFactory.createImpactMoveObstacle("rock", new Point(4,5)) );
         board.putObstacle( obstacleFactory.createImpactMoveObstacle("rock", new Point(6,5)) );
-        board.putObstacle( obstacleFactory.createImpactMoveObstacle("rock", new Point(5,4)) );
+        board.putObstacle( obstacleFactory.createImpactMoveObstacle("rock", new Point(5,6)) );
 
         assertTrue(moveEngine.isMovePossible(new Point(5, 3)));
         assertTrue(moveEngine.isMovePossible(new Point(4,4)));
