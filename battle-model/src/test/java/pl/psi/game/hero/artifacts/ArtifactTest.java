@@ -82,7 +82,7 @@ public class ArtifactTest {
     }
 
     @Test
-    void shouldReturnThatArtifactGrantHasImmunity() {
+    void shouldReturnThatArtifactGrantImmunity() {
         //given
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(PENDANT_OF_DISPASSION);
 
