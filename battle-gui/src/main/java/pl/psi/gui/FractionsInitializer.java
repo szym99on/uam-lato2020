@@ -10,7 +10,7 @@ public class FractionsInitializer extends AbstractInitializer {
     EconomyHero getH1() {
         EconomyHero h1 = EconomyHero.builder().aGold(1000).aHeroInfo(HeroInfoFactory.getHeroInfoByName(HeroInfoFactory.SHIVA)).build();
         try {
-            h1.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.STRONGHOLD).getCreatureByTier(1));
+            h1.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.STRONGHOLD).getCreatureByTier(1),1);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -21,9 +21,9 @@ public class FractionsInitializer extends AbstractInitializer {
     EconomyHero getH2() {
         EconomyHero h2 = EconomyHero.builder().aGold(1000).aHeroInfo(HeroInfoFactory.getHeroInfoByName(HeroInfoFactory.CRAG_HACK)).build();
         try {
-            h2.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.STRONGHOLD).getCreatureByTier(2));
-            h2.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.STRONGHOLD).getCreatureByTier(3));
-            h2.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.STRONGHOLD).getCreatureByTier(4));
+            h2.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.STRONGHOLD).getCreatureByTier(2),1);
+            h2.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.STRONGHOLD).getCreatureByTier(3),1);
+            h2.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.STRONGHOLD).getCreatureByTier(4),1);
         } catch (Exception e) {
             e.printStackTrace();
         }

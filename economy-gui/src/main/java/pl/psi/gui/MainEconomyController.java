@@ -411,24 +411,25 @@ public class MainEconomyController {
     public void handlePassTurn(ActionEvent actionEvent) {
         economyEngine.endTurn();
         refreshGui();
-//        if(economyEngine.activeHero == economyHero1){
-//            try {
-//
-//                FXMLLoader loader = new FXMLLoader();
-//                URL fxmlLocation = getClass().getResource("/main-battle.fxml");
-//                loader.setLocation(fxmlLocation);
-//                MainBattleController mainBattleController = new MainBattleController(economyHero1, economyHero2);
-//                loader.setController(mainBattleController);
-//                Parent root = loader.load();
-//
-//                Scene scene = new Scene(root);
-//                Stage stage = new Stage();
-//                stage.setScene(scene);
-//                stage.show();
-//            } catch (IOException aE) {
-//                aE.printStackTrace();
-//            }
-//        }
+        if(economyEngine.activeHero == economyHero1){
+            try {
+
+                FXMLLoader loader = new FXMLLoader();
+                URL fxmlLocation = getClass().getResource("/main-battle.fxml");
+                loader.setLocation(fxmlLocation);
+                MainBattleController mainBattleController = new MainBattleController(economyHero1, economyHero2);
+                loader.setController(mainBattleController);
+                Parent root = loader.load();
+
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.setTitle("Heroes 3");
+                stage.show();
+            } catch (IOException aE) {
+                aE.printStackTrace();
+            }
+        }
     }
 
     public void clearAll(){

@@ -199,6 +199,13 @@ public class EconomyHero {
     public List<CreatureStack> getCreatures() {
         return this.creatures;
     }
+    public CreatureStack getCreatureStack(CreatureInfo creatureInfo){
+        for(CreatureStack c: creatures){
+            if (c.getCreatureInfo().equals(creatureInfo))
+                return c;
+        }
+        return null;
+    }
 
     public List<SkillInfo> getSkills() {
         return this.skills;

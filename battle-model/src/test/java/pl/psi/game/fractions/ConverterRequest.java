@@ -28,7 +28,7 @@ public class ConverterRequest {
     void CreateBattleCreatureFromFactory()
     {
         CreatureAbstractFactory creatureAbstractFactory = new CreatureAbstractFactory();
-        Creature creature = creatureAbstractFactory.getCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(1));
+        Creature creature = creatureAbstractFactory.getCreature(new CreatureStack(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(1), 1));
     }
     /*@Test
     void CreatureAbstractFactoryMethodGetCreatureShouldBeStatic()

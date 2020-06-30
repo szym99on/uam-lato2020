@@ -57,10 +57,10 @@ public class ConverterTest {
     {
         InitializeEconomyHero();
         CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(1);
-        economyHero.buyCreature(creatureInfo);
+        economyHero.buyCreature(creatureInfo, 1);
 
         Hero hero = HeroEcoBattleConverter.convert(economyHero);
-        Creature creature = creatureAbstractFactory.getCreature(creatureInfo);
+        Creature creature = creatureAbstractFactory.getCreature(economyHero.getCreatureStack(creatureInfo));
 
         assertTrue(CreatureEquals(creature,hero.getCreatures().get(0)));
     }
@@ -71,10 +71,10 @@ public class ConverterTest {
     {
         InitializeEconomyHero();
         CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(1);
-        economyHero.buyCreature(creatureInfo);
+        economyHero.buyCreature(creatureInfo, 1);
 
         Hero hero = HeroEcoBattleConverter.convert(economyHero);
-        Creature creature = creatureAbstractFactory.getCreature(creatureInfo);
+        Creature creature = creatureAbstractFactory.getCreature(economyHero.getCreatureStack(creatureInfo));
 
         assertEquals(creature,hero.getCreatures().get(0));
     }
@@ -117,7 +117,7 @@ public class ConverterTest {
         ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.CAPE_OF_VELOCITY);// +2 move range
         CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(1);// 5 move range
         economyHero.buyArtifact(artifactInfo);
-        economyHero.buyCreature(creatureInfo);
+        economyHero.buyCreature(creatureInfo, 1);
         Hero hero = HeroEcoBattleConverter.convert(economyHero);
         assertEquals(hero.getCreatures().get(0).getMoveRange(),7);
     }
