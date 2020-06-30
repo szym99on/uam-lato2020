@@ -20,7 +20,7 @@ public abstract class Spell implements PropertyChangeListener, Cloneable {
     private int cost;
     private int manaCost;
     private SpellInfo.Type type;
-    public SpellInfo.Target target;
+    private final SpellInfo.Target target;
 
     //@Builder
     public Spell (String aName, String aDescription, int aCost, int aLevel, int aManaCost, SpellInfo.Type aType, int aDuration, SpellInfo.Target aTarget) {
@@ -47,6 +47,10 @@ public abstract class Spell implements PropertyChangeListener, Cloneable {
     public void increaseDuration(int aAdditionalDuration)
     {
 //        Implementation only in Buff and Debuf sells
+    }
+
+    public boolean needObserver() {
+        return false;
     }
 
     @Override
