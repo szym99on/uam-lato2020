@@ -11,6 +11,7 @@ class CreatureImmunityArtifact extends CreatureBuffArtifact {
     @Override
     void buffCreature(Creature c) {
         c.getMagicResistance().addImmunitySpell(spellName);
+        CREATURE_IMMUNITY = spellName;
     }
 
     @Override

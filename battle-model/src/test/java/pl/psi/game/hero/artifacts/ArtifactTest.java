@@ -7,6 +7,7 @@ import pl.psi.game.spellbook.SpellBookInfoFactory;
 import static org.junit.jupiter.api.Assertions.*;
 import static pl.psi.game.artifacts.Artifact.*;
 import static pl.psi.game.hero.artifacts.ArtifactsInfoFactory.*;
+import static pl.psi.game.spellbook.SpellBookInfoFactory.MAGIC_ARROW;
 
 public class ArtifactTest {
     @BeforeAll
@@ -78,5 +79,17 @@ public class ArtifactTest {
 
         //then
         assertEquals(DEFAULT_IMMUNITY, bootsOfPolarity.getSpellImmunityName());
+    }
+
+    @Test
+    void shouldReturnThatArtifactGrantHasImmunity() {
+        //given
+        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(PENDANT_OF_DISPASSION);
+
+        //when
+        Artifact bootsOfPolarity = ArtifactFactory.createArtifact(artifactInfo);
+
+        //then
+        assertEquals(MAGIC_ARROW, bootsOfPolarity.getSpellImmunityName());
     }
 }
