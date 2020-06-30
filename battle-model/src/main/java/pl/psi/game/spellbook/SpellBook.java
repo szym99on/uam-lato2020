@@ -17,6 +17,9 @@ public class SpellBook {
         factory = new SpellFactory();
         spells = new ArrayList<Spell>();
     }
+    public int getMana(){
+        return mana;
+    }
 
     public List<Spell> getSpells() {
         return spells;
