@@ -2,12 +2,14 @@ package pl.psi.gui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import pl.psi.game.EconomyEngine;
 import pl.psi.game.fractions.CreatureInfo;
@@ -23,6 +25,7 @@ import pl.psi.game.skills.SkillInfoFactory;
 import pl.psi.game.spellbook.SpellBookInfoFactory;
 import pl.psi.game.spellbook.SpellInfo;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -408,6 +411,24 @@ public class MainEconomyController {
     public void handlePassTurn(ActionEvent actionEvent) {
         economyEngine.endTurn();
         refreshGui();
+//        if(economyEngine.activeHero == economyHero1){
+//            try {
+//
+//                FXMLLoader loader = new FXMLLoader();
+//                URL fxmlLocation = getClass().getResource("/main-battle.fxml");
+//                loader.setLocation(fxmlLocation);
+//                MainBattleController mainBattleController = new MainBattleController(economyHero1, economyHero2);
+//                loader.setController(mainBattleController);
+//                Parent root = loader.load();
+//
+//                Scene scene = new Scene(root);
+//                Stage stage = new Stage();
+//                stage.setScene(scene);
+//                stage.show();
+//            } catch (IOException aE) {
+//                aE.printStackTrace();
+//            }
+//        }
     }
 
     public void clearAll(){
