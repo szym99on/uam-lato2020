@@ -3,6 +3,8 @@ package pl.psi.game;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import pl.psi.game.fractions.Creature;
+import pl.psi.game.move.ObstacleFactory;
+import pl.psi.game.move.ObstacleIf;
 
 import java.awt.*;
 
@@ -58,6 +60,25 @@ class BoardTest {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             board.putCreature(1,100, Creature.builder().aName("C1").build());
         });
+        board.clearBoard();
+    }
+
+    @Test
+    void putObstacleTest(){
+        Board board = Board.getBoard();
+        ObstacleFactory obstacleFactory = new ObstacleFactory();
+
+        ObstacleIf marsh =  obstacleFactory.createImpactMoveObstacle("marsh", new Point(1,1));
+        ObstacleIf rock = obstacleFactory.createImpactMoveObstacle("rock", new Point(1,2));
+        ObstacleIf lava = obstacleFactory.createImpactCreatureObstacle("lava", new Point(1,3));
+
+        board.putObstacle(marsh);
+        board.putObstacle(rock);
+        board.putObstacle(lava);
+
+        assertTrue(marsh.equals(board.getObstacle(1, 1)));
+        assertTrue(rock.equals(board.getObstacle(1, 2)));
+        assertTrue(lava.equals(board.getObstacle(1, 3)));
         board.clearBoard();
     }
 }
