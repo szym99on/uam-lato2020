@@ -7,5 +7,4 @@ public interface GuiTileIf {
     String getDisplayName();
     boolean isCreature();
     boolean isObstacle();
-
 }

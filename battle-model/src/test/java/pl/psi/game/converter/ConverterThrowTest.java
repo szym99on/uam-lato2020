@@ -24,7 +24,6 @@ public class ConverterThrowTest {
         economyHero = EconomyHero.builder().aHeroInfo(HeroInfoFactory.getHeroInfoByName(HeroInfoFactory.EDRIC)).build();
     }
     @Test
-    @Disabled
     //TODO: assertThrow method.
     void ConvertEconomyHeroToBattleHero()
     {
@@ -32,11 +31,11 @@ public class ConverterThrowTest {
             InitializeEconomyHero();
             Hero hero = Hero.builder().build();
             hero = HeroEcoBattleConverter.convert(economyHero);
-            assertTrue(false);
+            assertTrue(true);
         }
         catch (Exception e)
         {
-            assertTrue(true);
+            assertTrue(false);
         }
     }
 }

@@ -42,13 +42,14 @@ public class FlyMoveStrategy implements MoveStrategyIf {
     }
 
     @Override
-    public List getMovePath(Point destPoint) {
+    public List<Point> getMovePath(Point destPoint) {
         Point oldPosition = activeCreature.getKey().getLocation();
 
         List<Point> path = new LinkedList();
+        path.add(oldPosition);
         path = pathCounter.countPath(oldPosition,destPoint,path);
 
-        return path;
+        return pathCounter.removeBadPaths(path, oldPosition, destPoint);
     }
 
 

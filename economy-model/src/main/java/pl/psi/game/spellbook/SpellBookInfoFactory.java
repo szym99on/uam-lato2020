@@ -31,33 +31,29 @@ public class SpellBookInfoFactory {
     private final static List<SpellInfo> spellList = new ArrayList<>();
     {
         //1-2
-        spellList.add(SpellInfo.builder().aCost(1).aDescription("Target, enemy troop receives ((Power x 10) + 10) damage.").aDuration(0).aManaCost(5).aName(MAGIC_ARROW).aLevel(1).aType(SpellInfo.Type.ALL).build());
-//        spellList.add(SpellInfo.builder().aCost(1).aDescription("Target, enemy troop receives ((Power x 10) + 10) damage.").aDuration(0).aManaCost(5).aName(MAGIC_ARROW).aLevel(1).aType(SpellInfo.Type.FIRE).build());
-//        spellList.add(SpellInfo.builder().aCost(1).aDescription("Target, enemy troop receives ((Power x 10) + 10) damage.").aDuration(0).aManaCost(5).aName(MAGIC_ARROW).aLevel(1).aType(SpellInfo.Type.AIR).build());
-//        spellList.add(SpellInfo.builder().aCost(1).aDescription("Target, enemy troop receives ((Power x 10) + 10) damage.").aDuration(0).aManaCost(5).aName(MAGIC_ARROW).aLevel(1).aType(SpellInfo.Type.WATER).build());
-//        spellList.add(SpellInfo.builder().aCost(1).aDescription("Target, enemy troop receives ((Power x 10) + 10) damage.").aDuration(0).aManaCost(5).aName(MAGIC_ARROW).aLevel(1).aType(SpellInfo.Type.EARTH).build());
-        spellList.add(SpellInfo.builder().aCost(1).aDescription("Target, enemy troop receives ((Power x 25) + 10) damage.").aDuration(0).aManaCost(10).aName(LIGHTNING_BOLT).aLevel(2).aType(SpellInfo.Type.AIR).build());
+        spellList.add(SpellInfo.builder().aTarget(SpellInfo.Target.ENEMY).aCost(1).aDescription("Target, enemy troop receives ((Power x 10) + 10) damage.").aDuration(0).aManaCost(5).aName(MAGIC_ARROW).aLevel(1).aType(SpellInfo.Type.ALL).build());
+        spellList.add(SpellInfo.builder().aTarget(SpellInfo.Target.ENEMY).aCost(1).aDescription("Target, enemy troop receives ((Power x 25) + 10) damage.").aDuration(0).aManaCost(10).aName(LIGHTNING_BOLT).aLevel(2).aType(SpellInfo.Type.AIR).build());
         //3-4
-        spellList.add(SpellInfo.builder().aCost(1).aDescription("All undead creature troops receive ((Power x 10) + 10) damage.").aDuration(0).aManaCost(15).aName(DESTROY_UNDEAD).aLevel(3).aType(SpellInfo.Type.AIR).build());
-        spellList.add(SpellInfo.builder().aCost(1).aDescription("Troops in target hex and adjacent hexes take ((Power x 10) + 15) damage.").aDuration(0).aManaCost(15).aName(FIRE_BALL).aLevel(3).aType(SpellInfo.Type.FIRE).build());
-        spellList.add(SpellInfo.builder().aCost(1).aDescription("Troops in target hex and adjacent hexes take ((Power x 25) + 25) damage.").aDuration(0).aManaCost(16).aName(METEOR_SHOWER).aLevel(4).aType(SpellInfo.Type.EARTH).build());
+        spellList.add(SpellInfo.builder().aTarget(SpellInfo.Target.ANY).aCost(1).aDescription("All undead creature troops receive ((Power x 10) + 10) damage.").aDuration(0).aManaCost(15).aName(DESTROY_UNDEAD).aLevel(3).aType(SpellInfo.Type.AIR).build());
+        spellList.add(SpellInfo.builder().aTarget(SpellInfo.Target.ANY).aCost(1).aDescription("Troops in target hex and adjacent hexes take ((Power x 10) + 15) damage.").aDuration(0).aManaCost(15).aName(FIRE_BALL).aLevel(3).aType(SpellInfo.Type.FIRE).build());
+        spellList.add(SpellInfo.builder().aTarget(SpellInfo.Target.ANY).aCost(1).aDescription("Troops in target hex and adjacent hexes take ((Power x 25) + 25) damage.").aDuration(0).aManaCost(16).aName(METEOR_SHOWER).aLevel(4).aType(SpellInfo.Type.EARTH).build());
         //5
-        spellList.add(SpellInfo.builder().aCost(1).aDescription("Target, enemy troop receives ((Power x 75) + 100) damage.").aDuration(0).aManaCost(30).aName(IMPLOSION).aLevel(5).aType(SpellInfo.Type.EARTH).build());
+        spellList.add(SpellInfo.builder().aTarget(SpellInfo.Target.ENEMY).aCost(1).aDescription("Target, enemy troop receives ((Power x 75) + 100) damage.").aDuration(0).aManaCost(30).aName(IMPLOSION).aLevel(5).aType(SpellInfo.Type.EARTH).build());
 
 
-        spellList.add(SpellInfo.builder().aCost(1).aDescription("Increases the speed of the selected unit.").aDuration(1).aManaCost(6).aName(HASTE).aLevel(1).aType(SpellInfo.Type.AIR).build());
-        spellList.add(SpellInfo.builder().aCost(1).aDescription("Shields a selected unit, reducing the amount of damage received from ranged attacks.").aDuration(1).aManaCost(12).aName(AIR_SHIELD).aLevel(3).aType(SpellInfo.Type.AIR).build());
-        spellList.add(SpellInfo.builder().aCost(1).aDescription("Increases the hand-to-hand damage inflicted by the selected unit.").aDuration(1).aManaCost(5).aName(BLOODLUST).aLevel(1).aType(SpellInfo.Type.FIRE).build());
-        spellList.add(SpellInfo.builder().aCost(1).aDescription("Cast on a friendly unit, it does not provide any additional protection, but any enemy attacking through the fire shield will suffer damage equal to a portion of what it inflicts.").aDuration(1).aManaCost(16).aName(FIRE_SHIELD).aLevel(4).aType(SpellInfo.Type.FIRE).build());
-        spellList.add(SpellInfo.builder().aCost(1).aDescription("Reduces the speed of the selected enemy unit.").aDuration(1).aManaCost(6).aName(SLOW).aLevel(1).aType(SpellInfo.Type.EARTH).build());
-        spellList.add(SpellInfo.builder().aCost(1).aDescription("Increases the selected unit's defense strength.").aDuration(1).aManaCost(5).aName(STONESKIN).aLevel(1).aType(SpellInfo.Type.EARTH).build());
-        spellList.add(SpellInfo.builder().aCost(1).aDescription("Reduces the selected enemy unit's attack strength.").aDuration(1).aManaCost(8).aName(WEAKNESS).aLevel(2).aType(SpellInfo.Type.WATER).build());
-        spellList.add(SpellInfo.builder().aCost(1).aDescription("Bestows a bonus to the attack strength, defense strength and speed of the selected unit.").aDuration(1).aManaCost(16).aName(PRAYER).aLevel(4).aType(SpellInfo.Type.WATER).build());
+        spellList.add(SpellInfo.builder().aTarget(SpellInfo.Target.ALLY).aCost(1).aDescription("Increases the speed of the selected unit.").aDuration(1).aManaCost(6).aName(HASTE).aLevel(1).aType(SpellInfo.Type.AIR).build());
+        spellList.add(SpellInfo.builder().aTarget(SpellInfo.Target.ALLY).aCost(1).aDescription("Shields a selected unit, reducing the amount of damage received from ranged attacks.").aDuration(1).aManaCost(12).aName(AIR_SHIELD).aLevel(3).aType(SpellInfo.Type.AIR).build());
+        spellList.add(SpellInfo.builder().aTarget(SpellInfo.Target.ALLY).aCost(1).aDescription("Increases the hand-to-hand damage inflicted by the selected unit.").aDuration(1).aManaCost(5).aName(BLOODLUST).aLevel(1).aType(SpellInfo.Type.FIRE).build());
+        spellList.add(SpellInfo.builder().aTarget(SpellInfo.Target.ALLY).aCost(1).aDescription("Cast on a friendly unit, it does not provide any additional protection, but any enemy attacking through the fire shield will suffer damage equal to a portion of what it inflicts.").aDuration(1).aManaCost(16).aName(FIRE_SHIELD).aLevel(4).aType(SpellInfo.Type.FIRE).build());
+        spellList.add(SpellInfo.builder().aTarget(SpellInfo.Target.ENEMY).aCost(1).aDescription("Reduces the speed of the selected enemy unit.").aDuration(1).aManaCost(6).aName(SLOW).aLevel(1).aType(SpellInfo.Type.EARTH).build());
+        spellList.add(SpellInfo.builder().aTarget(SpellInfo.Target.ALLY).aCost(1).aDescription("Increases the selected unit's defense strength.").aDuration(1).aManaCost(5).aName(STONESKIN).aLevel(1).aType(SpellInfo.Type.EARTH).build());
+        spellList.add(SpellInfo.builder().aTarget(SpellInfo.Target.ENEMY).aCost(1).aDescription("Reduces the selected enemy unit's attack strength.").aDuration(1).aManaCost(8).aName(WEAKNESS).aLevel(2).aType(SpellInfo.Type.WATER).build());
+        spellList.add(SpellInfo.builder().aTarget(SpellInfo.Target.ALLY).aCost(1).aDescription("Bestows a bonus to the attack strength, defense strength and speed of the selected unit.").aDuration(1).aManaCost(16).aName(PRAYER).aLevel(4).aType(SpellInfo.Type.WATER).build());
 
-        spellList.add(SpellInfo.builder().aCost(1).aDescription("Allows you to summon elementals. Once cast, no other elemental types may be summoned.").aDuration(-1).aManaCost(25).aName(STORM_ELEMENTAL).aLevel(5).aType(SpellInfo.Type.AIR).build());
-        spellList.add(SpellInfo.builder().aCost(1).aDescription("Allows you to summon elementals. Once cast, no other elemental types may be summoned.").aDuration(-1).aManaCost(25).aName(ENERGY_ELEMENTAL).aLevel(5).aType(SpellInfo.Type.FIRE).build());
-        spellList.add(SpellInfo.builder().aCost(1).aDescription("Allows you to summon elementals. Once cast, no other elemental types may be summoned.").aDuration(-1).aManaCost(25).aName(MAGMA_ELEMENTAL).aLevel(5).aType(SpellInfo.Type.EARTH).build());
-        spellList.add(SpellInfo.builder().aCost(1).aDescription("Allows you to summon elementals. Once cast, no other elemental types may be summoned.").aDuration(-1).aManaCost(25).aName(ICE_ELEMENTAL).aLevel(5).aType(SpellInfo.Type.WATER).build());
+        spellList.add(SpellInfo.builder().aTarget(SpellInfo.Target.EMPTY).aCost(1).aDescription("Allows you to summon elementals. Once cast, no other elemental types may be summoned.").aDuration(-1).aManaCost(25).aName(STORM_ELEMENTAL).aLevel(5).aType(SpellInfo.Type.AIR).build());
+        spellList.add(SpellInfo.builder().aTarget(SpellInfo.Target.EMPTY).aCost(1).aDescription("Allows you to summon elementals. Once cast, no other elemental types may be summoned.").aDuration(-1).aManaCost(25).aName(ENERGY_ELEMENTAL).aLevel(5).aType(SpellInfo.Type.FIRE).build());
+        spellList.add(SpellInfo.builder().aTarget(SpellInfo.Target.EMPTY).aCost(1).aDescription("Allows you to summon elementals. Once cast, no other elemental types may be summoned.").aDuration(-1).aManaCost(25).aName(MAGMA_ELEMENTAL).aLevel(5).aType(SpellInfo.Type.EARTH).build());
+        spellList.add(SpellInfo.builder().aTarget(SpellInfo.Target.EMPTY).aCost(1).aDescription("Allows you to summon elementals. Once cast, no other elemental types may be summoned.").aDuration(-1).aManaCost(25).aName(ICE_ELEMENTAL).aLevel(5).aType(SpellInfo.Type.WATER).build());
     }
 
     public static SpellInfo getSpell(String aName){

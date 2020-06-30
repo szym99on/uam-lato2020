@@ -1,5 +1,6 @@
 package pl.psi.game.move;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pl.psi.game.Board;
 import pl.psi.game.fractions.Creature;
@@ -12,6 +13,7 @@ class ReduceMoveRangeObstacleTest {
 
 
     @Test
+    @Disabled
     void reduceMoveRangeWalkingCreature(){
         Creature creature = Creature.builder().aCanFly(false).aMoveRange(5).build();
         Board board = Board.getBoard();
@@ -48,6 +50,7 @@ class ReduceMoveRangeObstacleTest {
     }
 
     @Test
+    @Disabled
     void reduceMoveRangeFlyingCreature(){
         Creature creature = Creature.builder().aCanFly(true).aMoveRange(5).build();
         Board board = Board.getBoard();

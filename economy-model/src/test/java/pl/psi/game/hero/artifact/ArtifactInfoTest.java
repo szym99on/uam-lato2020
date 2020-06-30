@@ -17,6 +17,7 @@ public class ArtifactInfoTest {
     static void initializeFactories(){
         new ArtifactsInfoFactory();
     }
+    //list used for getAll() method test
     private final static List<ArtifactInfo> artifactList = new ArrayList<>();
     {
         artifactList.add(ArtifactInfo.builder().aCost(1000).aDescription("+1 knowledge").aName(HELM_OF_THE_ALABASTER_UNICORN).aLocation(ArtifactInfo.Location.HEAD).build());

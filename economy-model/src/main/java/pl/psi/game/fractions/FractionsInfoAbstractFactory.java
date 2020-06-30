@@ -31,7 +31,9 @@ public class FractionsInfoAbstractFactory {
                 return new StrongholdInfoFactory();
             case ELEMENTAL:
                 return new ElementalInfoFactory();
-            default: throw new UnsupportedOperationException("Fraction not recognized");
+            //default: throw new UnsupportedOperationException("Fraction not recognized");
+            default: return new NecropolisInfoFactory();
+
         }
     }
 

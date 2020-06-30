@@ -139,12 +139,7 @@ public class EconomyHeroGoldManagementTest {
         CreatureInfo creature2 = necropolisFactory.getCreature(NecropolisInfoFactory.POWER_LICH);
         hero.buyArtifact(artifact);
         hero.buyCreature(creature);
-        assertThrows(IllegalStateException.class, () -> {
-
-
-            hero.buyCreature(creature2);
-
-        });
+        assertFalse(hero.buyCreature(creature2));
 
         assertEquals(500, hero.getGold());
 

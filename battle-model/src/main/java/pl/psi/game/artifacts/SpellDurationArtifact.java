@@ -8,15 +8,13 @@ class SpellDurationArtifact extends SpellBuffArtifact {
 
     SpellDurationArtifact(int aDuration){
         duration = aDuration;
+        statisticsBuffs.replace(SPELL_DURATION, duration);
     }
 
     @Override
     void buffSpell(Spell s) {
-//        s.increaseDuration(duration);
+        s.increaseDuration(duration);
     }
-
-    @Override
-    public int getDuration() { return duration; }
 }
 
 

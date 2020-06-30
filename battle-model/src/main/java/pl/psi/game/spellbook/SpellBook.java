@@ -34,6 +34,16 @@ public class SpellBook {
         aSpells.forEach(s -> spells.add(s));
     }
 
+    public boolean isManaEnough(int requiredMana){
+        if(mana >= requiredMana) return true;
+        else return false;
+    }
+
+    public void decreaseMana(int aAmount){
+        mana -= aAmount;
+    }
+
+
     @Deprecated
     public void createSpell(SpellInfo s)
     {

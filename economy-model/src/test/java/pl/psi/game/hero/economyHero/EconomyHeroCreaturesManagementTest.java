@@ -44,9 +44,7 @@ public class EconomyHeroCreaturesManagementTest {
         CreatureInfo creature = necropolisFactory.getCreature(NecropolisInfoFactory.GHOST_DRAGON);
         EconomyHero hero = EconomyHero.builder().aGold(1000).build();
 
-        assertThrows(IllegalStateException.class, () ->
-                hero.buyCreature(creature)
-        );
+        assertFalse(hero.buyCreature(creature));
 
         assertEquals(hero.getGold(), 1000);
 
