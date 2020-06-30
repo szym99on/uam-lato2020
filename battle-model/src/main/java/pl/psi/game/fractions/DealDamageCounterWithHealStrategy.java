@@ -18,7 +18,7 @@ public class DealDamageCounterWithHealStrategy implements DealDamageCounterStrat
         {
             damageToDeal = damageToDeal - aDefender.getArmor();
         }
-        aAttacker.heal(damageToDeal);
+        aAttacker.heal(damageToDeal*aAttacker.getAmount());
         return damageToDeal;
     }
 }

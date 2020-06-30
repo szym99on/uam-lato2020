@@ -168,8 +168,8 @@ public class ArtifactTest {
         Artifact bootsOfPolarity = ArtifactFactory.createArtifact(artifactInfo);
 
         List<Creature> creatures = new ArrayList<>();
-        Creature creature1 = Creature.builder().aMaxHp(1000).build();
-        Creature creature2 = Creature.builder().aMaxHp(1000).build();
+        Creature creature1 = Creature.builder().aMaxHp(1000).aAmount(1).build();
+        Creature creature2 = Creature.builder().aMaxHp(1000).aAmount(1).build();
         creatures.add(creature1);
         Hero battleHero = Hero.builder().aCreatures(creatures).build();
 

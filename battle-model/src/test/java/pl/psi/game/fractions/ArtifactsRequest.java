@@ -42,8 +42,8 @@ public class ArtifactsRequest {
 
     @Test
     void shouldIncreaseHP(){
-        Creature dummyCreature = new Creature(10, Range.closed(1, 1), 0, "", 0, false);
-        Creature attacker = new Creature(10, Range.closed(1, 1), 0, "", 0, false);
+        Creature dummyCreature = new Creature(10, Range.closed(1, 1), 0, "", 0, false,0);
+        Creature attacker = new Creature(10, Range.closed(1, 1), 0, "", 0, false,0);
         attacker.attack(dummyCreature); //reducing dummy's current HP for test purposes
         dummyCreature.increaseHP(2); //increasing HP should affect both max and current HP. It should also not allow current HP to exceed max HP.
         assertEquals(12, dummyCreature.getMaxHp());
