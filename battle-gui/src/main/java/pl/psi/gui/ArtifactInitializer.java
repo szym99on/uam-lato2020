@@ -22,7 +22,7 @@ public class ArtifactInitializer extends AbstractInitializer {
             //            ################################################################
 //            SCENARIO 1 - HeroStatisticArtifact
 //            ################################################################
-            h1.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.RAMPART).getCreatureByTier(7));
+            h1.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.RAMPART).getCreatureByTier(7), 1);
             h1.buyArtifact(ArtifactsInfoFactory.getArtifact(HELM_OF_THE_ALABASTER_UNICORN)); //+1 knowledge
             h1.buyArtifact(ArtifactsInfoFactory.getArtifact(MAGISTERS_SANDALS)); //+2 spell power
             h1.buySpell(SpellBookInfoFactory.getSpell(MAGIC_ARROW));
@@ -48,7 +48,7 @@ public class ArtifactInitializer extends AbstractInitializer {
 //            ################################################################
 //            SCENARIO 1
 //            ################################################################
-            h2.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.RAMPART).getCreatureByTier(7));
+            h2.buyCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.RAMPART).getCreatureByTier(7), 1);
             h2.buySpell(SpellBookInfoFactory.getSpell(MAGIC_ARROW));
 
 //            ################################################################
