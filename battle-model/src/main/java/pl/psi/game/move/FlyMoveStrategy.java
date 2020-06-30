@@ -36,9 +36,20 @@ public class FlyMoveStrategy implements MoveStrategyIf {
     @Override
     public boolean isMovePossible(Point destPoint) {
         Point oldPosition = activeCreature.getKey();
-
         double distance = Math.abs(destPoint.getX() - oldPosition.getX()) + Math.abs(destPoint.getY() - oldPosition.getY());
-        return activeCreature.getValue().getMoveRange() - distance >= 0;
+
+        if (activeCreature.getValue().getMoveRange() >= distance) {
+            if (board.getTile((int) destPoint.getX(), (int) destPoint.getY()) == null) {
+                return true;
+            } else if (board.getTile((int) destPoint.getX(), (int) destPoint.getY()).isObstacle()) {
+                return board.getObstacle((int) destPoint.getX(), (int) destPoint.getY()).isMovePossible();
+            } else if (board.getTile((int) destPoint.getX(), (int) destPoint.getY()).isCreature()) {
+                return false;
+            }
+        }else {
+            return false;
+        }
+        return false;
     }
 
     @Override

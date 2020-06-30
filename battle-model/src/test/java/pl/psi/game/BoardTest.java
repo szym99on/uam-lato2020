@@ -81,4 +81,28 @@ class BoardTest {
         assertTrue(lava.equals(board.getObstacle(1, 3)));
         board.clearBoard();
     }
+
+    @Test
+    void getTileTest(){
+        Board board = Board.getBoard();
+
+        ObstacleFactory obstacleFactory = new ObstacleFactory();
+
+        ObstacleIf marsh =  obstacleFactory.createImpactMoveObstacle("marsh", new Point(1,1));
+        ObstacleIf rock = obstacleFactory.createImpactMoveObstacle("rock", new Point(1,2));
+        ObstacleIf lava = obstacleFactory.createImpactCreatureObstacle("lava", new Point(1,3));
+
+        board.putObstacle(marsh);
+        board.putObstacle(rock);
+        board.putObstacle(lava);
+
+        Creature creature = Creature.builder().build();
+        board.putCreature(1, 4, creature);
+
+        assertTrue(marsh.equals(board.getTile(1, 1)));
+        assertTrue(rock.equals(board.getTile(1, 2)));
+        assertTrue(lava.equals(board.getTile(1, 3)));
+        assertTrue(creature.equals(board.getTile(1, 4)));
+
+    }
 }
