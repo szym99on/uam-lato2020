@@ -13,7 +13,6 @@ class ReduceMoveRangeObstacleTest {
 
 
     @Test
-    @Disabled
     void reduceMoveRangeWalkingCreature(){
         Creature creature = Creature.builder().aCanFly(false).aMoveRange(5).build();
         Board board = Board.getBoard();

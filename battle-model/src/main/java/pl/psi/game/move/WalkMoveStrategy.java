@@ -43,11 +43,10 @@ public class WalkMoveStrategy implements MoveStrategyIf {
     public boolean isMovePossible(Point destPoint) {
         List<Point> path = getMovePath(destPoint);
         boolean returnValue = true;
-        int index = 0;
+        path.remove(0);
+
         if (path.size() - 1 <= activeCreature.getValue().getMoveRange()) {
             for (Point point : path) {
-                index++;
-                if (index == 1) continue;
                 if (board.getTile((int) point.getX(), (int) point.getY()) == null) {
                     returnValue = true;
                 } else if (board.getTile((int) point.getX(), (int) point.getY()).isObstacle()) {
@@ -62,7 +61,6 @@ public class WalkMoveStrategy implements MoveStrategyIf {
             returnValue = false;
         }
         return returnValue;
-
 
     }
 
