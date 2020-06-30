@@ -14,6 +14,8 @@ import static pl.psi.game.Board.BOARD_WIDTH;
 
 class PathCounter {
 
+    private final int recursionGuard = 50;
+    private int recursionCounter;
     private int obstacleCost;
     private int obstacleCostRock;
     Map<Point, Integer> aStarBoard = new HashMap<>();
@@ -39,6 +41,9 @@ class PathCounter {
 
 
     List countPath(Point point, Point endPoint, List<Point> path) {
+        if(recursionGuard <= path.size()){
+            return null;
+        }
         double mapCost;
         double pointInPath;
         Point startPoint = path.get(0);
@@ -88,14 +93,14 @@ class PathCounter {
                 countPath(right, endPoint, path);
             }
 
-            Point backPoint = path.get(path.size() - 1);
+  /*          Point backPoint = path.get(path.size() - 1);
 
             if(!backPoint.equals(endPoint)) {
                 path.clear();
                 updateMapCost(backPoint);
                 countPath(startPoint, endPoint, path);
             }
-
+*/
             return path;
         }
     }

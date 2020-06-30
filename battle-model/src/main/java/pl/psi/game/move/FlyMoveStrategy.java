@@ -42,7 +42,7 @@ public class FlyMoveStrategy implements MoveStrategyIf {
             if (board.getTile((int) destPoint.getX(), (int) destPoint.getY()) == null) {
                 return true;
             } else if (board.getTile((int) destPoint.getX(), (int) destPoint.getY()).isObstacle()) {
-                return board.getObstacle((int) destPoint.getX(), (int) destPoint.getY()).isMovePossible();
+                return board.getObstacle((int) destPoint.getX(), (int) destPoint.getY()).isPassable();
             } else if (board.getTile((int) destPoint.getX(), (int) destPoint.getY()).isCreature()) {
                 return false;
             }

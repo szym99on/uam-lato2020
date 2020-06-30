@@ -35,7 +35,7 @@ public abstract class ImpactCreatureObstacle implements ObstacleIf {
     }
 
     @Override
-    public boolean isMovePossible() {
+    public boolean isPassable() {
         return true;
     }
 

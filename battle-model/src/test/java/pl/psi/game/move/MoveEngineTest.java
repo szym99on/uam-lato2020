@@ -13,6 +13,35 @@ import static org.junit.jupiter.api.Assertions.*;
 class MoveEngineTest {
 
     @Test
+    void moveshouldBeNotPossible(){
+
+        ObstacleFactory obstacleFactory = new ObstacleFactory();
+
+        EndingMoveObstacle e1 = (EndingMoveObstacle) obstacleFactory.createImpactMoveObstacle("rock", new Point(1,2));
+        EndingMoveObstacle e2 = (EndingMoveObstacle) obstacleFactory.createImpactMoveObstacle("rock", new Point(1,0));
+        EndingMoveObstacle e3 = (EndingMoveObstacle) obstacleFactory.createImpactMoveObstacle("rock", new Point(0,1));
+        EndingMoveObstacle e4 = (EndingMoveObstacle) obstacleFactory.createImpactMoveObstacle("rock", new Point(2,1));
+
+
+        Creature c = Creature.builder().aMoveRange(1).build();
+        Board board = Board.getBoard();
+        board.clearBoard();
+        board.putCreature(1,1, c);
+        board.putObstacle(e1);
+        board.putObstacle(e2);
+        board.putObstacle(e3);
+        board.putObstacle(e4);
+
+        MoveEngine moveEngine = new MoveEngine(board);
+        moveEngine.setActiveCreature(new Point(1,1),c);
+
+        moveEngine.move(1,3);
+        assertEquals(c, board.getCreature(1,1));
+        assertNull(board.getCreature(1,3));
+
+    }
+
+    @Test
     void moveShouldBePossible(){
         Creature c = Creature.builder().aMoveRange(1).build();
         Board board = Board.getBoard();
@@ -232,7 +261,7 @@ class MoveEngineTest {
 
     @Test
     void walkingMoveCanAvoidObstacle2(){
-        Creature creature = Creature.builder().aMoveRange(6).aCanFly(false).build();
+        Creature creature = Creature.builder().aMoveRange(8).aCanFly(false).build();
         ObstacleFactory obstacleFactory = new ObstacleFactory();
 
         EndingMoveObstacle e1 = (EndingMoveObstacle) obstacleFactory.createImpactMoveObstacle("rock", new Point(0,2));
@@ -259,6 +288,30 @@ class MoveEngineTest {
         assertTrue(path.contains(new Point(1,3)));
         assertTrue(path.contains(new Point(1,4)));
         assertTrue(path.contains(new Point(0,4)));
+    }
+    @Test
+    void walkingMoveCanAvoidObstacleisMovePossible(){
+        Creature creature = Creature.builder().aMoveRange(8).aCanFly(false).build();
+        ObstacleFactory obstacleFactory = new ObstacleFactory();
+
+        EndingMoveObstacle e1 = (EndingMoveObstacle) obstacleFactory.createImpactMoveObstacle("rock", new Point(0,2));
+        EndingMoveObstacle e2 = (EndingMoveObstacle) obstacleFactory.createImpactMoveObstacle("rock", new Point(1,1));
+        EndingMoveObstacle e3 = (EndingMoveObstacle) obstacleFactory.createImpactMoveObstacle("rock", new Point(1,0));
+///        EndingMoveObstacle e4 = (EndingMoveObstacle) obstacleFactory.createImpactMoveObstacle("rock", new Point(1,3));
+
+        Board board = Board.getBoard();
+        board.clearBoard();
+        board.putCreature(0,0, creature);
+        board.putObstacle(e1);
+        board.putObstacle(e2);
+        board.putObstacle(e3);
+
+        MoveEngine moveEngine = new MoveEngine(board);
+        moveEngine.setActiveCreature(new Point(0,0), creature);
+
+        boolean path = moveEngine.isMovePossible(new Point(0, 4));
+
+        assertFalse(path);
     }
 
     @Test

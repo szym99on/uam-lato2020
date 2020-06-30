@@ -17,7 +17,7 @@ public class ReduceMoveRangeObstacle extends ImpactMoveObstacle {
 
 
     @Override
-    public boolean isMovePossible() {
+    public boolean isPassable() {
         return true;
     }
 
