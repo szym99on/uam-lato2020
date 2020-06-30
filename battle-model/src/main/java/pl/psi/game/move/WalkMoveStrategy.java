@@ -43,7 +43,8 @@ public class WalkMoveStrategy implements MoveStrategyIf {
     public boolean isMovePossible(Point destPoint) {
         List<Point> path = getMovePath(destPoint);
         boolean returnValue = false;
-        path.remove(0);
+
+        //path.remove(0);
 
         if (path.size() - 1 <= activeCreature.getValue().getMoveRange()) {
             for (Point point : path) {
