@@ -26,6 +26,7 @@ import pl.psi.game.spellbook.SpellInfo;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 
@@ -162,14 +163,10 @@ public class MainEconomyController {
                 if(economyEngine.activeHero.getSkills().contains(SkillInfoFactory.getSkill(itemName)))
                     btn.setDisable(true);
                 break;
-            case "Creature":
-                btn.setOnAction(this::handleBuyCreature);
-
-                break;
         }
 
         hbox.getChildren().add(btn);
-        TextField text = new TextField(Integer.toString(cost));
+        TextField text = new TextField(cost +"G");
         text.setEditable(false);
         text.setMaxWidth(70);
         text.setMinSize(50, 19);
@@ -229,14 +226,33 @@ public class MainEconomyController {
         int creaturevar = 0;
         for (CreatureStack creature : economyEngine.getCreaturesAvailableToBuy()) {
             HBox hbox = new HBox();
-            hbox.setSpacing(10);
+            hbox.setSpacing(0);
             if (creaturevar < 5)
                 creaturesShopInside.getChildren().add(hbox);
             else
                 creaturesShopInside2.getChildren().add(hbox);
 
-            addItemToShop(creature.getName(), creature.getCost(), hbox, "Creature");
+            Button btn = new Button();
+            btn.setId(creature.getName());
+            btn.setText(creature.getName());
+            btn.setMinSize(170, 19);
+            btn.setOnAction(this::handleBuyCreature);
+
+            TextField amount = new TextField(Integer.toString(creature.getCreaturesCount()));
+            amount.setEditable(false);
+            amount.setMaxWidth(35);
+            amount.setMinSize(25, 19);
+            amount.setId("amount:"+creature.getName());
+
+            TextField text = new TextField(creature.getCost() +"G");
+            text.setMaxWidth(48);
+            text.setMinSize(35, 19);
+            hbox.getChildren().add(btn);
+            hbox.getChildren().add(amount);
+            hbox.getChildren().add(text);
             creaturevar++;
+            if(creature.getCreaturesCount() == 0)
+                btn.setDisable(true);
         }
         initializeEq();
     }
@@ -287,26 +303,38 @@ public class MainEconomyController {
             skillvarhero++;
 
         }
-//        heroCreaturesInside.getChildren().clear();
-//        heroCreaturesInside.getChildren().clear();
-//        int creaturevarhero = 0;
-//        List<CreatureStack> herocreatures = economyEngine.activeHero.getCreatures();
-//        for (CreatureStack creature : herocreatures) {
-//            if (creaturevarhero < 5) {
-//                HBox hbox = new HBox();
-//                hbox.setSpacing(10);
-//                heroSkillInside.getChildren().add(hbox);
-//                addItemToEq(creature.getName(), creature.getCost(), hbox);
-//                creaturevarhero++;
-//
-//            } else {
-//                HBox hbox = new HBox();
-//                hbox.setSpacing(10);
-//                heroSkillInside2.getChildren().add(hbox);
-//                addItemToEq(creature.getName(), creature.getCost(), hbox);
-//            }
-//
-//        }
+        heroCreaturesInside.getChildren().clear();
+        heroCreaturesInside2.getChildren().clear();
+        int creaturevarhero = 0;
+        for (CreatureStack creature : economyEngine.activeHero.getCreatures()) {
+            HBox hbox = new HBox();
+            hbox.setSpacing(0);
+            if (creaturevarhero < 5) {
+                heroCreaturesInside.getChildren().add(hbox);
+            } else {
+                heroCreaturesInside2.getChildren().add(hbox);
+            }
+            Button btn = new Button();
+            btn.setId(creature.getName());
+            btn.setText(creature.getName());
+            btn.setMinSize(170, 19);
+            btn.setOnAction(this::handleSellCreature);
+
+            TextField amount = new TextField(Integer.toString(creature.getCreaturesCount()));
+            amount.setEditable(false);
+            amount.setMaxWidth(35);
+            amount.setMinSize(25, 19);
+            amount.setId("amount:"+creature.getName());
+
+            TextField text = new TextField((int) (creature.getCost() * 0.75) +"G");
+            text.setMaxWidth(48);
+            text.setMinSize(35, 19);
+            hbox.getChildren().add(btn);
+            hbox.getChildren().add(amount);
+            hbox.getChildren().add(text);
+            creaturevarhero++;
+
+        }
     }
 
     public void addItemToEq(String name, int cost, HBox hbox, String type) {
@@ -315,7 +343,7 @@ public class MainEconomyController {
         btn.setText(name);
         btn.setMinSize(170, 19);
         hbox.getChildren().add(btn);
-        TextField text = new TextField(String.valueOf((int) (cost * 0.75)));
+        TextField text = new TextField((int) (cost * 0.75) +"G");
         text.setEditable(false);
         text.setMaxWidth(70);
         text.setMinSize(50, 19);
@@ -345,10 +373,31 @@ public class MainEconomyController {
         handleSell(actionEvent, "Spell");
     }
 
+    public void handleSellCreature(ActionEvent actionEvent) {
+
+
+        CreatureInfo creatureInfo = economyEngine.activeHero.getHeroInfo().getFractionFactory().getCreature(((Button) actionEvent.getSource()).getId());
+        CreatureStack stackFromHero = null;
+        for(CreatureStack c: economyEngine.activeHero.getCreatures()){
+            if(c.getCreatureInfo().equals(creatureInfo))
+                stackFromHero = c;
+        }
+
+        if(stackFromHero != null) {
+
+            Optional<Integer> result = showDialogToSellCreatures(stackFromHero.getName(), stackFromHero.getCreaturesCount() );
+            if (result.isPresent()) {
+                economyEngine.activeHero.sellCreature(stackFromHero.getCreatureInfo(), result.get());
+                refreshGui();
+            }
+        }
+    }
+
+
     public void handleSell(ActionEvent actionEvent, String type) {
         economyEngine.sellItem(((Button) actionEvent.getSource()).getId(), type);
         refreshGui();
-        gold.setText(Integer.toString(economyEngine.activeHero.getGold()));
+
     }
 
     public void refreshGui(){
@@ -445,26 +494,50 @@ public class MainEconomyController {
     }
 
     private void handleBuyCreature(ActionEvent actionEvent) {
-//        System.out.println("Clicked buy creature button;");
-//        System.out.println("ID is: ");
-//        System.out.println(((Button) actionEvent.getSource()).getId());
-//        String creatureName = ((Button) actionEvent.getSource()).getId();
-//        CreatureInfo creature = FractionsInfoAbstractFactory.getCreature(creatureName);
-//        System.out.println("Artifact is:");
-//        System.out.println(creature.getName());
-//
-//        if (economyEngine.activeHero.buyCreature(creature)) {
-//
-//            System.out.println("Creature bought");
-//            //gold.setText(String.valueOf(Integer.parseInt(gold.getText()) - spell.getCost()));
-//            artifactsShopInside.getChildren().remove(buyArtifactButton);
-//            artifactsShopInside2.getChildren().remove(buyArtifactButton);
-//            initializeEq();
-//            gold.setText(Integer.toString(economyEngine.activeHero.getGold()));
-//        } else {
-//            System.out.println("Couldn't buy artifact");
-//
-//        }
+
+        FractionsInfoAbstractFactory creatureFactory = economyEngine.activeHero.getHeroInfo().getFractionFactory();
+        String creatureName = ((Button) actionEvent.getSource()).getId();
+        CreatureInfo creature = creatureFactory.getCreature(creatureName);
+        CreatureStack creatureStack = null;
+        for (CreatureStack c : economyEngine.getCreaturesAvailableToBuy()) {
+            if (c.getCreatureInfo().equals(creature))
+                creatureStack = c;
+        }
+        if (creatureStack != null){
+            Optional<Integer> result = showDialogToBuyCreatures(creatureStack.getName(), creatureStack.getCreaturesCount());
+
+            if (result.isPresent()) {
+
+                if (economyEngine.activeHero.buyCreature(creature, result.get())) {
+                    creatureStack.setCreaturesCount(creatureStack.getCreaturesCount() - result.get());
+                    refreshGui();
+                } else {
+                    showAlert();
+                }
+            }
+        }
+    }
+    private Optional<Integer> showDialogToBuyCreatures(String name, int max){
+        return showDialogToCreatures(name, max, "buy");
+    }
+
+    private Optional<Integer> showDialogToSellCreatures(String name, int max){
+        return showDialogToCreatures(name, max, "sell");
+    }
+
+    private Optional<Integer> showDialogToCreatures(String name, int max, String type){
+        List<Integer> choices = new ArrayList<>();
+            for(int i=1; i<=max; i++)
+                choices.add(i);
+
+        ChoiceDialog<Integer> dialog = new ChoiceDialog<>(1, choices);
+        dialog.setTitle("");
+        dialog.setHeaderText("How much "+name+" you want to "+type+"?");
+        dialog.setContentText("Choose number:");
+
+
+        Optional<Integer> result = dialog.showAndWait();
+        return result;
     }
 
 }

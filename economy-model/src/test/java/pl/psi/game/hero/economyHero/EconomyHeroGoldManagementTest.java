@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pl.psi.game.fractions.CreatureInfo;
+import pl.psi.game.fractions.CreatureStack;
 import pl.psi.game.fractions.FractionsInfoAbstractFactory;
 import pl.psi.game.fractions.NecropolisInfoFactory;
 import pl.psi.game.hero.artifacts.ArtifactInfo;
@@ -90,10 +91,10 @@ public class EconomyHeroGoldManagementTest {
         CreatureInfo creature = necropolisFactory.getCreature(NecropolisInfoFactory.SKELETON_WARRIOR);
         EconomyHero hero = EconomyHero.builder().aGold(1000).build();
 
-        hero.buyCreature(creature);
+        boolean success = hero.buyCreature(creature, 1);
 
         assertEquals(hero.getGold(), 930);
-        assertTrue(hero.getCreatures().contains(creature));
+        assertTrue(success);
         assertEquals(hero.getCreatures().size(), 1);
     }
 
@@ -121,7 +122,7 @@ public class EconomyHeroGoldManagementTest {
 
         hero.buyArtifact(artifact);
         hero.buySpell(spell);
-        hero.buyCreature(creature);
+        hero.buyCreature(creature, 1);
         assertEquals(399,hero.getGold());
         /*assertTrue(hero.getSpells().contains(spell));
         assertEquals(hero.getSpells().size(), 1);
@@ -138,8 +139,8 @@ public class EconomyHeroGoldManagementTest {
         CreatureInfo creature = necropolisFactory.getCreature(NecropolisInfoFactory.DREAD_KNIGHT);
         CreatureInfo creature2 = necropolisFactory.getCreature(NecropolisInfoFactory.POWER_LICH);
         hero.buyArtifact(artifact);
-        hero.buyCreature(creature);
-        assertFalse(hero.buyCreature(creature2));
+        hero.buyCreature(creature, 1);
+        assertFalse(hero.buyCreature(creature2, 1));
 
         assertEquals(500, hero.getGold());
 
@@ -151,9 +152,9 @@ public class EconomyHeroGoldManagementTest {
         FractionsInfoAbstractFactory necropolisFactory =  FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS);
         CreatureInfo creature = necropolisFactory.getCreature(NecropolisInfoFactory.SKELETON_WARRIOR);
         EconomyHero hero = EconomyHero.builder().aGold(2000).build();
-        hero.addCreature(creature);
+        hero.addCreature(new CreatureStack(creature, 1));
 
-        hero.sellCreature(creature);
+        hero.sellCreature(creature, 1);
 
         assertEquals(hero.getGold(), 2052);
         assertFalse(hero.getCreatures().contains(creature));
@@ -164,9 +165,9 @@ public class EconomyHeroGoldManagementTest {
         FractionsInfoAbstractFactory necropolisFactory =  FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS);
         CreatureInfo creature = necropolisFactory.getCreature(NecropolisInfoFactory.DREAD_KNIGHT);
         EconomyHero hero = EconomyHero.builder().aGold(2000).build();
-        hero.addCreature(creature);
+        hero.addCreature(new CreatureStack(creature, 1));
 
-        hero.sellCreature(creature);
+        hero.sellCreature(creature, 1);
 
         assertEquals(hero.getGold(), 3125);
         assertFalse(hero.getCreatures().contains(creature));
@@ -213,10 +214,10 @@ public class EconomyHeroGoldManagementTest {
 
         hero.addSpell(spell);
         hero.addArtifact(artifact);
-        hero.addCreature(creature);
+        hero.addCreature(new CreatureStack(creature, 1));
 
         hero.sellArtifact(artifact);
-        hero.sellCreature(creature);
+        hero.sellCreature(creature, 1);
         hero.sellSpell(spell);
 
         assertEquals(1975, hero.getGold());

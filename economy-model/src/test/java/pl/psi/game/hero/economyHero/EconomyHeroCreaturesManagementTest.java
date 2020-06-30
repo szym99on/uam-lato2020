@@ -3,6 +3,7 @@ package pl.psi.game.hero.economyHero;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import pl.psi.game.fractions.CreatureInfo;
+import pl.psi.game.fractions.CreatureStack;
 import pl.psi.game.fractions.FractionsInfoAbstractFactory;
 import pl.psi.game.fractions.NecropolisInfoFactory;
 
@@ -22,7 +23,7 @@ public class EconomyHeroCreaturesManagementTest {
         CreatureInfo creature = necropolisFactory.getCreature(NecropolisInfoFactory.SKELETON_WARRIOR);
         EconomyHero hero = EconomyHero.builder().aGold(1000).build();
 
-        hero.buyCreature(creature);
+        hero.buyCreature(creature, 1);
 
         assertEquals(hero.getGold(), 930);
 
@@ -33,9 +34,9 @@ public class EconomyHeroCreaturesManagementTest {
         CreatureInfo creature = necropolisFactory.getCreature(NecropolisInfoFactory.VAMPIRE_LORD);
         EconomyHero hero = EconomyHero.builder().aGold(1000).build();
 
-        hero.buyCreature(creature);
+        boolean success = hero.buyCreature(creature, 1);
 
-        assertTrue(hero.getCreatures().contains(creature));
+        assertTrue(success);
         assertEquals(hero.getCreatures().size(), 1);
     }
 
@@ -44,7 +45,7 @@ public class EconomyHeroCreaturesManagementTest {
         CreatureInfo creature = necropolisFactory.getCreature(NecropolisInfoFactory.GHOST_DRAGON);
         EconomyHero hero = EconomyHero.builder().aGold(1000).build();
 
-        assertFalse(hero.buyCreature(creature));
+        assertFalse(hero.buyCreature(creature, 1));
 
         assertEquals(hero.getGold(), 1000);
 
@@ -54,9 +55,9 @@ public class EconomyHeroCreaturesManagementTest {
     void sellSkeletonWarriorShouldReturn75PercentOfOriginalPrice() throws IllegalStateException {
         CreatureInfo creature = necropolisFactory.getCreature(NecropolisInfoFactory.SKELETON_WARRIOR);
         EconomyHero hero = EconomyHero.builder().aGold(2000).build();
-        hero.addCreature(creature);
+        hero.addCreature(new CreatureStack(creature, 1));
 
-        hero.sellCreature(creature);
+        hero.sellCreature(creature, 1);
 
         assertEquals(hero.getGold(), 2052);
     }
@@ -64,9 +65,9 @@ public class EconomyHeroCreaturesManagementTest {
     void sellDreadKnightShouldReturn75PercentOfOriginalPrice() throws IllegalStateException {
         CreatureInfo creature = necropolisFactory.getCreature(NecropolisInfoFactory.DREAD_KNIGHT);
         EconomyHero hero = EconomyHero.builder().aGold(2000).build();
-        hero.addCreature(creature);
+        hero.addCreature(new CreatureStack(creature, 1));
 
-        hero.sellCreature(creature);
+        hero.sellCreature(creature, 1);
 
         assertEquals(hero.getGold(), 3125);
     }
@@ -75,9 +76,9 @@ public class EconomyHeroCreaturesManagementTest {
     void sellSkeletonWarriorShouldRemoveHimFromHeroesCreatures() throws IllegalStateException {
         CreatureInfo creature = necropolisFactory.getCreature(NecropolisInfoFactory.SKELETON_WARRIOR);
         EconomyHero hero = EconomyHero.builder().aGold(2000).build();
-        hero.addCreature(creature);
+        hero.addCreature(new CreatureStack(creature, 1));
 
-        hero.sellCreature(creature);
+        hero.sellCreature(creature, 1);
 
         assertFalse(hero.getCreatures().contains(creature));
         assertEquals(hero.getCreatures().size(), 0);
