@@ -125,11 +125,11 @@ public class GameEngine implements PropertyChangeListener {
         switch (selectedSpell.getTarget()){
             case ALLY:
                 if(getByPoint(x,y)!=null)
-                return getActiveHero().haveThisCreature(getCreatureByPoint(x,y));
+                return getActiveHero().haveThisCreature(getCreatureByPoint(x,y)) && !getCreatureByPoint(x,y).getMagicResistance().isImmuneToSpell(selectedSpell.getName());
                 else return false;
             case ENEMY:
                 if(getByPoint(x,y)!=null)
-                return !getActiveHero().haveThisCreature(getCreatureByPoint(x,y)) && getByPoint(x,y).isCreature();
+                return !getActiveHero().haveThisCreature(getCreatureByPoint(x,y)) && getByPoint(x,y).isCreature() && !getCreatureByPoint(x,y).getMagicResistance().isImmuneToSpell(selectedSpell.getName());
                 else return false;
             case EMPTY: return getByPoint(x,y) == null;
             case ANY: return true;
