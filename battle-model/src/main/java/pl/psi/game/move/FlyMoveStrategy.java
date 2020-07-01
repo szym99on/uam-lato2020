@@ -36,20 +36,32 @@ public class FlyMoveStrategy implements MoveStrategyIf {
     @Override
     public boolean isMovePossible(Point destPoint) {
         Point oldPosition = activeCreature.getKey();
-
         double distance = Math.abs(destPoint.getX() - oldPosition.getX()) + Math.abs(destPoint.getY() - oldPosition.getY());
 
-        return activeCreature.getValue().getMoveRange() - distance >= 0;
+        if (activeCreature.getValue().getMoveRange() >= distance) {
+            if (board.getTile((int) destPoint.getX(), (int) destPoint.getY()) == null) {
+                return true;
+            } else if (board.getTile((int) destPoint.getX(), (int) destPoint.getY()).isObstacle()) {
+                return board.getObstacle((int) destPoint.getX(), (int) destPoint.getY()).isPassable();
+            } else if (board.getTile((int) destPoint.getX(), (int) destPoint.getY()).isCreature()) {
+                return false;
+            }
+        }else {
+            return false;
+        }
+        return false;
     }
 
     @Override
-    public List getMovePath(Point destPoint) {
+    public List<Point> getMovePath(Point destPoint) {
         Point oldPosition = activeCreature.getKey().getLocation();
 
+        pathCounter.init(oldPosition);
         List<Point> path = new LinkedList();
+        path.add(oldPosition);
         path = pathCounter.countPath(oldPosition,destPoint,path);
 
-        return path;
+        return pathCounter.removeBadPaths(path, oldPosition, destPoint);
     }
 
 

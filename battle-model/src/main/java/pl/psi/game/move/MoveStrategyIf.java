@@ -5,7 +5,7 @@ import pl.psi.game.Board;
 import java.awt.*;
 import java.util.List;
 
-public interface MoveStrategyIf {
+interface MoveStrategyIf {
 
     void move(Point desPoint);
     boolean isMovePossible(Point destPoint);

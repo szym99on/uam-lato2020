@@ -34,5 +34,10 @@ public abstract class ImpactCreatureObstacle implements ObstacleIf {
         return point;
     }
 
+    @Override
+    public boolean isPassable() {
+        return true;
+    }
+
     abstract void apply(Creature creature);
 }
