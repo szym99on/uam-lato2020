@@ -104,7 +104,10 @@ public class EconomyEngine implements PropertyChangeListener {
     }
 
     public void endTurn(){
-        activeHero.increaseGold(3000);
+        if(activeHero.getSkills().contains(SkillInfoFactory.getSkill(SkillInfoFactory.ESTATES)))
+            activeHero.increaseGold(3125);
+        else
+            activeHero.increaseGold(3000);
         if(activeHero == economyHero1)
             refreshShops(1);
         else
