@@ -1,5 +1,9 @@
 package pl.psi.game;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import pl.psi.game.fractions.Creature;
 import pl.psi.game.hero.converter.Hero;
 import pl.psi.game.move.GuiTileIf;
@@ -10,6 +14,8 @@ import java.awt.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.IOException;
+import java.net.URL;
 import java.util.*;
 import java.util.List;
 
@@ -93,6 +99,18 @@ public class GameEngine implements PropertyChangeListener {
         activeCreature.getValue().attack(board.getCreature(x,y));
         propertyChangeSupport.firePropertyChange(CREATURE_ATTACKED,null,null);
         pass();
+    }
+
+    public boolean isFightEnd(){
+            return didHeroLose(hero1) || didHeroLose(hero2);
+    }
+    public boolean didHeroLose(Hero hero){
+        boolean lose = true;
+        for(Creature c: hero.getCreatures()){
+            if(c.getAmount() != 0)
+                lose = false;
+        }
+        return lose;
     }
 
     public boolean spellCastPossible(int x,int y,Spell selectedSpell){

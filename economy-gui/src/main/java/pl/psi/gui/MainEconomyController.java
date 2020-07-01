@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import pl.psi.game.EconomyEngine;
@@ -122,6 +123,15 @@ public class MainEconomyController {
 
         heroInfo2 = showChoiseDialog(2);
         economyHero2 = EconomyHero.builder().aGold(3000).aHeroInfo(heroInfo2).build();
+
+        economyEngine = new EconomyEngine(economyHero1, economyHero2);
+    }
+    public MainEconomyController(EconomyHero economyHero1, EconomyHero economyHero2) {
+
+        this.economyHero1 = economyHero1;
+        this.heroInfo1 =  economyHero1.getHeroInfo();
+        this.economyHero2 = economyHero2;
+        this.heroInfo2 =  economyHero2.getHeroInfo();
 
         economyEngine = new EconomyEngine(economyHero1, economyHero2);
     }
@@ -425,20 +435,20 @@ public class MainEconomyController {
                 Scene scene = new Scene(root);
                 Stage stage = new Stage();
                 stage.setScene(scene);
+                stage.initModality(Modality.APPLICATION_MODAL);;
                 stage.setTitle("Heroes 3");
-//                closeEconomyWindow();
-                stage.show();
+
+                stage.showAndWait();
+
             } catch (IOException aE) {
                 aE.printStackTrace();
             }
         }
+        refreshGui();
     }
 
-    public void closeEconomyWindow(){
-        Stage economyStage = (Stage) passTurnButton.getScene().getWindow();
-        economyStage.close();
-    }
-    
+
+
     public void clearAll(){
         List<VBox> allVBoxes = new ArrayList<>();
         allVBoxes.add(heroSpellsInside);
