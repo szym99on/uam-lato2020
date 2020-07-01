@@ -2,6 +2,7 @@ package pl.psi.game.spellbook;
 
 import lombok.Builder;
 import pl.psi.game.Board;
+import pl.psi.game.GameEngine;
 import pl.psi.game.fractions.Creature;
 
 import java.beans.PropertyChangeEvent;
@@ -37,6 +38,12 @@ public class BuffDebufSpell extends Spell {
     {
         return new BuffDebufSpell(this.getName(),this.getDescription(),this.getCost(),this.getLevel(),this.getManaCost(),this.getType(),this.getTarget(),this.getDuration(),this.modificationAttack,this.modificationArmor,this.modificationMoveRange);
     }
+
+    @Override
+    public boolean needObserver(){
+        return true;
+    }
+
 
     @Override
     public void cast(int x, int y)
@@ -77,6 +84,7 @@ public class BuffDebufSpell extends Spell {
         duration--;
         if(duration==0){
             removeSpell();
+            ((GameEngine) propertyChangeEvent.getNewValue()).removeObserver(GameEngine.END_OF_TURN,this);
         }
     }
 

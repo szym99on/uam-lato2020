@@ -132,7 +132,9 @@ public class GameEngine implements PropertyChangeListener {
     public void castSpell(int aX, int aY, Spell selectedSpell){
         Spell spellToCast = (Spell) selectedSpell.clone();
         getActiveHero().getSpellBook().decreaseMana(selectedSpell.getManaCost());
-        addObserver(END_OF_TURN,spellToCast);
+        if(spellToCast.needObserver())
+            addObserver(END_OF_TURN,spellToCast);
+
         spellToCast.cast(aX, aY);
     }
 
@@ -168,7 +170,7 @@ public class GameEngine implements PropertyChangeListener {
         creaturesQueue.addAll(creatureMovedOnThisTurn);
         creatureMovedOnThisTurn.clear();
 
-        propertyChangeSupport.firePropertyChange(END_OF_TURN, null,null );
+        propertyChangeSupport.firePropertyChange(END_OF_TURN, null,this);
     }
 
     public void addObserver(String aPropertyType, PropertyChangeListener aObserver){
@@ -177,6 +179,10 @@ public class GameEngine implements PropertyChangeListener {
 
     public void addObserver(PropertyChangeListener aObserver){
         propertyChangeSupport.addPropertyChangeListener(aObserver);
+    }
+
+    public void removeObserver(String aPropertyType, PropertyChangeListener aObserver){
+        propertyChangeSupport.removePropertyChangeListener(aPropertyType,aObserver);
     }
 
     public void removeObserver(PropertyChangeListener aObserver){
