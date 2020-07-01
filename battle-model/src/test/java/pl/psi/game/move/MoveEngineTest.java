@@ -1,5 +1,6 @@
 package pl.psi.game.move;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pl.psi.game.Board;
 import pl.psi.game.fractions.Creature;
@@ -13,9 +14,18 @@ import static org.junit.jupiter.api.Assertions.*;
 class MoveEngineTest {
 
     @Test
+    @Disabled
+    // to juz jest sprawdzane w testach od EndingMoveObstacle :D
     void moveshouldBeNotPossible(){
 
         ObstacleFactory obstacleFactory = new ObstacleFactory();
+
+        //    0 1 2 3 4 5
+        //  0 x R x x x x
+        //  1 R C R x x x
+        //  2 x R x x x x
+        //  3 x x x x x x
+        //  4 x x x x x x
 
         EndingMoveObstacle e1 = (EndingMoveObstacle) obstacleFactory.createImpactMoveObstacle("rock", new Point(1,2));
         EndingMoveObstacle e2 = (EndingMoveObstacle) obstacleFactory.createImpactMoveObstacle("rock", new Point(1,0));
