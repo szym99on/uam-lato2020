@@ -44,13 +44,7 @@ public class GameEngine implements PropertyChangeListener {
     public GameEngine(Hero aHero1, Hero aHero2) {
         this.board = Board.getBoard();
         this.board.clearBoard();
-        ObstacleFactory obstacleFactory = new ObstacleFactory();
-        board.putObstacle(obstacleFactory.createImpactMoveObstacle("rock", new Point(7, 2)));
-        board.putObstacle(obstacleFactory.createImpactMoveObstacle("rock", new Point(7, 3)));
-        board.putObstacle(obstacleFactory.createImpactMoveObstacle("rock", new Point(7, 4)));
-        board.putObstacle(obstacleFactory.createImpactMoveObstacle("rock", new Point(7, 5)));
-        board.putObstacle(obstacleFactory.createImpactMoveObstacle("rock", new Point(7, 6)));
-        board.putObstacle(obstacleFactory.createImpactMoveObstacle("rock", new Point(7, 7)));
+        this.board.prepareBoard();
         propertyChangeSupport = new PropertyChangeSupport(this);
         this.moveEngine = new MoveEngine(board);
         moveEngine.addObserver(CREATURE_MOVED, this);

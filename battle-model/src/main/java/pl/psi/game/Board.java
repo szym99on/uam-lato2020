@@ -22,13 +22,6 @@ public class Board {
 
     public Board() {
         board = new HashMap<>();
-        ObstacleFactory obstacleFactory = new ObstacleFactory();
-        putObstacle(obstacleFactory.createImpactMoveObstacle("rock", new Point(7, 2)));
-        putObstacle(obstacleFactory.createImpactMoveObstacle("rock", new Point(7, 3)));
-        putObstacle(obstacleFactory.createImpactMoveObstacle("rock", new Point(7, 4)));
-        putObstacle(obstacleFactory.createImpactMoveObstacle("rock", new Point(7, 5)));
-        putObstacle(obstacleFactory.createImpactMoveObstacle("rock", new Point(7, 6)));
-        putObstacle(obstacleFactory.createImpactMoveObstacle("rock", new Point(7, 7)));
     }
 
     public static Map<Point, GuiTileIf> copyBoardValues(){
@@ -60,6 +53,21 @@ public class Board {
         }
 
         board.put(new Point(x, y), aCreature);
+    }
+    public void prepareBoard(){
+        ObstacleFactory obstacleFactory = new ObstacleFactory();
+        putObstacle(obstacleFactory.createImpactMoveObstacle("rock", new Point(7, 2)));
+        putObstacle(obstacleFactory.createImpactMoveObstacle("rock", new Point(7, 3)));
+        putObstacle(obstacleFactory.createImpactCreatureObstacle("lava", new Point(7, 4)));
+        putObstacle(obstacleFactory.createImpactCreatureObstacle("lava", new Point(7, 5)));
+        putObstacle(obstacleFactory.createImpactMoveObstacle("rock", new Point(7, 6)));
+        putObstacle(obstacleFactory.createImpactMoveObstacle("rock", new Point(7, 7)));
+        putObstacle(obstacleFactory.createImpactMoveObstacle("marsh", new Point(4, 0)));
+        putObstacle(obstacleFactory.createImpactMoveObstacle("marsh", new Point(4, 1)));
+        putObstacle(obstacleFactory.createImpactMoveObstacle("marsh", new Point(4, 8)));
+        putObstacle(obstacleFactory.createImpactMoveObstacle("marsh", new Point(10, 0)));
+        putObstacle(obstacleFactory.createImpactMoveObstacle("marsh", new Point(10, 1)));
+        putObstacle(obstacleFactory.createImpactMoveObstacle("marsh", new Point(10, 8)));
     }
 
     public void putObstacle(ObstacleIf aObstacle) {
