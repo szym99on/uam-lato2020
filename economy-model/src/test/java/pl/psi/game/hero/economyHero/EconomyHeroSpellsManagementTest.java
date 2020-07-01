@@ -21,7 +21,7 @@ public class EconomyHeroSpellsManagementTest {
 
         hero.buySpell(spellInfo);
 
-        assertEquals(hero.getGold(), 2999);
+        assertEquals(hero.getGold(), 2940);
         assertTrue(hero.getSpells().contains(spellInfo));
         assertEquals(hero.getSpells().size(), 1);
     }
@@ -33,7 +33,7 @@ public class EconomyHeroSpellsManagementTest {
 
         hero.buySpell(spellInfo);
 
-        assertEquals(hero.getGold(),99);
+        assertEquals(hero.getGold(),0);
         assertTrue(hero.getSpells().contains(spellInfo));
         assertEquals(hero.getSpells().size(),1);
     }
@@ -41,11 +41,11 @@ public class EconomyHeroSpellsManagementTest {
     @Test
     void buyStormElementalShouldTakeGoldAndAddSpell() throws IllegalStateException {
         SpellInfo spellInfo = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.STORM_ELEMENTAL);
-        EconomyHero hero = EconomyHero.builder().aGold(200).build();
+        EconomyHero hero = EconomyHero.builder().aGold(700).build();
 
         hero.buySpell(spellInfo);
 
-        assertEquals(hero.getGold(),199);
+        assertEquals(hero.getGold(),0);
         assertTrue(hero.getSpells().contains(spellInfo));
         assertEquals(hero.getSpells().size(),1);
     }
@@ -59,7 +59,7 @@ public class EconomyHeroSpellsManagementTest {
         hero.buySpell(spell_one);
         hero.buySpell(spell_two);
 
-        assertEquals(hero.getGold(),498);
+        assertEquals(hero.getGold(),140);
         assertTrue(hero.getSpells().contains(spell_one));
         assertTrue(hero.getSpells().contains(spell_two));
         assertEquals(hero.getSpells().size(),2);
@@ -74,7 +74,7 @@ public class EconomyHeroSpellsManagementTest {
         hero.buySpell(spell_one);
         hero.buySpell(spell_two);
 
-        assertEquals(hero.getGold(),998);
+        assertEquals(hero.getGold(),200);
         assertTrue(hero.getSpells().contains(spell_one));
         assertTrue(hero.getSpells().contains(spell_two));
         assertEquals(hero.getSpells().size(),2);
@@ -88,7 +88,7 @@ public class EconomyHeroSpellsManagementTest {
 
         hero.sellSpell(spell);
 
-        assertEquals(hero.getGold(), 2000);
+        assertEquals(hero.getGold(), 2045);
         assertFalse(hero.getSpells().contains(spell));
         assertEquals(hero.getSpells().size(),0);
     }

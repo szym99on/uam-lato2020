@@ -78,7 +78,7 @@ public class EconomyHeroGoldManagementTest {
 
         hero.buySpell(spell);
 
-        assertEquals(2999, hero.getGold());
+        assertEquals(2940, hero.getGold());
         assertTrue(hero.getSpells().contains(spell));
         assertEquals(hero.getSpells().size(), 1);
 
@@ -123,7 +123,7 @@ public class EconomyHeroGoldManagementTest {
         hero.buyArtifact(artifact);
         hero.buySpell(spell);
         hero.buyCreature(creature, 1);
-        assertEquals(399,hero.getGold());
+        assertEquals(340,hero.getGold());
         /*assertTrue(hero.getSpells().contains(spell));
         assertEquals(hero.getSpells().size(), 1);
         assertTrue(hero.getCreatures().contains(creature));
@@ -197,7 +197,7 @@ public class EconomyHeroGoldManagementTest {
 
         hero.sellSpell(spell);
 
-        assertEquals(hero.getGold(), 2000);
+        assertEquals(hero.getGold(), 2045);
         assertFalse(hero.getSpells().contains(spell));
         assertEquals(hero.getSpells().size(),0);
     }
@@ -220,7 +220,7 @@ public class EconomyHeroGoldManagementTest {
         hero.sellCreature(creature, 1);
         hero.sellSpell(spell);
 
-        assertEquals(1975, hero.getGold());
+        assertEquals(2020, hero.getGold());
 
        /* assertFalse(hero.getCreatures().contains(creature));
         assertEquals(hero.getCreatures().size(), 0);
