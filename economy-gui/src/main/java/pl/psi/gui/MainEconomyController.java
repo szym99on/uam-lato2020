@@ -414,6 +414,7 @@ public class MainEconomyController {
         if(economyEngine.activeHero == economyHero1){
             try {
 
+
                 FXMLLoader loader = new FXMLLoader();
                 URL fxmlLocation = getClass().getResource("/main-battle.fxml");
                 loader.setLocation(fxmlLocation);
@@ -425,6 +426,7 @@ public class MainEconomyController {
                 Stage stage = new Stage();
                 stage.setScene(scene);
                 stage.setTitle("Heroes 3");
+//                closeEconomyWindow();
                 stage.show();
             } catch (IOException aE) {
                 aE.printStackTrace();
@@ -432,6 +434,11 @@ public class MainEconomyController {
         }
     }
 
+    public void closeEconomyWindow(){
+        Stage economyStage = (Stage) passTurnButton.getScene().getWindow();
+        economyStage.close();
+    }
+    
     public void clearAll(){
         List<VBox> allVBoxes = new ArrayList<>();
         allVBoxes.add(heroSpellsInside);
