@@ -1,12 +1,10 @@
 package pl.psi.game.move;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pl.psi.game.Board;
 import pl.psi.game.fractions.Creature;
 
 import java.awt.*;
-import java.util.LinkedList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -93,7 +91,6 @@ class MoveEngineTest {
 
         Board board = Board.getBoard();
         board.clearBoard();
-        //Board.getBoard();
         board.putCreature(5,4, creature);
 
         MoveEngine moveEngine = new MoveEngine(board);
@@ -392,15 +389,12 @@ class MoveEngineTest {
 
         EndingMoveObstacle e1 = (EndingMoveObstacle) obstacleFactory.createImpactMoveObstacle("rock", new Point(0,1));
         EndingMoveObstacle e2 = (EndingMoveObstacle) obstacleFactory.createImpactMoveObstacle("rock", new Point(1,0));
-//        EndingMoveObstacle e3 = (EndingMoveObstacle) obstacleFactory.createImpactMoveObstacle("rock", new Point(1,0));
-///        EndingMoveObstacle e4 = (EndingMoveObstacle) obstacleFactory.createImpactMoveObstacle("rock", new Point(1,3));
 
         Board board = Board.getBoard();
         board.clearBoard();
         board.putCreature(0,0, creature);
         board.putObstacle(e1);
         board.putObstacle(e2);
-//        board.putObstacle(e3);
 
         MoveEngine moveEngine = new MoveEngine(board);
         moveEngine.setActiveCreature(new Point(0,0), creature);
