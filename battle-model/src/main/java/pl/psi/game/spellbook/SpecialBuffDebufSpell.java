@@ -51,6 +51,12 @@ public class SpecialBuffDebufSpell extends Spell {
                     SpellBookInfoFactory.getSpellsByLevel(2).forEach(s -> creature.getMagicResistance().addImmunitySpell(s.getName()));
                     SpellBookInfoFactory.getSpellsByLevel(3).forEach(s -> creature.getMagicResistance().addImmunitySpell(s.getName()));
                 break;
+            case SpellBookInfoFactory.AIR_SHIELD:
+//                creature.setReduceRangedDamageByPercentage(25);
+                break;
+            case SpellBookInfoFactory.FIRE_SHIELD:
+//                creature.setReturnPercentageDamageDealt(20);
+                break;
         }
 
 
@@ -73,6 +79,12 @@ public class SpecialBuffDebufSpell extends Spell {
                 SpellBookInfoFactory.getSpellsByLevel(1).forEach(s -> creature.getMagicResistance().removeImmunitySpell(s.getName()));
                 SpellBookInfoFactory.getSpellsByLevel(2).forEach(s -> creature.getMagicResistance().removeImmunitySpell(s.getName()));
                 SpellBookInfoFactory.getSpellsByLevel(3).forEach(s -> creature.getMagicResistance().removeImmunitySpell(s.getName()));
+                break;
+            case SpellBookInfoFactory.AIR_SHIELD:
+//                creature.removeReduceRangedDamageByPercentage(25);
+                break;
+            case SpellBookInfoFactory.FIRE_SHIELD:
+//                creature.removeReturnPercentageDamageDealt(20);
                 break;
         }
 
