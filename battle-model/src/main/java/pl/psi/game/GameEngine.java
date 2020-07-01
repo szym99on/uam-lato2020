@@ -8,6 +8,7 @@ import pl.psi.game.fractions.Creature;
 import pl.psi.game.hero.converter.Hero;
 import pl.psi.game.move.GuiTileIf;
 import pl.psi.game.move.MoveEngine;
+import pl.psi.game.move.ObstacleFactory;
 import pl.psi.game.spellbook.Spell;
 
 import java.awt.*;
@@ -43,6 +44,13 @@ public class GameEngine implements PropertyChangeListener {
     public GameEngine(Hero aHero1, Hero aHero2) {
         this.board = Board.getBoard();
         this.board.clearBoard();
+        ObstacleFactory obstacleFactory = new ObstacleFactory();
+        board.putObstacle(obstacleFactory.createImpactMoveObstacle("rock", new Point(7, 2)));
+        board.putObstacle(obstacleFactory.createImpactMoveObstacle("rock", new Point(7, 3)));
+        board.putObstacle(obstacleFactory.createImpactMoveObstacle("rock", new Point(7, 4)));
+        board.putObstacle(obstacleFactory.createImpactMoveObstacle("rock", new Point(7, 5)));
+        board.putObstacle(obstacleFactory.createImpactMoveObstacle("rock", new Point(7, 6)));
+        board.putObstacle(obstacleFactory.createImpactMoveObstacle("rock", new Point(7, 7)));
         propertyChangeSupport = new PropertyChangeSupport(this);
         this.moveEngine = new MoveEngine(board);
         moveEngine.addObserver(CREATURE_MOVED, this);
