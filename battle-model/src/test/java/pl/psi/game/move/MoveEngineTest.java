@@ -410,6 +410,21 @@ class MoveEngineTest {
 
     @Test
     void walkingCreatureDealDamageFromObstacle(){
+        Board board = Board.getBoard();
+
+        Creature creature = Creature.builder().aMaxHp(10).aCanFly(false).aMoveRange(10).build();
+        board.putCreature(1, 1, creature);
+
+        ObstacleFactory obstacleFactory = new ObstacleFactory();
+        ImpactCreatureObstacle obstacle = obstacleFactory.createImpactCreatureObstacle("lava", new Point(1, 2));
+        board.putObstacle(obstacle);
+
+        MoveEngine moveEngine = new MoveEngine(board);
+        moveEngine.setActiveCreature(new Point(1, 1), creature);
+        moveEngine.move(1, 3);
+
+        assertEquals(9, creature.getCurrentHp());
+
 
     }
 
