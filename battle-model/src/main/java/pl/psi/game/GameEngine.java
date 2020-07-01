@@ -198,8 +198,19 @@ public class GameEngine implements PropertyChangeListener {
     }
 
     private void putHeroCreaturesIntoBoard(Hero aHero2, int boardWidth) {
+        int j = 0;
         for (int i = 0; i < aHero2.getCreatures().size(); i++) {
-            board.putCreature(boardWidth, 2 * i, aHero2.getCreatures().get(i));
+
+            if(2*i < 10) {
+                board.putCreature(boardWidth, 2 * i, aHero2.getCreatures().get(i));
+            } else {
+                if (boardWidth == 0)
+                    boardWidth += 1;
+                if (boardWidth == BOARD_WIDTH)
+                    boardWidth -= 1;
+                board.putCreature(boardWidth, 2 * j + 1, aHero2.getCreatures().get(i));
+                j++;
+            }
         }
     }
 
