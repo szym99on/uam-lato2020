@@ -71,13 +71,14 @@ public class shopsManagementTest {
         assertTrue(6<=artifactsAvailableToBuy.size() && artifactsAvailableToBuy.size()<=10);
     }
 
-//    @Disabled
-//    @Test
-//    void generateItemsAvailableToBuyShouldGenerateArtifactsInRange7(){
-//
-//        CreaturesShop creaturesShop = new CreaturesShop(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS));
-//        List<CreatureStack> creaturesAvailableToBuy = creaturesShop.getCreaturesAvailableToBuy();
-//        System.out.println(creaturesAvailableToBuy); //forfunxd
-//    }
+
+    @Test
+    void generateItemsAvailableToBuyShouldGenerateArtifactsInRange7(){
+
+        CreaturesShop creaturesShop = new CreaturesShop(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS));
+        creaturesShop.generateItemsAvailableToBuy();
+        List<CreatureStack> creaturesAvailableToBuy = creaturesShop.getCreaturesAvailableToBuy();
+        assertEquals(7, creaturesAvailableToBuy.size());
+    }
 
 }
