@@ -86,9 +86,10 @@ public class EconomyHeroSpellsManagementTest {
         EconomyHero hero = EconomyHero.builder().aGold(2000).build();
         hero.addSpell(spell);
 
+        //costOfSpell = spell.getCost();
         hero.sellSpell(spell);
 
-        assertEquals(hero.getGold(), 2000);
+        assertEquals(hero.getGold(), 2000 /*+ costOfSpell * 0.75*/);
         assertFalse(hero.getSpells().contains(spell));
         assertEquals(hero.getSpells().size(),0);
     }
