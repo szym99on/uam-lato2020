@@ -3,6 +3,7 @@ package pl.psi.game.hero.shops;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import pl.psi.game.fractions.CreatureStack;
 import pl.psi.game.fractions.FractionsInfoAbstractFactory;
 import pl.psi.game.hero.artifacts.ArtifactInfo;
 import pl.psi.game.hero.artifacts.ArtifactsInfoFactory;
@@ -69,5 +70,14 @@ public class shopsManagementTest {
         List<ArtifactInfo> artifactsAvailableToBuy = artifactsShop.getArtifactsAvailableToBuy();
         assertTrue(6<=artifactsAvailableToBuy.size() && artifactsAvailableToBuy.size()<=10);
     }
+
+//    @Disabled
+//    @Test
+//    void generateItemsAvailableToBuyShouldGenerateArtifactsInRange7(){
+//
+//        CreaturesShop creaturesShop = new CreaturesShop(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS));
+//        List<CreatureStack> creaturesAvailableToBuy = creaturesShop.getCreaturesAvailableToBuy();
+//        System.out.println(creaturesAvailableToBuy); //forfunxd
+//    }
 
 }
