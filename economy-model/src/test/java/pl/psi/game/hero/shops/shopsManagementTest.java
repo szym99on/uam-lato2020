@@ -73,7 +73,7 @@ public class shopsManagementTest {
 
 
     @Test
-    void generateItemsAvailableToBuyShouldGenerateArtifactsInRange7(){
+    void generateItemsAvailableToBuyShouldGenerate7CreatureStacks(){
 
         CreaturesShop creaturesShop = new CreaturesShop(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS));
         creaturesShop.generateItemsAvailableToBuy();
