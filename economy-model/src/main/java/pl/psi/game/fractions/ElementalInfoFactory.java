@@ -6,6 +6,9 @@ import java.util.List;
 
 public class ElementalInfoFactory extends FractionsInfoAbstractFactory {
 
+    public String getName(){
+        return "ELEMENTAL";
+    }
     public static final String STORM_ELEMENTAL = "Storm Elemental";
     public static final String ICE_ELEMENTAL = "Ice Elemental";
     public static final String ENERGY_ELEMENTAL = "Energy Elemental";

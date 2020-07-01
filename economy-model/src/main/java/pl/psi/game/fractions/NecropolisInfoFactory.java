@@ -8,6 +8,9 @@ import java.util.List;
 
 public class NecropolisInfoFactory extends FractionsInfoAbstractFactory {
 
+    public String getName(){
+        return "NECROPOLIS";
+    }
     public final static String SKELETON_WARRIOR = "Skeleton Warrior";
     public final static String ZOMBIE = "Zombie";
     public final static String WRAITH = "Wraith";

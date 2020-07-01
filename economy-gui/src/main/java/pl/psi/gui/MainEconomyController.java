@@ -140,7 +140,7 @@ public class MainEconomyController {
         List<HeroInfo> HeroesInfo = HeroInfoFactory.getAll();
         List<String> HeroesInfoNames = new ArrayList<>();
         for(HeroInfo hero: HeroesInfo)
-            HeroesInfoNames.add(hero.getName().toUpperCase()+ " -> attack:"+hero.getAttack()+ " defence:"+hero.getDefence()+ " power:"+hero.getPower()+ " knowledge:"+hero.getKnowledge());
+            HeroesInfoNames.add(hero.getName().toUpperCase()+ " -> class: "+hero.getFractionClass().toString()+" fraction: "+hero.getFractionFactory().getName());
 
         ChoiceDialog dialog = new ChoiceDialog(HeroesInfoNames.get(0), HeroesInfoNames);
         dialog.initStyle(StageStyle.UNDECORATED);

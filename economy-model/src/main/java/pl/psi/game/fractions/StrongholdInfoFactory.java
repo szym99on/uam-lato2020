@@ -7,6 +7,9 @@ import java.util.List;
 
 public class StrongholdInfoFactory extends FractionsInfoAbstractFactory {
 
+    public String getName(){
+        return "STRONGHOLD";
+    }
     public static final String HOBGOBLIN = "Hobgoblin";
     public static final String WOLF_RAIDER = "Wolf Raider";
     public static final String ORC_CHIEFTAIN = "Orc Chieftain";

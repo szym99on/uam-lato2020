@@ -73,4 +73,5 @@ public class HeroInfo {
     public int getKnowledge() {
         return heroKnowledge;
     }
+    public FractionClass getFractionClass() { return fractionClass; }
 }

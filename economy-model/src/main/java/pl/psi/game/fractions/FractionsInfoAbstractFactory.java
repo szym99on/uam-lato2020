@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FractionsInfoAbstractFactory {
+    public String getName(){
+        return "NONE";
+    }
     public enum Fractions {
         CASTLE,
         TOWER,

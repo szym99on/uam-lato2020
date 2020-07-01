@@ -7,6 +7,9 @@ import java.util.List;
 
 public class RampartInfoFactory extends FractionsInfoAbstractFactory {
 
+    public String getName(){
+        return "RAMPART";
+    }
     public static final String CENTAUR_CAPTAIN = "Centaur Captain";
     public static final String BATTLE_DWARF = "Battle Dwarf";
     public static final String GRAND_ELF = "Grand Elf";
