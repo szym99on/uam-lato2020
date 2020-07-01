@@ -1,7 +1,5 @@
 package pl.psi.game.move;
 
-import pl.psi.game.fractions.Creature;
-
 import java.awt.*;
 
 public abstract class ImpactMoveObstacle implements ObstacleIf{

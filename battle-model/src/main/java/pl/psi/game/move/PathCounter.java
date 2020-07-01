@@ -70,7 +70,6 @@ class PathCounter {
         pointInPath = pointInPath(path, right);
         double rightDistance = endPoint.distance(right) * 1000 + mapCost + pointInPath;
 
-        //TODO this is ugly, but works. Now I don't now how do it better
         if (point.equals(endPoint) || path.contains(endPoint)) {
             return path;
         } else {
@@ -153,7 +152,6 @@ class PathCounter {
         }
     }
 
-    //this can be private, but I want to have unit tests of this method
     private double findMinValue(double a, double b, double c, double d) {
         double subSmall1;
         double subSmall2;

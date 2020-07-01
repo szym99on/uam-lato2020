@@ -4,11 +4,8 @@ import java.awt.*;
 
 class EndingMoveObstacle extends ImpactMoveObstacle {
 
-    private final int weight;
-
     public EndingMoveObstacle(String aName, Point aPoint) {
         super(aName, aPoint);
-        weight = Integer.MAX_VALUE;
     }
 
     @Override
@@ -16,8 +13,4 @@ class EndingMoveObstacle extends ImpactMoveObstacle {
         return false;
     }
 
-    @Override
-    public int getWeight() {
-        return weight;
-    }
 }

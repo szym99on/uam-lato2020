@@ -107,16 +107,6 @@ public class Board {
         return null;
     }
 
-/*    public GuiTileIf getObject(int x, int y){
-        if (board.get(new Point(x, y)) != null) {
-            if (board.get(new Point(x, y)).isObstacle()) {
-                return board.get(new Point(x, y));
-            }
-        }
-        return null;
-
-    }
-*/
     public GuiTileIf getTile(int x, int y) {
         return board.get(new Point(x, y));
     }
@@ -145,5 +135,4 @@ public class Board {
         }
     }
 
-    private void doNothing(){}
 }
