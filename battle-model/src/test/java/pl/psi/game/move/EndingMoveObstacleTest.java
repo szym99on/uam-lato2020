@@ -14,7 +14,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class EndingMoveObstacleTest {
 
     @Test
-    @Disabled
     void endingMoveWalkingCreature(){
         Creature creature = Creature.builder().aMoveRange(5).build();
         Board board = Board.getBoard();
