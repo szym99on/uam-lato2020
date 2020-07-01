@@ -1,6 +1,5 @@
 package pl.psi.game.spellbook;
 
-//import javafx.scene.control.Alert;
 import lombok.Builder;
 import pl.psi.game.Board;
 import pl.psi.game.fractions.Creature;
@@ -25,13 +24,7 @@ public class DamageSpell extends Spell{
     @Override
     public void cast(int x, int y) {
 
-        try {
-            cast(Board.getBoard().getCreature(x,y));
-        } catch (NullPointerException e) {
-            //e.printStackTrace();
-            //alert();
-        }
-
+        cast(Board.getBoard().getCreature(x,y));
         if(name.equals(SpellBookInfoFactory.FIRE_BALL)  || name.equals(SpellBookInfoFactory.METEOR_SHOWER)){
 //             1 2 3
 //           1 . c .
@@ -67,32 +60,12 @@ public class DamageSpell extends Spell{
     public void cast(Creature aCreature) {
 
         creature = aCreature;
-//        switch (name) {
-//            case SpellBookInfoFactory.MAGIC_ARROW:
-//            case SpellBookInfoFactory.LIGHTNING_BOLT:
-//            case SpellBookInfoFactory.IMPLOSION:
-//            case SpellBookInfoFactory.FIRE_BALL:
-//            case SpellBookInfoFactory.METEOR_SHOWER:
-//                magicImmunityDamage();
-//                break;
-//            case SpellBookInfoFactory.DESTROY_UNDEAD:
-//                //TODO isUndead
-//                creature.takePureDamage(spellDamage);
-//                break;
-//        }
+        //TODO isUndead (no implementation from Fractions)
         if(isNotImmuneToType(SpellBookInfoFactory.getSpell(name).getType()) && isNotImmuneToSpell(name)){
             creature.takePureDamage((int) (spellDamage * percentageSpellImmunity()));
         }
     }
 
-
-//    void alert(){
-//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//        alert.setTitle("Information Dialog");
-//        alert.setHeaderText(null);
-//        alert.setContentText("You have to choose a creature to use this spell");
-//        alert.showAndWait();
-//    }
 
     //TODO do poprawy equals(ENUMS)
     private boolean isNotImmuneToType(Enum spellType){
