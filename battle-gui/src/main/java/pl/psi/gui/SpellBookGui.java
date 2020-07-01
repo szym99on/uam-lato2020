@@ -39,7 +39,7 @@ public class SpellBookGui   {
         JLabel label = new JLabel("Ilośc many: " + String.valueOf(spellBook.getMana()), JLabel.CENTER);
         frame.add(label);
         for(Spell item : spellBook.getSpells()){
-            JButton button = new JButton(item.getSpellName());
+            JButton button = new JButton(item.getSpellName()+ " Mana cost: " + item.getManaCost());
             button.setToolTipText(item.getDescription());
             frame.add(button);
             button.addActionListener(new ActionListener() {
