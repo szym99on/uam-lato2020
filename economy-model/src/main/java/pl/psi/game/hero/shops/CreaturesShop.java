@@ -4,8 +4,6 @@ import lombok.Getter;
 import pl.psi.game.fractions.CreatureInfo;
 import pl.psi.game.fractions.CreatureStack;
 import pl.psi.game.fractions.FractionsInfoAbstractFactory;
-import pl.psi.game.hero.HeroInfo;
-import pl.psi.game.hero.economyHero.EconomyHero;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +13,13 @@ public class CreaturesShop extends AbstractShop {
 
     @Getter
     private List<CreatureStack> creaturesAvailableToBuy;
+    private FractionsInfoAbstractFactory factory;
 
+    public CreaturesShop(){}
 
-    public CreaturesShop() {
+    public CreaturesShop(FractionsInfoAbstractFactory aFactory) {
+        factory = aFactory;
+        creaturesAvailableToBuy = new ArrayList<>();
     }
 
     public CreaturesShop(String name, String description, List<CreatureStack> creaturesAvailableToBuy) {
@@ -27,24 +29,39 @@ public class CreaturesShop extends AbstractShop {
 
     @Override
     public void generateItemsAvailableToBuy() {
-        FractionsInfoAbstractFactory creaturesFactory = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS);
-//        HeroInfo heroInfo = new HeroInfo("name", creaturesFactory
-//                , HeroInfo.FractionClass.ALCHEMIST);
-//        EconomyHero hero = EconomyHero.builder().build();
-        //FractionsInfoAbstractFactory.Fractions fraction = hero.getFraction();
+        FractionsInfoAbstractFactory creaturesFactory = factory;
 
-        List<CreatureInfo> creatures = creaturesFactory.getAllCreatures();
+
         List<CreatureStack> creaturesAvailableToBuy = new ArrayList<>();
 
-        for (CreatureInfo creature : creatures) {
-            Random ran = new Random();
-            int creaturesCount = ran.nextInt(3) + 2;
+        for (int i = 1; i<= 7; i++) {
+
+            CreatureInfo creature = creaturesFactory.getCreatureByTier(i);
+            int creaturesCount = (7 - i) * (7 - i) + 1;
             CreatureStack creatureStack = new CreatureStack(creature, creaturesCount);
             creaturesAvailableToBuy.add(creatureStack);
+
         }
-        this.creaturesAvailableToBuy = creaturesAvailableToBuy;
+        addCreaturesToCreaturesAvailableToBuy(this.creaturesAvailableToBuy, creaturesAvailableToBuy);
 
     }
+    private void addCreaturesToCreaturesAvailableToBuy(List<CreatureStack> creaturesAvailableToBuy, List<CreatureStack> creaturesToAdd){
+        boolean wasntAdd;
+        for(CreatureStack c1: creaturesToAdd){
+            wasntAdd = true;
+            for(CreatureStack c2: creaturesAvailableToBuy){
+                if(c1.getCreatureInfo().equals(c2.getCreatureInfo())){
+                    c2.setCreaturesCount(c2.getCreaturesCount()+c1.getCreaturesCount());
+                    wasntAdd = false;
+                }
+            }
+            if(wasntAdd)
+                creaturesAvailableToBuy.add(c1);
 
+
+        }
+
+
+    }
 
 }

@@ -4,6 +4,7 @@ import com.google.common.collect.Range;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import pl.psi.game.artifacts.Artifact;
 import pl.psi.game.fractions.*;
 import pl.psi.game.hero.HeroInfo;
 import pl.psi.game.hero.HeroInfoFactory;
@@ -30,24 +31,38 @@ public class ConverterTest {
     @BeforeAll
     static void InitializeFactories(){
         new HeroInfoFactory();
+        new SpellFactory();
+        new SpellBookInfoFactory();
+        new ArtifactsInfoFactory();
     }
+
+    private boolean CreatureEquals(Creature c1,Creature c2)
+    {
+        return c1.getDisplayName().equals(c2.getDisplayName());
+    }
+    private boolean SpellEquals(Spell s1,Spell s2)
+    {
+        return (s1.getCost()==s2.getCost()) && s1.getDescription().equals(s2.getDescription()) &&
+        (s1.getDuration()==s2.getDuration()) && (s1.getLevel()==s2.getLevel()) &&
+        s1.getName().equals(s2.getName()) && s1.getType().equals(s2.getType());
+    }
+
 
     void InitializeEconomyHero()
     {
-        economyHero = EconomyHero.builder().aGold(100000000).aHeroInfo(HeroInfoFactory.getHeroInfoByName(HeroInfoFactory.EDRIC)).build();
+        economyHero = EconomyHero.builder().aGold(100000000).aHeroInfo(HeroInfoFactory.getHeroInfoByName(HeroInfoFactory.EDRIC)).build();//2 attack 2 defence 1 power 1 knowledge
     }
     @Test
-    @Disabled
     void ConvertOneEconomyCreatureToBattleCreature() throws Exception
     {
         InitializeEconomyHero();
         CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(1);
-        economyHero.buyCreature(creatureInfo);
+        economyHero.buyCreature(creatureInfo, 1);
 
         Hero hero = HeroEcoBattleConverter.convert(economyHero);
-        Creature creature = creatureAbstractFactory.getCreature(creatureInfo);
+        Creature creature = creatureAbstractFactory.getCreature(economyHero.getCreatureStack(creatureInfo));
 
-        assertEquals(creature,hero.getCreatures().get(0));
+        assertTrue(CreatureEquals(creature,hero.getCreatures().get(0)));
     }
     @Test
     @Disabled
@@ -56,15 +71,14 @@ public class ConverterTest {
     {
         InitializeEconomyHero();
         CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(1);
-        economyHero.buyCreature(creatureInfo);
+        economyHero.buyCreature(creatureInfo, 1);
 
         Hero hero = HeroEcoBattleConverter.convert(economyHero);
-        Creature creature = creatureAbstractFactory.getCreature(creatureInfo);
+        Creature creature = creatureAbstractFactory.getCreature(economyHero.getCreatureStack(creatureInfo));
 
         assertEquals(creature,hero.getCreatures().get(0));
     }
     @Test
-    @Disabled
     void ConvertEconomySpellToBattleSpell() throws Exception
     {
         InitializeEconomyHero();
@@ -72,22 +86,20 @@ public class ConverterTest {
         economyHero.buySpell(spellInfo);
         Hero hero = HeroEcoBattleConverter.convert(economyHero);
         SpellFactory spellFactory = new SpellFactory();
-        Spell spell = spellFactory.createSpell(spellInfo);
+        Spell spell = spellFactory.createSpell(spellInfo,hero.getPower());
 
-        assertEquals(spell,hero.getSpellBook().getSpells().get(0));
+        assertTrue(SpellEquals(spell,hero.getSpellBook().getSpells().get(0)));
     }
     @Test
-    @Disabled
     void AppliedArtifactOnHeroChangeHeroStats()
     {
-        InitializeEconomyHero();
-        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.HELM_OF_THE_ALABASTER_UNICORN);
+        InitializeEconomyHero();// 1 knowledge
+        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.HELM_OF_THE_ALABASTER_UNICORN);// +1 knowledge
         economyHero.buyArtifact(artifactInfo);
         Hero hero = HeroEcoBattleConverter.convert(economyHero);
         assertEquals(hero.getKnowledge(),2);
     }
     @Test
-    @Disabled
     void AppliedArtifactOnHeroChangeSpell()
     {
         InitializeEconomyHero();
@@ -99,14 +111,13 @@ public class ConverterTest {
         assertEquals(hero.getSpellBook().getSpells().get(0).getDuration(),4);
     }
     @Test
-    @Disabled
     void AppliedArtifactOnHeroChangeCreatureStats()
     {
         InitializeEconomyHero();
-        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.CAPE_OF_CONJURING);// +2 move range
+        ArtifactInfo artifactInfo = ArtifactsInfoFactory.getArtifact(ArtifactsInfoFactory.CAPE_OF_VELOCITY);// +2 move range
         CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(1);// 5 move range
         economyHero.buyArtifact(artifactInfo);
-        economyHero.buyCreature(creatureInfo);
+        economyHero.buyCreature(creatureInfo, 1);
         Hero hero = HeroEcoBattleConverter.convert(economyHero);
         assertEquals(hero.getCreatures().get(0).getMoveRange(),7);
     }

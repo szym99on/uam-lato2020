@@ -58,20 +58,11 @@ public class EconomyEngine implements PropertyChangeListener {
         this.artifactsShop2 = new ArtifactsShop();
         this.specialSkillsShop1 = new SpecialSkillsShop();
         this.specialSkillsShop2 = new SpecialSkillsShop();
-        this.creaturesShop1 = new CreaturesShop();
-        this.creaturesShop2 = new CreaturesShop();
+        this.creaturesShop1 = new CreaturesShop(economyHero1.getHeroInfo().getFractionFactory());
+        this.creaturesShop2 = new CreaturesShop(economyHero2.getHeroInfo().getFractionFactory());
 
-        spellShop1.generateItemsAvailableToBuy();
-        spellShop2.generateItemsAvailableToBuy();
-
-        artifactsShop1.generateItemsAvailableToBuy();
-        artifactsShop2.generateItemsAvailableToBuy();
-
-        specialSkillsShop1.generateItemsAvailableToBuy();
-        specialSkillsShop2.generateItemsAvailableToBuy();
-
-        creaturesShop1.generateItemsAvailableToBuy();
-        creaturesShop2.generateItemsAvailableToBuy();
+        refreshShops(1);
+        refreshShops(2);
     }
 
     @Override
@@ -96,6 +87,31 @@ public class EconomyEngine implements PropertyChangeListener {
 
     }
 
+    public void refreshShops(int i){
+        if(i == 1) {
+            spellShop1.generateItemsAvailableToBuy();
+            artifactsShop1.generateItemsAvailableToBuy();
+            specialSkillsShop1.generateItemsAvailableToBuy();
+            creaturesShop1.generateItemsAvailableToBuy();
+        }
+
+        if(i == 2){
+            spellShop2.generateItemsAvailableToBuy();
+            artifactsShop2.generateItemsAvailableToBuy();
+            specialSkillsShop2.generateItemsAvailableToBuy();
+            creaturesShop2.generateItemsAvailableToBuy();
+        }
+    }
+
+    public void endTurn(){
+        activeHero.increaseGold(3000);
+        if(activeHero == economyHero1)
+            refreshShops(1);
+        else
+            refreshShops(2);
+        changeHero();
+    }
+
     public void changeHero(){
         if(activeHero == economyHero1)
             activeHero = economyHero2;
@@ -103,7 +119,17 @@ public class EconomyEngine implements PropertyChangeListener {
             activeHero = economyHero1;
     }
 
+    public void sellItem(String itemName, String type){
+        switch(type) {
+            case "Spell":
+                activeHero.sellSpell(SpellBookInfoFactory.getSpell(itemName));
+                break;
 
+            case "Artifact":
+                activeHero.sellArtifact(ArtifactsInfoFactory.getArtifact(itemName));
+                break;
+        }
+    }
 
 
 

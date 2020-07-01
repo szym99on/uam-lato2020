@@ -54,9 +54,9 @@ public class HeroInfo {
         fractionClass = aFractionClass;
     }
 
-//    public FractionsInfoAbstractFactory.Fractions getFraction() {
-//        return fraction;
-//    }
+    public FractionsInfoAbstractFactory getFractionFactory() {
+        return fraction;
+    }
 
     public String getName() {
         return name;

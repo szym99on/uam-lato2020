@@ -1,8 +1,10 @@
 package pl.psi.game.hero.economyHero;
 
+import javafx.scene.control.Alert;
 import lombok.Builder;
 import lombok.Getter;
 import pl.psi.game.fractions.CreatureInfo;
+import pl.psi.game.fractions.CreatureStack;
 import pl.psi.game.fractions.FractionsInfoAbstractFactory;
 import pl.psi.game.hero.HeroInfo;
 import pl.psi.game.hero.artifacts.ArtifactInfo;
@@ -16,7 +18,7 @@ import java.util.stream.Collectors;
 @Getter
 public class EconomyHero {
 
-    private List<CreatureInfo> creatures;
+    private List<CreatureStack> creatures;
     private List<ArtifactInfo> artifacts;
     private List<SpellInfo> spells;
     private List<SkillInfo> skills;
@@ -34,7 +36,7 @@ public class EconomyHero {
         this.heroInfo = aHeroInfo;
     }
 
-    void increaseGold(int gold) {
+    public void increaseGold(int gold) {
 
         this.gold += gold;
     }
@@ -56,51 +58,66 @@ public class EconomyHero {
 
     }
 
-    public boolean buyCreature(CreatureInfo creature) throws IllegalStateException {
-        if (this.getGold() >= creature.getCost()) {
+    public boolean buyCreature(CreatureInfo creature, int amount) throws IllegalStateException {
+        int cost = creature.getCost() * amount;
+        if (this.getGold() >= cost) {
 
-            this.decreaseGold(creature.getCost());
-            this.creatures.add(creature);
+            this.decreaseGold(cost);
+            this.addCreature(new CreatureStack(creature, amount));
             return true;
         } else {
-            String output = String.format("Not enough gold to buy creature: %s", creature.getName());
-            throw new IllegalStateException(output);
+            return false;
         }
 
     }
 
-    void sellCreature(CreatureInfo creature) throws IllegalStateException {
-
-        if (!this.creatures.contains(creature)) {
-            String output = String.format("Hero doesn't have creature: %s", creature.getName());
-            throw new IllegalStateException(output);
+    public void sellCreature(CreatureInfo creature, int amount) throws IllegalStateException {
+        CreatureStack stackFromHero = null;
+        for(CreatureStack c: this.creatures){
+            if(c.getCreatureInfo().equals(creature))
+                stackFromHero = c;
         }
-        int sellCreatureValue = (int) (creature.getCost() * 0.75);
 
-        this.increaseGold(sellCreatureValue);
-        this.creatures.remove(creature);
 
+        if (stackFromHero.equals(null) || stackFromHero.getCreaturesCount() < amount) {
+            String output = String.format("Hero doesn't have enough creatures: %s", creature.getName());
+            throw new IllegalStateException(output);
+        }else {
+            int sellCreatureValue = (int) ((creature.getCost() * 0.75) * amount);
+
+            if(stackFromHero.getCreaturesCount() == amount)
+                this.creatures.remove(stackFromHero);
+            else
+                stackFromHero.setCreaturesCount(stackFromHero.getCreaturesCount() - amount);
+            this.increaseGold(sellCreatureValue);
+        }
     }
 
 
     public boolean buyArtifact(ArtifactInfo artifact) throws IllegalStateException {
 
-        if (this.isSlotEmpty(artifact.getLocation().toString())) {
-            String output = String.format("Location: %s is taken.", artifact.getLocation().toString());
-            throw new IllegalStateException(output);
 
-        }
 
         if (this.getGold() >= artifact.getCost()) {
-            this.decreaseGold(artifact.getCost());
-            this.artifacts.add(artifact);
-            return true;
-
+            if (this.isSlotEmpty(artifact.getLocation().toString())) {
+                try{
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setHeaderText("Slot: "+artifact.getLocation().toString()+" is not empty!");
+                    alert.show();
+                }catch (ExceptionInInitializerError e){}
+                return false;
+            }else{
+                this.decreaseGold(artifact.getCost());
+                this.artifacts.add(artifact);
+                return true;
+            }
         } else {
-            String output = String.format("Not enough gold to buy %s", artifact.getName());
-            throw new IllegalStateException(output);
-
-
+            try{
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText("You don't have enough money!");
+            alert.show();
+        }catch (ExceptionInInitializerError e){}
+            return false;
         }
 
 
@@ -109,7 +126,7 @@ public class EconomyHero {
         return true;
     }
 
-    void sellArtifact(ArtifactInfo artifact) throws IllegalStateException {
+    public void sellArtifact(ArtifactInfo artifact) throws IllegalStateException {
         if (!this.artifacts.contains(artifact)) {
             String output = String.format("Hero doesn't have artifact: %s", artifact.getName());
             throw new IllegalStateException(output);
@@ -147,8 +164,7 @@ public class EconomyHero {
 
     public boolean buySpell(SpellInfo spell) throws IllegalStateException {
         if (this.spells.contains(spell)) {
-            String output = String.format("Hero has got this spell %s ", spell.getName());
-            throw new IllegalStateException(output);
+            return false;
         }
         if (getGold() >= spell.getCost()) {
             this.decreaseGold(spell.getCost());
@@ -161,8 +177,7 @@ public class EconomyHero {
 
     public boolean buySkill(SkillInfo skill) throws IllegalStateException {
         if (this.skills.contains(skill)) {
-            String output = String.format("Hero has got this skill %s ", skill.getName());
-            throw new IllegalStateException(output);
+            return false;
         }
         if (getGold() >= skill.getCost()) {
             this.decreaseGold(skill.getCost());
@@ -181,8 +196,15 @@ public class EconomyHero {
         return this.artifacts;
     }
 
-    public List<CreatureInfo> getCreatures() {
+    public List<CreatureStack> getCreatures() {
         return this.creatures;
+    }
+    public CreatureStack getCreatureStack(CreatureInfo creatureInfo){
+        for(CreatureStack c: creatures){
+            if (c.getCreatureInfo().equals(creatureInfo))
+                return c;
+        }
+        return null;
     }
 
     public List<SkillInfo> getSkills() {
@@ -194,8 +216,17 @@ public class EconomyHero {
         return this.artifacts.stream().map(ArtifactInfo::getLocation).collect(Collectors.toList());
     }
 
-    void addCreature(CreatureInfo creature) {
-        this.creatures.add(creature);
+    void addCreature(CreatureStack creatureStack) {
+        boolean alreadyAdd = false;
+        for(CreatureStack c: this.creatures){
+            if(c.getCreatureInfo().equals(creatureStack.getCreatureInfo())){
+                c.setCreaturesCount(c.getCreaturesCount() + creatureStack.getCreaturesCount());
+                alreadyAdd = true;
+                break;
+            }
+        }
+        if(!alreadyAdd)
+            this.creatures.add(creatureStack);
     }
 
     void addArtifact(ArtifactInfo artifact) {
@@ -217,7 +248,7 @@ public class EconomyHero {
 //        return heroInfo.getFraction();
 //    }
 
-    HeroInfo getHeroInfo() {
+    public HeroInfo getHeroInfo() {
         return heroInfo;
     }
 

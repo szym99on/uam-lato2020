@@ -62,12 +62,12 @@ public class shopsManagementTest {
 
 
     @Test
-    void generateItemsAvailableToBuyShouldGenerateArtifactsInRange2To12(){
+    void generateItemsAvailableToBuyShouldGenerateArtifactsInRange6To10(){
 
         ArtifactsShop artifactsShop = new ArtifactsShop();
         artifactsShop.generateItemsAvailableToBuy();
         List<ArtifactInfo> artifactsAvailableToBuy = artifactsShop.getArtifactsAvailableToBuy();
-        assertTrue(2<=artifactsAvailableToBuy.size() && artifactsAvailableToBuy.size()<=12);
+        assertTrue(6<=artifactsAvailableToBuy.size() && artifactsAvailableToBuy.size()<=10);
     }
 
 

@@ -2,10 +2,7 @@ package pl.psi.game.spellbook;
 
 import lombok.Builder;
 import pl.psi.game.Board;
-import pl.psi.game.fractions.Creature;
-import pl.psi.game.fractions.CreatureAbstractFactory;
-import pl.psi.game.fractions.CreatureInfo;
-import pl.psi.game.fractions.FractionsInfoAbstractFactory;
+import pl.psi.game.fractions.*;
 
 import java.util.Objects;
 
@@ -36,23 +33,23 @@ public class SummonUnits extends Spell {
     public void cast(int x, int y) {
 
         if (name.equals(SpellBookInfoFactory.STORM_ELEMENTAL)){
-            CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.ELEMENTAL).getCreature(STORM_ELEMENTAL);
-            Creature creature = creatureAbstractFactory.getCreature(creatureInfo);
+            CreatureStack creatureStack =  new CreatureStack(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.ELEMENTAL).getCreature(STORM_ELEMENTAL), 1);
+            Creature creature = creatureAbstractFactory.getCreature(creatureStack);
             board.putCreature(x,y, creature);
         }
         if (name.equals(SpellBookInfoFactory.MAGMA_ELEMENTAL)){
-            CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.ELEMENTAL).getCreature(MAGMA_ELEMENTAL);
-            Creature creature = creatureAbstractFactory.getCreature(creatureInfo);
+            CreatureStack creatureStack = new CreatureStack(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.ELEMENTAL).getCreature(MAGMA_ELEMENTAL), 1);
+            Creature creature = creatureAbstractFactory.getCreature(creatureStack);
             board.putCreature(x,y, creature);
         }
         if (name.equals(SpellBookInfoFactory.ENERGY_ELEMENTAL)){
-            CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.ELEMENTAL).getCreature(ENERGY_ELEMENTAL);
-            Creature creature = creatureAbstractFactory.getCreature(creatureInfo);
+            CreatureStack creatureStack = new CreatureStack(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.ELEMENTAL).getCreature(ENERGY_ELEMENTAL), 1);
+            Creature creature = creatureAbstractFactory.getCreature(creatureStack);
             board.putCreature(x,y, creature);
         }
         if (name.equals(SpellBookInfoFactory.ICE_ELEMENTAL)){
-            CreatureInfo creatureInfo = FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.ELEMENTAL).getCreature(ICE_ELEMENTAL);
-            Creature creature = creatureAbstractFactory.getCreature(creatureInfo);
+            CreatureStack creatureStack = new CreatureStack(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.ELEMENTAL).getCreature(ICE_ELEMENTAL), 1);
+            Creature creature = creatureAbstractFactory.getCreature(creatureStack);
             board.putCreature(x,y, creature);
         }
 

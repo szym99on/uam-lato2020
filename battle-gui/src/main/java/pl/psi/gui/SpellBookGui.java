@@ -34,8 +34,10 @@ public class SpellBookGui   {
 
         JFrame frame = new JFrame("SpellBook");
         frame.setSize(800, 600);
-        frame.setLocation(50, 50);
-        frame.setLayout(new GridLayout(6,3));
+        frame.setLocation(250, 150);
+        frame.setLayout(new GridLayout(10,3));
+        JLabel label = new JLabel("Ilośc many: " + String.valueOf(spellBook.getMana()), JLabel.CENTER);
+        frame.add(label);
         for(Spell item : spellBook.getSpells()){
             JButton button = new JButton(item.getSpellName());
             button.setToolTipText(item.getDescription());

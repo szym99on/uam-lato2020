@@ -10,7 +10,6 @@ import lombok.Getter;
 import lombok.Setter;
 import pl.psi.game.hero.converter.Hero;
 import pl.psi.game.move.GuiTileIf;
-import pl.psi.game.move.Obstacle;
 import pl.psi.game.spellbook.Spell;
 
 @Getter
@@ -32,7 +31,7 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
     @Setter private AttackStrategyIf attackStrategyIf;
     
     @Builder
-    public Creature(int aMaxHp, Range<Integer> aAttack, int aArmor, String aName, int aMoveRange, boolean aCanFly) {
+    public Creature(int aMaxHp, Range<Integer> aAttack, int aArmor, String aName, int aMoveRange, boolean aCanFly, int aAmount) {
         maxHp = aMaxHp;
         basicAttack = aAttack;
         attack = aAttack;
@@ -43,7 +42,9 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
         name = aName;
         moveRange = aMoveRange;
         canFly = aCanFly;
-        amount = 10;
+        amount = aAmount;
+        if(amount==0)
+            amount=1;
         dealDamageCounterStrategy = new DefaultDamageCounterStrategy();
         magicResistance = new MagicResistance(0, MagicResistance.GroupImmunityType.NONE);
         attackStrategyIf = new DefaultAttackStrategy(this);
@@ -58,6 +59,7 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
         armor = aArmor;
         canCounterAttacked = true;
         name = "";
+        amount=1;
         moveRange = 0;
         canFly = false;
         magicResistance = new MagicResistance(0, MagicResistance.GroupImmunityType.NONE);
@@ -85,14 +87,28 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
     }
 
     void dealDamage(Creature aDefender) {
-        int damageToDeal = dealDamageCounterStrategy.countDamageToDeal(this, aDefender);
+        int damageToDeal = dealDamageCounterStrategy.countDamageToDeal(this, aDefender)*amount;
         aDefender.takePureDamage(damageToDeal);
     }
 
     public void takePureDamage(int damage) {
-        currentHp = currentHp - damage;
-        if (currentHp < 0) {
+        int fullCurrentHp = (maxHp * (amount - 1)) + currentHp - damage;
+        if (fullCurrentHp <= 0) {
+            amount = 0;
             currentHp = 0;
+        }
+        else
+        {
+            if(fullCurrentHp % maxHp==0)
+            {
+                currentHp=maxHp;
+                amount=fullCurrentHp/maxHp;
+            }
+            else
+            {
+                currentHp = fullCurrentHp % maxHp;
+                amount = (fullCurrentHp/maxHp) + 1;
+            }
         }
     }
 
@@ -108,6 +124,11 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
     @Override
     public boolean isCreature() {
         return true;
+    }
+
+    @Override
+    public boolean isObstacle() {
+        return false;
     }
 
     @Override
