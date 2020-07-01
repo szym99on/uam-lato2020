@@ -122,9 +122,6 @@ public class EconomyHero {
 
 
     }
-    public boolean buyArt(ArtifactInfo artifact) throws IllegalStateException{
-        return true;
-    }
 
     public void sellArtifact(ArtifactInfo artifact) throws IllegalStateException {
         if (!this.artifacts.contains(artifact)) {
@@ -257,7 +254,6 @@ public class EconomyHero {
     }
 
     public int getAttack() {
-        System.out.println("I am in the getAttack");
         return this.heroInfo.getAttack();
     }
 
