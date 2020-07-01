@@ -48,6 +48,13 @@ public class Board {
 
     public void clearBoard(){
         board.clear();
+        ObstacleFactory obstacleFactory = new ObstacleFactory();
+        putObstacle(obstacleFactory.createImpactMoveObstacle("rock", new Point(7, 2)));
+        putObstacle(obstacleFactory.createImpactMoveObstacle("rock", new Point(7, 3)));
+        putObstacle(obstacleFactory.createImpactMoveObstacle("rock", new Point(7, 4)));
+        putObstacle(obstacleFactory.createImpactMoveObstacle("rock", new Point(7, 5)));
+        putObstacle(obstacleFactory.createImpactMoveObstacle("rock", new Point(7, 6)));
+        putObstacle(obstacleFactory.createImpactMoveObstacle("rock", new Point(7, 7)));
     }
 
     public void putCreature(int x, int y, Creature aCreature) {
