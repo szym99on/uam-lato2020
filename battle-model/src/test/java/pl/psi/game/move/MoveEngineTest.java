@@ -408,6 +408,11 @@ class MoveEngineTest {
         assertFalse(moveEngine.isMovePossible(new Point(0, 4)));
     }
 
+    @Test
+    void walkingCreatureDealDamageFromObstacle(){
+
+    }
+
 
 }
 

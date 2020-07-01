@@ -5,7 +5,6 @@ import java.awt.*;
 public interface ObstacleIf extends GuiTileIf {
 
     Point getPoint();
-    int getWeight();
     boolean isPassable();
 
 }
