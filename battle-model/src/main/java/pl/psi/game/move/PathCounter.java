@@ -14,7 +14,7 @@ import static pl.psi.game.Board.BOARD_WIDTH;
 class PathCounter {
 
     private final int recursionGuard = 500;
-   private int obstacleCost;
+    private int obstacleCost;
     private int obstacleCostRock;
     Map<Point, Integer> aStarBoard = new HashMap<>();
 

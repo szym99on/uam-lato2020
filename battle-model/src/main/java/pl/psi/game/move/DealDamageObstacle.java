@@ -10,13 +10,13 @@ class DealDamageObstacle extends ImpactCreatureObstacle {
 
     public DealDamageObstacle(String aName, Point aPoint) {
         super(aName, aPoint);
-        attack = 1;
+        attack = 3;
     }
 
     @Override
     public void apply(Creature creature) {
         if (!creature.isCanFly()) {
-            creature.takePureDamage(attack);
+            creature.takePureDamage(attack*creature.getAmount());
         }
     }
 
