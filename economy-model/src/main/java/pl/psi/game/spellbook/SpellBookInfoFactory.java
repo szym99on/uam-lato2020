@@ -20,6 +20,7 @@ public class SpellBookInfoFactory {
     public final static String FIRE_SHIELD = "Fire shield";
     public final static String SLOW = "Slow";
     public final static String STONESKIN = "Stoneskin";
+    public final static String ANTY_MAGIC = "Anty magic";
     public final static String WEAKNESS = "Weakness";
     public final static String PRAYER = "Prayer";
 
@@ -47,6 +48,7 @@ public class SpellBookInfoFactory {
         spellList.add(SpellInfo.builder().aTarget(SpellInfo.Target.ALLY).aCost(300).aDescription("Cast on a friendly unit, it does not provide any additional protection, but any enemy attacking through the fire shield will suffer damage equal to a portion of what it inflicts.").aDuration(1).aManaCost(16).aName(FIRE_SHIELD).aLevel(4).aType(SpellInfo.Type.FIRE).build());
         spellList.add(SpellInfo.builder().aTarget(SpellInfo.Target.ENEMY).aCost(500).aDescription("Reduces the speed of the selected enemy unit.").aDuration(1).aManaCost(6).aName(SLOW).aLevel(1).aType(SpellInfo.Type.EARTH).build());
         spellList.add(SpellInfo.builder().aTarget(SpellInfo.Target.ALLY).aCost(300).aDescription("Increases the selected unit's defense strength.").aDuration(1).aManaCost(5).aName(STONESKIN).aLevel(1).aType(SpellInfo.Type.EARTH).build());
+        spellList.add(SpellInfo.builder().aTarget(SpellInfo.Target.ALLY).aCost(300).aDescription("Protects the selected unit from all low level spells.").aDuration(1).aManaCost(15).aName(ANTY_MAGIC).aLevel(3).aType(SpellInfo.Type.EARTH).build());
         spellList.add(SpellInfo.builder().aTarget(SpellInfo.Target.ENEMY).aCost(500).aDescription("Reduces the selected enemy unit's attack strength.").aDuration(1).aManaCost(8).aName(WEAKNESS).aLevel(2).aType(SpellInfo.Type.WATER).build());
         spellList.add(SpellInfo.builder().aTarget(SpellInfo.Target.ALLY).aCost(350).aDescription("Bestows a bonus to the attack strength, defense strength and speed of the selected unit.").aDuration(1).aManaCost(16).aName(PRAYER).aLevel(4).aType(SpellInfo.Type.WATER).build());
 

@@ -31,6 +31,8 @@ public class SpellFactory {
                 return BuffDebufSpell.builder().aTarget(spellInfo.getTarget()).aModificationAttack(2).aModificationArmor(2).aModificationMoveRange(2).aName(spellInfo.getName()).aCost(spellInfo.getCost()).aDescription(spellInfo.getDescription()).aDuration(spellInfo.getDuration()*aHeroPower).aManaCost(spellInfo.getManaCost()).aLevel(spellInfo.getLevel()).aType(spellInfo.getType()).build();
             case SpellBookInfoFactory.SLOW :
                 return BuffDebufSpell.builder().aTarget(spellInfo.getTarget()).aModificationAttack(0).aModificationArmor(0).aModificationMoveRange(-3).aName(spellInfo.getName()).aCost(spellInfo.getCost()).aDescription(spellInfo.getDescription()).aDuration(spellInfo.getDuration()*aHeroPower).aManaCost(spellInfo.getManaCost()).aLevel(spellInfo.getLevel()).aType(spellInfo.getType()).build();
+            case SpellBookInfoFactory.ANTY_MAGIC:
+                return SpecialBuffDebufSpell.builder().aTarget(spellInfo.getTarget()).aName(spellInfo.getName()).aCost(spellInfo.getCost()).aDescription(spellInfo.getDescription()).aDuration(spellInfo.getDuration()*aHeroPower).aManaCost(spellInfo.getManaCost()).aLevel(spellInfo.getLevel()).aType(spellInfo.getType()).build();
             case SpellBookInfoFactory.AIR_SHIELD :
             case SpellBookInfoFactory.BLOODLUST :
             case SpellBookInfoFactory.FIRE_SHIELD :
