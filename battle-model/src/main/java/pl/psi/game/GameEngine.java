@@ -141,6 +141,8 @@ public class GameEngine implements PropertyChangeListener {
             endOfTurn();
         }
 
+        //creaturesQueue.stream().filter(c -> c.getAmount()==0).forEach(cr -> {board.removeCreature(cr);creaturesQueue.remove(cr);});
+        //creatureMovedOnThisTurn.stream().filter(c -> c.getAmount()==0).forEach(cr -> {board.removeCreature(cr);creatureMovedOnThisTurn.remove(cr);});
         Creature creatureFromQueue = creaturesQueue.poll();
         activeCreature = new AbstractMap.SimpleEntry<>(board.getCreatureLocation(creatureFromQueue).get(), creatureFromQueue);
         propertyChangeSupport.firePropertyChange(ACTIVE_CREATURE_CHANGED, null, activeCreature);

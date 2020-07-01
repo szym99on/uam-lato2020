@@ -61,6 +61,8 @@ public class HeroInfoFactory {
     //ELEMENTALIST
     public final static String AENAIN = "Aenain";
     public final static String BRISSA = "Brissa";
+    //XHERO
+    public final static String XHERO = "XHero";
 
     private final static List<HeroInfo> heroList = new ArrayList<>();
     {
@@ -109,6 +111,8 @@ public class HeroInfoFactory {
         heroList.add(HeroInfo.builder().aName(IGNISSA).aFraction(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.CONFLUX)).aFractionClass(HeroInfo.FractionClass.PLANESWALKER).build());
         heroList.add(HeroInfo.builder().aName(AENAIN).aFraction(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.CONFLUX)).aFractionClass(HeroInfo.FractionClass.ELEMENTALIS).build());
         heroList.add(HeroInfo.builder().aName(BRISSA).aFraction(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.CONFLUX)).aFractionClass(HeroInfo.FractionClass.ELEMENTALIS).build());
+        //XHERO
+        heroList.add(HeroInfo.builder().aName(XHERO).aFraction(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS)).aFractionClass(HeroInfo.FractionClass.XCLASS).build());
     }
 
     public static List<HeroInfo> getAll(){

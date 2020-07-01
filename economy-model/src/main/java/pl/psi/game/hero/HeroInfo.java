@@ -29,7 +29,8 @@ public class HeroInfo {
         BEASTMASTER(0,4,1,1),
         WITCH(0,1,2,2),
         PLANESWALKER(3,1,1,1),
-        ELEMENTALIS(0,0,3,3);
+        ELEMENTALIS(0,0,3,3),
+        XCLASS(10,10,10,10);
         final int attack;
         final int defence;
         final int power;

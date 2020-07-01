@@ -136,6 +136,10 @@ public class Board {
             putCreature(oldPosition.x, oldPosition.y, activeCreature);
         }
     }
+    public void removeCreature(Creature c)
+    {
+        board.remove(getCreatureLocation(c).get());
+    }
 
     private void doNothing(){}
 }
