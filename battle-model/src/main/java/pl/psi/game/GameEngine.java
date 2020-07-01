@@ -225,12 +225,6 @@ public class GameEngine implements PropertyChangeListener {
         if (hero1.haveThisCreature(activeCreature.getValue())) return hero1;
         if (hero2.haveThisCreature(activeCreature.getValue())) return hero2;
 
-//        for(Creature creature : hero1.getCreatures()){
-//            if(creature==activeCreature.getValue()) return hero1;
-//        }
-//        for (Creature creature : hero2.getCreatures()){
-//            if(creature==activeCreature.getValue()) return hero2;
-//        }
         throw new IllegalStateException("Active creature not belong to any hero.");
     }
 
