@@ -155,8 +155,9 @@ public class MainEconomyController {
         return  HeroInfoFactory.getHeroInfoByName(dialog.getSelectedItem().toString());
     }
 
-    public void addItemToShop(String itemName, int cost, HBox hbox, String type) {
+    public void addItemToShop(String itemName, String description, int cost, HBox hbox, String type) {
         Button btn = new Button();
+        btn.setTooltip(new Tooltip(description));
         btn.setId(itemName);
         btn.setText(itemName);
         btn.setMinSize(170, 19);
@@ -206,7 +207,7 @@ public class MainEconomyController {
             else
                 spellShopInside2.getChildren().add(hbox);
 
-            addItemToShop(spell.getName(), spell.getCost(), hbox, "Spell");
+            addItemToShop(spell.getName(), spell.getDescription(), spell.getCost(), hbox, "Spell");
             spellvar++;
         }
 
@@ -219,7 +220,7 @@ public class MainEconomyController {
             else
                 skillShopInside2.getChildren().add(hbox);
 
-            addItemToShop(skill.getName(), skill.getCost(), hbox, "Skill");
+            addItemToShop(skill.getName(), skill.getDescription(), skill.getCost(), hbox, "Skill");
             skillvar++;
         }
 
@@ -232,7 +233,7 @@ public class MainEconomyController {
             else
                 artifactsShopInside2.getChildren().add(hbox);
 
-            addItemToShop(artifact.getName(), artifact.getCost(), hbox, "Artifact");
+            addItemToShop(artifact.getName(), artifact.getDescription(), artifact.getCost(), hbox, "Artifact");
             artvar++;
         }
 
