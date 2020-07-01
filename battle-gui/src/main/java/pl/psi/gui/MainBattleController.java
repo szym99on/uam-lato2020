@@ -129,23 +129,20 @@ private static final Logger LOG = LogManager.getLogger(MainBattleController.clas
 
         setEcoHeroCreaturesToBattleHero(economyHero1, hero1);
         setEcoHeroCreaturesToBattleHero(economyHero2, hero2);
+        if(gameEngine.didHeroLose(hero1) && gameEngine.didHeroLose(hero2)){
+            showAlert("DRAW!!!");
+        }else {
+            if (gameEngine.didHeroLose(hero1)) showAlert("Player 2 WON!!!");
 
-        if (gameEngine.didHeroLose(hero1))
-            showAlert("Player 2");
-
-        if (gameEngine.didHeroLose(hero2))
-            showAlert("Player 1");
-
+            if (gameEngine.didHeroLose(hero2)) showAlert("Player 1 WON!!!");
+        }
         closeBattleWindow();
-
-
-
 
     }
 
-    public void showAlert(String hero){
+    public void showAlert(String text){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setHeaderText(hero + " WON !!");
+        alert.setHeaderText(text);
         alert.showAndWait();
     }
 

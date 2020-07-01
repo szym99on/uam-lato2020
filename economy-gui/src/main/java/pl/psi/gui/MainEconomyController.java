@@ -440,8 +440,12 @@ public class MainEconomyController {
 
                 stage.showAndWait();
 
-            } catch (IOException aE) {
-                aE.printStackTrace();
+            } catch (Exception e) {
+                if (e.getMessage() == "No value present") {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setHeaderText("DRAW!!!");
+                    alert.show();
+                }
             }
         }
         refreshGui();
