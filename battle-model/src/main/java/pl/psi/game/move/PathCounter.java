@@ -152,7 +152,6 @@ class PathCounter {
         }
     }
 
-    //this can be private, but I want to have unit tests of this method
     private double findMinValue(double a, double b, double c, double d) {
         double subSmall1;
         double subSmall2;
