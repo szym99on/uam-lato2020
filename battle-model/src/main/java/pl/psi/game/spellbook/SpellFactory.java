@@ -36,13 +36,13 @@ public class SpellFactory {
             case SpellBookInfoFactory.FIRE_SHIELD :
                 return BuffDebufSpell.builder().aTarget(spellInfo.getTarget()).aName(spellInfo.getName()).aCost(spellInfo.getCost()).aDescription(spellInfo.getDescription()).aDuration(spellInfo.getDuration()).aManaCost(spellInfo.getManaCost()).aLevel(spellInfo.getLevel()).aType(spellInfo.getType()).build();
             case SpellBookInfoFactory.STORM_ELEMENTAL :
-                return SummonUnits.builder().aTarget(spellInfo.getTarget()).aName(spellInfo.getName()).build();
+                return SummonUnits.builder().aTarget(spellInfo.getTarget()).aName(spellInfo.getName()).aCost(spellInfo.getCost()).aDescription(spellInfo.getDescription()).aDuration(spellInfo.getDuration()).aManaCost(spellInfo.getManaCost()).aLevel(spellInfo.getLevel()).aType(spellInfo.getType()).build();
             case SpellBookInfoFactory.ENERGY_ELEMENTAL :
-                return SummonUnits.builder().aTarget(spellInfo.getTarget()).aName(spellInfo.getName()).build();
+                return SummonUnits.builder().aTarget(spellInfo.getTarget()).aName(spellInfo.getName()).aCost(spellInfo.getCost()).aDescription(spellInfo.getDescription()).aDuration(spellInfo.getDuration()).aManaCost(spellInfo.getManaCost()).aLevel(spellInfo.getLevel()).aType(spellInfo.getType()).build();
             case SpellBookInfoFactory.ICE_ELEMENTAL :
-                return SummonUnits.builder().aTarget(spellInfo.getTarget()).aName(spellInfo.getName()).build();
+                return SummonUnits.builder().aTarget(spellInfo.getTarget()).aName(spellInfo.getName()).aCost(spellInfo.getCost()).aDescription(spellInfo.getDescription()).aDuration(spellInfo.getDuration()).aManaCost(spellInfo.getManaCost()).aLevel(spellInfo.getLevel()).aType(spellInfo.getType()).build();
             case SpellBookInfoFactory.MAGMA_ELEMENTAL :
-                return SummonUnits.builder().aTarget(spellInfo.getTarget()).aName(spellInfo.getName()).build();
+                return SummonUnits.builder().aTarget(spellInfo.getTarget()).aName(spellInfo.getName()).aCost(spellInfo.getCost()).aDescription(spellInfo.getDescription()).aDuration(spellInfo.getDuration()).aManaCost(spellInfo.getManaCost()).aLevel(spellInfo.getLevel()).aType(spellInfo.getType()).build();
             default:
                 throw new IllegalArgumentException("This spell doesn't exist");
         }

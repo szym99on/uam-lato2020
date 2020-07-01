@@ -11,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 import pl.psi.game.GameEngine;
 import pl.psi.game.hero.converter.Hero;
 import pl.psi.game.hero.converter.HeroEcoBattleConverter;
+import pl.psi.game.hero.economyHero.EconomyHero;
 import pl.psi.gui.states.NormalState;
 import pl.psi.gui.states.StateMap;
 
@@ -38,8 +39,8 @@ private static final Logger LOG = LogManager.getLogger(MainBattleController.clas
         LOG.warn("We've just greeted the user!");
         LOG.error("We've just greeted the user!");
         LOG.fatal("We've just greeted the user!");
-        ArtifactInitializer init = new ArtifactInitializer();
-//        SpellInitializer init = new SpellInitializer();
+//        ArtifactInitializer init = new ArtifactInitializer();
+        SpellInitializer init = new SpellInitializer();
 
         hero1 = HeroEcoBattleConverter.convert(init.getH1());
         hero2 = HeroEcoBattleConverter.convert(init.getH2());
@@ -47,6 +48,13 @@ private static final Logger LOG = LogManager.getLogger(MainBattleController.clas
         gameEngine = new GameEngine(hero1, hero2);
     }
 
+    public MainBattleController(EconomyHero economyHero1, EconomyHero economyHero2) {
+
+        hero1 = HeroEcoBattleConverter.convert(economyHero1);
+        hero2 = HeroEcoBattleConverter.convert(economyHero2);
+
+        gameEngine = new GameEngine(hero1, hero2);
+    }
     @FXML
     private void initialize() {
         refreshGui();

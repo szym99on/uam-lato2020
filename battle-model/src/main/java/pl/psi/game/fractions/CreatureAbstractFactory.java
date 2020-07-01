@@ -2,10 +2,10 @@ package pl.psi.game.fractions;
 
 public class CreatureAbstractFactory {
 	
-	public Creature getCreature(CreatureInfo creatureInfo) {
-		Creature creature = Creature.builder().aMaxHp(creatureInfo.getMaxHp()).aAttack(creatureInfo.getAttack())
-				.aName(creatureInfo.getName()).aArmor(creatureInfo.getArmor()).aMoveRange(creatureInfo.getMoveRange())
-				.aCanFly(creatureInfo.isCanFly()).aAmount(1).build();
+	public Creature getCreature(CreatureStack creatureStack) {
+		Creature creature = Creature.builder().aMaxHp(creatureStack.getCreatureInfo().getMaxHp()).aAttack(creatureStack.getCreatureInfo().getAttack())
+				.aName(creatureStack.getCreatureInfo().getName()).aArmor(creatureStack.getCreatureInfo().getArmor()).aMoveRange(creatureStack.getCreatureInfo().getMoveRange())
+				.aCanFly(creatureStack.getCreatureInfo().isCanFly()).aAmount(creatureStack.getCreaturesCount()).build();
 		addSpecialAttack(creature);
 		addMagicResistance(creature);
 		return creature;

@@ -3,6 +3,7 @@ package pl.psi.game.fractions.Requests;
 import org.junit.jupiter.api.Test;
 import pl.psi.game.fractions.Creature;
 import pl.psi.game.fractions.CreatureAbstractFactory;
+import pl.psi.game.fractions.CreatureStack;
 import pl.psi.game.fractions.FractionsInfoAbstractFactory;
 import pl.psi.game.hero.converter.Hero;
 
@@ -16,8 +17,8 @@ public class ConverterRequest {
         Hero hero=Hero.builder().build();
         hero.increaseAttack(2);
         CreatureAbstractFactory creatureAbstractFactory = new CreatureAbstractFactory();
-        Creature baseCreature = creatureAbstractFactory.getCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(1));
-        Creature changedCreature = creatureAbstractFactory.getCreature(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(1));
+        Creature baseCreature = creatureAbstractFactory.getCreature(new CreatureStack(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(1), 1));
+        Creature changedCreature = creatureAbstractFactory.getCreature(new CreatureStack(FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS).getCreatureByTier(1), 1));
         changedCreature.apply(hero);
         assertNotEquals(changedCreature,baseCreature);
     }
