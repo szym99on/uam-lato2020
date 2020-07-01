@@ -417,7 +417,7 @@ class MoveEngineTest {
         moveEngine.setActiveCreature(new Point(1, 1), creature);
         moveEngine.move(1, 3);
 
-        assertEquals(9, creature.getCurrentHp());
+        assertEquals(10 - 3 * creature.getAmount(), creature.getCurrentHp());
 
     }
 
