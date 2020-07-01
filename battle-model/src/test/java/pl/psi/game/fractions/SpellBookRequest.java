@@ -77,7 +77,7 @@ public class SpellBookRequest {
         Creature defender1 = Creature.builder().aArmor(0).aMaxHp(20).build();
         Creature defender2 = Creature.builder().aArmor(0).aMaxHp(20).build();
 
-      //  defender1.reduceRangedDamageByPercentage(25);
+      //  defender1.setReduceRangedDamageByPercentage(25);
 
 
         attacker.attack(defender1);
@@ -86,29 +86,12 @@ public class SpellBookRequest {
         assertEquals(14,defender1.getCurrentHp());
         assertEquals(12,defender2.getCurrentHp());
 
-//        defender1.removeThisEffect();
+//        defender1.removeReduceRangedDamageByPercentage(25);
         attacker.attack(defender1);
 
         assertEquals(6,defender1.getCurrentHp());
     }
 
-    @Test
-    @Disabled
-    void creatureShouldIncreaseCloseRangedAttackDamage(){
-        Creature attacker = Creature.builder().aAttack(Range.closed(8,8)).build();
-        Creature defender1 = Creature.builder().aArmor(0).aMaxHp(20).build();
-        Creature defender2 = Creature.builder().aArmor(0).aMaxHp(20).build();
-
-//        attacker.increaseCloseRangedDamage(3);
-        attacker.attack(defender1);
-
-//        attacker.removeThisEffect()
-        attacker.attack(defender2);
-
-        assertEquals(9,defender1.getCurrentHp());
-        assertEquals(12,defender2.getCurrentHp());
-
-    }
 
     @Test
     @Disabled
@@ -117,9 +100,9 @@ public class SpellBookRequest {
         Creature defender1 = Creature.builder().aAttack(Range.closed(0,0)).aArmor(0).aMaxHp(20).build();
 
 //        FireShield
-//        defender1.returnPercentageDamageDealt(20)
+//        defender1.setReturnPercentageDamageDealt(20);
         attacker.attack(defender1);
-//        defender.removeThisEffect()
+//        defender.removeReturnPercentageDamageDealt(20);
 
         assertEquals(18,attacker.getCurrentHp());
     }
