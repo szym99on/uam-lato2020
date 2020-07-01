@@ -25,14 +25,7 @@ public class HeroInfoTest {
         heroInfoList=HeroInfoFactory.getAll();
         assertEquals(HeroInfoFactory.EDRIC,heroInfoList.get(0).getName());
     }
-    @Disabled
-    @Test
-    void CheckGetFractionMethod()
-    {
-        List<HeroInfo> heroInfoList;
-        //heroInfoList=HeroInfoFactory.getHeroInfoListByFraction(FractionsInfoAbstractFactory.Fractions.TOWER);
-       // assertEquals(HeroInfoFactory.FAFNER,heroInfoList.get(0).getName());
-    }
+
     @Test
     void CheckIfFractionClassSetStatistics()
     {

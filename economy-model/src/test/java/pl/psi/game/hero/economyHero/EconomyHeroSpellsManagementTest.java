@@ -93,7 +93,6 @@ public class EconomyHeroSpellsManagementTest {
         assertEquals(hero.getSpells().size(),0);
     }
 
-    @Disabled
     @Test
     void sellSpellShouldReturn75PercentOfOriginalPriceAndRemoveSpell_2() throws IllegalStateException {
         SpellInfo spell = SpellBookInfoFactory.getSpell(SpellBookInfoFactory.HASTE);
@@ -102,12 +101,11 @@ public class EconomyHeroSpellsManagementTest {
 
         hero.sellSpell(spell);
 
-        assertEquals(hero.getGold(), 2075); //wait for change spell costs
+        assertEquals(hero.getGold(), 2225); //wait for change spell costs
         assertFalse(hero.getSpells().contains(spell));
         assertEquals(hero.getSpells().size(),0);
     }
 
-    @Disabled
     @Test
     void sellSpellShouldReturn75PercentOfOriginalPriceAndRemoveSpellForMoreThanOneSpell_1() throws IllegalStateException{
 
@@ -123,13 +121,10 @@ public class EconomyHeroSpellsManagementTest {
         hero.sellSpell(spell_one);
         hero.sellSpell(spell_two);
 
-        assertEquals(hero.getGold(), 2075); //wait for change spell costs
+        assertEquals(hero.getGold(), 2270); //wait for change spell costs
         assertFalse(hero.getSpells().contains(spell_one));
         assertFalse(hero.getSpells().contains(spell_two));
         assertEquals(hero.getSpells().size(),0);
     }
-
-
-
 
 }

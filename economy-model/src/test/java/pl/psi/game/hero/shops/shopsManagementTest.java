@@ -70,23 +70,4 @@ public class shopsManagementTest {
         assertTrue(6<=artifactsAvailableToBuy.size() && artifactsAvailableToBuy.size()<=10);
     }
 
-
-    @Test
-    @Disabled
-    void endOfRoundShouldGenerateShopWithItems() {
-
-        ArtifactsShop artifactsShop = new ArtifactsShop();
-        CreaturesShop creaturesShop = new CreaturesShop();
-        SpellShop spellShop = new SpellShop();
-
-       /* artifactsShop.generateArtifactsAvailableToBuy();
-        assertEquals(3, artifactsShop.size()); //how many items is in the shop
-
-        creaturesShop.generateCreaturesAvailableToBuy();
-        assertEquals(3, creaturesShop.size()); //how many items is in the shop
-
-//        spellShop.generateSpellsAvailableToBuy();
-        assertEquals(3, spellShop.size()); //how many items is in the shop*/
-
-    }
 }
