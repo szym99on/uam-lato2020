@@ -17,7 +17,7 @@ public class DealDamageObstacleTest {
 
         obstacle.apply(creature);
 
-        assertEquals(10 - 3 * creature.getAmount(), creature.getCurrentHp());
+        assertEquals(7, creature.getCurrentHp());
 
     }
 
