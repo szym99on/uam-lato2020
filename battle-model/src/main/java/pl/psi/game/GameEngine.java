@@ -36,7 +36,6 @@ public class GameEngine implements PropertyChangeListener {
     private final Queue<Creature> creaturesQueue;
     private List<Creature> creatureMovedOnThisTurn;
     private PropertyChangeSupport propertyChangeSupport;
-    private Spell selectedSpell;
     private Hero hero1;
     private Hero hero2;
     private List<Point> path;
