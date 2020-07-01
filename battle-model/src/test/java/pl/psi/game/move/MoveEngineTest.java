@@ -425,7 +425,6 @@ class MoveEngineTest {
 
         assertEquals(9, creature.getCurrentHp());
 
-
     }
 
 
