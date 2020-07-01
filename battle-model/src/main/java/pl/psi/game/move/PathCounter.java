@@ -4,7 +4,6 @@ import pl.psi.game.Board;
 
 import java.awt.*;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -14,9 +13,8 @@ import static pl.psi.game.Board.BOARD_WIDTH;
 
 class PathCounter {
 
-    private final int recursionGuard = 50;
-    private int recursionCounter;
-    private int obstacleCost;
+    private final int recursionGuard = 500;
+   private int obstacleCost;
     private int obstacleCostRock;
     Map<Point, Integer> aStarBoard = new HashMap<>();
 
@@ -38,7 +36,9 @@ class PathCounter {
        }
     }
 
-
+    void init(Point startPoint){
+        aStarBoard = mapCostGenerate(startPoint);
+    }
 
     List countPath(Point point, Point endPoint, List<Point> path) {
         if(recursionGuard <= path.size()){
@@ -54,53 +54,49 @@ class PathCounter {
         Point left = new Point(point.x - 1, point.y);
         Point right = new Point(point.x + 1, point.y);
 
-        mapCost = getMapCost(up,startPoint);
+        mapCost = getMapCost(up);
         pointInPath = pointInPath(path, up);
         double upDistance = endPoint.distance(up) * 1000 + mapCost + pointInPath;
 
-        mapCost = getMapCost(down,startPoint);
+        mapCost = getMapCost(down);
         pointInPath = pointInPath(path, down);
         double downDistance = endPoint.distance(down) * 1000 + mapCost + pointInPath;
 
-        mapCost = getMapCost(left,startPoint);
+        mapCost = getMapCost(left);
         pointInPath = pointInPath(path, left);
         double leftDistance = endPoint.distance(left) * 1000 + mapCost + pointInPath;
 
-        mapCost = getMapCost(right,startPoint);
+        mapCost = getMapCost(right);
         pointInPath = pointInPath(path, right);
         double rightDistance = endPoint.distance(right) * 1000 + mapCost + pointInPath;
 
         //TODO this is ugly, but works. Now I don't now how do it better
-        if (point.equals(endPoint)) {
+        if (point.equals(endPoint) || path.contains(endPoint)) {
             return path;
         } else {
             double min = findMinValue(upDistance, downDistance, leftDistance, rightDistance);
 
             if (upDistance == min) {
+                updateMapCost(up,10000);
                 path.add(up);
                 countPath(up, endPoint, path);
             }
             if (downDistance == min) {
+                updateMapCost(down,10000);
                 path.add(down);
                 countPath(down, endPoint, path);
             }
             if (leftDistance == min) {
+                updateMapCost(left,10000);
                 path.add(left);
                 countPath(left, endPoint, path);
             }
             if (rightDistance == min) {
+                updateMapCost(right,10000);
                 path.add(right);
                 countPath(right, endPoint, path);
             }
 
-  /*          Point backPoint = path.get(path.size() - 1);
-
-            if(!backPoint.equals(endPoint)) {
-                path.clear();
-                updateMapCost(backPoint);
-                countPath(startPoint, endPoint, path);
-            }
-*/
             return path;
         }
     }
@@ -141,11 +137,13 @@ class PathCounter {
     }
 
 
-    private void updateMapCost(Point lastPointInPath){
-        aStarBoard.replace(lastPointInPath,Integer.MAX_VALUE);
+    private void updateMapCost(Point lastPointInPath, int value){
+        Integer old = aStarBoard.get(lastPointInPath);
+        old += value;
+        aStarBoard.replace(lastPointInPath,old);
     };
-    private int getMapCost(Point point,Point startPoint){
-        Map<Point,Integer> mapCost = mapCostGenerate(startPoint);
+    private int getMapCost(Point point){
+        Map<Point,Integer> mapCost = aStarBoard;
 
         if (point.x > BOARD_WIDTH || point.x < 0 || point.y > BOARD_HIGH || point.y < 0) {
             return Integer.MAX_VALUE;
@@ -156,7 +154,7 @@ class PathCounter {
     }
 
     //this can be private, but I want to have unit tests of this method
-    double findMinValue(double a, double b, double c, double d) {
+    private double findMinValue(double a, double b, double c, double d) {
         double subSmall1;
         double subSmall2;
 
@@ -185,7 +183,7 @@ class PathCounter {
 
     List<Point> removeBadPaths(List<Point> list, Point startPoint, Point endPoint){
         list = list.subList(list.lastIndexOf(startPoint),list.size());
+        list.remove(startPoint);
         return list.subList(0,list.indexOf(endPoint) + 1);
     }
-
 }

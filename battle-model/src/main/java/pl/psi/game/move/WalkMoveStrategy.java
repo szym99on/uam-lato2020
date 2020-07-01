@@ -26,16 +26,17 @@ public class WalkMoveStrategy implements MoveStrategyIf {
 
     @Override
     public void move(Point destPoint) {
+        if(isMovePossible(destPoint)) {
+            List<GuiTileIf> path = getObstaclesFromPath(destPoint);
+            List<DealDamageObstacle> pathObs = path.stream().filter(t -> t instanceof DealDamageObstacle).map(o -> (DealDamageObstacle) o).collect(Collectors.toList());
+            pathObs.forEach(o -> o.apply(activeCreature.getValue()));
 
-        List<GuiTileIf> path = getObstaclesFromPath(destPoint);
-        List<DealDamageObstacle> pathObs = path.stream().filter(t -> t instanceof DealDamageObstacle).map(o -> (DealDamageObstacle)o).collect(Collectors.toList());
-        pathObs.forEach(o -> o.apply(activeCreature.getValue()));
 
-
-        Point oldPosition = activeCreature.getKey();
-        board.move((int) destPoint.getX(), (int) destPoint.getY(),activeCreature.getValue());
-        activeCreature = new AbstractMap.SimpleEntry<>(destPoint, activeCreature.getValue());
-        propertyChangeSupport.firePropertyChange(GameEngine.CREATURE_MOVED, oldPosition, activeCreature.getKey());
+            Point oldPosition = activeCreature.getKey();
+            board.move((int) destPoint.getX(), (int) destPoint.getY(), activeCreature.getValue());
+            activeCreature = new AbstractMap.SimpleEntry<>(destPoint, activeCreature.getValue());
+            propertyChangeSupport.firePropertyChange(GameEngine.CREATURE_MOVED, oldPosition, activeCreature.getKey());
+        }
     }
 
 
@@ -69,6 +70,7 @@ public class WalkMoveStrategy implements MoveStrategyIf {
     public List<Point> getMovePath(Point destPoint) {
         Point oldPosition = activeCreature.getKey().getLocation();
 
+        pathCounter.init(oldPosition);
         List<Point> path = new LinkedList();
         path.add(oldPosition);
         path = pathCounter.countPath(oldPosition,destPoint,path);

@@ -56,6 +56,7 @@ public class FlyMoveStrategy implements MoveStrategyIf {
     public List<Point> getMovePath(Point destPoint) {
         Point oldPosition = activeCreature.getKey().getLocation();
 
+        pathCounter.init(oldPosition);
         List<Point> path = new LinkedList();
         path.add(oldPosition);
         path = pathCounter.countPath(oldPosition,destPoint,path);
