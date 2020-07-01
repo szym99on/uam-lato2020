@@ -27,15 +27,18 @@ public class WalkMoveStrategy implements MoveStrategyIf {
     @Override
     public void move(Point destPoint) {
         if(isMovePossible(destPoint)) {
-            List<GuiTileIf> path = getObstaclesFromPath(destPoint);
-            List<DealDamageObstacle> pathObs = path.stream().filter(t -> t instanceof DealDamageObstacle).map(o -> (DealDamageObstacle) o).collect(Collectors.toList());
-            pathObs.forEach(o -> o.apply(activeCreature.getValue()));
+            List<Point> path = getMovePath(destPoint);
+            List<GuiTileIf> pathObs = getObstaclesFromPath(path);
+            List<DealDamageObstacle> pathDealDamageObs = pathObs.stream().filter(t -> t instanceof DealDamageObstacle).map(o -> (DealDamageObstacle) o).collect(Collectors.toList());
+            pathDealDamageObs.forEach(o -> o.apply(activeCreature.getValue()));
 
 
             Point oldPosition = activeCreature.getKey();
             board.move((int) destPoint.getX(), (int) destPoint.getY(), activeCreature.getValue());
             activeCreature = new AbstractMap.SimpleEntry<>(destPoint, activeCreature.getValue());
             propertyChangeSupport.firePropertyChange(GameEngine.CREATURE_MOVED, oldPosition, activeCreature.getKey());
+        }else{
+            throw new IllegalArgumentException("You cannot move to this point!");
         }
     }
 
@@ -43,11 +46,16 @@ public class WalkMoveStrategy implements MoveStrategyIf {
     @Override
     public boolean isMovePossible(Point destPoint) {
         List<Point> path = getMovePath(destPoint);
+        List<GuiTileIf> pathObs = getObstaclesFromPath(path);
         boolean returnValue = false;
+        List<ReduceMoveRangeObstacle> reduceMoveRangeObstacles = pathObs.stream()
+                .filter(t -> t instanceof ReduceMoveRangeObstacle)
+                .map(o -> (ReduceMoveRangeObstacle) o)
+                .collect(Collectors.toList());
+        int moveRangeReduce = reduceMoveRangeObstacles.stream().mapToInt(ReduceMoveRangeObstacle::getMoveReduce).sum();
 
-        //path.remove(0);
+        if (path.size() - 1 <= activeCreature.getValue().getMoveRange() - moveRangeReduce) {
 
-        if (path.size() - 1 <= activeCreature.getValue().getMoveRange()) {
             for (Point point : path) {
                 if (board.getTile((int) point.getX(), (int) point.getY()) == null) {
                     returnValue = true;
@@ -78,9 +86,7 @@ public class WalkMoveStrategy implements MoveStrategyIf {
         return pathCounter.removeBadPaths(path, oldPosition, destPoint);
     }
 
-    private List<GuiTileIf> getObstaclesFromPath(Point destPoint) {
-        List<Point> path = getMovePath(destPoint);
-
+    private List<GuiTileIf> getObstaclesFromPath(List<Point> path) {
         List<GuiTileIf> returnPath = new LinkedList();
         path.forEach(p->returnPath.add((GuiTileIf)board.getObstacle(p.x,p.y)));
 
