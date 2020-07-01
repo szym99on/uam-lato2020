@@ -38,6 +38,7 @@ public class BuffAndDebufTest {
         assertEquals(1,spell.getDuration());
     }
     @Test
+    @Disabled
     void factoryShouldCreateAirShieldSpell() {
         SpellFactory factory = new SpellFactory();
         Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.AIR_SHIELD));
@@ -60,6 +61,7 @@ public class BuffAndDebufTest {
         assertEquals(1,spell.getDuration());
     }
     @Test
+    @Disabled
     void factoryShouldCreateFireShieldSpell() {
         SpellFactory factory = new SpellFactory();
         Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.FIRE_SHIELD));
@@ -112,6 +114,28 @@ public class BuffAndDebufTest {
         assertEquals(SpellInfo.Type.WATER,spell.getType());
         assertEquals(4,spell.getLevel());
         assertEquals(16,spell.getManaCost());
+        assertEquals(1,spell.getDuration());
+    }
+    @Test
+    void factoryShouldCreateAntyMagicSpell(){
+        SpellFactory factory = new SpellFactory();
+        Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.ANTY_MAGIC));
+
+        assertEquals("Anty magic",spell.getName());
+        assertEquals(SpellInfo.Type.EARTH,spell.getType());
+        assertEquals(3,spell.getLevel());
+        assertEquals(15,spell.getManaCost());
+        assertEquals(1,spell.getDuration());
+    }
+    @Test
+    void factoryShouldCreateDisruptingRaySpell(){
+        SpellFactory factory = new SpellFactory();
+        Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.DISRUPTING_RAY));
+
+        assertEquals("Disrupting ray",spell.getName());
+        assertEquals(SpellInfo.Type.AIR,spell.getType());
+        assertEquals(2,spell.getLevel());
+        assertEquals(10,spell.getManaCost());
         assertEquals(1,spell.getDuration());
     }
 
@@ -185,7 +209,7 @@ public class BuffAndDebufTest {
 
         spell.cast(c);
 
-        assertEquals(6,c.getMoveRange());
+        assertEquals(5,c.getMoveRange());
     }
 
     @Test
@@ -203,9 +227,9 @@ public class BuffAndDebufTest {
     @Test
     @Disabled
     void shouldDecreaseAttack(){
-        Creature attacker = Creature.builder().aAttack(Range.closed(9,9)).aMaxHp(NOT_IMPORTANT_HP).build();
-        Creature defender1 = Creature.builder().aArmor(NOT_IMPORTANT_0).aMaxHp(10).build();
-        Creature defender2 = Creature.builder().aArmor(NOT_IMPORTANT_0).aMaxHp(10).build();
+        Creature attacker = Creature.builder().aAttack(Range.closed(9,9)).aMaxHp(NOT_IMPORTANT_HP).aAmount(1).build();
+        Creature defender1 = Creature.builder().aArmor(NOT_IMPORTANT_0).aMaxHp(10).aAmount(1).build();
+        Creature defender2 = Creature.builder().aArmor(NOT_IMPORTANT_0).aMaxHp(10).aAmount(1).build();
         SpellFactory factory = new SpellFactory();
         Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.WEAKNESS));
 
@@ -230,6 +254,20 @@ public class BuffAndDebufTest {
         assertEquals(7,creature.getArmor());
         assertEquals(7,creature.getMoveRange());
     }
+
+    @Test
+    void shouldDecreaseArmor(){
+        Creature creature = Creature.builder().aArmor(5).build();
+        SpellFactory factory = new SpellFactory();
+        Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.DISRUPTING_RAY));
+
+        spell.cast(creature);
+
+        assertEquals(2, creature.getArmor());
+    }
+
+
+
 
     @Test
     @Disabled

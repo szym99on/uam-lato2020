@@ -31,10 +31,14 @@ public class SpellFactory {
                 return BuffDebufSpell.builder().aTarget(spellInfo.getTarget()).aModificationAttack(2).aModificationArmor(2).aModificationMoveRange(2).aName(spellInfo.getName()).aCost(spellInfo.getCost()).aDescription(spellInfo.getDescription()).aDuration(spellInfo.getDuration()*aHeroPower).aManaCost(spellInfo.getManaCost()).aLevel(spellInfo.getLevel()).aType(spellInfo.getType()).build();
             case SpellBookInfoFactory.SLOW :
                 return BuffDebufSpell.builder().aTarget(spellInfo.getTarget()).aModificationAttack(0).aModificationArmor(0).aModificationMoveRange(-3).aName(spellInfo.getName()).aCost(spellInfo.getCost()).aDescription(spellInfo.getDescription()).aDuration(spellInfo.getDuration()*aHeroPower).aManaCost(spellInfo.getManaCost()).aLevel(spellInfo.getLevel()).aType(spellInfo.getType()).build();
-            case SpellBookInfoFactory.AIR_SHIELD :
             case SpellBookInfoFactory.BLOODLUST :
+                return BuffDebufSpell.builder().aTarget(spellInfo.getTarget()).aModificationAttack(3).aModificationArmor(0).aModificationMoveRange(0).aName(spellInfo.getName()).aCost(spellInfo.getCost()).aDescription(spellInfo.getDescription()).aDuration(spellInfo.getDuration()*aHeroPower).aManaCost(spellInfo.getManaCost()).aLevel(spellInfo.getLevel()).aType(spellInfo.getType()).build();
+            case SpellBookInfoFactory.DISRUPTING_RAY :
+                return BuffDebufSpell.builder().aTarget(spellInfo.getTarget()).aModificationAttack(0).aModificationArmor(-3).aModificationMoveRange(0).aName(spellInfo.getName()).aCost(spellInfo.getCost()).aDescription(spellInfo.getDescription()).aDuration(spellInfo.getDuration()*aHeroPower).aManaCost(spellInfo.getManaCost()).aLevel(spellInfo.getLevel()).aType(spellInfo.getType()).build();
+            case SpellBookInfoFactory.ANTY_MAGIC:
+            case SpellBookInfoFactory.AIR_SHIELD :
             case SpellBookInfoFactory.FIRE_SHIELD :
-                return BuffDebufSpell.builder().aTarget(spellInfo.getTarget()).aName(spellInfo.getName()).aCost(spellInfo.getCost()).aDescription(spellInfo.getDescription()).aDuration(spellInfo.getDuration()).aManaCost(spellInfo.getManaCost()).aLevel(spellInfo.getLevel()).aType(spellInfo.getType()).build();
+                return SpecialBuffDebufSpell.builder().aTarget(spellInfo.getTarget()).aName(spellInfo.getName()).aCost(spellInfo.getCost()).aDescription(spellInfo.getDescription()).aDuration(spellInfo.getDuration()*aHeroPower).aManaCost(spellInfo.getManaCost()).aLevel(spellInfo.getLevel()).aType(spellInfo.getType()).build();
             case SpellBookInfoFactory.STORM_ELEMENTAL :
                 return SummonUnits.builder().aTarget(spellInfo.getTarget()).aName(spellInfo.getName()).aCost(spellInfo.getCost()).aDescription(spellInfo.getDescription()).aDuration(spellInfo.getDuration()).aManaCost(spellInfo.getManaCost()).aLevel(spellInfo.getLevel()).aType(spellInfo.getType()).build();
             case SpellBookInfoFactory.ENERGY_ELEMENTAL :

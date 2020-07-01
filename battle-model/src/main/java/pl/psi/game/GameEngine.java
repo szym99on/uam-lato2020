@@ -36,7 +36,6 @@ public class GameEngine implements PropertyChangeListener {
     private final Queue<Creature> creaturesQueue;
     private List<Creature> creatureMovedOnThisTurn;
     private PropertyChangeSupport propertyChangeSupport;
-    private Spell selectedSpell;
     private Hero hero1;
     private Hero hero2;
     private List<Point> path;
@@ -119,11 +118,11 @@ public class GameEngine implements PropertyChangeListener {
         switch (selectedSpell.getTarget()){
             case ALLY:
                 if(getByPoint(x,y)!=null)
-                return getActiveHero().haveThisCreature(getCreatureByPoint(x,y));
+                return getActiveHero().haveThisCreature(getCreatureByPoint(x,y)) && !getCreatureByPoint(x,y).getMagicResistance().isImmuneToSpell(selectedSpell.getName());
                 else return false;
             case ENEMY:
                 if(getByPoint(x,y)!=null)
-                return !getActiveHero().haveThisCreature(getCreatureByPoint(x,y)) && getByPoint(x,y).isCreature();
+                return !getActiveHero().haveThisCreature(getCreatureByPoint(x,y)) && getByPoint(x,y).isCreature() && !getCreatureByPoint(x,y).getMagicResistance().isImmuneToSpell(selectedSpell.getName());
                 else return false;
             case EMPTY: return getByPoint(x,y) == null;
             case ANY: return true;
@@ -220,12 +219,6 @@ public class GameEngine implements PropertyChangeListener {
         if (hero1.haveThisCreature(activeCreature.getValue())) return hero1;
         if (hero2.haveThisCreature(activeCreature.getValue())) return hero2;
 
-//        for(Creature creature : hero1.getCreatures()){
-//            if(creature==activeCreature.getValue()) return hero1;
-//        }
-//        for (Creature creature : hero2.getCreatures()){
-//            if(creature==activeCreature.getValue()) return hero2;
-//        }
         throw new IllegalStateException("Active creature not belong to any hero.");
     }
 
