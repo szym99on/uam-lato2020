@@ -36,6 +36,7 @@ public class GameEngine implements PropertyChangeListener {
 
     public GameEngine(Hero aHero1, Hero aHero2) {
         this.board = Board.getBoard();
+        this.board.clearBoard();
         propertyChangeSupport = new PropertyChangeSupport(this);
         this.moveEngine = new MoveEngine(board);
         moveEngine.addObserver(CREATURE_MOVED, this);

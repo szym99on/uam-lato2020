@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 
 public class Start extends Application {
 
@@ -20,9 +21,14 @@ public class Start extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("main-battle.fxml"));
-            Scene scene = new Scene(root);
 
+
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("main-battle.fxml"));
+            MainBattleController mainBattleController = new MainBattleController();
+            loader.setController(mainBattleController);
+            Parent root = loader.load();
+
+            Scene scene = new Scene(root);
             primaryStage.setTitle("Heroes 3");
             primaryStage.setScene(scene);
             primaryStage.show();
