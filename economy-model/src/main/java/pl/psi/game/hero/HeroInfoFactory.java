@@ -44,7 +44,7 @@ public class HeroInfoFactory {
     public final static String ALAMAR = "Alamar";
     public final static String SEPHINROTH = "Sephinroth";
     //BARBARIAN
-    public final static String CRAG_HACK = "Crag Hack";
+    public final static String CRAG_HACK = "Craghack";
     public final static String SHIVA = "Shiva";
     //BATTLE MAGE
     public final static String DESSA = "Dessa";

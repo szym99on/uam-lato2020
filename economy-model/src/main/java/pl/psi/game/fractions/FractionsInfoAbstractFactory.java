@@ -4,6 +4,7 @@ import com.google.common.base.Preconditions;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class FractionsInfoAbstractFactory {
     public String getName(){
@@ -35,7 +36,18 @@ public class FractionsInfoAbstractFactory {
             case ELEMENTAL:
                 return new ElementalInfoFactory();
             //default: throw new UnsupportedOperationException("Fraction not recognized");
-            default: return new NecropolisInfoFactory();
+            default:
+                Random random = new Random();
+                switch (random.nextInt(2)){
+                    case 0:
+                        return new NecropolisInfoFactory();
+                    case 1:
+                        return new RampartInfoFactory();
+                    case 2:
+                        return new StrongholdInfoFactory();
+                }
+                return new NecropolisInfoFactory();
+
 
         }
     }
