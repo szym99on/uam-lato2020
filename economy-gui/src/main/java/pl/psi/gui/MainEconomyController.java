@@ -140,7 +140,7 @@ public class MainEconomyController {
         List<HeroInfo> HeroesInfo = HeroInfoFactory.getAll();
         List<String> HeroesInfoNames = new ArrayList<>();
         for(HeroInfo hero: HeroesInfo)
-            HeroesInfoNames.add(hero.getName());
+            HeroesInfoNames.add(hero.getName().toUpperCase()+ " -> attack:"+hero.getAttack()+ " defence:"+hero.getDefence()+ " power:"+hero.getPower()+ " knowledge:"+hero.getKnowledge());
 
         ChoiceDialog dialog = new ChoiceDialog(HeroesInfoNames.get(0), HeroesInfoNames);
         dialog.initStyle(StageStyle.UNDECORATED);
@@ -152,7 +152,8 @@ public class MainEconomyController {
         dialog.setHeaderText(" Player " + i +", please choose your hero");
         dialog.setContentText("Select hero:");
         dialog.showAndWait();
-        return  HeroInfoFactory.getHeroInfoByName(dialog.getSelectedItem().toString());
+        String name = dialog.getSelectedItem().toString().split(" ->")[0];
+        return  HeroInfoFactory.getHeroInfoByName(name.substring(0, 1)+name.substring(1).toLowerCase());
     }
 
     public void addItemToShop(String itemName, String description, int cost, HBox hbox, String type) {
