@@ -14,44 +14,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class MoveEngineTest {
 
     @Test
-    @Disabled
-    // to juz jest sprawdzane w testach od EndingMoveObstacle :D
-    void moveshouldBeNotPossible(){
-
-        ObstacleFactory obstacleFactory = new ObstacleFactory();
-
-        //    0 1 2 3 4 5
-        //  0 x R x x x x
-        //  1 R C R x x x
-        //  2 x R x x x x
-        //  3 x x x x x x
-        //  4 x x x x x x
-
-        EndingMoveObstacle e1 = (EndingMoveObstacle) obstacleFactory.createImpactMoveObstacle("rock", new Point(1,2));
-        EndingMoveObstacle e2 = (EndingMoveObstacle) obstacleFactory.createImpactMoveObstacle("rock", new Point(1,0));
-        EndingMoveObstacle e3 = (EndingMoveObstacle) obstacleFactory.createImpactMoveObstacle("rock", new Point(0,1));
-        EndingMoveObstacle e4 = (EndingMoveObstacle) obstacleFactory.createImpactMoveObstacle("rock", new Point(2,1));
-
-
-        Creature c = Creature.builder().aMoveRange(1).build();
-        Board board = Board.getBoard();
-        board.clearBoard();
-        board.putCreature(1,1, c);
-        board.putObstacle(e1);
-        board.putObstacle(e2);
-        board.putObstacle(e3);
-        board.putObstacle(e4);
-
-        MoveEngine moveEngine = new MoveEngine(board);
-        moveEngine.setActiveCreature(new Point(1,1),c);
-
-        moveEngine.move(1,3);
-        assertEquals(c, board.getCreature(1,1));
-        assertNull(board.getCreature(1,3));
-
-    }
-
-    @Test
     void moveShouldBePossible(){
         Creature c = Creature.builder().aMoveRange(1).build();
         Board board = Board.getBoard();
