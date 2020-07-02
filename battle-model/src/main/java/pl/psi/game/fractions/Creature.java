@@ -29,7 +29,10 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
     @Setter private DealDamageCounterStrategyIf dealDamageCounterStrategy;
     @Setter private MagicResistance magicResistance;
     @Setter private AttackStrategyIf attackStrategyIf;
-    
+
+    static FractionsInfoAbstractFactory necropolisFactory =  FractionsInfoAbstractFactory.getFactory(FractionsInfoAbstractFactory.Fractions.NECROPOLIS);
+
+
     @Builder
     public Creature(int aMaxHp, Range<Integer> aAttack, int aArmor, String aName, int aMoveRange, boolean aCanFly, int aAmount) {
         maxHp = aMaxHp;
@@ -191,5 +194,12 @@ public class Creature implements GuiTileIf, PropertyChangeListener {
         Integer newMax = basicAttack.upperEndpoint() + hero.getAttack();
         attack = Range.closed(newMin, newMax);
         armor = basicArmor + hero.getDefence();
+    }
+
+    public boolean isUndead() {
+        for (CreatureInfo c : necropolisFactory.getAllCreatures()) {
+            if (c.getName().equals(name)) return true;
+        }
+        return false;
     }
 }

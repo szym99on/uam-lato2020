@@ -60,20 +60,43 @@ public class DamageSpell extends Spell{
     public void cast(Creature aCreature) {
 
         creature = aCreature;
-        //TODO isUndead (no implementation from Fractions)
-        if(isNotImmuneToType(SpellBookInfoFactory.getSpell(name).getType()) && isNotImmuneToSpell(name)){
-            creature.takePureDamage((int) (spellDamage * percentageSpellImmunity()));
+        switch (getName()){
+            case SpellBookInfoFactory.MAGIC_ARROW:
+            case SpellBookInfoFactory.LIGHTNING_BOLT:
+            case SpellBookInfoFactory.FIRE_BALL:
+            case SpellBookInfoFactory.METEOR_SHOWER:
+            case SpellBookInfoFactory.IMPLOSION:
+                if(isNotImmuneToType() && isNotImmuneToSpell()){
+                    creature.takePureDamage((int) (spellDamage * percentageSpellImmunity()));
+                }
+                break;
+            //TODO isUndead (no implementation from Fractions)
+            case SpellBookInfoFactory.DESTROY_UNDEAD:
+//                for (Creature c: gameEngine.getActiveHero().getCreatures()) {
+//                    if(c.isUndead()){
+//                        c.takePureDamage((int) (spellDamage * percentageSpellImmunity()));
+//                    }
+//                }
+                if(creature.isUndead()){
+                    if(isNotImmuneToType()){
+                        creature.takePureDamage((int) (spellDamage * percentageSpellImmunity()));
+                    }
+                }
+                break;
+            default:
+                throw new IllegalArgumentException("This spell doesn't exist");
         }
     }
 
 
     //TODO do poprawy equals(ENUMS)
-    private boolean isNotImmuneToType(Enum spellType){
-        return !creature.getMagicResistance().getGroupImmunityType().toString().startsWith(spellType.toString());
+    private boolean isNotImmuneToType(){
+
+        return !creature.getMagicResistance().getGroupImmunityType().toString().startsWith(SpellBookInfoFactory.getSpell(name).getType().toString());
     }
 
-    private boolean isNotImmuneToSpell(String spellName){
-        return !creature.getMagicResistance().isImmuneToSpell(spellName);
+    private boolean isNotImmuneToSpell(){
+        return !creature.getMagicResistance().isImmuneToSpell(name);
     }
 
     private double percentageSpellImmunity(){

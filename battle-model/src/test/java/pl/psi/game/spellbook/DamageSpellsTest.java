@@ -2,7 +2,6 @@ package pl.psi.game.spellbook;
 
 
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pl.psi.game.Board;
 import pl.psi.game.fractions.Creature;
@@ -130,6 +129,7 @@ public class DamageSpellsTest {
         spell.cast(creature);
         Spell spell2 = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.IMPLOSION));
         spell.cast(creature);
+        spell2.cast(creature);
 
         assertEquals(100, creature.getCurrentHp());
     }
@@ -343,19 +343,70 @@ public class DamageSpellsTest {
     }
 
     @Test
+    void meteorShowerCornerTest() {
+        board.clearBoard();
+
+        Creature c1 = Creature.builder().aMaxHp(49).build();
+        Creature c2 = Creature.builder().aMaxHp(49).build();
+        Creature c3 = Creature.builder().aMaxHp(49).build();
+        Creature c4 = Creature.builder().aMaxHp(49).build();
+        Creature c5 = Creature.builder().aMaxHp(49).build();
+
+        board.putCreature(1,1,c1);
+        board.putCreature(2,1,c2);
+        board.putCreature(1,2,c3);
+        board.putCreature(2,2,c4);
+
+
+        Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.METEOR_SHOWER));
+        spell.cast(1,1);
+
+
+        assertEquals(0, c1.getCurrentHp());
+        assertEquals(0, c2.getCurrentHp());
+        assertEquals(0, c3.getCurrentHp());
+        assertEquals(49, c4.getCurrentHp());
+
+    }
+    @Test
+    void fireBallCornerTest() {
+        board.clearBoard();
+
+        Creature c1 = Creature.builder().aMaxHp(49).build();
+        Creature c2 = Creature.builder().aMaxHp(49).build();
+        Creature c3 = Creature.builder().aMaxHp(49).build();
+        Creature c4 = Creature.builder().aMaxHp(49).build();
+        Creature c5 = Creature.builder().aMaxHp(49).build();
+
+        board.putCreature(1,1,c1);
+        board.putCreature(2,1,c2);
+        board.putCreature(1,2,c3);
+        board.putCreature(2,2,c4);
+
+
+        Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.FIRE_BALL));
+        spell.cast(1,1);
+
+
+        assertEquals(24, c1.getCurrentHp());
+        assertEquals(24, c2.getCurrentHp());
+        assertEquals(24, c3.getCurrentHp());
+        assertEquals(49, c4.getCurrentHp());
+
+    }
+
+    @Test
     void destroyUndeadShouldDealDamageOnyToUndeadCreature() {
-        Creature creature = Creature.builder().aMaxHp(100).build();
+        Creature creature = Creature.builder().aMaxHp(100).aName("Ghost Dragon").build();
 
         Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.DESTROY_UNDEAD));
         spell.cast(creature);
 
         assertEquals(80, creature.getCurrentHp());
     }
-
     @Test
-    @Disabled
-    void destroyUndeadShouldNotDealAnyDamageNotToUndeadCreature() {
-        Creature creature = Creature.builder().aMaxHp(100).build();
+    void destroyUndeadShouldNotDealAnyDamageToNotUndeadCreature() {
+        Creature creature = Creature.builder().aMaxHp(100).aName("Gold Dragon").build();
 
         Spell spell = factory.createSpell(SpellBookInfoFactory.getSpell(SpellBookInfoFactory.DESTROY_UNDEAD));
         spell.cast(creature);
